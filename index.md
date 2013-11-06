@@ -19,21 +19,6 @@ Revive Adserver is an open source ad serving tool that enables publishers to:
 
 #### Latest News
 
-##### 19 October 2013
-
-###### Andrew Hill - Illness
-
-Dear all, I wanted to apologise for the slowness of activity on Revive Adserver
-recently. I have come down with some kind of (presumed) viral infection, and
-have not been able to really work on the project for the last few weeks; I am
-still not better, and all expectation seems to be that it will be some weeks
-(at least) before I am back on my feet. I am very sorry for the lack of action
-on issues and pull requests at the current time - but I very much appreciate
-the efforts that everyone is going to find and fix bugs, and make suggestions
-for how to improve Revive Adserver. Please keep the updates coming in, and I
-hope that I will be well enough again soon to get to the list and get through
-them as soon as I possible can. - Andrew
-
 ##### 21 September 2013
 
 ###### PHP 5.4.20 Released
