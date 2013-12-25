@@ -589,15 +589,13 @@ body.hasGradient #firstLevelContent {
   border-right: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
 }
+
 #secondLevelNavigation .navigation li.last a {
   border-bottom: none;
 }
-#secondLevelNavigation .navigation li.active {
-  background: url(../images/button-navigation.gif) left center no-repeat;
-}
+
 #secondLevelNavigation .navigation li.active a {
-  background: url(../images/button-navigation.gif) left center no-repeat;
-  border: none;
+   border: none;
   color: #fff;
 }
 

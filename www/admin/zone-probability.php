@@ -58,7 +58,7 @@ function phpAds_showZoneBanners ($zoneId)
 {
     $pref = $GLOBALS['_MAX']['PREF'];
     global $phpAds_TextDirection;
-    global $strUntitled, $strName, $strID, $strWeight, $strShowBanner;
+    global $strUntitled, $strName, $strID, $strWeight, $strShowBanner,$strViews,$strClicks;
     global $strCampaignWeight, $strBannerWeight, $strProbability, $phpAds_TextAlignRight, $phpAds_TextAlignLeft;
     global $strRawQueryString, $strZoneProbListChain, $strZoneProbNullPri, $strZoneProbListChainLoop;
     global $strExclusiveAds, $strHighAds, $strLowAds, $strECPMAds, $strLimitations, $strCapping, $strNoLimitations, $strPriority;
@@ -78,18 +78,20 @@ function phpAds_showZoneBanners ($zoneId)
             echo "<tr height='25'><th align='$phpAds_TextAlignLeft' colspan='6'><strong>$strExclusiveAds:</strong></th></tr>";
             echo "<tr height='25'>";
             echo "<td height='25' width='40%'>&nbsp;&nbsp;<b>".$strName."</b></td>";
+        
+	     			echo "<td height='25'><b>$strViews</b></td><td height='25'><b>$strClicks</b></td>";
             echo "<td height='25'><b>".$strID."</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>";
             echo "<td height='25'>&nbsp;</td>";
             echo "<td height='25'>&nbsp;</td>";
             echo "<td height='25'><b>$strLimitations</b></td>";
             echo "<td height='25' align='".$phpAds_TextAlignRight."'>&nbsp;</td>";
             echo "</tr>";
-            echo "<tr height='1'><td colspan='6' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
+            echo "<tr height='1'><td colspan='8' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
             $i = -1;
             foreach($aZoneLinkedAds['xAds'] as $adId => $aLinkedAd) {
                 $i++;
                 $name = phpAds_getBannerName ($adId, 60, false, true);
-                echo "<tr height='1'><td colspan='6' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break-l.gif' height='1' width='100%'></td></tr>";
+                echo "<tr height='1'><td colspan='8' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break-l.gif' height='1' width='100%'></td></tr>";
                 echo "<tr height='25' ".($i%2==0?"bgcolor='#F6F6F6'":"").">";
                 echo "<td height='25'>";
                 echo "&nbsp;&nbsp;";
@@ -111,6 +113,8 @@ function phpAds_showZoneBanners ($zoneId)
                 }
                 echo "</td>";
                 echo "<td height='25'>".$adId."</td>";
+echo "<td> &nbsp;".$aLinkedAd["inn_views"]." &nbsp; </td><td> &nbsp; ".$aLinkedAd["inn_clicks"]." &nbsp; </td>";
+
                 echo "<td height='25'>&nbsp;</td>";
                 echo "<td height='25'>&nbsp;</td>";
 
@@ -152,8 +156,8 @@ function phpAds_showZoneBanners ($zoneId)
                 echo "</td>";
                 echo "</tr>";
             }
-            echo "<tr height='1'><td colspan='6' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
-            echo "<tr><td colspan='6'><br /><br /></td></tr>";
+            echo "<tr height='1'><td colspan='8' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
+            echo "<tr><td colspan='8'><br /><br /></td></tr>";
         }
         // High-Priority Advertisements
         if (!empty($aZoneLinkedAds['ads'])) {
@@ -292,7 +296,7 @@ function phpAds_showZoneBanners ($zoneId)
                 $probability = $aLinkedAd['priority'] * 100;
                 $usedHighProbability += $aLinkedAd['priority'];
                 $exactProbability = ($probability == 0) ? '0.00' : sprintf('%0.64f', $probability);
-                echo "<td height='25'><acronym title='{$exactProbability}%'>".number_format($probability, $pref['ui_percentage_decimals'])."%</acronym></td>";
+//              echo "<td height='25'><acronym title='{$exactProbability}%'>".number_format($probability, $pref['ui_percentage_decimals'])."%</acronym></td>";
 
                 $capping = _isAdCapped($aLinkedAd);
                 $limitations = _isAdLimited($aLinkedAd);
@@ -341,19 +345,19 @@ function phpAds_showZoneBanners ($zoneId)
             echo "<tr height='25'><th align='$phpAds_TextAlignLeft' colspan='6'><strong>$strLowAds:</strong></th></tr>";
             echo "<tr height='25'>";
             echo "<td height='25' width='40%'><b>&nbsp;&nbsp;".$strName."</b></td>";
-            echo "<td height='25'><b>".$strID."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td>";
-            echo "<td height='25'><b>".$strProbability."</b></td>";
+            echo "<td height='25'><b>".$strID."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></td><td height='25'><b>".$strProbability."</b></td>";
+	     echo "<td height='25'><b>$strViews</b></td><td height='25'><b>$strClicks</b></td>";
             echo "<td height='25'><b>$strWeight</b></td>";
             echo "<td height='25'><b>$strLimitations</b></td>";
             echo "<td height='25' align='".$phpAds_TextAlignRight."'>&nbsp;</td>";
             echo "</tr>";
-            echo "<tr height='1'><td colspan='6' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
+            echo "<tr height='1'><td colspan='8' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
             $ofPriority = (1 - $usedHighProbability) * 100;
             if ($ofPriority < 0) $ofPriority = 0;
 
             foreach($aZoneLinkedAds['lAds'] as $adId => $aLinkedAd) {
                 $name = phpAds_getBannerName ($adId, 60, false, true);
-                echo "<tr height='1'><td colspan='6' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break-l.gif' height='1' width='100%'></td></tr>";
+                echo "<tr height='1'><td colspan='8' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break-l.gif' height='1' width='100%'></td></tr>";
                 echo "<tr height='25' ".($i%2==0?"bgcolor='#F6F6F6'":"").">";
                 echo "<td height='25'>";
                 echo "&nbsp;&nbsp;";
@@ -379,7 +383,7 @@ function phpAds_showZoneBanners ($zoneId)
                 $probability = $aLinkedAd['priority'] / $aZoneLinkedAds['priority']['lAds'] * 100;
                 $realProbability = $probability * $ofPriority / 100;
                 $exactProbability = sprintf("%0.64f", $realProbability);
-                echo "<td height='25'><acronym title='{$exactProbability}'>".number_format($realProbability, $pref['ui_percentage_decimals'])."%</acronym> (".number_format($probability, $pref['ui_percentage_decimals'])."% of ".number_format($ofPriority, $pref['ui_percentage_decimals'])."%)</td>";
+                echo "<td height='25'><acronym title='{$exactProbability}'>".number_format($realProbability, $pref['ui_percentage_decimals'])."%</acronym></td><td> &nbsp;".$aLinkedAd["inn_views"]." &nbsp; </td><td> &nbsp; ".$aLinkedAd["inn_clicks"]." &nbsp; </td>";
 
                 // Weight
                 $weight = $aLinkedAd['campaign_weight']*$aLinkedAd['weight'];
@@ -425,7 +429,7 @@ function phpAds_showZoneBanners ($zoneId)
                 echo "</td>";
                 echo "</tr>";
             }
-            echo "<tr height='1'><td colspan='6' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
+            echo "<tr height='1'><td colspan='8' bgcolor='#888888'><img src='" . OX::assetPath() . "/images/break.gif' height='1' width='100%'></td></tr>";
         }
         echo "</table>";
         echo "<br /><br />";

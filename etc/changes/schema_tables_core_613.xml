@@ -1584,7 +1584,7 @@
 
    <field>
     <name>weight</name>
-    <type>openads_tinyint</type>
+    <type>openads_int</type>
     <length>4</length>
     <notnull>true</notnull>
     <default>1</default>

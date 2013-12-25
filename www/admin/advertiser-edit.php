@@ -65,11 +65,11 @@ if ($clientid != "") {
 }
 else {
     if (!isset($aAdvertiser)) {
-        $aAdvertiser['clientname']       = $strUntitled;
+        $aAdvertiser['clientname']       = '';
         $aAdvertiser['contact']          = '';
         $aAdvertiser['comments']         = '';
         $aAdvertiser['email']            = '';
-        $aAdvertiser['reportdeactivate'] = 't';
+        $aAdvertiser['reportdeactivate'] = 'f';
         $aAdvertiser['report']           = 'f';
         $aAdvertiser['reportinterval']   = 7;
     }
@@ -131,10 +131,10 @@ function buildAdvertiserForm($aAdvertiser)
 
 
     $contactRequiredMsg = $translation->translate($GLOBALS['strXRequiredField'], array($GLOBALS['strContact']));
-    $form->addRule('contact', $contactRequiredMsg, 'required');
+    //$form->addRule('contact', $contactRequiredMsg, 'required');
     $emailRequiredMsg = $translation->translate($GLOBALS['strXRequiredField'], array($GLOBALS['strEMail']));
-    $form->addRule('email', $emailRequiredMsg, 'required');
-    $form->addRule('email', $GLOBALS['strEmailField'], 'email');
+    //$form->addRule('email', $emailRequiredMsg, 'required');
+    //$form->addRule('email', $GLOBALS['strEmailField'], 'email');
     $form->addRule('reportinterval', $GLOBALS['strNumericField'], 'numeric');
     $form->addRule('reportinterval', $GLOBALS['strGreaterThanZeroField'], 'min', 1);
 
@@ -212,7 +212,7 @@ function processForm($aAdvertiser, $form)
             htmlspecialchars($aAdvertiser['clientname'])
             ));
         OA_Admin_UI::queueMessage($translated_message, 'local', 'confirm', 0);
-        OX_Admin_Redirect::redirect('advertiser-edit.php?clientid=' .  $aAdvertiser['clientid']);
+        OX_Admin_Redirect::redirect('campaign-edit.php?clientid=' .  $aAdvertiser['clientid']);
     }
     exit;
 }

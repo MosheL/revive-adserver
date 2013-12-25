@@ -910,7 +910,8 @@ function processCampaignForm($form, &$oComponent = null)
             // Queue confirmation message
             $translated_message = $translation->translate ( $GLOBALS ['strCampaignHasBeenAdded'], array (MAX::constructURL ( MAX_URL_ADMIN, 'campaign-edit.php?clientid=' . $aFields['clientid'] . '&campaignid=' . $aFields['campaignid'] ), htmlspecialchars ( $aFields['campaignname'] ), MAX::constructURL ( MAX_URL_ADMIN, 'banner-edit.php?clientid=' . $aFields['clientid'] . '&campaignid=' . $aFields['campaignid'] ) ) );
             OA_Admin_UI::queueMessage($translated_message, 'local', 'confirm', 0);
-            OX_Admin_Redirect::redirect("advertiser-campaigns.php?clientid=" . $aFields['clientid']);
+            //OX_Admin_Redirect::redirect("advertiser-campaigns.php?clientid=" . $aFields['clientid']);
+			OX_Admin_Redirect::redirect("campaign-zone.php?clientid=" . $aFields['clientid'] . "&campaignid=" . $aFields['campaignid']);
         }
         else {
             $translated_message = $translation->translate ($GLOBALS ['strCampaignHasBeenUpdated'], array (
@@ -1084,3 +1085,11 @@ function checkIfCampaignTypeSpecified($submitValues)
 
 
 ?>
+
+<script>
+//$("#priority-e")[0].checked=1;
+//$("#impressions").attr("disabled","");
+
+//$("#impressions").click (function() {   $("#impr_unlimited")[0].checked=false}).parent().click(function() {   $("#impressions").attr("disabled","") })
+</script>
+

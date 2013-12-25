@@ -12,7 +12,7 @@
 
 // Meta information
 $translation_readable   = "Hebrew";
-$translation_maintainer	= "Reuven Mansharoff";
-$translation_contact	= "reuven@act.co.il";
+$translation_maintainer	= "";
+$translation_contact	= "";
 
 ?>
