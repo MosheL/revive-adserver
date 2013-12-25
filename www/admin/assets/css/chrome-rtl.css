@@ -47,3 +47,113 @@ body.hasSidebar {
 	float: left;
 	margin: 0 0 0 12px;
 }
+
+
+
+
+
+
+
+#oaNavigation {margin: 0px 0px 0px;height:auto; top:0px;}
+#oaNavigation #oaNavigationTabs li div.left, #oaNavigation #oaNavigationTabs li div.right, #oaNavigationTabs li,#oaNavigationTabs li.active span, #oaNavigationTabs li.active a {
+background-image:none !important;
+
+}
+#oaNavigationTabs  {border: solid 1px #ddd; border-bottom: solid 0px ; min-width: 0px;}
+
+#oaNavigationTabs li  { background-color: #f2f2f3} #oaNavigationTabs li   a ,#oaNavigationTabs li span{padding:0 13px;}
+#oaNavigationTabs li.active { background-color: #668fb0}
+
+
+#secondLevelNavigation {right:4px; left:auto; margin :14px 13px 0 0px}
+#secondLevelNavigation .navigation {border: solid 1px #ddd; border-width:1px 0px}
+#secondLevelNavigation .navigation li.active ul li a {background: white none !important}
+#secondLevelNavigation .navigation li.active a  {background: #668fb0 none;}
+
+#secondLevelNavigation .navigation li .top, #secondLevelNavigation .navigation li .bottom {display:none}
+#secondLevelNavigation .navigation li.active { background-color: #668fb0;background-image:none}
+
+.hasSidebar #secondLevelContent  {margin: 0 184px 0 8px}
+
+#thirdLevelHeader div.breadcrumb {margin:9px 10px 0 250px;padding: 0 62px 0 4px; width: 500px}
+#thirdLevelHeader div.breadcrumb.reduced {display: none}
+#thirdLevelHeader div.breadcrumb.hasIcon {background-position: right top}
+#firstLevelContent  div.breadcrumb span.sep {padding: 0px 0px}
+.switchTrigger, .hover .switchTrigger {float:left; background-position: left 3px; padding: 2px 4px 0 15px;}
+.hover .switchTrigger {border-radius:3px; background-color: gray}
+.expanded .accountsPanel {left:0px; right:auto;}
+
+#oaNavigationExtra {top:14px}
+#oaNavigationExtra .accountSwitcher {background-color: #aaa; padding:5px; border-radius: 5px}
+#oaNavigationExtra .accountSwitcher li {padding: 0px 10px 0px 1px}
+#oaNavigationExtra .accountSwitcher li.inopt {padding-right:25px;}
+#thirdLevelTools ul li {float:left}
+#thirdLevelTools ul li:first-child {margin-left:25px}
+#thirdLevelTools .dropDown div.panel div {background-color: #e5f0f8}
+#thirdLevelTools  .dropDown ul li form select {width:200px; font-size:7.4pt}
+
+/*home*/
+#leftCol {float:right}
+#ad {display:none}
+
+/* tables*/
+
+#period_form {margin-right:40px}
+.tableWrapper .tableActions, .tableWrapper .tableFilters {clear:right; float:right;padding-right:8px;}
+.tableWrapper .tableActions li, .tableWrapper .tableFilters li ,.tableWrapper .tableHeader .label, .tableWrapper .dropDown  {float:right;}
+.tableWrapper .tableFilters.alignRight {float:left;}
+
+
+caption, th, td {text-align:right}
+
+body .inlineIcon, body  .inlineIconHasNext, .tableWrapper table .alignRight .rowActions li a,body div.breadcrumb .inlineIcon {
+background-position:right center;background-repeat:no-repeat;padding:1px 20px 1px 3px; display: inline-block
+}
+
+body .tableWrapper td.hasPanel div.panel table th {padding-left:12px;padding-right:0px}
+
+
+div.errormessage {padding: 6px 5px !important}
+img.errormessage {margin-right:5px; margin-left:6px  !important}
+
+
+
+/* objects*/
+.breadcrumb .dropDown .panel {left:auto; right:12px;width:570px;}
+div.dropDown div.panel div div.column {float:right;padding-left:15px}
+
+body #campaign-zone table.zones .name {text-align:right;width:120px; font-size:8pt} #campaign-zone table.zones .name  label {text-align:right}
+#campaign-zone table.zones td:last-child {display:none}
+#campaign-zone table tr, #campaign-zone table td {font-size:7pt}
+#campaign-zone #filters-linked {text-align:right !important}
+
+.panel td:last-child { max-width: 250px; overflow:hidden;}
+/* template */
+
+
+body {background: none repeat scroll 0 0 #1B4672 !important; direction:rtl; font-size: 10pt;	font-family: arial;	margin: 0;	padding: 0;}
+
+#header{ direction:rtl;	position: relative;	margin-bottom: 0px;	color: #000;	padding: 0;}
+
+#title{	display:block;text-align:left;	background: transparent url(/leads/Content/Images/top_m.jpg) repeat-x scroll 0px 0px;	height: 201px}
+
+#header h1{font-weight: bold;padding: 5px 0;	margin: 0;	color: #fff;	border: none;	line-height: 2em;	font-family: Arial, Helvetica, sans-serif;	font-size: 32px !important;}
+#imgLeftLogo {float: left; width: 388px;}
+#logindisplay {background:url("/leads/Content/Images/top_r.jpg") no-repeat scroll right top transparent;color:White;display:block;float:right;font-size:1.1em;height:77px;padding-top:123px;width:401px;
+}
+.install {font-size: 1em !important}
+
+#divPage {margin: 0px auto;width: 1000px}
+#oaHeader {height:auto;}
+#oaHeaderBranding {display:none}
+#oaNavigationExtraTop {position:absolute; padding-right:100px !important; top:-86px;right:1px; color:White;} #oaNavigationExtraTop a, #oaNavigationExtra , #oaNavigationExtra .triggerContainer a {color: White} #oaNavigationExtraTop li {float:right; border-right-width:0px; border-left: solid 1px white}
+#oaNavigationExtraTop li.infoUser {border-right-width:0px} .buttonLogout {border-left-width:0px;}
+#oaNavigationExtraTop li.buttonHelp, #oaNavigationExtraTop li.buttonContactUs, #oaNavigationExtraTop li.buttonReportBugs {display:none}
+
+.switchTrigger {color: #efefef}
+
+#firstLevelContent {margin-top:0px; position:relative}
+
+
+
+form.login {min-height:300px}
