@@ -823,21 +823,15 @@ body.hasGradient #firstLevelContent {
 
   border: 1px solid #ddd;
   background: #fff url(../images/header-background.gif) left top repeat-x;
+  
+  border-radius: 5px 5px 0px 0px;
 }
 #thirdLevelHeader.hasTabs {
   height: 88px;
 }
 
 #thirdLevelHeader .corner {
-  position: absolute;
-  overflow: hidden;
-  font-size: 0;
-
-  height: 8px;
-  width: 8px;
-
-  background-image: url("../images/header-corners.png");
-  background-repeat: no-repeat;
+  display:none
 }
 #thirdLevelHeader .left {
   left: -1px;
