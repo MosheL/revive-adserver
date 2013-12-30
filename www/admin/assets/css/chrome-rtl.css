@@ -66,14 +66,14 @@ background-image:none !important;
 
 
 #secondLevelNavigation {right:4px; left:auto; margin :14px 13px 0 0px}
-#secondLevelNavigation .navigation {border: solid 1px #ddd; border-width:1px 0px}
+#secondLevelNavigation .navigation {border: solid 1px #ddd; border-width:1px 0px; width: 140px;}
 #secondLevelNavigation .navigation li.active ul li a {background: white none !important}
 #secondLevelNavigation .navigation li.active a  {background: #668fb0 none;}
 
 #secondLevelNavigation .navigation li .top, #secondLevelNavigation .navigation li .bottom {display:none}
 #secondLevelNavigation .navigation li.active { background-color: #668fb0;background-image:none}
 
-.hasSidebar #secondLevelContent  {margin: 0 184px 0 8px}
+.hasSidebar #secondLevelContent  {margin: 0 153px 0 8px}
 
 #thirdLevelHeader div.breadcrumb {margin:9px 10px 0 250px;padding: 0 62px 0 4px; width: 500px}
 #thirdLevelHeader div.breadcrumb.reduced {display: none}
