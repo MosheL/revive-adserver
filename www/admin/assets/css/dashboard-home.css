@@ -605,3 +605,15 @@ body {
     cursor: move;
 }
 .toolbarWidget { cursor: move }
+
+
+
+
+
+
+
+
+
+
+
+.widgetToolbar {visibility: hidden; height:50px;}

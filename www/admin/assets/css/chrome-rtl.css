@@ -65,8 +65,9 @@ background-image:none !important;
 #oaNavigationTabs li.active { background-color: #668fb0}
 
 
-#secondLevelNavigation {right:4px; left:auto; margin :14px 13px 0 0px}
-#secondLevelNavigation .navigation {border: solid 1px #ddd; border-width:1px 0px; width: 140px;}
+#secondLevelNavigation {right:4px; left:auto; margin :14px 7px 0 0px; }
+#secondLevelNavigation .navigation {border: solid 1px #ddd; width: 140px; border-radius: 5px ;}
+#secondLevelNavigation .navigation li a {border-width: 1px 0px}
 #secondLevelNavigation .navigation li.active ul li a {background: white none !important}
 #secondLevelNavigation .navigation li.active a  {background: #668fb0 none;}
 
@@ -75,14 +76,17 @@ background-image:none !important;
 
 .hasSidebar #secondLevelContent  {margin: 0 153px 0 8px}
 
+#thirdLevelHeader {border-radius: 5px 5px 0px 0px}
 #thirdLevelHeader div.breadcrumb {margin:9px 10px 0 250px;padding: 0 62px 0 4px; width: 500px}
 #thirdLevelHeader div.breadcrumb.reduced {display: none}
 #thirdLevelHeader div.breadcrumb.hasIcon {background-position: right top}
 #firstLevelContent  div.breadcrumb span.sep {padding: 0px 0px}
-.switchTrigger, .hover .switchTrigger {float:left; background-position: left 3px; padding: 2px 4px 0 15px;}
+body ul li div.switchTrigger,.switchTrigger {float:left; background-position: left 3px !important; padding: 2px 4px 0 15px;}
 .hover .switchTrigger {border-radius:3px; background-color: gray}
-.expanded .accountsPanel {left:0px; right:auto;}
-
+.expanded .accountsPanel {left:0px; right:auto; top: 22px}
+.expanded .switchMiddle {border: solid 1px #ddd; background-color: white; background-image:none; border-radius: 0px 6px 6px; padding:0px !important}
+.expanded .switchMiddle  > div {padding:0px 3px}
+.switchDown, .switchTop {display:none}
 #oaNavigationExtra {top:14px}
 #oaNavigationExtra .accountSwitcher {background-color: #aaa; padding:5px; border-radius: 5px}
 #oaNavigationExtra .accountSwitcher li {padding: 0px 10px 0px 1px}
@@ -152,7 +156,7 @@ body {background: none repeat scroll 0 0 #1B4672 !important; direction:rtl; font
 
 .switchTrigger {color: #efefef}
 
-#firstLevelContent {margin-top:0px; position:relative}
+#firstLevelContent {margin-top:0px; position:relative; background-color: white; }
 
 
 
