@@ -166,7 +166,8 @@
                             {/if}
                         {/if}
                     {/if}
-                    {ox_entity_id type="Campaign" id=$campaignId}
+                    {ox_entity_id type="Campaign" id=$campaignId} <br/>
+					{$campaign.comments|escape:html}
                 </td>
                 <td>
                     {ox_campaign_status clientid=$clientId campaignid=$campaignId status=$campaign.status}
