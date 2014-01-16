@@ -3229,7 +3229,9 @@ MAX_cookieAdd($conf['var']['viewerId'], $viewerId, time() + $conf['cookie']['per
 MAX_cookieFlush();
 $destination = MAX_querystringGetDestinationUrl($adId[0]);
 if (!empty($destination) && empty($_GET['trackonly'])) {
-if (!preg_match('/[\r\n]/', $destination)) {
+if (!preg_match('/[\r\n]/', $destination)) {/*Arye*/
+$destination=AddParamIfTheUrlIsLeads($destination,'z',$zoneId[0]);
+$destination=AddParamIfTheUrlIsLeads($destination,'b',$adId[0]);
 MAX_redirect($destination);
 }
 }
@@ -3255,5 +3257,34 @@ if (!empty($ad['url'])) {
 $_REQUEST[$conf['var']['dest']] = $ad['url'];
 }
 return $adId;
+}
+
+
+
+/*Arye 31/5/2012*/
+function Contains($orig,$searchkey){
+        $pos=strpos($orig,$searchkey);
+        return ($pos===false)?false:true;
+}
+function AddParam($orig, $newkey, $newvalue){
+        $temp='';
+        $pos=strpos($orig,'?');
+        if($pos===false) {
+                $temp=$orig.'?'.$newkey.'='.$newvalue;
+        }
+        else {
+                $temp=$orig.'&'.$newkey.'='.$newvalue;
+        }
+        return $temp;
+        return ($pos === false)?false:( $length - $pos - strlen($needle) );
+}
+function AddParamIfContains($orig,$newkey,$newvalue,$contain){
+	if(Contains($orig,$contain)){
+		return AddParam($orig,$newkey,$newvalue);
+	}
+	else return $orig;
+}
+function AddParamIfTheUrlIsLeads($orig,$newkey,$newvalue){
+	return AddParamIfContains($orig,$newkey,$newvalue,'/leads/view/');
 }
 ?>

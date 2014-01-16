@@ -18,3 +18,7 @@
 /var/templates_compiled/*.php
 /var/templates_compiled/*.serial
 /www/admin/plugins/*
+
+/www/images
+
+/var/templates_compiled
