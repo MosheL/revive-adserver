@@ -1300,7 +1300,7 @@ function MAX_displayChannels($channels, $aParams) {
             echo "<td height='25' colspan='3'>";
 
             echo "<img src='" . OX::assetPath() . "/images/icon-acl.gif' border='0' align='absmiddle' alt='{$GLOBALS['strIncludedBanners']}'>&nbsp;<a href='channel-acl.php?{$entityString}channelid={$channel['channel_id']}'>{$GLOBALS['strEditChannelLimitations']}</a>&nbsp;&nbsp;&nbsp;&nbsp;";
-            echo "<img src='" . OX::assetPath() . "/images/icon-recycle.gif' border='0' align='absmiddle' alt='{$GLOBALS['strDelete']}'>&nbsp;<a href='channel-delete.php?{$entityString}channelid={$channel['channel_id']}&returnurl=".(empty($aParams['affiliateid']) ? 'channel-index.php' : 'affiliate-channels.php')."'".phpAds_DelConfirm($GLOBALS['strConfirmDeleteChannel']).">{$GLOBALS['strDelete']}</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+            echo "<img src='" . OX::assetPath() . "/images/icon-recycle.gif' border='0' align='absmiddle' alt='{$GLOBALS['strDelete']}'>&nbsp;<a href='channel-delete.php?token=" . urlencode(phpAds_SessionGetToken()) . "&{$entityString}channelid={$channel['channel_id']}&returnurl=".(empty($aParams['affiliateid']) ? 'channel-index.php' : 'affiliate-channels.php')."'".phpAds_DelConfirm($GLOBALS['strConfirmDeleteChannel']).">{$GLOBALS['strDelete']}</a>&nbsp;&nbsp;&nbsp;&nbsp;";
 
             echo "</td></tr>";
             $i++;
@@ -1489,7 +1489,15 @@ function MAX_displayNavigationBanner($pageName, $aOtherCampaigns, $aOtherBanners
         $aBanner = Admin_DA::getAd($bannerId);
         $aBanner['storagetype'] = $aBanner['type'];
         $aBanner['bannerid'] = $aBanner['ad_id'];
-        $bannerCode = MAX_adRender($aBanner, 0, '', '', '', true, '', false, false);
+        if ($aBanner['contenttype'] == 'swf') {
+            $bannerCode =
+                MAX_adRender($aBanner, 0, '', '', '', true, '', false, false) .
+                "<br /><br />" .
+                _adRenderImage($aBanner, 0, '', '', true, false, false, true);
+        } else {
+            $bannerCode =
+                MAX_adRender($aBanner, 0, '', '', '', true, '', false, false);
+        }
     }
     else {
         $bannerCode = '';
@@ -1696,7 +1704,7 @@ function addTrackerPageTools($advertiserId, $trackerId, $aOtherAdvertisers)
 
         //delete
         $deleteConfirm = phpAds_DelConfirm($GLOBALS['strConfirmDeleteTracker']);
-        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "tracker-delete.php?clientid=".$advertiserId."&trackerid=".$trackerId."&returnurl=advertiser-trackers.php"), "iconDelete", null, $deleteConfirm);
+        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "tracker-delete.php?token=" . urlencode(phpAds_SessionGetToken()) . "&clientid=".$advertiserId."&trackerid=".$trackerId."&returnurl=advertiser-trackers.php"), "iconDelete", null, $deleteConfirm);
         addPageShortcut($GLOBALS['strBackToTrackers'], MAX::constructUrl(MAX_URL_ADMIN, "advertiser-trackers.php?clientid=$advertiserId"), "iconBack");
     }
 }
@@ -1730,7 +1738,7 @@ function addCampaignPageTools($clientid, $campaignid, $aOtherAdvertisers, $aEnti
         }
 
         $deleteConfirm = phpAds_DelConfirm($GLOBALS['strConfirmDeleteCampaign']);
-        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "campaign-delete.php?clientid=$clientid&campaignid=$campaignid&returnurl=advertiser-campaigns.php"), "iconDelete", null, $deleteConfirm);
+        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "campaign-delete.php?token=" . urlencode(phpAds_SessionGetToken()) . "&clientid=$clientid&campaignid=$campaignid&returnurl=advertiser-campaigns.php"), "iconDelete", null, $deleteConfirm);
     }
 
     //shortcuts
@@ -1805,7 +1813,7 @@ function addBannerPageTools($advertiserId, $campaignId, $bannerId, $aOtherCampai
     //delete
     if (!OA_Permission::isAccount(OA_ACCOUNT_ADVERTISER)) {
         $deleteConfirm = phpAds_DelConfirm($GLOBALS['strConfirmDeleteBanner']);
-        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "banner-delete.php?clientid=$advertiserId&campaignid=$campaignId&bannerid=$bannerId&returnurl=campaign-banners.php"), "iconDelete", null, $deleteConfirm);
+        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "banner-delete.php?token=" . urlencode(phpAds_SessionGetToken()) . "&clientid=$advertiserId&campaignid=$campaignId&bannerid=$bannerId&returnurl=campaign-banners.php"), "iconDelete", null, $deleteConfirm);
     }
 
     /* Shortcuts */
@@ -1862,7 +1870,7 @@ function addZonePageTools($affiliateid, $zoneid, $aOtherPublishers, $aEntities)
        || OA_Permission::isAccount(OA_ACCOUNT_MANAGER)
        || OA_Permission::hasPermission(OA_PERM_ZONE_DELETE)) {
         $deleteConfirm = phpAds_DelConfirm($GLOBALS['strConfirmDeleteZone']);
-        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "zone-delete.php?affiliateid=$affiliateid&zoneid=$zoneid&returnurl=affiliate-zones.php"), "iconDelete", null, $deleteConfirm);
+        addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "zone-delete.php?token=" . urlencode(phpAds_SessionGetToken()) . "&affiliateid=$affiliateid&zoneid=$zoneid&returnurl=affiliate-zones.php"), "iconDelete", null, $deleteConfirm);
     }
 
     //shortcut
@@ -1885,7 +1893,7 @@ function addChannelPageTools($agencyid, $websiteId, $channelid, $channelType)
 
     //delete
     $deleteConfirm = phpAds_DelConfirm($GLOBALS['strConfirmDeleteChannel']);
-    addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "channel-delete.php?&agencyid=$agencyid&affiliateid=$websiteId&channelid=$channelid&returnurl=$deleteReturlUrl"), "iconDelete", null, $deleteConfirm);
+    addPageLinkTool($GLOBALS["strDelete"], MAX::constructUrl(MAX_URL_ADMIN, "channel-delete.php?token=" . urlencode(phpAds_SessionGetToken()) . "&agencyid=$agencyid&affiliateid=$websiteId&channelid=$channelid&returnurl=$deleteReturlUrl"), "iconDelete", null, $deleteConfirm);
 }
 
 

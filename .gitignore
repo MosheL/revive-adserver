@@ -18,3 +18,5 @@
 /var/templates_compiled/*.php
 /var/templates_compiled/*.serial
 /www/admin/plugins/*
+/www/images/
+/plugins_repo/build-ap.xml

@@ -189,7 +189,7 @@ function OX_bucket_quoteArgs($aArgs)
     $array = $aArgs;
     foreach ($array as &$value) {
         if (!is_integer($value)) {
-            $value = "'" . $value . "'";
+            $value = "'" . OX_escapeString($value) . "'";
         }
     }
     return $array;
@@ -197,6 +197,9 @@ function OX_bucket_quoteArgs($aArgs)
 
 function OA_Dal_Delivery_getKeywordCondition($operator, $keyword)
 {
+    // Escape properly
+    $keyword = OX_escapeString(stripslashes($keyword));
+
     $p1 = "(' ' || d.keyword || ' ')";
     $p2 = "ILIKE '% $keyword %'";
 

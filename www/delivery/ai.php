@@ -191,6 +191,9 @@ define('MAX_PATH', dirname(__FILE__).'/../..');
 if (!defined('OX_PATH')) {
 define('OX_PATH', MAX_PATH);
 }
+if (!defined('RV_PATH')) {
+define('RV_PATH', MAX_PATH);
+}
 if (!defined('LIB_PATH')) {
 define('LIB_PATH', MAX_PATH. DIRECTORY_SEPARATOR. 'lib'. DIRECTORY_SEPARATOR. 'OX');
 }
@@ -434,15 +437,16 @@ MAX_cookieSet(str_replace('_', '%5F', urlencode($name)), false, _getTimeYearAgo(
 function MAX_cookieClientCookieFlush()
 {
 $conf = $GLOBALS['_MAX']['CONF'];
+$domain = !empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null;
 MAX_cookieSendP3PHeaders();
 if (!empty($GLOBALS['_MAX']['COOKIE']['CACHE'])) {
 reset($GLOBALS['_MAX']['COOKIE']['CACHE']);
 while (list($name,$v) = each ($GLOBALS['_MAX']['COOKIE']['CACHE'])) {
 list($value, $expire) = $v;
 if ($name == $conf['var']['viewerId']) {
-MAX_cookieClientCookieSet($name, $value, $expire, '/', (!empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null));
+MAX_cookieClientCookieSet($name, $value, $expire, '/', !empty($conf['cookie']['viewerIdDomain']) ? $conf['cookie']['viewerIdDomain'] : $domain);
 } else {
-MAX_cookieSet($name, $value, $expire, '/', (!empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null));
+MAX_cookieSet($name, $value, $expire, '/', $domain);
 }
 }
 $GLOBALS['_MAX']['COOKIE']['CACHE'] = array();
@@ -476,7 +480,7 @@ $data[] = "{$adId}.{$value}";
 while (strlen(implode('_', $data)) > $maxCookieSize) {
 $data = array_slice($data, 1);
 }
-MAX_cookieSet($cookieName, implode('_', $data), $expire, '/', (!empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null));
+MAX_cookieSet($cookieName, implode('_', $data), $expire, '/', $domain);
 }
 }
 }
@@ -591,21 +595,34 @@ $GLOBALS['_MAX']['CLIENT_GEO'] = OX_Delivery_Common_hook('getGeoInfo', array(), 
 }
 function MAX_remotehostPrivateAddress($ip)
 {
-setupIncludePath();
-require_once 'Net/IPv4.php';
-
-$aPrivateNetworks = array(
-'10.0.0.0/8',
-'172.16.0.0/12',
-'192.168.0.0/16',
-'127.0.0.0/24'
+$ip = ip2long($ip);
+if (!$ip) return false;
+return (MAX_remotehostMatchSubnet($ip, '10.0.0.0', 8) ||
+MAX_remotehostMatchSubnet($ip, '172.16.0.0', 12) ||
+MAX_remotehostMatchSubnet($ip, '192.168.0.0', 16) ||
+MAX_remotehostMatchSubnet($ip, '127.0.0.0', 8)
 );
-foreach ($aPrivateNetworks as $privateNetwork) {
-if (Net_IPv4::ipInNetwork($ip, $privateNetwork)) {
-return true;
 }
+function MAX_remotehostMatchSubnet($ip, $net, $mask)
+{
+$net = ip2long($net);
+if (!is_integer($ip)) {
+$ip = ip2long($ip);
 }
+if (!$ip || !$net) {
 return false;
+}
+if (is_integer($mask)) {
+if ($mask > 32 || $mask <= 0)
+return false;
+elseif ($mask == 32)
+$mask = ~0;
+else
+$mask = ~((1 << (32 - $mask)) - 1);
+} elseif (!($mask = ip2long($mask))) {
+return false;
+}
+return ($ip & $mask) == ($net & $mask) ? true : false;
 }
 
 
@@ -707,6 +724,9 @@ if (!is_resource($rZoneInfo)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : false;
 }
 $aZoneInfo = OA_Dal_Delivery_fetchAssoc($rZoneInfo);
+if (empty($aZoneInfo)) {
+return false;
+}
 $query = "
         SELECT
             p.preference_id AS preference_id,
@@ -1450,159 +1470,160 @@ else
 $operator = 'OR';
 if($part_array[$k] != '' && $part_array[$k] != ' ')
 {
-if(preg_match('#^(?:size:)?([0-9]+x[0-9]+)$#', $part_array[$k], $m))
+if(preg_match('#^(?:size:)?(\d+)x(\d+)$#', $part_array[$k], $m))
 {
-list($width, $height) = explode('x', $m[1]);
-if ($operator == 'OR')
-$conditions .= "OR (d.width = $width AND d.height = $height) ";
-elseif ($operator == 'AND')
-$conditions .= "AND (d.width = $width AND d.height = $height) ";
-else
-$conditions .= "AND (d.width != $width OR d.height != $height) ";
+$width = (int)$m[1];
+$height = (int)$m[2];
+if ($operator == 'OR') {
+$conditions .= "OR (d.width = {$width} AND d.height = {$height}) ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND (d.width = {$width} AND d.height = {$height}) ";
+} else {
+$conditions .= "AND (d.width <> {$width} OR d.height <> {$height}) ";
+}
 $onlykeywords = false;
 }
-elseif (substr($part_array[$k],0,6) == 'width:')
+elseif (preg_match('#^width:(\d*)(-?)(\d*)$#', $part_array[$k], $m))
 {
-$part_array[$k] = substr($part_array[$k], 6);
-if ($part_array[$k] != '' && $part_array[$k] != ' ')
-{
-if (is_int(strpos($part_array[$k], '-')))
-{
-list($min, $max) = explode('-', $part_array[$k]);
-if ($min == '')
+$min = (int)$m[1];
+$range = !empty($m[2]);
+$max = (int)$m[3];
+if (!$range && $min) {
+if ($operator == 'OR') {
+$conditions .= "OR d.width = {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.width = {$min} ";
+} else {
+$conditions .= "AND d.width <> {$min} ";
+}
+} else {
+if (!$min) {
 $min = 1;
-if ($max == '')
-{
-if ($operator == 'OR')
-$conditions .= "OR d.width >= '".trim($min)."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.width >= '".trim($min)."' ";
-else
-$conditions .= "AND d.width < '".trim($min)."' ";
 }
-if ($max != '')
+if (!$max)
 {
-if ($operator == 'OR')
-$conditions .= "OR (d.width >= '".trim($min)."' AND d.width <= '".trim($max)."') ";
-elseif ($operator == 'AND')
-$conditions .= "AND (d.width >= '".trim($min)."' AND d.width <= '".trim($max)."') ";
-else
-$conditions .= "AND (d.width < '".trim($min)."' OR d.width > '".trim($max)."') ";
+if ($operator == 'OR') {
+$conditions .= "OR d.width >= {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.width >= {$min} ";
+} else {
+$conditions .= "AND d.width < {$min} ";
 }
+} else {
+if ($operator == 'OR') {
+$conditions .= "OR (d.width >= {$min} AND d.width <= {$max}) ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND (d.width >= {$min} AND d.width <= {$max}) ";
+} else {
+$conditions .= "AND (d.width < {$min} OR d.width > {$max}) ";
 }
-else
-{
-if ($operator == 'OR')
-$conditions .= "OR d.width = '".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.width = '".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.width != '".trim($part_array[$k])."' ";
 }
 }
 $onlykeywords = false;
 }
-elseif (substr($part_array[$k],0,7) == 'height:')
+elseif (preg_match('#^height:(\d*)(-?)(\d*)$#', $part_array[$k], $m))
 {
-$part_array[$k] = substr($part_array[$k], 7);
-if ($part_array[$k] != '' && $part_array[$k] != ' ')
-{
-if (is_int(strpos($part_array[$k], '-')))
-{
-list($min, $max) = explode('-', $part_array[$k]);
-if ($min == '')
+$min = (int)$m[1];
+$range = !empty($m[2]);
+$max = (int)$m[3];
+if (!$range && $min) {
+if ($operator == 'OR') {
+$conditions .= "OR d.height = {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.height = {$min} ";
+} else {
+$conditions .= "AND d.height <> {$min} ";
+}
+} else {
+if (!$min) {
 $min = 1;
-if ($max == '')
-{
-if ($operator == 'OR')
-$conditions .= "OR d.height >= '".trim($min)."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.height >= '".trim($min)."' ";
-else
-$conditions .= "AND d.height < '".trim($min)."' ";
 }
-if ($max != '')
+if (!$max)
 {
-if ($operator == 'OR')
-$conditions .= "OR (d.height >= '".trim($min)."' AND d.height <= '".trim($max)."') ";
-elseif ($operator == 'AND')
-$conditions .= "AND (d.height >= '".trim($min)."' AND d.height <= '".trim($max)."') ";
-else
-$conditions .= "AND (d.height < '".trim($min)."' OR d.height > '".trim($max)."') ";
+if ($operator == 'OR') {
+$conditions .= "OR d.height >= {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.height >= {$min} ";
+} else {
+$conditions .= "AND d.height < {$min} ";
 }
+} else {
+if ($operator == 'OR') {
+$conditions .= "OR (d.height >= {$min} AND d.height <= {$max}) ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND (d.height >= {$min} AND d.height <= {$max}) ";
+} else {
+$conditions .= "AND (d.height < {$min} OR d.height > {$max}) ";
 }
-else
-{
-if ($operator == 'OR')
-$conditions .= "OR d.height = '".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.height = '".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.height != '".trim($part_array[$k])."' ";
 }
 }
 $onlykeywords = false;
 }
-elseif (preg_match('#^(?:(?:bannerid|adid|ad_id):)?([0-9]+)$#', $part_array[$k], $m))
+elseif (preg_match('#^(?:(?:bannerid|adid|ad_id):)?(\d+)$#', $part_array[$k], $m))
 {
-$part_array[$k] = $m[1];
-if ($part_array[$k])
+$bannerid = (int)$m[1];
+if ($bannerid)
 {
-if ($operator == 'OR')
-$conditions .= "OR d.bannerid='".$part_array[$k]."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.bannerid='".$part_array[$k]."' ";
-else
-$conditions .= "AND d.bannerid!='".$part_array[$k]."' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.bannerid = {$bannerid} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.bannerid = {$bannerid} ";
+} else {
+$conditions .= "AND d.bannerid <> {$bannerid} ";
+}
 }
 $onlykeywords = false;
 }
-elseif (preg_match('#^(?:(?:clientid|campaignid|placementid|placement_id):)?([0-9]+)$#', $part_array[$k], $m))
+elseif (preg_match('#^(?:(?:clientid|campaignid|placementid|placement_id):)?(\d+)$#', $part_array[$k], $m))
 {
-$part_array[$k] = $m[1];
-if ($part_array[$k])
+$campaignid = (int)$m[1];
+if ($campaignid)
 {
-if ($operator == 'OR')
-$conditions .= "OR d.campaignid='".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.campaignid='".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.campaignid!='".trim($part_array[$k])."' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.campaignid = {$campaignid} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.campaignid = {$campaignid} ";
+} else {
+$conditions .= "AND d.campaignid <> {$campaignid} ";
+}
 }
 $onlykeywords = false;
 }
 elseif (substr($part_array[$k], 0, 7) == 'format:')
 {
-$part_array[$k] = substr($part_array[$k], 7);
-if($part_array[$k] != '' && $part_array[$k] != ' ')
+$format = OX_escapeString(trim(stripslashes(substr($part_array[$k], 7))));
+if (!empty($format))
 {
-if ($operator == 'OR')
-$conditions .= "OR d.contenttype='".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.contenttype='".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.contenttype!='".trim($part_array[$k])."' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.contenttype = '{$format}' ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.contenttype = '{$format}' ";
+} else {
+$conditions .= "AND d.contenttype <> '{$format}' ";
+}
 }
 $onlykeywords = false;
 }
-elseif($part_array[$k] == 'html')
+elseif ($part_array[$k] == 'html')
 {
-if ($operator == 'OR')
-$conditions .= "OR d.storagetype='html' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.storagetype='html' ";
-else
-$conditions .= "AND d.storagetype!='html' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.storagetype = 'html' ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.storagetype = 'html' ";
+} else {
+$conditions .= "AND d.storagetype <> 'html' ";
+}
 $onlykeywords = false;
 }
-elseif($part_array[$k] == 'textad')
+elseif ($part_array[$k] == 'textad')
 {
-if ($operator == 'OR')
-$conditions .= "OR d.storagetype='txt' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.storagetype='txt' ";
-else
-$conditions .= "AND d.storagetype!='txt' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.storagetype = 'txt' ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.storagetype = 'txt' ";
+} else {
+$conditions .= "AND d.storagetype <> 'txt' ";
+}
 $onlykeywords = false;
 }
 else
@@ -1697,159 +1718,160 @@ else
 $operator = 'OR';
 if($part_array[$k] != '' && $part_array[$k] != ' ')
 {
-if(preg_match('#^(?:size:)?([0-9]+x[0-9]+)$#', $part_array[$k], $m))
+if(preg_match('#^(?:size:)?(\d+)x(\d+)$#', $part_array[$k], $m))
 {
-list($width, $height) = explode('x', $m[1]);
-if ($operator == 'OR')
-$conditions .= "OR (d.width = $width AND d.height = $height) ";
-elseif ($operator == 'AND')
-$conditions .= "AND (d.width = $width AND d.height = $height) ";
-else
-$conditions .= "AND (d.width != $width OR d.height != $height) ";
+$width = (int)$m[1];
+$height = (int)$m[2];
+if ($operator == 'OR') {
+$conditions .= "OR (d.width = {$width} AND d.height = {$height}) ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND (d.width = {$width} AND d.height = {$height}) ";
+} else {
+$conditions .= "AND (d.width <> {$width} OR d.height <> {$height}) ";
+}
 $onlykeywords = false;
 }
-elseif (substr($part_array[$k],0,6) == 'width:')
+elseif (preg_match('#^width:(\d*)(-?)(\d*)$#', $part_array[$k], $m))
 {
-$part_array[$k] = substr($part_array[$k], 6);
-if ($part_array[$k] != '' && $part_array[$k] != ' ')
-{
-if (is_int(strpos($part_array[$k], '-')))
-{
-list($min, $max) = explode('-', $part_array[$k]);
-if ($min == '')
+$min = (int)$m[1];
+$range = !empty($m[2]);
+$max = (int)$m[3];
+if (!$range && $min) {
+if ($operator == 'OR') {
+$conditions .= "OR d.width = {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.width = {$min} ";
+} else {
+$conditions .= "AND d.width <> {$min} ";
+}
+} else {
+if (!$min) {
 $min = 1;
-if ($max == '')
-{
-if ($operator == 'OR')
-$conditions .= "OR d.width >= '".trim($min)."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.width >= '".trim($min)."' ";
-else
-$conditions .= "AND d.width < '".trim($min)."' ";
 }
-if ($max != '')
+if (!$max)
 {
-if ($operator == 'OR')
-$conditions .= "OR (d.width >= '".trim($min)."' AND d.width <= '".trim($max)."') ";
-elseif ($operator == 'AND')
-$conditions .= "AND (d.width >= '".trim($min)."' AND d.width <= '".trim($max)."') ";
-else
-$conditions .= "AND (d.width < '".trim($min)."' OR d.width > '".trim($max)."') ";
+if ($operator == 'OR') {
+$conditions .= "OR d.width >= {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.width >= {$min} ";
+} else {
+$conditions .= "AND d.width < {$min} ";
 }
+} else {
+if ($operator == 'OR') {
+$conditions .= "OR (d.width >= {$min} AND d.width <= {$max}) ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND (d.width >= {$min} AND d.width <= {$max}) ";
+} else {
+$conditions .= "AND (d.width < {$min} OR d.width > {$max}) ";
 }
-else
-{
-if ($operator == 'OR')
-$conditions .= "OR d.width = '".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.width = '".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.width != '".trim($part_array[$k])."' ";
 }
 }
 $onlykeywords = false;
 }
-elseif (substr($part_array[$k],0,7) == 'height:')
+elseif (preg_match('#^height:(\d*)(-?)(\d*)$#', $part_array[$k], $m))
 {
-$part_array[$k] = substr($part_array[$k], 7);
-if ($part_array[$k] != '' && $part_array[$k] != ' ')
-{
-if (is_int(strpos($part_array[$k], '-')))
-{
-list($min, $max) = explode('-', $part_array[$k]);
-if ($min == '')
+$min = (int)$m[1];
+$range = !empty($m[2]);
+$max = (int)$m[3];
+if (!$range && $min) {
+if ($operator == 'OR') {
+$conditions .= "OR d.height = {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.height = {$min} ";
+} else {
+$conditions .= "AND d.height <> {$min} ";
+}
+} else {
+if (!$min) {
 $min = 1;
-if ($max == '')
-{
-if ($operator == 'OR')
-$conditions .= "OR d.height >= '".trim($min)."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.height >= '".trim($min)."' ";
-else
-$conditions .= "AND d.height < '".trim($min)."' ";
 }
-if ($max != '')
+if (!$max)
 {
-if ($operator == 'OR')
-$conditions .= "OR (d.height >= '".trim($min)."' AND d.height <= '".trim($max)."') ";
-elseif ($operator == 'AND')
-$conditions .= "AND (d.height >= '".trim($min)."' AND d.height <= '".trim($max)."') ";
-else
-$conditions .= "AND (d.height < '".trim($min)."' OR d.height > '".trim($max)."') ";
+if ($operator == 'OR') {
+$conditions .= "OR d.height >= {$min} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.height >= {$min} ";
+} else {
+$conditions .= "AND d.height < {$min} ";
 }
+} else {
+if ($operator == 'OR') {
+$conditions .= "OR (d.height >= {$min} AND d.height <= {$max}) ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND (d.height >= {$min} AND d.height <= {$max}) ";
+} else {
+$conditions .= "AND (d.height < {$min} OR d.height > {$max}) ";
 }
-else
-{
-if ($operator == 'OR')
-$conditions .= "OR d.height = '".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.height = '".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.height != '".trim($part_array[$k])."' ";
 }
 }
 $onlykeywords = false;
 }
-elseif (preg_match('#^(?:(?:bannerid|adid|ad_id):)?([0-9]+)$#', $part_array[$k], $m))
+elseif (preg_match('#^(?:(?:bannerid|adid|ad_id):)?(\d+)$#', $part_array[$k], $m))
 {
-$part_array[$k] = $m[1];
-if ($part_array[$k])
+$bannerid = (int)$m[1];
+if ($bannerid)
 {
-if ($operator == 'OR')
-$conditions .= "OR d.bannerid='".$part_array[$k]."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.bannerid='".$part_array[$k]."' ";
-else
-$conditions .= "AND d.bannerid!='".$part_array[$k]."' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.bannerid = {$bannerid} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.bannerid = {$bannerid} ";
+} else {
+$conditions .= "AND d.bannerid <> {$bannerid} ";
+}
 }
 $onlykeywords = false;
 }
-elseif (preg_match('#^(?:(?:clientid|campaignid|placementid|placement_id):)?([0-9]+)$#', $part_array[$k], $m))
+elseif (preg_match('#^(?:(?:clientid|campaignid|placementid|placement_id):)?(\d+)$#', $part_array[$k], $m))
 {
-$part_array[$k] = $m[1];
-if ($part_array[$k])
+$campaignid = (int)$m[1];
+if ($campaignid)
 {
-if ($operator == 'OR')
-$conditions .= "OR d.campaignid='".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.campaignid='".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.campaignid!='".trim($part_array[$k])."' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.campaignid = {$campaignid} ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.campaignid = {$campaignid} ";
+} else {
+$conditions .= "AND d.campaignid <> {$campaignid} ";
+}
 }
 $onlykeywords = false;
 }
 elseif (substr($part_array[$k], 0, 7) == 'format:')
 {
-$part_array[$k] = substr($part_array[$k], 7);
-if($part_array[$k] != '' && $part_array[$k] != ' ')
+$format = OX_escapeString(trim(stripslashes(substr($part_array[$k], 7))));
+if (!empty($format))
 {
-if ($operator == 'OR')
-$conditions .= "OR d.contenttype='".trim($part_array[$k])."' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.contenttype='".trim($part_array[$k])."' ";
-else
-$conditions .= "AND d.contenttype!='".trim($part_array[$k])."' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.contenttype = '{$format}' ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.contenttype = '{$format}' ";
+} else {
+$conditions .= "AND d.contenttype <> '{$format}' ";
+}
 }
 $onlykeywords = false;
 }
-elseif($part_array[$k] == 'html')
+elseif ($part_array[$k] == 'html')
 {
-if ($operator == 'OR')
-$conditions .= "OR d.storagetype='html' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.storagetype='html' ";
-else
-$conditions .= "AND d.storagetype!='html' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.storagetype = 'html' ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.storagetype = 'html' ";
+} else {
+$conditions .= "AND d.storagetype <> 'html' ";
+}
 $onlykeywords = false;
 }
-elseif($part_array[$k] == 'textad')
+elseif ($part_array[$k] == 'textad')
 {
-if ($operator == 'OR')
-$conditions .= "OR d.storagetype='txt' ";
-elseif ($operator == 'AND')
-$conditions .= "AND d.storagetype='txt' ";
-else
-$conditions .= "AND d.storagetype!='txt' ";
+if ($operator == 'OR') {
+$conditions .= "OR d.storagetype = 'txt' ";
+} elseif ($operator == 'AND') {
+$conditions .= "AND d.storagetype = 'txt' ";
+} else {
+$conditions .= "AND d.storagetype <> 'txt' ";
+}
 $onlykeywords = false;
 }
 else
@@ -2588,8 +2610,7 @@ if (strtolower($charset) == 'unicode') { $charset = 'utf-8'; }
 function MAX_commonDisplay1x1()
 {
 MAX_header('Content-Type: image/gif');
-MAX_header('Content-Length: 43');
-echo base64_decode('R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');
+echo "GIF89a\001\0\001\0\200\0\0\377\377\377\0\0\0!\371\004\0\0\0\0\0,\0\0\0\0\001\0\001\0\0\002\002D\001\0;";
 }
 function MAX_commonGetTimeNow()
 {
@@ -3094,4 +3115,3 @@ MAX_redirect($conf['defaultBanner']['imageUrl']);
 MAX_commonDisplay1x1();
 }
 }
-?>

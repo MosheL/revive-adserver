@@ -87,7 +87,6 @@ MAX_cookieFlush();
 
 // Setup the banners for this page
 MAX_commonSendContentTypeHeader("application/x-javascript", $charset);
-header("Content-Size: ".strlen($spc_output));
 
 echo $spc_output;
 

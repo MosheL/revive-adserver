@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 3.1.0
+Release Notes: Revive Adserver 3.0.6
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,7 +14,7 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 3.1.0
+What's New in Revive Adserver 3.0.6
 -----------------------------------
 
  * Release date: TBA
@@ -22,23 +22,31 @@ What's New in Revive Adserver 3.1.0
  Security Updates
  ----------------
 
- * TBA
+ * None
 
  New Features
  ------------
 
- * TBA
+ * None
 
  Bug Fixes
  ---------
 
- * Fixed issue with blank statistics pages under PHP 5.4+.
- * Fixed various strict warning issues under PHP 5.4+.
+ * VAST tracking URLs are now using https when the call is performed via SSL
+ * Allow domain for the viewerId cookie to be set separately
+ * Removed useless Content-Length headers when sending the 1x1 transparent gif
+   and spc delivery files, as the header interferes with ob_gzhandler and/or
+   zlib.output_compression
+
 
  Non-Backwards Compatible Changes
  --------------------------------
 
- * TBA
+ * Activation/deactivation emails and scheduled reports are now disabled by
+   default when creating new advertisers via the API, in order to match the UI
+   behaviour. This does not affect any existing advertiser account settings for
+   this feature; but please be aware that the default for all new advertiser
+   accounts has been changed.
 
 
 System Requirements
@@ -59,12 +67,12 @@ Downloading and Installing
  * Installing Revive Adserver
 
    Installing Revive Adserver is a straightforward process. Follow the steps at
-   http://www.revive-adserver.com/docs/install.
+   http://www.revive-adserver.com/support/installation/.
 
  * Upgrading Revive Adserver
 
    Upgrading Revive Adserver is a straightforward process. Follow the steps at
-   http://www.revive-adserver.com/docs/upgrade.
+   http://www.revive-adserver.com/support/upgrading/.
 
    Please note: The upgrade process will update your Revive Adserver database,
    and the database may no longer be compatible with your old installation.
@@ -140,8 +148,7 @@ this before reporting any new bugs.
    statistics. This can be worked around by ensuring that the timezone is
    correctly set in PHP.
 
- * See https://github.com/revive-adserver/revive-adserver/issues?state=open
-   for the latest bug reports.
+ * See http://www.revive-adserver.com/support/bugs/ for the latest bug reports.
 
 
 FAQ
@@ -159,7 +166,12 @@ FAQ
     Yes. OpenX Source has rebranded as Revive Adserver. You will be able to
     upgrade from any version of OpenX Source.
 
- 3. What can I do to help?
+ 3. Where can I get help?
+
+    You can ask for help at the Revive Adserver community forums:
+    http://forum.revive-adserver.com/
+
+ 4. What can I do to help?
 
     We need help from both developers and users to provide as much feedback
     as possible to make Revive Adserver even better. You can contribute
