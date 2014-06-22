@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 3.0.2
+Release Notes: Revive Adserver 3.0.6
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,17 +14,15 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 3.0.2
+What's New in Revive Adserver 3.0.6
 -----------------------------------
 
- * Release date: 20 December 2013
+ * Release date: TBA
 
  Security Updates
  ----------------
 
- * CVE-2013-7149 - Fixed SQL-Injection vulnerability in the XML-RPC invocation
-   script (www/delivery/axmlrpc.php). For more information:
-   http://www.revive-adserver.com/security/REVIVE-SA-2013-001
+ * None
 
  New Features
  ------------
@@ -34,12 +32,21 @@ What's New in Revive Adserver 3.0.2
  Bug Fixes
  ---------
 
- * None
+ * VAST tracking URLs are now using https when the call is performed via SSL
+ * Allow domain for the viewerId cookie to be set separately
+ * Removed useless Content-Length headers when sending the 1x1 transparent gif
+   and spc delivery files, as the header interferes with ob_gzhandler and/or
+   zlib.output_compression
+
 
  Non-Backwards Compatible Changes
  --------------------------------
 
- * None
+ * Activation/deactivation emails and scheduled reports are now disabled by
+   default when creating new advertisers via the API, in order to match the UI
+   behaviour. This does not affect any existing advertiser account settings for
+   this feature; but please be aware that the default for all new advertiser
+   accounts has been changed.
 
 
 System Requirements
@@ -141,8 +148,7 @@ this before reporting any new bugs.
    statistics. This can be worked around by ensuring that the timezone is
    correctly set in PHP.
 
- * See https://github.com/revive-adserver/revive-adserver/issues?state=open
-   for the latest bug reports.
+ * See http://www.revive-adserver.com/support/bugs/ for the latest bug reports.
 
 
 FAQ

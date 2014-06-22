@@ -129,6 +129,20 @@ class OA_Admin_UI_Component_Form
         $this->addRule('token', 'Invalid request token', 'callback', 'phpAds_SessionValidateToken');
     }
 
+    function validate()
+    {
+        $ret = parent::validate();
+
+        if (!$ret) {
+            // The form returned an error. We need to generate a new CSRF token, in any.
+            $token = $this->getElement('token');
+            if (!empty($token)) {
+                $token->setValue(phpAds_SessionGetToken());
+            }
+        }
+
+        return $ret;
+    }
 
     /**
      * Registers new JQuery QuickForm rule adaptor. Registered adaptors should

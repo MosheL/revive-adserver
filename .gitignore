@@ -20,5 +20,5 @@
 /www/admin/plugins/*
 
 /www/images
-
+/plugins_repo/build-ap.xml
 /var/templates_compiled

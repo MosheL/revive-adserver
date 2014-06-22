@@ -2,34 +2,18 @@
 
 /*
 +---------------------------------------------------------------------------+
-| OpenX v2.8 |
-| ========== |
+| Revive Adserver                                                           |
+| http://www.revive-adserver.com                                            |
 |                                                                           |
-| Copyright (c) 2003-2009 OpenX Limited |
-| For contact details, see: http://www.openx.org/  |
-|  |
-| This program is free software; you can redistribute it and/or modify  |
-| it under the terms of the GNU General Public License as published by  |
-| the Free Software Foundation; either version 2 of the License, or  |
-| (at your option) any later version.  |
-|  |
-| This program is distributed in the hope that it will be useful, |
-| but WITHOUT ANY WARRANTY; without even the implied warranty of  |
-| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the |
-| GNU General Public License for more details.  |
-|  |
-| You should have received a copy of the GNU General Public License  |
-| along with this program; if not, write to the Free Software  |
-| Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA |
+| Copyright: See the COPYRIGHT.txt file.                                    |
+| License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
-$Id: default.lang.php 62345 2010-09-14 21:16:38Z chris.nutting $
 */
 
 // Set text direction and characterset
 $GLOBALS['phpAds_TextDirection']  		= "rtl";
 $GLOBALS['phpAds_TextAlignRight'] 		= "left";
 $GLOBALS['phpAds_TextAlignLeft']  		= "right";
-$GLOBALS['phpAds_CharSet']         = "UTF-8";
 
 $GLOBALS['phpAds_DecimalPoint']			= '.';
 $GLOBALS['phpAds_ThousandsSeperator']		= ',';
@@ -49,13 +33,13 @@ $GLOBALS['weekiso_format']			= "%V/%G";
 /* Translations                                          */
 /*-------------------------------------------------------*/
 
-$GLOBALS['strHome']  = "ראשי";
+$GLOBALS['strHome'] 				= "ראשי";
 $GLOBALS['strHelp']				= "עזרה";
 $GLOBALS['strNavigation'] 			= "ניווט";
-$GLOBALS['strShortcuts']  = "קיצורים";
-$GLOBALS['strAdminstration']  = "מלאי";
+$GLOBALS['strShortcuts'] 			= "קיצורים";
+$GLOBALS['strAdminstration'] 			= "מלאי";
 $GLOBALS['strMaintenance']			= "תחזוקה";
-$GLOBALS['strProbability'] = "סיכויים";
+$GLOBALS['strProbability']			= "סיכויים";
 $GLOBALS['strInvocationcode']			= "קוד תצוגה";
 $GLOBALS['strBasicInformation'] 		= "מידע בסיסי";
 $GLOBALS['strContractInformation'] 		= "מידע התקשרות";
@@ -64,7 +48,7 @@ $GLOBALS['strOverview']				= "סקירה כללית";
 $GLOBALS['strSearch']				= "חפ<u>ש</u>";
 $GLOBALS['strHistory']				= "היסטוריה";
 $GLOBALS['strPreferences'] 			= "קדימויות";
-$GLOBALS['strDetails'] = "פרטים";
+$GLOBALS['strDetails']				= "פרטים";
 $GLOBALS['strCompact']				= "קומפקטי";
 $GLOBALS['strVerbose']				= "מפורט";
 $GLOBALS['strUser']				= "משתמש";
@@ -77,24 +61,24 @@ $GLOBALS['strActivate']				= "הפעל";
 $GLOBALS['strDeActivate'] 			= "שתק";
 $GLOBALS['strConvert']				= "המר";
 $GLOBALS['strRefresh']				= "רענן";
-$GLOBALS['strSaveChanges']  = "שמור שינויים";
+$GLOBALS['strSaveChanges']		 	= "שמור שינויים";
 $GLOBALS['strUp'] 				= "למעלה";
 $GLOBALS['strDown'] 				= "למטה";
 $GLOBALS['strSave'] 				= "שמור";
 $GLOBALS['strCancel']				= "בטל";
-$GLOBALS['strPrevious']  = "קודם";
-$GLOBALS['strPrevious_Key']  = "<u>ק</u>ודם";
-$GLOBALS['strNext']  = "הבא";
-$GLOBALS['strNext_Key']  = "ה<u>ב</u>א";
-$GLOBALS['strYes']				= "כן";
-$GLOBALS['strNo'] = "לא";
-$GLOBALS['strNone']  = "ללא";
+$GLOBALS['strPrevious'] 			= "קודם";
+$GLOBALS['strPrevious_Key'] 			= "<u>ק</u>ודם";
+$GLOBALS['strNext'] 				= "הבם";
+$GLOBALS['strNext_Key'] 				= "ה<u>ב</u>ם";$GLOBALS['strYes']				= "כן";
+$GLOBALS['strNo']				= "לא";
+$GLOBALS['strNone'] 				= "אף אחד";
 $GLOBALS['strCustom']				= "לפי מידה";
 $GLOBALS['strDefault'] 				= "ברירת מחדל";
-$GLOBALS['strOther'] = "אחר";
-$GLOBALS['strUnknown'] = "לא ידוע";
-$GLOBALS['strUnlimited']  = "ללא הגבלה";
-$GLOBALS['strUntitled'] = "ללא שם";
+$GLOBALS['strOther']				= "אחר";
+$GLOBALS['strUnknown']				= "לא ידוע";
+$GLOBALS['strUnlimited'] 			= "ללא הגבלה";
+$GLOBALS['strUntitled']				= "ללא שם";
+
 $GLOBALS['strAll'] 				= "הכל";
 $GLOBALS['strAvg'] 				= "ממצ.";
 $GLOBALS['strAverage']				= "ממוצע";
@@ -112,6 +96,7 @@ $GLOBALS['strCollapseAll']			= "<u>מ</u>כונס הכל";
 $GLOBALS['strShowAll']				= "הצג הכל";
 $GLOBALS['strNoAdminInteface'] = "השירות אינו פעיל...";
 $GLOBALS['strFilterBySource']			= "סנן לפי מקור";
+$GLOBALS['strFieldContainsErrors']		= "השדות הבאים מכילים שגיאות:";
 $GLOBALS['strFieldContainsErrors'] = "השדות הבאים מכילים שגיאות:";
 $GLOBALS['strFieldFixBeforeContinue1']		= "לפני שתמשיך עליך";
 $GLOBALS['strFieldFixBeforeContinue2'] = "לתקן שגיאות אלו.";
@@ -134,7 +119,7 @@ $GLOBALS['strHeight'] 				= "גובה";
 $GLOBALS['strURL2']				= "URL";
 $GLOBALS['strTarget']				= "חלון מטרה";
 $GLOBALS['strLanguage'] 			= "שפה";
-$GLOBALS['strDescription']  = "תיםור";
+$GLOBALS['strDescription'] 			= "תיאור";
 $GLOBALS['strID']				= "ID";
 
 
@@ -226,7 +211,7 @@ $GLOBALS['strAllowClientActivateBanner'] = "אפשר למשתמש זה להפע�
 
 
 // Campaign
-$GLOBALS['strCampaign'] = "קמפיים";
+$GLOBALS['strCampaign'] = "קמפיין";
 $GLOBALS['strCampaigns'] = "קמפיינים";
 $GLOBALS['strTotalCampaigns']  = "סך הכל קמפיינים";
 $GLOBALS['strActiveCampaigns']  = "קמפיינים פעילים";
@@ -312,9 +297,9 @@ $GLOBALS['strWebBanner']  = "באנר מקומי(על השרת)";
 $GLOBALS['strURLBanner']  = "באנר חיצוני";
 $GLOBALS['strHTMLBanner']  = "באנר קוד HTML";
 $GLOBALS['strTextBanner'] 			= "Text ad";
-$GLOBALS['strAutoChangeHTML'] = "שנה קוד HTML של הבאנר על מנת לאפשר מעקב הקלקות";
-$GLOBALS['strUploadOrKeep'] = "האם אתה רוצה להשםיר<br>את הגרפיקה הקיימת או<br>להעלות חדשה?";
-$GLOBALS['strNewBannerFile']  = "בחר את הגרפיקה שברצונך<br>להשתמש בבאנר זה<br><br>";
+$GLOBALS['strAutoChangeHTML']			= "שנה  קוד HTML של הבאנר על מנת לאפשר מעקב הקלקות";
+$GLOBALS['strUploadOrKeep']			= "האא אתה רוצה להשאיר<br>את הגרפיקה הקיימת או<br>להעלות חדשה";
+$GLOBALS['strNewBannerFile'] 			= "בחר את הגרפיקה שברצונך<br>להשתמש בבאנר זה<br><br>";
 $GLOBALS['strNewBannerURL'] 			= "כתובת (URL) הגרפיקה (כולל http://)";
 $GLOBALS['strURL'] 				= "כתובת (URL) הפניית הקלקה (כולל http://)";
 $GLOBALS['strHTML'] 				= "HTML";
@@ -340,10 +325,10 @@ $GLOBALS['strOverwriteSource'] = "רמוס פרמטרים של המקור";
 
 // Banner (network)
 $GLOBALS['strBannerNetwork']			= "תבנית HTML";
-$GLOBALS['strChooseNetwork'] = "בחר בתבנית שםתה רוצה להשתמש בה.";
+$GLOBALS['strChooseNetwork']			= "בחר בתבנית שאתה רוצה להשתמש בה.";
 $GLOBALS['strMoreInformation']			= "עוד מידע...";
 $GLOBALS['strRichMedia']			= "מדיה עשירה";
-$GLOBALS['strTrackAdClicks'] = "עקוב אחר הקלקות ";
+$GLOBALS['strTrackAdClicks']			= "עקוב אחר הקלקות ";
 
 
 // Display limitations
@@ -368,7 +353,7 @@ $GLOBALS['strOnlyDisplayWhen'] = "הצג באנר זה רק כש:";
 $GLOBALS['strWeekDay']  = "יום בשבוע";
 $GLOBALS['strTime'] 				= "שעה";
 $GLOBALS['strUserAgent'] 			= "מוביל השירות";
-$GLOBALS['strDomain']  = "שם מתחשם (Domain)";
+$GLOBALS['strDomain']  = "שם מתחם (Domain)";
 $GLOBALS['strClientIP'] 			= "תגית IP";
 $GLOBALS['strSource'] 				= "צמוד לתוכן מקור";
 $GLOBALS['strBrowser'] 				= "דפדפן";
@@ -432,8 +417,8 @@ $GLOBALS['strBannerButtonRectangle'] = "באנר, כפתור או ריבוע";
 $GLOBALS['strInterstitial'] = "על-שכבתי או צף";
 $GLOBALS['strPopup']				= "קופץ";
 $GLOBALS['strTextAdZone'] = "פרסום טקסטואלי";
-$GLOBALS['strShowMatchingBanners'] = "הצג באנרים תוםמים";
-$GLOBALS['strHideMatchingBanners'] = "הסתר באנרים תוםמים";
+$GLOBALS['strShowMatchingBanners']		= "הצג באנריא תואמים";
+$GLOBALS['strHideMatchingBanners']		= "הסתר באנריא תואמים";
 
 
 
@@ -478,7 +463,7 @@ $GLOBALS['strNoLinkedBanners'] = "אין כעת באנרים המקושרים ל
 $GLOBALS['strMatchingBanners'] = "{count} באנרים תוםמים";
 $GLOBALS['strNoCampaignsToLink'] = "אין כעת קמפיין הניתן לקישור לאזור זה.";
 $GLOBALS['strNoZonesToLinkToCampaign']  = "אין כעת אזורים הניתנים לקישור לקמפיין זה.";
-$GLOBALS['strSelectBannerToLink'] = "בחר את הבאנר שםתה רוצה לקשר לאזור זה:";
+$GLOBALS['strSelectBannerToLink']		= "בחר את הבאנר שאתה רוצה לקשר לאזור זה:";
 $GLOBALS['strSelectCampaignToLink'] = "בחר את הקמפיין שאתה רוצה לקשר לאזור זה:";
 
 
@@ -545,7 +530,7 @@ $GLOBALS['strNoActionsLogged'] = "לא נרשמה שום פעולה";
 
 // Code generation
 $GLOBALS['strGenerateBannercode']		= "בחירה ישירה";
-$GLOBALS['strChooseInvocationType'] = "נא לבחור בסוג קוד הקריםה";
+$GLOBALS['strChooseInvocationType']		= "נא לבחור בסוג קוד הקריאה";
 $GLOBALS['strGenerate']				= "ייצר קוד";
 $GLOBALS['strParameters'] = "פרמטרים";
 $GLOBALS['strFrameSize']			= "גודל מסגרת";
@@ -565,14 +550,14 @@ $GLOBALS['strErrorClicks'] 			= "You must enter the number of clicks or select t
 $GLOBALS['strErrorNegClicks'] 			= "Negative clicks are not allowed";
 $GLOBALS['strNoMatchesFound']			= "No matches were found";
 $GLOBALS['strErrorOccurred']			= "An error occurred";
-$GLOBALS['strErrorUploadSecurity'] = "אובחנה אפשרות לבעיית בטיחות, העלאה עוכבה!";
-$GLOBALS['strErrorUploadBasedir'] = "אין גישה לקובץ שהועלה, כנראה עקב מיצוב \"safemode\" או הגבלות \"open_basedir\"";
-$GLOBALS['strErrorUploadUnknown'] = "אין גישה לקובץ שהועלה, עקב סיבה לא ידועה. אנא בדוק את קונפיגורציית ה-PHP";
-$GLOBALS['strErrorStoreLocal'] = "אירעה שגיםה בעת הנסיון לשמור את הבאנר בתיקייה המקומית. אפשר שזה עקב קונפיגורציה שגויה של קביעות בתיב התיקייה.";
-$GLOBALS['strErrorStoreFTP'] = "אירעה שגיםה בעת נסיון להעלות את הבאנר לשרת FTP. אפשר שהשרת לא זמין, או קונפיגורציה שגויה של קביעות שרת ה-FTP";
-$GLOBALS['strErrorDBPlain'] = "אירעה שגיםה בגישה לבסיס הנתונים";
-$GLOBALS['strErrorDBSerious'] = "אירעה שגיםה חמורה בבסיס הנתונים";
-$GLOBALS['strErrorDBNoDataPlain'] = "עקב בעיה בבבסיס הנתונים ".MAX_PRODUCT_NAME." לא יכלה להשיג מידע. ";
+$GLOBALS['strErrorUploadSecurity']		= "אובחנה אפשרות לבעיית בטיחות, העלאה עוכבה!";
+$GLOBALS['strErrorUploadBasedir']		= "אין גישה לקובץ שהועלה, כנראה עקב מיצוב \"safemode\" או הגבלות \"open_basedir\"";
+$GLOBALS['strErrorUploadUnknown']		= "אין גישה לקובץ שהועלה,  עקב סיבה לא ידועה. אנא בדוק את קונפיגורציית ה-PHP";
+$GLOBALS['strErrorStoreLocal']			= "ארעה שגיאה בעת הנסיון לשמור את הבאנר בתיקייה המקומית. אפשר שזה עקב קונפיגורציה שגויה של קביעות בתיב התיקייה.";
+$GLOBALS['strErrorStoreFTP']			= "ארעה שגיאה בעת נסיון להעלות את הבאנר לשרת FTP. אפשר שהשרת לא זמין, או קונפיגורציה שגויה של קביעות שרת ה-FTP";
+$GLOBALS['strErrorDBPlain']				= "ארעה שגיאה בגישה לבסיס הנתונים";
+$GLOBALS['strErrorDBSerious']			= "ארעה שגיאה חמורה בבסיס הנתונים";
+$GLOBALS['strErrorDBNoDataPlain']		= "עקב בעיה בבבסיס הנתוניא ".MAX_PRODUCT_NAME." לא יכלה להשיג מידע. ";
 $GLOBALS['strErrorDBNoDataSerious'] = "עקב בעיה חמורה בבסיס הנתונים, ".MAX_PRODUCT_NAME." לא יכלה להשיג מידע.";
 $GLOBALS['strErrorDBCorrupt'] = "טבלאות בסיס הנתונים כנראה קרסו ודורשות תיקון. מידע נוסף בדבר תיקון טבלאות שקרסו ניתן למצום בפרק <i>Troubleshooting</i> של ה<i>Administrator guide</i>.";
 $GLOBALS['strErrorDBContact'] = "אנא צור קשר ם האחראי של שרת זה והודיע לו לגבי הבעיה.";
@@ -656,7 +641,6 @@ $GLOBALS['keyExpandAll']	= 'פ';
 $GLOBALS['keyAddNew']		= 'ח';
 $GLOBALS['keyNext']			= 'ב';
 $GLOBALS['keyPrevious']		= 'ק';
-
 
 
 

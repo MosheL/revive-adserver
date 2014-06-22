@@ -191,6 +191,9 @@ define('MAX_PATH', dirname(__FILE__).'/../..');
 if (!defined('OX_PATH')) {
 define('OX_PATH', MAX_PATH);
 }
+if (!defined('RV_PATH')) {
+define('RV_PATH', MAX_PATH);
+}
 if (!defined('LIB_PATH')) {
 define('LIB_PATH', MAX_PATH. DIRECTORY_SEPARATOR. 'lib'. DIRECTORY_SEPARATOR. 'OX');
 }
@@ -434,15 +437,16 @@ MAX_cookieSet(str_replace('_', '%5F', urlencode($name)), false, _getTimeYearAgo(
 function MAX_cookieClientCookieFlush()
 {
 $conf = $GLOBALS['_MAX']['CONF'];
+$domain = !empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null;
 MAX_cookieSendP3PHeaders();
 if (!empty($GLOBALS['_MAX']['COOKIE']['CACHE'])) {
 reset($GLOBALS['_MAX']['COOKIE']['CACHE']);
 while (list($name,$v) = each ($GLOBALS['_MAX']['COOKIE']['CACHE'])) {
 list($value, $expire) = $v;
 if ($name == $conf['var']['viewerId']) {
-MAX_cookieClientCookieSet($name, $value, $expire, '/', (!empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null));
+MAX_cookieClientCookieSet($name, $value, $expire, '/', !empty($conf['cookie']['viewerIdDomain']) ? $conf['cookie']['viewerIdDomain'] : $domain);
 } else {
-MAX_cookieSet($name, $value, $expire, '/', (!empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null));
+MAX_cookieSet($name, $value, $expire, '/', $domain);
 }
 }
 $GLOBALS['_MAX']['COOKIE']['CACHE'] = array();
@@ -476,7 +480,7 @@ $data[] = "{$adId}.{$value}";
 while (strlen(implode('_', $data)) > $maxCookieSize) {
 $data = array_slice($data, 1);
 }
-MAX_cookieSet($cookieName, implode('_', $data), $expire, '/', (!empty($conf['cookie']['domain']) ? $conf['cookie']['domain'] : null));
+MAX_cookieSet($cookieName, implode('_', $data), $expire, '/', $domain);
 }
 }
 }
@@ -591,21 +595,34 @@ $GLOBALS['_MAX']['CLIENT_GEO'] = OX_Delivery_Common_hook('getGeoInfo', array(), 
 }
 function MAX_remotehostPrivateAddress($ip)
 {
-setupIncludePath();
-require_once 'Net/IPv4.php';
-
-$aPrivateNetworks = array(
-'10.0.0.0/8',
-'172.16.0.0/12',
-'192.168.0.0/16',
-'127.0.0.0/24'
+$ip = ip2long($ip);
+if (!$ip) return false;
+return (MAX_remotehostMatchSubnet($ip, '10.0.0.0', 8) ||
+MAX_remotehostMatchSubnet($ip, '172.16.0.0', 12) ||
+MAX_remotehostMatchSubnet($ip, '192.168.0.0', 16) ||
+MAX_remotehostMatchSubnet($ip, '127.0.0.0', 8)
 );
-foreach ($aPrivateNetworks as $privateNetwork) {
-if (Net_IPv4::ipInNetwork($ip, $privateNetwork)) {
-return true;
 }
+function MAX_remotehostMatchSubnet($ip, $net, $mask)
+{
+$net = ip2long($net);
+if (!is_integer($ip)) {
+$ip = ip2long($ip);
 }
+if (!$ip || !$net) {
 return false;
+}
+if (is_integer($mask)) {
+if ($mask > 32 || $mask <= 0)
+return false;
+elseif ($mask == 32)
+$mask = ~0;
+else
+$mask = ~((1 << (32 - $mask)) - 1);
+} elseif (!($mask = ip2long($mask))) {
+return false;
+}
+return ($ip & $mask) == ($net & $mask) ? true : false;
 }
 
 
@@ -707,6 +724,9 @@ if (!is_resource($rZoneInfo)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : false;
 }
 $aZoneInfo = OA_Dal_Delivery_fetchAssoc($rZoneInfo);
+if (empty($aZoneInfo)) {
+return false;
+}
 $query = "
         SELECT
             p.preference_id AS preference_id,
@@ -2590,8 +2610,7 @@ if (strtolower($charset) == 'unicode') { $charset = 'utf-8'; }
 function MAX_commonDisplay1x1()
 {
 MAX_header('Content-Type: image/gif');
-MAX_header('Content-Length: 43');
-echo base64_decode('R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==');
+echo "GIF89a\001\0\001\0\200\0\0\377\377\377\0\0\0!\371\004\0\0\0\0\0,\0\0\0\0\001\0\001\0\0\002\002D\001\0;";
 }
 function MAX_commonGetTimeNow()
 {
@@ -3510,7 +3529,7 @@ $pluginVersion = $swfVersion;
 $pluginVersion = $swfVersion - 11;
 } elseif ($swfVersion == 11 || $swfVersion == 12) {
 $pluginVersion = 10 + ($swfVersion - 9) / 10;
-} elseif ($swfVersion >= 13 && $swfVersion <= 17) {
+} elseif ($swfVersion >= 13 && $swfVersion <= 22) {
 $pluginVersion = 11 + ($swfVersion - 13) / 10;
 }
 return (string)$pluginVersion;
@@ -3748,6 +3767,9 @@ while (!in_array($zoneId, $GLOBALS['_MAX']['followedChain'])) {
 $GLOBALS['_MAX']['followedChain'][] = $zoneId;
 $appendedThisZone = false;
 $aZoneInfo = MAX_cacheGetZoneInfo($zoneId);
+if (empty($aZoneInfo)) {
+return false;
+}
 if ($zoneId != 0 && MAX_limitationsIsZoneForbidden($zoneId, $aZoneInfo)) {
 $zoneId = _getNextZone($zoneId, $aZoneInfo);
 continue;
@@ -4319,4 +4341,3 @@ echo MAX_javascriptToHTML(MAX_layerGetHtml($output, $uniqid), "MAX_{$uniqid}");
 MAX_layerPutJs($output, $uniqid);
 ob_flush();
 }
-?>

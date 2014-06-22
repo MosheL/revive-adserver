@@ -22,10 +22,10 @@
 function setupConstants()
 {
     // Define this version of Revive Adserver's constants
-    define('VERSION',           '3.0.2');
+    define('VERSION',           '3.0.6-dev');
     define('PRODUCT_NAME',      'Revive Adserver');
     define('PRODUCT_URL',       'www.revive-adserver.com');
-    define('PRODUCT_DOCSURL',   'http://www.revive-adserver.com/docs');
+    define('PRODUCT_DOCSURL',   'http://documentation.revive-adserver.com');
 
     // Deprecated constants for backwards compatibility. Please use the ones above
     define('OA_VERSION',         VERSION);
@@ -200,31 +200,16 @@ function setupConstants()
             define('MAX_PATH', dirname(__FILE__));
         }
         if (!defined('OX_PATH')) {
-            define('OX_PATH', dirname(__FILE__));
+            define('OX_PATH', MAX_PATH);
         }
-        // Ensure that the DIRECTORY_SEPARATOR and PATH_SEPARATOR
-        // constants are correctly defined
-        if (!defined('DIRECTORY_SEPARATOR')) {
-            if (strpos($_ENV['OS'], 'Win') !== false) {
-                // Windows
-                define('DIRECTORY_SEPARATOR', '/');
-            } else {
-                // UNIX
-                define('DIRECTORY_SEPARATOR', '\\');
-            }
-        }
-        if (!defined('PATH_SEPARATOR')) {
-            if (strpos($_ENV['OS'], 'Win') !== false) {
-                // Windows
-                define('PATH_SEPARATOR', ';');
-            } else {
-                // UNIX
-                define('PATH_SEPARATOR', ':');
-            }
+        if (!defined('RV_PATH')) {
+            define('RV_PATH', MAX_PATH);
         }
         if (!defined('LIB_PATH')) {
             define('LIB_PATH', MAX_PATH. DIRECTORY_SEPARATOR. 'lib'. DIRECTORY_SEPARATOR. 'OX');
         }
+
+        define('IS_WINDOWS', (DIRECTORY_SEPARATOR === '\\'));
 
         // Setup the include path
         setupIncludePath();

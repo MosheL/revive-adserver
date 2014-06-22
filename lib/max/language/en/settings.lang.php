@@ -288,6 +288,8 @@ $GLOBALS['strDeliveryFilenamesXMLRPC']               = "XML RPC Invocation";
 $GLOBALS['strDeliveryFilenamesLocal']                = "Local Invocation";
 $GLOBALS['strDeliveryFilenamesFrontController']      = "Front Controller";
 $GLOBALS['strDeliveryFilenamesFlash']                = "Flash Include (Can be a full URL)";
+$GLOBALS['strDeliveryFilenamesSinglePageCall']       = "Single Page Call";
+$GLOBALS['strDeliveryFilenamesSinglePageCallJS']     = "Single Page Call (JavaScript)";
 $GLOBALS['strDeliveryCaching']                       = "Banner Delivery Cache Settings";
 $GLOBALS['strDeliveryCacheLimit']                    = "Time Between Banner Cache Updates (seconds)";
 $GLOBALS['strDeliveryCacheStore']                    = "Banner Delivery Cache Store Type";
@@ -474,6 +476,7 @@ $GLOBALS['strGuiHeaderForegroundColor']              = "Color of the header fore
 $GLOBALS['strGuiHeaderBackgroundColor']              = "Color of the header background";
 $GLOBALS['strGuiActiveTabColor']                     = "Color of the active tab";
 $GLOBALS['strGuiHeaderTextColor']                    = "Color of the text in the header";
+$GLOBALS['strGuiSupportLink']                        = "Custom URL for 'Support' link in header";
 $GLOBALS['strColorError']                            = "Please enter colors in an RGB format, like '0066CC'";
 
 $GLOBALS['strGzipContentCompression']                = "Use GZIP Content Compression";
