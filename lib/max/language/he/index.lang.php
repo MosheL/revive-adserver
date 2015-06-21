@@ -11,14 +11,6 @@
 */
 
 // Meta information
-<<<<<<< HEAD
-$translation_readable   = "Hebrew";
-$translation_maintainer	= "";
-$translation_contact	= "";
-
-?>
-=======
 $translation_readable   = "עברית";
 $translation_maintainer	= "Revive Adserver Team";
 $translation_contact	= "noreply@revive-adserver.com";
->>>>>>> v3.2.1

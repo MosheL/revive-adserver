@@ -15,29 +15,8 @@ $GLOBALS['strChooseSection'] = "בחר מחלקה";
 
 // Maintenance
 
-<<<<<<< HEAD
-// Priority
-$GLOBALS['strRecalculatePriority']		= "שקלל קדימויות";
-$GLOBALS['strHighPriorityCampaigns']		= "מערכות פרסום בקדימות גבוהה";
-$GLOBALS['strAdViewsAssigned']			= "הוקצו חשיפות";
-$GLOBALS['strLowPriorityCampaigns']		= "מערכות פרסום בקדימות נמוכה";
-$GLOBALS['strPredictedAdViews']			= "חשיפות צפויות";
-$GLOBALS['strPriorityDaysRunning']		= "קיימים כעת {days} ימים קבילים לסטטיסטיקה, היכן ש-phpAdsNew יכולה לבסס הערכה יומית. ";
-$GLOBALS['strPriorityBasedLastWeek']		= "הערכה מבוססת על נתונים מהשבוע שעבר והנוכחי.  ";
-$GLOBALS['strPriorityBasedLastDays']		= "הערכה מבוססת על נתונים מהימים האחרונים.  ";
-$GLOBALS['strPriorityBasedYesterday']		= "הערכה מבוססת על נתונים מאתמול.  ";
-$GLOBALS['strPriorityNoData']			= "אין מספיק נתונים כדי ליצור הערכה אמינה לגבי מספר החשיפות ששרת פרסומות זה יפיק היום. יישום קדימויות יתבסס על סטטיסטיקות בזמן אמת בלבד.  ";
-$GLOBALS['strPriorityEnoughAdViews']		= "צריכה להיות חשיפה מספקת כדי לספק את מטרת מערכות הפרסום בקדימות גבוהה.  ";
-$GLOBALS['strPriorityNotEnoughAdViews']		= "לא ברור אם יהיו מספיק חשיפות היוא כדי לספק את המטרה במערכות הפרסום בעלות הקדימות הגבוהה. עקב כך כל מערכות הפרסום בעלות קדימות נמוכה משותקות כעת זמנית. ";
 
 
-// Banner cache
-$GLOBALS['strRebuildBannerCache']		= "רענן זיכרון-מטמון באנרים";
-$GLOBALS['strBannerCacheExplaination']		= "זיכרון-מטמון של הבאנרים מכיל כעת העתק של קוד HTML  המשמש לתצוגה של הבאנר. על ידי שימוש בזיכרון זה ניתן להאיץ את ההפצה של הבאנרים כי קוד ה-HTML לא דורש הפקה מחודשת בכל פעם שבאנר צריך להיחשף.<br /> מכיוון שזיכרון הבאנר כולל קוד מוטבע של ה-URLs למיקום ה-".MAX_PRODUCT_NAME." והבאנרים שלו, הזיכרון צריך להתעדכן בכל פעם שה-".MAX_PRODUCT_NAME." מועבר למיקום אחר על השרת. ";
-=======
-
-
->>>>>>> v3.2.1
 
 
 
@@ -51,41 +30,10 @@ $GLOBALS['strRebuildDeliveryCache'] = "רענן זיכרון-מטמון תפוצ
 $GLOBALS['strBannerCacheExplaination'] = "זיכרון-מטמון של הב�?נרי�? מכיל כעת העתק של קוד HTML  המשמש לתצוגה של הב�?נר. על ידי שימוש בזיכרון זה ניתן לה�?יץ �?ת ההפצה של הב�?נרי�? כי קוד ה-HTML ל�? דורש הפקה מחודשת בכל פע�? שב�?נר צריך להיחשף.<br /> מכיוון שזיכרון הב�?נר כולל קוד מוטבע של ה-URLs למיקו�? ה-{$PRODUCT_NAME} והב�?נרי�? שלו, הזיכרון צריך להתעדכן בכל פע�? שה-{$PRODUCT_NAME} מועבר למיקו�? �?חר על השרת. ";
 
 // Cache
-<<<<<<< HEAD
-$GLOBALS['strCache']			= "זיכרון-מטמון תפוצה";
-$GLOBALS['strAge']				= "גיל";
-$GLOBALS['strRebuildDeliveryCache']			= "רענן זיכרון-מטמון תפוצה";
-$GLOBALS['strDeliveryCacheExplaination']		= "
-	זיכרון-מטמון תפוצה משמש להמהרת התפוצה של הבאנרים. המטמון כולל העתק של כל הבאנרים המקושרים לאיזור, מה שחוסך קריאות נוספות לבסיס הנתונים כאשר הבאנרים נקראים לתצוגה ממשית. המטמון מתחדש בכל פעם שחל שינוי לאיזור או לאחד מהבאנרים שבתוכו, ויש אפשרות שהוא ייהפך למיושן. מכאן שהוא נבנה מחדש כל שעה, אך ניתן להפעיל זאת גם ידנית.
-";
-$GLOBALS['strDeliveryCacheSharedMem']		= "
-נעשה כעת שימוש בזכרון משותף	ל�?יחסון זכרון מטמון (cache).
-";
-$GLOBALS['strDeliveryCacheDatabase']		= "
-	בסיס הנתוני�? משמשמ בעת ל�?יחסון מטמון הפקת הבנ�?רי�? (cache).
-";
-$GLOBALS['strDeliveryCacheFiles']		= "
-מטמון הפקת הבנ�?רי�? (cache) מ�?וחסן כעת על כמה קבצי�? בשרת שלך.
-";
-
-
-
-
-
-// Storage
-$GLOBALS['strStorage']				= "�?יחסון";
-$GLOBALS['strMoveToDirectory']			= "העבר �?ת התמונות השמורות בתוך בסיס הנתוני�? �?ל תוך התיקייה.";
-$GLOBALS['strStorageExplaination']		= "הב�?נרי�? בשימוש מקומי מ�?וחסני�? בתוך בסיס הנתוני�? �?ו בתיקייה על השרת. �?�? �?תה שומר �?ת הב�?נרי�? בתוך תיקייה יפחת העומס על בסיס הנתוני�? ו�?ף המהירות תו�?ץ. ";
-
-
-
-
-=======
 $GLOBALS['strCache'] = "זיכרון-מטמון תפוצה";
 $GLOBALS['strDeliveryCacheSharedMem'] = "נעשה כעת שימוש בזכרון משותף	ל�?יחסון זכרון מטמון (cache).";
 $GLOBALS['strDeliveryCacheDatabase'] = "	בסיס הנתוני�? משמשמ בעת ל�?יחסון מטמון הפקת הבנ�?רי�? (cache).";
 $GLOBALS['strDeliveryCacheFiles'] = "מטמון הפקת הבנ�?רי�? (cache) מ�?וחסן כעת על כמה קבצי�? בשרת שלך.";
->>>>>>> v3.2.1
 
 // Storage
 $GLOBALS['strStorage'] = "�?יחסון";
