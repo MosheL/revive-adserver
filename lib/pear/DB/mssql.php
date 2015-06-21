@@ -20,7 +20,6 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -154,9 +153,9 @@ class DB_mssql extends DB_common
      *
      * @return void
      */
-    function DB_mssql()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}
@@ -177,7 +176,7 @@ class DB_mssql extends DB_common
         if (!PEAR::loadExtension('mssql') && !PEAR::loadExtension('sybase')
             && !PEAR::loadExtension('sybase_ct'))
         {
-            return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
+            return $this->customRaiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
 
         $this->dsn = $dsn;
@@ -200,13 +199,13 @@ class DB_mssql extends DB_common
         $this->connection = @call_user_func_array($connect_function, $params);
 
         if (!$this->connection) {
-            return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+            return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                      null, null, null,
                                      @mssql_get_last_message());
         }
         if ($dsn['database']) {
             if (!@mssql_select_db($dsn['database'], $this->connection)) {
-                return $this->raiseError(DB_ERROR_NODBSELECTED,
+                return $this->customRaiseError(DB_ERROR_NODBSELECTED,
                                          null, null, null,
                                          @mssql_get_last_message());
             }
@@ -534,7 +533,7 @@ class DB_mssql extends DB_common
                 $repeat = 1;
                 $result = $this->createSequence($seq_name);
                 if (DB::isError($result)) {
-                    return $this->raiseError($result);
+                    return $this->customRaiseError($result);
                 }
             } elseif (!DB::isError($result)) {
                 $result =& $this->query("SELECT @@IDENTITY FROM $seqname");
@@ -544,7 +543,7 @@ class DB_mssql extends DB_common
             }
         } while ($repeat);
         if (DB::isError($result)) {
-            return $this->raiseError($result);
+            return $this->customRaiseError($result);
         }
         $result = $result->fetchRow(DB_FETCHMODE_ORDERED);
         return $result[0];
@@ -625,7 +624,7 @@ class DB_mssql extends DB_common
         if (!$code) {
             $code = $this->errorNative();
         }
-        return $this->raiseError($this->errorCode($code, $message),
+        return $this->customRaiseError($this->errorCode($code, $message),
                                  null, null, null, "$code - $message");
     }
 

@@ -17,13 +17,12 @@ require_once MAX_PATH . '/lib/max/other/common.php';
  *
  * @package    OpenXPlugin
  * @subpackage TestSuite
- * @author     Andrzej Swedrzynski <andrzej.swedrzynski@m3.net>
  */
 class CommonTest extends UnitTestCase
 {
-    function CommonTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_MAX_isAnonymous()

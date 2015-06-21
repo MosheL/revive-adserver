@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dal.php';
  * and setting entities data.
  *
  * @package    MaxDal
- * @author     Andrew Hill <andrew@m3.net>
  */
 class MAX_Dal_Entities extends MAX_Dal_Common
 {
@@ -29,9 +28,9 @@ class MAX_Dal_Entities extends MAX_Dal_Common
      *
      * @return MAX_Dal_Entities
      */
-    function MAX_Dal_Entities()
+    function __construct()
     {
-        parent::MAX_Dal_Common();
+        parent::__construct();
     }
 
     /*========== METHODS FOR DEALING WITH ADS ===============*/

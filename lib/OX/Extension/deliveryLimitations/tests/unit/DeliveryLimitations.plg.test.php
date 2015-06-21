@@ -26,13 +26,12 @@ class Dummy_Plugins_DeliveryLimitations extends Plugins_DeliveryLimitations
  *
  * @package    OpenXPlugin
  * @subpackage TestSuite
- * @author     Andrzej Swedrzynski <andrzej.swedrzynski@m3.net>
  */
 class Plugins_DeliveryLimitations_Test extends UnitTestCase
 {
      function Plugins_DeliveryLimitations_TestCase()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function testCompile()

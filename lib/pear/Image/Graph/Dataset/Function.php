@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -68,7 +67,7 @@ class Image_Graph_Dataset_Function extends Image_Graph_Dataset
      * parameter function like fx sin(x) or cos(x)
      * @param int $points The number of points to create
      */
-    function Image_Graph_Dataset_Function($minimumX, $maximumX, $function, $points)
+    function __construct($minimumX, $maximumX, $function, $points)
     {
         parent::__construct();
         $this->_minimumX = $minimumX;

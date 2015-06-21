@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dal/Maintenance/Priority.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Radek Maciaszek <radek@urbantrip.com>
  */
 class Test_OA_Dal_Maintenance_Priority_getAgencyCampaignsDeliveriesToDate extends UnitTestCase
 {
@@ -28,9 +27,9 @@ class Test_OA_Dal_Maintenance_Priority_getAgencyCampaignsDeliveriesToDate extend
     /**
      * The constructor method.
      */
-    function Test_OA_Dal_Maintenance_Priority_getAgencyCampaignsDeliveriesToDate()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
 

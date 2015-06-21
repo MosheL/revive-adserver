@@ -18,7 +18,6 @@ require_once MAX_PATH.'/lib/OA/Upgrade/Migration.php';
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_Migration extends UnitTestCase
 {
@@ -37,9 +36,9 @@ class Test_Migration extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_Migration()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function setUp()

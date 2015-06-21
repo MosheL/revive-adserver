@@ -17,16 +17,15 @@ require_once(MAX_PATH.'/lib/OA/Upgrade/Configuration.php');
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_OA_Upgrade_Config extends UnitTestCase
 {
     /**
      * The constructor method.
      */
-    function Test_OA_Upgrade_Config()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_constructor()

@@ -63,7 +63,6 @@ require_once MAX_PATH . '/lib/OA/Preferences.php';
 /**
  * @package    OpenXUpgrade Class
  *
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class OA_Upgrade
 {
@@ -148,11 +147,6 @@ class OA_Upgrade
         $this->aDsn['table']['prefix']      = 'rv_';
     }
 
-    function OA_Upgrade()
-    {
-        $this->__construct();
-    }
-
     /**
      * initialise a database connection
      * hook up the various components with a db object
@@ -191,7 +185,7 @@ class OA_Upgrade
         $this->oDBUpgrader->initMDB2Schema();
         $this->oVersioner->init($this->oDbh);
         $this->oAuditor->init($this->oDbh, $this->oLogger);
-        $this->oDBUpgrader->oAuditor =& $this->oAuditor->oDBAuditor;
+        $this->oDBUpgrader->oAuditor = $this->oAuditor->oDBAuditor;
         $this->oDBUpgrader->doBackups = $this->_doBackups();
         $this->aDsn['database'] = $GLOBALS['_MAX']['CONF']['database'];
         $this->aDsn['table']    = $GLOBALS['_MAX']['CONF']['table'];
@@ -214,7 +208,7 @@ class OA_Upgrade
         }
 
         // Set charset information
-        $oDbc = &OA_DB_Charset::factory($this->oDbh);
+        $oDbc = OA_DB_Charset::factory($this->oDbh);
         $charset = $oDbc->getConfigurationValue();
         $aConfig['databaseCharset'] = array(
             'checkComplete' => true,
@@ -793,7 +787,7 @@ class OA_Upgrade
                 $this->existing_installation_status = OA_STATUS_PAN_DBCONNECT_FAILED;
                 return false;
             }
-            $this->oDbh =&  $this->oPAN->oDbh;
+            $this->oDbh = $this->oPAN->oDbh;
             if (!$this->initDatabaseConnection())
             {
                 $this->existing_installation_status = OA_STATUS_PAN_DBCONNECT_FAILED;
@@ -871,7 +865,7 @@ class OA_Upgrade
                 $this->existing_installation_status = OA_STATUS_M01_DBCONNECT_FAILED;
                 return false;
             }
-            $this->oDbh =&  $this->oPAN->oDbh;
+            $this->oDbh = $this->oPAN->oDbh;
             if (!$this->initDatabaseConnection())
             {
                 $this->existing_installation_status = OA_STATUS_M01_DBCONNECT_FAILED;
@@ -1056,8 +1050,8 @@ class OA_Upgrade
                     return true;
                 }
             }
-            $current = (version_compare($this->versionInitialApplication,OA_VERSION)==0);
-            $valid   = (version_compare($this->versionInitialApplication,OA_VERSION)<0);
+            $current = (version_compare($this->versionInitialApplication,VERSION)==0);
+            $valid   = (version_compare($this->versionInitialApplication,VERSION)<0);
             if ($valid)
             {
                 $this->aPackageList = $this->getUpgradePackageList($this->versionInitialApplication, $this->_readUpgradePackagesArray());
@@ -1186,8 +1180,8 @@ class OA_Upgrade
         }
         $this->oLogger->log('Installation created the core tables');
 
-        $this->oAuditor->setKeyParams(array('upgrade_name'=>'install_'.OA_VERSION,
-                                            'version_to'=>OA_VERSION,
+        $this->oAuditor->setKeyParams(array('upgrade_name'=>'install_'.VERSION,
+                                            'version_to'=>VERSION,
                                             'version_from'=>0,
                                             'logfile'=>basename($this->oLogger->logFile)
                                             )
@@ -1201,13 +1195,13 @@ class OA_Upgrade
         }
         $this->oLogger->log('Installation updated the schema version to '.$this->oTable->aDefinition['version']);
 
-        if (!$this->oVersioner->putApplicationVersion(OA_VERSION))
+        if (!$this->oVersioner->putApplicationVersion(VERSION))
         {
-            $this->_auditInstallationFailure('Installation failed to update the application version to '.OA_VERSION);
+            $this->_auditInstallationFailure('Installation failed to update the application version to '.VERSION);
             $this->_dropDatabase();
             return false;
         }
-        $this->oLogger->log('Installation updated the application version to '.OA_VERSION);
+        $this->oLogger->log('Installation updated the application version to '.VERSION);
 
         $this->oConfiguration->getInitialConfig();
         if (!$this->saveConfigDB($aConfig))
@@ -1322,7 +1316,7 @@ class OA_Upgrade
         $GLOBALS['_MAX']['CONF']['table']['prefix']   = $this->aDsn['table']['prefix'];
         $GLOBALS['_MAX']['CONF']['table']['type']     = $this->aDsn['table']['type'];
         // Try connecting to the database
-        $this->oDbh =& OA_DB::singleton(OA_DB::getDsn($this->aDsn));
+        $this->oDbh = OA_DB::singleton(OA_DB::getDsn($this->aDsn));
         if (PEAR::isError($this->oDbh))
         {
             $GLOBALS['_OA']['CONNECTIONS']  = array();
@@ -1493,7 +1487,7 @@ class OA_Upgrade
         }
         else
         {
-            $version = OA_VERSION;
+            $version = VERSION;
             if ($this->seekFantasyUpgradeFile())
             {
                 $version = '999.999.999';
@@ -2267,7 +2261,7 @@ class OA_Upgrade
         else
         {
             // an actual package for this version does not exist so fake it
-            $this->aPackage['versionTo']   = OA_VERSION;
+            $this->aPackage['versionTo']   = VERSION;
             $this->aPackage['versionFrom'] = $this->versionInitialApplication;
             $this->aPackage['prescript']   = '';
             $this->aPackage['postscript']  = '';
@@ -2535,7 +2529,7 @@ class OA_Upgrade
     {
         if ($this->package_file=='')
         {
-            $package = 'openads_upgrade_'.OA_VERSION;
+            $package = 'openads_upgrade_'.VERSION;
         }
         else
         {

@@ -20,8 +20,6 @@ require_once MAX_PATH . '/lib/OA/Dal/DataGenerator.php';
  *
  * @package    changes
  * @subpackage TestSuite
- * @author     Chris Nutting <chris.nutting@openx.org>
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Migration_tables_core_326Test extends MigrationTest
 {
@@ -33,7 +31,7 @@ class Migration_tables_core_326Test extends MigrationTest
      */
     function Test_DB_Upgrade()
     {
-        $this->UnitTestCase();
+        parent::__construct();
 
         $this->path   = MAX_PATH.'/etc/changes/';
         $this->prefix = $GLOBALS['_MAX']['CONF']['table']['prefix'];
@@ -61,7 +59,7 @@ class Migration_tables_core_326Test extends MigrationTest
         $oLogger = new OA_UpgradeLogger();
         $oLogger->setLogFile('DB_Upgrade.test.log');
 
-        $oDB_Upgrade = & new OA_DB_Upgrade($oLogger);
+        $oDB_Upgrade = new OA_DB_Upgrade($oLogger);
 
         $oDB_Upgrade->oAuditor = new $mockAuditor($this);
         $oDB_Upgrade->oAuditor->setReturnValue('logAuditAction', true);

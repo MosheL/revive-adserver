@@ -21,7 +21,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  *
  * @package    MaxDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew@m3.net>
  */
 class Dal_TestOfMAX_Dal_Entities extends UnitTestCase
 {
@@ -39,9 +38,9 @@ class Dal_TestOfMAX_Dal_Entities extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Dal_TestOfMAX_Dal_Entities()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->doBanners   = OA_Dal::factoryDO('banners');
         $this->doZones = OA_Dal::factoryDO('zones');
         $this->doAcls = OA_Dal::factoryDO('acls');

@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/OA/DB/Table.php';
  *
  * @package    OpenXDB
  * @subpackage Table
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_DB_Table_Priority extends OA_DB_Table
 {
@@ -26,9 +25,9 @@ class OA_DB_Table_Priority extends OA_DB_Table
     /**
      * The class constructor method.
      */
-    function OA_DB_Table_Priority()
+    function __construct()
     {
-        parent::OA_DB_Table();
+        parent::__construct();
         $this->temporary = true;
     }
 

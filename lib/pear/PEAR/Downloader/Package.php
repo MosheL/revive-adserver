@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -129,7 +128,7 @@ class PEAR_Downloader_Package
     /**
      * @param PEAR_Downloader
      */
-    function PEAR_Downloader_Package(&$downloader)
+    function __construct(&$downloader)
     {
         $this->_downloader = &$downloader;
         $this->_config = &$this->_downloader->config;
@@ -275,7 +274,7 @@ class PEAR_Downloader_Package
         return $this->_downloader;
     }
 
-    function getType() 
+    function getType()
     {
         return $this->_type;
     }
@@ -822,7 +821,7 @@ class PEAR_Downloader_Package
     }
 
     function getParsedPackage()
-    {   
+    {
         if (isset($this->_packagefile) || isset($this->_parsedname)) {
             return array('channel' => $this->getChannel(),
                 'package' => $this->getPackage(),
@@ -1247,7 +1246,7 @@ class PEAR_Downloader_Package
                 if ($s = $params[$i]->explicitState()) {
                     $obj->setExplicitState($s);
                 }
-                $obj = &new PEAR_Downloader_Package($params[$i]->getDownloader());
+                $obj = new PEAR_Downloader_Package($params[$i]->getDownloader());
                 PEAR::pushErrorHandling(PEAR_ERROR_RETURN);
                 if (PEAR::isError($dir = $dl->getDownloadDir())) {
                     PEAR::popErrorHandling();
@@ -1292,7 +1291,7 @@ class PEAR_Downloader_Package
             // around
             $params[$i]->_downloadDeps = array();
             foreach ($newdeps as $dep) {
-                $obj = &new PEAR_Downloader_Package($params[$i]->getDownloader());
+                $obj = new PEAR_Downloader_Package($params[$i]->getDownloader());
                 if ($s = $params[$i]->explicitState()) {
                     $obj->setExplicitState($s);
                 }
@@ -1350,7 +1349,7 @@ class PEAR_Downloader_Package
      */
     function &getPackagefileObject(&$c, $d, $t = false)
     {
-        $a = &new PEAR_PackageFile($c, $d, $t);
+        $a = new PEAR_PackageFile($c, $d, $t);
         return $a;
     }
 
@@ -1433,7 +1432,7 @@ class PEAR_Downloader_Package
             }
             if ($this->_rawpackagefile) {
                 require_once 'Archive/Tar.php';
-                $tar = &new Archive_Tar($file);
+                $tar = new Archive_Tar($file);
                 $packagexml = $tar->extractInString('package2.xml');
                 if (!$packagexml) {
                     $packagexml = $tar->extractInString('package.xml');
@@ -1776,7 +1775,7 @@ class PEAR_Downloader_Package
         }
         if (isset($info['deprecated']) && $info['deprecated']) {
             $this->_downloader->log(0,
-                'WARNING: "' . 
+                'WARNING: "' .
                     $this->_registry->parsedPackageNameToString(
                             array('channel' => $info['info']->getChannel(),
                                   'package' => $info['info']->getPackage()), true) .

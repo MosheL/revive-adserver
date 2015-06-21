@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -69,7 +68,7 @@ class Image_Graph_Line_Solid extends Image_Graph_Common
      *
      * @param mixed $color The color of the line
      */
-    function Image_Graph_Line_Solid($color)
+    function __construct($color)
     {
         parent::__construct();
         $this->_color = $color;

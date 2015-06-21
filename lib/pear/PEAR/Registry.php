@@ -17,7 +17,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
  */
@@ -137,10 +136,10 @@ class PEAR_Registry extends PEAR
      *
      * @access public
      */
-    function PEAR_Registry($pear_install_dir = PEAR_INSTALL_DIR, $pear_channel = false,
+    function __construct($pear_install_dir = PEAR_INSTALL_DIR, $pear_channel = false,
                            $pecl_channel = false)
     {
-        parent::PEAR();
+        parent::__construct();
         $ds = DIRECTORY_SEPARATOR;
         $this->install_dir = $pear_install_dir;
         $this->channelsdir = $pear_install_dir.$ds.'.channels';
@@ -279,7 +278,7 @@ class PEAR_Registry extends PEAR
                     } else {
                         $file = '.pearrc';
                     }
-                    $this->_config = &new PEAR_Config($this->statedir . DIRECTORY_SEPARATOR .
+                    $this->_config = new PEAR_Config($this->statedir . DIRECTORY_SEPARATOR .
                         $file);
                     $this->_config->setRegistry($this);
                     $this->_config->set('php_dir', $this->install_dir);
@@ -762,7 +761,7 @@ class PEAR_Registry extends PEAR
      */
     function _lock($mode = LOCK_EX)
     {
-        if (!eregi('Windows 9', php_uname())) {
+        if (!preg_match('/Windows 9/Di', php_uname())) {
             if ($mode != LOCK_UN && is_resource($this->lock_fp)) {
                 // XXX does not check type of lock (LOCK_SH/LOCK_EX)
                 return true;
@@ -1306,13 +1305,13 @@ class PEAR_Registry extends PEAR
         }
         $a = $this->_config;
         if (!$a) {
-            $this->_config = &new PEAR_Config;
+            $this->_config = new PEAR_Config;
             $this->_config->set('php_dir', $this->statedir);
         }
         if (!class_exists('PEAR_PackageFile')) {
             require_once 'PEAR/PackageFile.php';
         }
-        $pkg = &new PEAR_PackageFile($this->_config);
+        $pkg = new PEAR_PackageFile($this->_config);
         $pf = &$pkg->fromArray($info);
         return $pf;
     }

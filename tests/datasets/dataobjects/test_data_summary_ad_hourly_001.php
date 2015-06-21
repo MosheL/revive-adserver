@@ -14,23 +14,17 @@
  *
  * @abstract A class for generating/loading a dataset for delivery testing
  * @package Test Classes
- * @author Monique Szpak <monique.szpak@openads.org>
- *
  */
 
 require_once MAX_PATH . '/tests/testClasses/OATestData_DataObjects.php';
 class OA_Test_Data_data_summary_ad_hourly_001 extends OA_Test_Data_DataObjects
 {
 
-    function OA_Test_Data_data_summary_ad_hourly_001()
-    {
-    }
-
     /**
      * method for extending OA_Test_Data_DataObject
      */
 
-    function generateTestData()
+    function generateTestData($linkAdZone=false)
     {
         if (!parent::init())
         {

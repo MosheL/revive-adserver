@@ -3,7 +3,6 @@
      *	Base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -49,7 +48,7 @@
          *                            the class name is used.
          *    @access public
          */
-        function SimpleTestCase($label = false) {
+        function __construct($label = false) {
             if ($label) {
                 $this->_label = $label;
             }
@@ -72,7 +71,7 @@
          */
         function skip() {
         }
-		
+
         /**
          *    Will issue a message to the reporter and tell the test
          *    case to skip if the incoming flag is true.
@@ -87,7 +86,7 @@
 				$this->_reporter->paintSkip($message . $this->getAssertionLine());
 			}
         }
-		
+
         /**
          *    Will issue a message to the reporter and tell the test
          *    case to skip if the incoming flag is false.
@@ -98,16 +97,16 @@
         function skipUnless($shouldnt_skip, $message = false) {
 			$this->skipIf(! $shouldnt_skip, $message);
         }
-		
+
         /**
          *    Used to invoke the single tests.
          *    @return SimpleInvoker        Individual test runner.
          *    @access public
          */
         function &createInvoker() {
-            $invoker = &new SimpleErrorTrappingInvoker(new SimpleInvoker($this));
+            $invoker = new SimpleErrorTrappingInvoker(new SimpleInvoker($this));
             if (version_compare(phpversion(), '5') >= 0) {
-                $invoker = &new SimpleExceptionTrappingInvoker($invoker);
+                $invoker = new SimpleExceptionTrappingInvoker($invoker);
             }
             return $invoker;
         }
@@ -382,7 +381,7 @@
          *                            of the test.
          *    @access public
          */
-        function TestSuite($label = false) {
+        function __construct($label = false) {
             $this->_label = $label ? $label : get_class($this);
             $this->_test_cases = array();
             $this->_old_track_errors = ini_get('track_errors');
@@ -421,7 +420,7 @@
          */
         function addTestClass($class) {
             if ($this->_getBaseTestCase($class) == 'testsuite' || $this->_getBaseTestCase($class) == 'grouptest') {
-                $this->_test_cases[] = &new $class();
+                $this->_test_cases[] = new $class();
             } else {
                 $this->_test_cases[] = $class;
             }
@@ -537,7 +536,7 @@
          */
         function &_createGroupFromClasses($title, $classes) {
             SimpleTest::ignoreParentsIfIgnored($classes);
-            $group = &new TestSuite($title);
+            $group = new TestSuite($title);
             foreach ($classes as $class) {
                 if (! SimpleTest::isIgnored($class)) {
                     $group->addTestClass($class);
@@ -584,7 +583,7 @@
             for ($i = 0, $count = count($this->_test_cases); $i < $count; $i++) {
                 if (is_string($this->_test_cases[$i])) {
                     $class = $this->_test_cases[$i];
-                    $test = &new $class();
+                    $test = new $class();
                     $test->run($reporter);
                     unset($test);
                 } else {
@@ -612,7 +611,7 @@
             return $count;
         }
     }
-    
+
     /**
      *    @deprecated
      */
@@ -634,7 +633,7 @@
          *                            of the test.
          *    @access public
          */
-        function BadTestSuite($label, $error) {
+        function __construct($label, $error) {
             $this->_label = $label;
             $this->_error = $error;
         }
@@ -670,7 +669,7 @@
             return 0;
         }
     }
-    
+
     /**
      *    @deprecated
      */

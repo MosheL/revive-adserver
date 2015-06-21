@@ -15,7 +15,6 @@
  *
  * @package    MaxDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew@m3.net>
  *
  * @TODO No tests written yet...
  */
@@ -25,9 +24,9 @@ class Dal_TestOfMAX_Dal_Commonn extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Dal_TestOfMAX_Dal_Commonn()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
 }

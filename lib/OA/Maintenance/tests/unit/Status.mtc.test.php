@@ -17,20 +17,19 @@ require_once MAX_PATH . '/lib/OA/Maintenance/Status.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class Test_OA_Maintenenace_Status extends UnitTestCase
 {
     /**
      * The constructor method.
      */
-    function Test_OA_Maintenenace_Status()
+    function __construct()
     {
         $oServiceLocator = &OA_ServiceLocator::instance();
         $oNow = new Date('2008-04-01 12:30:00');
         $oServiceLocator->register('now', $oNow);
 
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

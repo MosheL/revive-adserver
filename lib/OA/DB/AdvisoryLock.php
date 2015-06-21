@@ -36,7 +36,6 @@ define('OA_DB_ADVISORYLOCK_DISTRIBUTED',  '2');
  *
  * @package    OpenXDB
  * @subpackage AdvisoryLock
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class OA_DB_AdvisoryLock
 {
@@ -60,7 +59,7 @@ class OA_DB_AdvisoryLock
      *
      * @return OA_DB_AdvisoryLock
      */
-    function OA_DB_AdvisoryLock()
+    function __construct()
     {
         $this->oDbh =& OA_DB::singleton();
     }

@@ -18,7 +18,6 @@
  * @author     Martin Jansen <mj@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.3.0
  */
@@ -132,7 +131,7 @@ class PEAR_Downloader extends PEAR_Common
      * @access private
      */
     var $_errorStack = array();
-    
+
     /**
      * @var boolean
      * @access private
@@ -158,9 +157,9 @@ class PEAR_Downloader extends PEAR_Common
      * @param array
      * @param PEAR_Config
      */
-    function PEAR_Downloader(&$ui, $options, &$config)
+    function __construct(&$ui, $options, &$config)
     {
-        parent::PEAR_Common();
+        parent::__construct();
         $this->_options = $options;
         $this->config = &$config;
         $this->_preferredState = $this->config->get('preferred_state');
@@ -240,7 +239,7 @@ class PEAR_Downloader extends PEAR_Common
         if (!class_exists('PEAR_Downloader_Package')) {
             require_once 'PEAR/Downloader/Package.php';
         }
-        $a = &new PEAR_Downloader_Package($t);
+        $a = new PEAR_Downloader_Package($t);
         return $a;
     }
 
@@ -256,7 +255,7 @@ class PEAR_Downloader extends PEAR_Common
         if (!class_exists('PEAR/Dependency2.php')) {
             require_once 'PEAR/Dependency2.php';
         }
-        $z = &new PEAR_Dependency2($c, $i, $p, $s);
+        $z = new PEAR_Dependency2($c, $i, $p, $s);
         return $z;
     }
 
@@ -726,7 +725,7 @@ class PEAR_Downloader extends PEAR_Common
         if (!class_exists('PEAR_PackageFile')) {
             require_once 'PEAR/PackageFile.php';
         }
-        $a = &new PEAR_PackageFile($c, $d, $t);
+        $a = new PEAR_PackageFile($c, $d, $t);
         return $a;
     }
 
@@ -1176,7 +1175,7 @@ class PEAR_Downloader extends PEAR_Common
      */
     function sortPkgDeps(&$packages, $uninstall = false)
     {
-        $uninstall ? 
+        $uninstall ?
             $this->sortPackagesForUninstall($packages) :
             $this->sortPackagesForInstall($packages);
     }
@@ -1533,7 +1532,7 @@ class PEAR_Downloader extends PEAR_Common
             $config = &PEAR_Config::singleton();
         }
         $proxy_host = $proxy_port = $proxy_user = $proxy_pass = '';
-        if ($config->get('http_proxy') && 
+        if ($config->get('http_proxy') &&
               $proxy = parse_url($config->get('http_proxy'))) {
             $proxy_host = isset($proxy['host']) ? $proxy['host'] : null;
             if (isset($proxy['scheme']) && $proxy['scheme'] == 'https') {

@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -24,7 +23,7 @@
          *    Executes the shell comand and stashes the output.
          *    @access public
          */
-        function SimpleShell() {
+        function __construct() {
             $this->_output = false;
         }
 
@@ -80,8 +79,8 @@
          *                             the class name if none specified.
          *    @access public
          */
-        function ShellTestCase($label = false) {
-            $this->SimpleTestCase($label);
+        function __construct($label = false) {
+            parent::__construct($label);
             $this->_current_shell = &$this->_createShell();
             $this->_last_status = false;
             $this->_last_command = '';
@@ -154,7 +153,7 @@
         function assertFalse($result, $message = '%s') {
             return $this->assert(new FalseExpectation(), $result, $message);
         }
-        
+
         /**
          *    Will trigger a pass if the two parameters have
          *    the same value only. Otherwise a fail. This
@@ -171,7 +170,7 @@
                     $second,
                     $message);
         }
-        
+
         /**
          *    Will trigger a pass if the two parameters have
          *    a different value. Otherwise a fail. This
@@ -326,7 +325,7 @@
          *    @access protected
          */
         function &_createShell() {
-            $shell = &new SimpleShell();
+            $shell = new SimpleShell();
             return $shell;
         }
     }

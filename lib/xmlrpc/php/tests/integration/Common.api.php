@@ -50,9 +50,9 @@ class Test_OA_Api_XmlRpc extends UnitTestCase
      */
     var $oApi;
 
-    function Test_OA_Api_XmlRpc($createDefaultManager = true)
+    function __construct($createDefaultManager = true)
     {
-        $this->UnitTestCase();
+        parent::__construct();
 
         $this->oApi = &Test_OA_Api_XmlRpc::staticGetApi($createDefaultManager);
     }
@@ -86,7 +86,7 @@ class Test_OA_Api_XmlRpc extends UnitTestCase
             $doAUA->user_id    = $userId;
             DataGenerator::generateOne($doAUA);
 
-            $oApi = &new Mocked_OA_Api_Xmlrpc($doUsers->username, 'secret');
+            $oApi = new Mocked_OA_Api_Xmlrpc($doUsers->username, 'secret');
         }
 
         return $oApi;
@@ -95,9 +95,9 @@ class Test_OA_Api_XmlRpc extends UnitTestCase
 
 class Mocked_OA_Api_Xmlrpc extends OA_Api_Xmlrpc
 {
-    function Mocked_OA_Api_Xmlrpc($username, $password)
+    function __construct($username, $password)
     {
-        parent::OA_Api_Xmlrpc('foo', 'bar', $username, $password);
+        parent::__construct('foo', 'bar', $username, $password);
     }
 
     function &_getClient($service)
@@ -112,7 +112,7 @@ class Mocked_OA_Api_Xmlrpc extends OA_Api_Xmlrpc
         $oClient = &$GLOBALS['_STATIC']['staticGetClient'];
 
         if (empty($oClient)) {
-            $oClient = &new Mocked_XML_RPC_Client();
+            $oClient = new Mocked_XML_RPC_Client();
         }
 
         return $oClient;

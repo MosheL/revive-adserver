@@ -17,8 +17,6 @@ require_once MAX_PATH . '/lib/max/Delivery/flash.php';
  *
  * @package    MaxDelivery
  * @subpackage TestSuite
- * @author
- *
  */
 class Test_DeliveryFlash extends UnitTestCase
 {
@@ -28,7 +26,7 @@ class Test_DeliveryFlash extends UnitTestCase
      */
     function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

@@ -27,15 +27,12 @@ require_once dirname(__FILE__) . '/lib/phpSniff/phpSniff.class.php';
  *
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Chris Nutting <chris.nutting@openx.org>
- * @author     Andrzej Swedrzynski <andrzej.swedrzynski@openx.org>
  */
 class Plugins_DeliveryLimitations_Client_Browser extends Plugins_DeliveryLimitations_CommaSeparatedData
 {
-    function Plugins_DeliveryLimitations_Client_Browser()
+    function __construct()
     {
-        $this->Plugins_DeliveryLimitations_ArrayData();
+        parent::__construct();
         $phpSniff = new phpSniff('', false);
         $this->setAValues($phpSniff->_browsers);
         $this->nameEnglish = 'Client - Browser';
@@ -48,7 +45,7 @@ class Plugins_DeliveryLimitations_Client_Browser extends Plugins_DeliveryLimitat
      *
      * @return boolean
      */
-    function isAllowed()
+    function isAllowed($page = false)
     {
         return !empty($GLOBALS['_MAX']['CONF']['Client']['sniff']);
     }

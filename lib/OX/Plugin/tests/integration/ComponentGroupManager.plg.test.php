@@ -16,7 +16,6 @@ require_once LIB_PATH.'/Plugin/ComponentGroupManager.php';
  * A class for testing the Test_OX_Plugin_ComponentGroupManager class.
  *
  * @package Plugins
- * @author  Monique Szpak <monique.szpak@openx.org>
  * @subpackage TestSuite
  */
 class Test_OX_Plugin_ComponentGroupManager extends UnitTestCase
@@ -29,9 +28,9 @@ class Test_OX_Plugin_ComponentGroupManager extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Plugin_ComponentGroupManager()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test__checkOpenXCompatibility()
@@ -53,7 +52,7 @@ class Test_OX_Plugin_ComponentGroupManager extends UnitTestCase
         $aPass[] = '2.5.50-dev';
         $aPass[] = '2.5.50-beta-rc1';
         $aPass[] = '2.5.50';
-        $aPass[] = OA_VERSION;
+        $aPass[] = VERSION;
         foreach ($aPass as $k => $version)
         {
             $this->assertTrue($oPluginManager->_checkOpenXCompatibility('testPlugin', $version));
@@ -244,7 +243,7 @@ class Test_OX_Plugin_ComponentGroupManager extends UnitTestCase
     function test_Tables()
     {
         $prefix = $GLOBALS['_MAX']['CONF']['table']['prefix'];
-        $oTable = & new OA_DB_Table;
+        $oTable = new OA_DB_Table;
         $oTable->init(MAX_PATH.$this->testpathPackages.'testPlugin/etc/tables_testplugin.xml');
         $version = $oTable->aDefinition['version'];
         $oPluginManager = new OX_Plugin_ComponentGroupManager();

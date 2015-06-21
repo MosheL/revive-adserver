@@ -17,7 +17,7 @@ class MDBC_ConnectionConfiguration {
 
     var $config_name;
     
-    function MDBC_ConnectionConfiguration($config_name) {
+    function __construct($config_name) {
         $this->config_name = $config_name;
     }
 
@@ -42,7 +42,7 @@ class MDBC {
     * @access public
     */
     function &newConnection($name) {
-        $ConnectionConfiguration =& new MDBC_ConnectionConfiguration($name);
+        $ConnectionConfiguration = new MDBC_ConnectionConfiguration($name);
         $driver = $ConnectionConfiguration->get("driver");
         $ConnectionClass = $driver . 'Connection'; 
 

@@ -16,7 +16,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
  */
@@ -59,7 +58,7 @@ class PEAR_Frontend_CLI extends PEAR_Frontend
 
     // {{{ constructor
 
-    function PEAR_Frontend_CLI()
+    function __construct()
     {
         parent::PEAR();
         $term = getenv('TERM'); //(cox) $_ENV is empty for me in 4.1.1

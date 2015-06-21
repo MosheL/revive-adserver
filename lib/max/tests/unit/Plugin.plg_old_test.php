@@ -58,8 +58,6 @@ class TestErrorHandler {
  *
  * @package    OpenXPlugin
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew@m3.net>
- * @author     Radek Maciaszek <radek@m3.net>
  */
 class TestOfMAX_Plugin extends UnitTestCase {
 
@@ -68,8 +66,8 @@ class TestOfMAX_Plugin extends UnitTestCase {
      *
      * @return TestOfMAX_Plugin
      */
-    function TestOfMAX_Plugin() {
-        $this->UnitTestCase();
+    function __construct() {
+        parent::__construct();
     }
 
     /**

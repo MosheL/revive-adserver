@@ -1,5 +1,4 @@
 <?php
-    // $Id$
     require_once(dirname(__FILE__) . '/../expectation.php');
 
     class TestOfAnythingExpectation extends UnitTestCase {
@@ -138,7 +137,7 @@
     }
 
     class Dummy {
-        function Dummy() {
+        function __construct() {
         }
 
         function aMethod() {
@@ -155,8 +154,8 @@
     Stub::generate('Dummy', 'StubDummyWithExtraMethods', array('extraMethod'));
 
     class SpecialSimpleStub extends SimpleMock {
-        function SpecialSimpleStub() {
-            $this->SimpleMock();
+        function __construct() {
+            parent::__construct();
         }
     }
     SimpleTest::setMockBaseClass('SpecialSimpleStub');
@@ -166,23 +165,23 @@
     class TestOfStubGeneration extends UnitTestCase {
 
         function testCloning() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $this->assertTrue(method_exists($stub, "aMethod"));
             $this->assertNull($stub->aMethod(null));
         }
 
         function testCloningWithExtraMethod() {
-            $stub = &new StubDummyWithExtraMethods();
+            $stub = new StubDummyWithExtraMethods();
             $this->assertTrue(method_exists($stub, "extraMethod"));
         }
 
         function testCloningWithChosenClassName() {
-            $stub = &new AnotherStubDummy();
+            $stub = new AnotherStubDummy();
             $this->assertTrue(method_exists($stub, "aMethod"));
         }
 
         function testCloningWithDifferentBaseClass() {
-            $stub = &new SpecialStubDummy();
+            $stub = new SpecialStubDummy();
             $this->assertIsA($stub, "SpecialSimpleStub");
             $this->assertTrue(method_exists($stub, "aMethod"));
         }
@@ -191,28 +190,28 @@
     class TestOfServerStubReturns extends UnitTestCase {
 
         function testDefaultReturn() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValue("aMethod", "aaa");
             $this->assertIdentical($stub->aMethod(), "aaa");
             $this->assertIdentical($stub->aMethod(), "aaa");
         }
 
         function testParameteredReturn() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValue("aMethod", "aaa", array(1, 2, 3));
             $this->assertNull($stub->aMethod());
             $this->assertIdentical($stub->aMethod(1, 2, 3), "aaa");
         }
 
         function testReferenceReturned() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $object = new Dummy();
             $stub->setReturnReference("aMethod", $object, array(1, 2, 3));
             $this->assertReference($zref =& $stub->aMethod(1, 2, 3), $object);
         }
 
         function testCallCount() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $this->assertEqual($stub->getCallCount("aMethod"), 0);
             $stub->aMethod();
             $this->assertEqual($stub->getCallCount("aMethod"), 1);
@@ -221,7 +220,7 @@
         }
 
         function testMultipleMethods() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValue("aMethod", 100, array(1));
             $stub->setReturnValue("aMethod", 200, array(2));
             $stub->setReturnValue("anotherMethod", 10, array(1));
@@ -233,7 +232,7 @@
         }
 
         function testReturnSequence() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValueAt(0, "aMethod", "aaa");
             $stub->setReturnValueAt(1, "aMethod", "bbb");
             $stub->setReturnValueAt(3, "aMethod", "ddd");
@@ -244,7 +243,7 @@
         }
 
         function testReturnReferenceSequence() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $object = new Dummy();
             $stub->setReturnReferenceAt(1, "aMethod", $object);
             $this->assertNull($stub->aMethod());
@@ -253,7 +252,7 @@
         }
 
         function testComplicatedReturnSequence() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $object = new Dummy();
             $stub->setReturnValueAt(1, "aMethod", "aaa", array("a"));
             $stub->setReturnValueAt(1, "aMethod", "bbb");
@@ -268,7 +267,7 @@
         }
 
         function testMultipleMethodSequences() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValueAt(0, "aMethod", "aaa");
             $stub->setReturnValueAt(1, "aMethod", "bbb");
             $stub->setReturnValueAt(0, "anotherMethod", "ccc");
@@ -280,7 +279,7 @@
         }
 
         function testSequenceFallback() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValueAt(0, "aMethod", "aaa", array('a'));
             $stub->setReturnValueAt(1, "aMethod", "bbb", array('a'));
             $stub->setReturnValue("aMethod", "AAA");
@@ -289,7 +288,7 @@
         }
 
         function testMethodInterference() {
-            $stub = &new StubDummy();
+            $stub = new StubDummy();
             $stub->setReturnValueAt(0, "anotherMethod", "aaa");
             $stub->setReturnValue("aMethod", "AAA");
             $this->assertIdentical($stub->aMethod(), "AAA");
@@ -310,23 +309,23 @@
     class TestOfMockGeneration extends UnitTestCase {
 
         function testCloning() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $this->assertTrue(method_exists($mock, "aMethod"));
             $this->assertNull($mock->aMethod());
         }
 
         function testCloningWithExtraMethod() {
-            $mock = &new MockDummyWithExtraMethods();
+            $mock = new MockDummyWithExtraMethods();
             $this->assertTrue(method_exists($mock, "extraMethod"));
         }
 
         function testCloningWithChosenClassName() {
-            $mock = &new AnotherMockDummy();
+            $mock = new AnotherMockDummy();
             $this->assertTrue(method_exists($mock, "aMethod"));
         }
 
         function testCloningWithDifferentBaseClass() {
-            $mock = &new SpecialMockDummy();
+            $mock = new SpecialMockDummy();
             $this->assertIsA($mock, "SpecialSimpleMock");
             $this->assertTrue(method_exists($mock, "aMethod"));
         }
@@ -335,21 +334,21 @@
     class TestOfMockReturns extends UnitTestCase {
 
         function testParameteredReturn() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $mock->setReturnValue('aMethod', 'aaa', array(1, 2, 3));
             $this->assertNull($mock->aMethod());
             $this->assertIdentical($mock->aMethod(1, 2, 3), 'aaa');
         }
 
         function testReferenceReturned() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $object = new Dummy();
             $mock->setReturnReference("aMethod", $object, array(1, 2, 3));
             $this->assertReference($zref =& $mock->aMethod(1, 2, 3), $object);
         }
 
         function testWildcardReturn() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $mock->setWildcard('wild');
             $mock->setReturnValue('aMethod', 'a', array(1, 'wild', 3));
             $this->assertIdentical($mock->aMethod(1, 'something', 3), 'a');
@@ -357,7 +356,7 @@
         }
 
         function testPatternMatchReturn() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $mock->setReturnValue(
                     "aMethod",
                     "aaa",
@@ -367,7 +366,7 @@
         }
 
         function testCallCount() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $this->assertEqual($mock->getCallCount("aMethod"), 0);
             $mock->aMethod();
             $this->assertEqual($mock->getCallCount("aMethod"), 1);
@@ -376,7 +375,7 @@
         }
 
         function testReturnReferenceSequence() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $object = new Dummy();
             $mock->setReturnReferenceAt(1, 'aMethod', $object);
             $this->assertNull($mock->aMethod());
@@ -400,46 +399,46 @@
         function skip() {
             $this->skipIf(version_compare(phpversion(), '5', '<='), 'Overloading not tested for PHP 4');
         }
-        
+
         function testCanMockTheThingAtAll() {
             $mock = new MockClassWithSpecialMethods();
         }
-        
+
         function testReturnFromSpecialAccessor() {
-            $mock = &new MockClassWithSpecialMethods();
+            $mock = new MockClassWithSpecialMethods();
             $mock->setReturnValue('__get', '1st Return', array('first'));
             $mock->setReturnValue('__get', '2nd Return', array('second'));
             $this->assertEqual($mock->first, '1st Return');
             $this->assertEqual($mock->second, '2nd Return');
         }
-        
+
         function testcanExpectTheSettingOfValue() {
-            $mock = &new MockClassWithSpecialMethods();
+            $mock = new MockClassWithSpecialMethods();
             $mock->expectOnce('__set', array('a', 'A'));
             $mock->a = 'A';
         }
-        
+
         function testCanSimulateAnOverloadmethod() {
-            $mock = &new MockClassWithSpecialMethods();
+            $mock = new MockClassWithSpecialMethods();
             $mock->expectOnce('__call', array('amOverloaded', array('A')));
             $mock->setReturnValue('__call', 'aaa');
             $this->assertIdentical($mock->amOverloaded('A'), 'aaa');
         }
-        
+
         function testCanEmulateIsset() {
-            $mock = &new MockClassWithSpecialMethods();
+            $mock = new MockClassWithSpecialMethods();
             $mock->setReturnValue('__isset', true);
             $this->assertIdentical(isset($mock->a), true);
         }
-        
+
         function testCanExpectUnset() {
-            $mock = &new MockClassWithSpecialMethods();
+            $mock = new MockClassWithSpecialMethods();
             $mock->expectOnce('__unset', array('a'));
             unset($mock->a);
         }
-        
+
         function testToStringMagic() {
-            $mock = &new MockClassWithSpecialMethods();
+            $mock = new MockClassWithSpecialMethods();
             $mock->expectOnce('__toString');
             $mock->setReturnValue('__toString', 'AAA');
             ob_start();
@@ -453,12 +452,12 @@
     class TestOfMockTally extends UnitTestCase {
 
         function testZeroCallCount() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $mock->expectCallCount('aMethod', 0);
         }
 
         function testExpectedCallCount() {
-            $mock = &new MockDummy();
+            $mock = new MockDummy();
             $mock->expectCallCount('aMethod', 2);
             $mock->aMethod();
             $mock->aMethod();
@@ -479,18 +478,18 @@
         var $_test;
 
         function setUp() {
-            $this->test = &new MockSimpleTestCase();
+            $this->test = new MockSimpleTestCase();
         }
 
         function testSettingExpectationOnNonMethodThrowsError() {
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectMaximumCallCount('aMissingMethod', 2);
             $this->assertError();
         }
 
         function testMaxCallsDetectsOverrun() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MaximumCallCountExpectation'), 3));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectMaximumCallCount('aMethod', 2);
             $mock->aMethod();
             $mock->aMethod();
@@ -500,7 +499,7 @@
 
         function testTallyOnMaxCallsSendsPassOnUnderrun() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MaximumCallCountExpectation'), 2));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectMaximumCallCount("aMethod", 2);
             $mock->aMethod();
             $mock->aMethod();
@@ -509,7 +508,7 @@
 
         function testExpectNeverDetectsOverrun() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MaximumCallCountExpectation'), 1));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectNever('aMethod');
             $mock->aMethod();
             $mock->atTestEnd('testSomething', $this->test);
@@ -517,14 +516,14 @@
 
         function testTallyOnExpectNeverSendsPassOnUnderrun() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MaximumCallCountExpectation'), 0));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectNever('aMethod');
             $mock->atTestEnd('testSomething', $this->test);
         }
 
         function testMinCalls() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MinimumCallCountExpectation'), 2));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectMinimumCallCount('aMethod', 2);
             $mock->aMethod();
             $mock->aMethod();
@@ -533,7 +532,7 @@
 
         function testFailedNever() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MaximumCallCountExpectation'), 1));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectNever('aMethod');
             $mock->aMethod();
             $mock->atTestEnd('testSomething', $this->test);
@@ -541,14 +540,14 @@
 
         function testUnderOnce() {
             $this->test->expectOnce('assert', array(new IsAExpectation('CallCountExpectation'), 0));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectOnce('aMethod');
             $mock->atTestEnd('testSomething', $this->test);
         }
 
         function testOverOnce() {
             $this->test->expectOnce('assert', array(new IsAExpectation('CallCountExpectation'), 2));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectOnce('aMethod');
             $mock->aMethod();
             $mock->aMethod();
@@ -558,20 +557,20 @@
 
         function testUnderAtLeastOnce() {
             $this->test->expectOnce('assert', array(new IsAExpectation('MinimumCallCountExpectation'), 0));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectAtLeastOnce("aMethod");
             $mock->atTestEnd('testSomething', $this->test);
         }
 
         function testZeroArguments() {
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectArguments("aMethod", array());
             $mock->aMethod();
             $mock->atTestEnd('testSomething', $this->test);
         }
 
         function testExpectedArguments() {
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectArguments('aMethod', array(1, 2, 3));
             $mock->aMethod(1, 2, 3);
             $mock->atTestEnd('testSomething', $this->test);
@@ -579,21 +578,21 @@
 
         function testFailedArguments() {
             $this->test->expectOnce('assert', array(new IsAExpectation('ParametersExpectation'), array('that'), '*'));
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectArguments('aMethod', array('this'));
             $mock->aMethod('that');
             $mock->atTestEnd('testSomething', $this->test);
         }
 
         function testWildcardArguments() {
-            $mock = &new MockDummyWithInjectedTestCase($this, "wild");
+            $mock = new MockDummyWithInjectedTestCase($this, "wild");
             $mock->expectArguments("aMethod", array("wild", 123, "wild"));
             $mock->aMethod(100, 123, 101);
             $mock->atTestEnd('testSomething', $this->test);
         }
 
         function testSpecificSequence() {
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectArgumentsAt(1, "aMethod", array(1, 2, 3));
             $mock->expectArgumentsAt(2, "aMethod", array("Hello"));
             $mock->aMethod();
@@ -604,7 +603,7 @@
         }
 
         function testBadArgParameter() {
-            $mock = &new MockDummyWithInjectedTestCase();
+            $mock = new MockDummyWithInjectedTestCase();
             $mock->expectArguments("aMethod", "foo");
             $this->assertErrorPattern('/\$args.*not an array/i');
             $mock->aMethod();
@@ -616,12 +615,12 @@
     class TestOfMockComparisons extends UnitTestCase {
 
         function testEqualComparisonOfMocksDoesNotCrash() {
-            $expectation = &new EqualExpectation(new MockDummy());
+            $expectation = new EqualExpectation(new MockDummy());
             $this->assertTrue($expectation->test(new MockDummy(), true));
         }
 
         function testIdenticalComparisonOfMocksDoesNotCrash() {
-            $expectation = &new IdenticalExpectation(new MockDummy());
+            $expectation = new IdenticalExpectation(new MockDummy());
             $this->assertTrue($expectation->test(new MockDummy()));
         }
     }
@@ -631,13 +630,13 @@
     class TestOfPartialMocks extends UnitTestCase {
 
         function testMethodReplacement() {
-            $mock = &new TestDummy();
+            $mock = new TestDummy();
             $this->assertEqual($mock->aMethod(99), 99);
             $this->assertNull($mock->anotherMethod());
         }
 
         function testSettingReturns() {
-            $mock = &new TestDummy();
+            $mock = new TestDummy();
             $mock->setReturnValue('anotherMethod', 33, array(3));
             $mock->setReturnValue('anotherMethod', 22);
             $mock->setReturnValueAt(2, 'anotherMethod', 44, array(3));
@@ -647,14 +646,14 @@
         }
 
         function testReferences() {
-            $mock = &new TestDummy();
+            $mock = new TestDummy();
             $object = new Dummy();
             $mock->setReturnReferenceAt(0, 'anotherMethod', $object, array(3));
             $this->assertReference($zref =& $mock->anotherMethod(3), $object);
         }
 
         function testExpectations() {
-            $mock = &new TestDummy();
+            $mock = new TestDummy();
             $mock->expectCallCount('anotherMethod', 2);
             $mock->expectArguments('anotherMethod', array(77));
             $mock->expectArgumentsAt(1, 'anotherMethod', array(66));
@@ -663,14 +662,14 @@
         }
 
         function testSettingExpectationOnMissingMethodThrowsError() {
-            $mock = &new TestDummy();
+            $mock = new TestDummy();
             $mock->expectCallCount('aMissingMethod', 2);
             $this->assertError();
         }
     }
 
     class ConstructorSuperClass {
-        function ConstructorSuperClass() { }
+        function __construct() { }
     }
 
     class ConstructorSubClass extends ConstructorSuperClass {
@@ -683,7 +682,7 @@
 		 */
         function testBasicConstruct() {
             Mock::generate('ConstructorSubClass');
-            $mock = &new MockConstructorSubClass();
+            $mock = new MockConstructorSubClass();
             $this->assertIsA($mock, 'SimpleMock');
             $this->assertTrue(method_exists($mock, 'ConstructorSuperClass'));
         }

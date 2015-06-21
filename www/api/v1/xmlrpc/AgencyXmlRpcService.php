@@ -12,10 +12,8 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
  *
  * The agency XML-RPC service enables XML-RPC communication with the agency object.
- *
  */
 
 // Require the initialisation file.
@@ -44,9 +42,9 @@ class AgencyXmlRpcService extends BaseAgencyService
      * initialise the service
      *
      */
-    function AgencyXmlRpcService()
+    function __construct()
     {
-        $this->BaseAgencyService();
+        parent::__construct();
     }
 
     /**

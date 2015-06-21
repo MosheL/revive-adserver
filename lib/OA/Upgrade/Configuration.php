@@ -20,9 +20,10 @@ class OA_Upgrade_Config
     var $configPath;
     var $configFile;
 
-    function OA_Upgrade_Config()
+    function __construct()
     {
         $this->oSettings = new OA_Admin_Settings();
+        // Use reference here
         $this->aConfig =& $this->oSettings->getConfigArray();
         // set default configPath
         $this->configPath = MAX_PATH.'/var/';

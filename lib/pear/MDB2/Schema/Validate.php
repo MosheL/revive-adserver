@@ -42,9 +42,6 @@
 // | Author: Christian Dickmann <dickmann@php.net>                        |
 // | Author: Igor Feghali <ifeghali@php.net>                              |
 // +----------------------------------------------------------------------+
-//
-// $Id$
-//
 
 /**
  * Validates an XML schema file
@@ -77,11 +74,6 @@ class MDB2_Schema_Validate
         }
         $this->valid_types = $valid_types;
         $this->force_defaults = $force_defaults;
-    }
-
-    function MDB2_Schema_Validate($fail_on_invalid_names = true, $valid_types = array(), $force_defaults = true)
-    {
-        $this->__construct($fail_on_invalid_names, $valid_types, $force_defaults);
     }
 
     // }}}

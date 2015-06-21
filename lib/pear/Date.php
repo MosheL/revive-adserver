@@ -16,8 +16,6 @@
 // | Authors: Baba Buehler <baba@babaz.com>                               |
 // |          Pierre-Alain Joye <pajoye@php.net>                          |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 /**@#+
  * Include supporting classes
@@ -125,7 +123,7 @@ class Date
      * @param mixed $date optional - date/time to initialize
      * @return object Date the new Date object
      */
-    function Date($date = null)
+    function __construct($date = null)
     {
         $this->tz = Date_TimeZone::getDefault();
         if (is_null($date)) {

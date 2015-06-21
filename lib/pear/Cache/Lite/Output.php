@@ -7,7 +7,6 @@
 * Technical choices are described in the 'docs/technical' file
 *
 * @package Cache_Lite
-* @version $Id$
 * @author Fabien MARTY <fab@php.net>
 */
 
@@ -27,9 +26,9 @@ class Cache_Lite_Output extends Cache_Lite
     * @param array $options options
     * @access public
     */
-    function Cache_Lite_Output($options)
+    function __construct($options)
     {
-        $this->Cache_Lite($options);
+        parent::__construct($options);
     }
 
     /**

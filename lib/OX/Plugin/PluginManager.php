@@ -1112,22 +1112,17 @@ class OX_PluginManager extends OX_Plugin_ComponentGroupManager
     {
         $aPackages = $GLOBALS['_MAX']['CONF']['plugins'];
         $aResult = array();
-        foreach ($aPackages AS $name => $enabled)
-        {
-            if ($enabled)
-            {
+        foreach ($aPackages as $name => $enabled) {
+            if ($enabled) {
                 $aPkgInfo = $this->getPackageInfo($name);
-                foreach ($aPkgInfo['contents'] AS &$componentGroup)
-                {
-                    if (isset($componentGroup['components']))
-                    {
-                        foreach ($componentGroup['components'] as $componentName => &$aComponent)
-                        {
-                            if (isset($aComponent['hooks']))
-                            {
-                                foreach ($aComponent['hooks'] as &$hook)
-                                {
-                                    $aResult[$hook][] = $componentGroup['extends'] . ':' . $componentGroup['name'] . ':' . $componentName;
+                if ($aPkgInfo) {
+                    foreach ($aPkgInfo['contents'] as $componentGroup) {
+                        if (isset($componentGroup['components'])) {
+                            foreach ($componentGroup['components'] as $componentName => $aComponent) {
+                                if (isset($aComponent['hooks'])) {
+                                    foreach ($aComponent['hooks'] as $hook) {
+                                        $aResult[$hook][] = $componentGroup['extends'] . ':' . $componentGroup['name'] . ':' . $componentName;
+                                    }
                                 }
                             }
                         }
@@ -1398,7 +1393,14 @@ class OX_PluginManager extends OX_Plugin_ComponentGroupManager
             return false;
         }
         // are there any files in the zip that are not declared in the definitions?
-        $aDiffStored = array_diff($aFilesStored, $aFilesExpected);
+        // but please ignore lang files
+        $aDiffStored = array_filter(array_diff($aFilesStored, $aFilesExpected), function ($file) {
+            if (preg_match('#^/plugins/etc/[^/]+/_lang/(?:po/)?[a-z][a-z](?:_[A-Z][A-Z])?\.(?:mo|pot?)$#D', $file)) {
+                return false;
+            }
+
+            return true;
+        });
         if (count($aDiffStored) > 0)
         {
             $this->_logError(count($aDiffStored).' unexpected files found');

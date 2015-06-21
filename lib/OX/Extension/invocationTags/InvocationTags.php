@@ -25,7 +25,6 @@ define('MAX_PLUGINS_INVOCATION_TAGS_CUSTOM', 1);
  *
  * @package    OpenXPlugin
  * @subpackage InvocationTags
- * @author     Radek Maciaszek <radek@m3.net>
  * @abstract
  */
 class Plugins_InvocationTags extends OX_Component
@@ -249,12 +248,18 @@ class Plugins_InvocationTags extends OX_Component
         }
 
         // Set $mi->buffer to the initial comment
-        $name = (!empty($GLOBALS['_MAX']['PREF']['name'])) ? $GLOBALS['_MAX']['PREF']['name'] : MAX_PRODUCT_NAME;
-        $buffer = '<!--/* '. $name .' '. $this->getName() . ' v' . OA_VERSION;
-        if (!empty($thirdpartyname)) {
-            $buffer .= " (".$thirdpartyname.")";
+        $name = PRODUCT_NAME;
+        if (!empty($GLOBALS['_MAX']['CONF']['ui']['applicationName'])) {
+            $name = $GLOBALS['_MAX']['CONF']['ui']['applicationName'];
         }
-        $buffer .= " */-->\n\n";
+        $buffer = "<!--/*
+  *
+  * " . $name . " " . $this->getName() . "
+  * - Generated with " . PRODUCT_NAME . " v" . VERSION . "\n";
+        if (!empty($thirdpartyname)) {
+            $buffer .= "  * - " . $thirdpartyname . "\n";
+        }
+        $buffer .= "  *\n  */-->\n\n";
 
         if (!empty($mi->comments)) {
             $oTrans = new OX_Translation();

@@ -18,14 +18,13 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Fields/Delivery.php';
  * @abstract
  * @package    OpenXPlugin
  * @subpackage StatisticsFields
- * @author     Matteo Beccati <matteo@beccati.com>
  */
 class OA_StatisticsFieldsDelivery_Default extends OA_StatisticsFieldsDelivery
 {
     /**
      * Constructor
      */
-    function OA_StatisticsFieldsDelivery_Default()
+    function __construct()
     {
 
         $aConf = $GLOBALS['_MAX']['CONF'];
@@ -127,9 +126,9 @@ class OA_StatisticsFieldsDelivery_Default extends OA_StatisticsFieldsDelivery
 
     }
 
-    function mergeData(&$aRows, $emptyRow, $method, $aParams)
+    function mergeData(&$aRows, $method, $aParams, $emptyRow = array())
     {
-        $this->mergeConversions($aRows, $emptyRow, $method, $aParams);
+        $this->mergeConversions($aRows, $method, $aParams, $emptyRow);
     }
 
     /**

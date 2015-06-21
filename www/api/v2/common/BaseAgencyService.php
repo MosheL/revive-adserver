@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Require Agency Service Implementation
@@ -36,7 +34,7 @@ class BaseAgencyService
      * This method initialises Service implementation object field.
      *
      */
-    function BaseAgencyService()
+    function __construct()
     {
         $this->_oAgencyServiceImp = new AgencyServiceImpl();
     }

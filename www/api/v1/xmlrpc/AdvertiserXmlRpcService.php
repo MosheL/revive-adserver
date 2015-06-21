@@ -12,10 +12,8 @@
 
 /**
  * @package    OpenX
- * @author     Ivan Klishch <iklishch@lohika.com>
  *
  * The advertiser XML-RPC service enables XML-RPC communication with the advertiser object.
- *
  */
 
 // Require the initialisation file.
@@ -44,9 +42,9 @@ class AdvertiserXmlRpcService extends BaseAdvertiserService
      * to initialise the service.
      *
      */
-    function AdvertiserXmlRpcService()
+    function __construct()
     {
-        $this->BaseAdvertiserService();
+        parent::__construct();
     }
 
     /**

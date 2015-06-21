@@ -3,7 +3,6 @@
      *	Base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	WebTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -125,10 +124,10 @@
          *    Sets the builder up empty.
          *    @access public
          */
-        function SimplePageBuilder() {
-            $this->SimpleSaxListener();
+        function __construct() {
+            parent::__construct();
         }
-        
+
         /**
          *    Frees up any references so as to allow the PHP garbage
          *    collection from unset() to work.
@@ -162,7 +161,7 @@
          *    @access protected
          */
         function &_createPage($response) {
-            $page = &new SimplePage($response);
+            $page = new SimplePage($response);
             return $page;
         }
 
@@ -174,10 +173,10 @@
          *    @access protected
          */
         function &_createParser(&$listener) {
-            $parser = &new SimpleHtmlSaxParser($listener);
+            $parser = new SimpleHtmlSaxParser($listener);
             return $parser;
         }
-        
+
         /**
          *    Start of element event. Opens a new tag.
          *    @param string $name         Element name.
@@ -187,7 +186,7 @@
          *    @access public
          */
         function startElement($name, $attributes) {
-            $factory = &new SimpleTagBuilder();
+            $factory = new SimpleTagBuilder();
             $tag = $factory->createTag($name, $attributes);
             if (! $tag) {
                 return true;
@@ -355,7 +354,7 @@
          *    @param SimpleHttpResponse $response     Result of HTTP fetch.
          *    @access public
          */
-        function SimplePage($response = false) {
+        function __construct($response = false) {
             $this->_links = array();
             $this->_title = false;
             $this->_left_over_labels = array();
@@ -628,7 +627,7 @@
          *    @access public
          */
         function acceptFormStart(&$tag) {
-            $this->_open_forms[] = &new SimpleForm($tag, $this->getUrl());
+            $this->_open_forms[] = new SimpleForm($tag, $this->getUrl());
         }
 
         /**

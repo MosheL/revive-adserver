@@ -21,7 +21,6 @@ require_once MAX_PATH . '/lib/OA/Task/Runner.php';
 /**
  * @package    OpenXMaintenance
  * @subpackage Priority
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Maintenance_Priority_AdServer
 {
@@ -39,7 +38,7 @@ class OA_Maintenance_Priority_AdServer
     /**
      * The constructor method.
      */
-    function OA_Maintenance_Priority_AdServer()
+    function __construct()
     {
         $this->aComponents = OX_Component::getListOfRegisteredComponentsForHook('addMaintenancePriorityTask');
 

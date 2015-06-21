@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -57,7 +56,7 @@ class Image_Graph_Line_Dashed extends Image_Graph_Line_Formatted
      * @param mixed $color1 The color for the 'dashes'
      * @param mixed $color2 The color for the 'spaces'
      */
-    function Image_Graph_Line_Dashed($color1, $color2)
+    function __construct($color1, $color2)
     {
         parent::__construct(
             array(

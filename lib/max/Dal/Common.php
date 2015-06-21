@@ -23,8 +23,6 @@ require_once 'DB/QueryTool.php';
  * querying methods.
  *
  * @package    MaxDal
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Radek Maciaszek <radek.maciaszek@openx.org>
  */
 class MAX_Dal_Common
 {
@@ -71,7 +69,7 @@ class MAX_Dal_Common
     /**
      * The class constructor method.
      */
-    function MAX_Dal_Common()
+    function __construct()
     {
         $this->conf = $GLOBALS['_MAX']['CONF'];
         $this->prefix = $this->getTablePrefix();

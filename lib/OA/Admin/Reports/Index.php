@@ -24,7 +24,6 @@ require_once LIB_PATH . '/Admin/Redirect.php';
  *
  * @package    OpenXAdmin
  * @subpackage Reports
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Reports_Index
 {
@@ -39,7 +38,7 @@ class OA_Admin_Reports_Index
      *
      * @return OA_Admin_Reports_Index
      */
-    function OA_Admin_Reports_Index()
+    function __construct()
     {
         $this->oFieldFactory = new FieldFactory();
         $this->tabindex = 1;

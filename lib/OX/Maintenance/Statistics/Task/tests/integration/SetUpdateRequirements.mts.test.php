@@ -20,7 +20,6 @@ require_once LIB_PATH . '/Maintenance/Statistics/Task/SetUpdateRequirements.php'
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTestCase
 {
@@ -28,9 +27,9 @@ class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTest
     /**
      * The constructor method.
      */
-    function Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

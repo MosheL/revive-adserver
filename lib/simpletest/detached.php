@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -29,7 +28,7 @@
          *    @param string $dry_command   Script for dry run.
          *    @access public
          */
-        function DetachedTestCase($command, $dry_command = false) {
+        function __construct($command, $dry_command = false) {
             $this->_command = $command;
             $this->_dry_command = $dry_command ? $dry_command : $command;
             $this->_size = false;
@@ -53,7 +52,7 @@
          *    @access public
          */
         function run(&$reporter) {
-			$shell = &new SimpleShell();
+			$shell = new SimpleShell();
 			$shell->execute($this->_command);
             $parser = &$this->_createParser($reporter);
             if (! $parser->parse($shell->getOutput())) {
@@ -70,9 +69,9 @@
          */
         function getSize() {
             if ($this->_size === false) {
-				$shell = &new SimpleShell();
+				$shell = new SimpleShell();
 				$shell->execute($this->_dry_command);
-                $reporter = &new SimpleReporter();
+                $reporter = new SimpleReporter();
                 $parser = &$this->_createParser($reporter);
                 if (! $parser->parse($shell->getOutput())) {
                     trigger_error('Cannot parse incoming XML from [' . $this->_dry_command . ']');

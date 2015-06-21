@@ -13,8 +13,6 @@
 /**
  * OpenXUpgrade Class
  *
- * @author     Monique Szpak <monique.szpak@openx.org>
- *
  */
 define('OA_ENV_ERROR_PHP_NOERROR',                    1);
 define('OA_ENV_ERROR_PHP_VERSION',                   -1);
@@ -46,7 +44,7 @@ class OA_Environment_Manager
 
     var $aInfo = array();
 
-    function OA_Environment_Manager()
+    function __construct()
     {
         $conf = $GLOBALS['_MAX']['CONF'];
         global $installing;
@@ -92,7 +90,7 @@ class OA_Environment_Manager
         $this->aInfo['PERMS']['actual']   = array();
         $this->aInfo['FILES']['actual']   = array();
 
-        $this->aInfo['PHP']['expected']['version']              = '5.1.4';
+        $this->aInfo['PHP']['expected']['version']              = '5.3.0';
         $this->aInfo['PHP']['expected']['magic_quotes_runtime'] = '0';
         $this->aInfo['PHP']['expected']['safe_mode']            = '0';
         $this->aInfo['PHP']['expected']['file_uploads']         = '1';
@@ -358,6 +356,9 @@ class OA_Environment_Manager
      */
     function _checkCriticalPHP()
     {
+        // Due to https://bugs.php.net/bug.php?id=65367 we need to blacklist PHP
+        // 5.4.0-5.4.19 and 5.5.0-5.5.1
+
         // Test the PHP version
         if (function_exists('version_compare'))
         {
@@ -376,7 +377,14 @@ class OA_Environment_Manager
                 '5.4.20',
                 "<"
             )) {
-                $result = OA_ENV_ERROR_PHP_VERSION_54;
+                if (preg_match('#^5\.4\.4-14\+deb7u(\d+)$#', $this->aInfo['PHP']['actual']['version'], $m) &&
+                    $m[1] >= 9
+                ) {
+                    // Thanks Debian for backporting the fix into 5.4.4-14+deb7u9
+                    $result = OA_ENV_ERROR_PHP_NOERROR;
+                } else {
+                    $result = OA_ENV_ERROR_PHP_VERSION_54;
+                }
             } elseif (version_compare(
                 $this->aInfo['PHP']['actual']['version'],
                 '5.5.0',
@@ -415,9 +423,9 @@ class OA_Environment_Manager
         // Test the original memory_limit
         if (!$this->checkOriginalMemory()) {
             $this->aInfo['PHP']['warning']['memory_limit'] =
-                MAX_PRODUCT_NAME . " requires a minimum of " . (OX_getMemoryLimitSizeInBytes() / 1048576) . " MB to run successfully, although " .
+                PRODUCT_NAME . " requires a minimum of " . (OX_getMemoryLimitSizeInBytes() / 1048576) . " MB to run successfully, although " .
                 "some parts of the application will increase this limitation if required. The current 'memory_limit' value is set to " .
-                ($this->aInfo['PHP']['actual']['original_memory_limit'] / 1048576) . " MB, so " . MAX_PRODUCT_NAME . " has automatically increased " .
+                ($this->aInfo['PHP']['actual']['original_memory_limit'] / 1048576) . " MB, so " . PRODUCT_NAME . " has automatically increased " .
                 "this limit. If possible, please increase the 'memory_limit' value in your server's php.ini file to a minimum of " .
                 (OX_getMemoryLimitSizeInBytes() / 1048576) . " MB before continuing.";
         }

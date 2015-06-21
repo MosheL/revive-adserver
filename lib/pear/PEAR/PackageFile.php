@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -70,7 +69,7 @@ class PEAR_PackageFile
      * @param   string @tmpdir Optional temporary directory for uncompressing
      *          files
      */
-    function PEAR_PackageFile(&$config, $debug = false, $tmpdir = false)
+    function __construct(&$config, $debug = false, $tmpdir = false)
     {
         $this->_config = $config;
         $this->_debug = $debug;
@@ -332,7 +331,7 @@ class PEAR_PackageFile
             if ($name == 'package.xml') {
                 $xml = $name;
                 break;
-            } elseif (ereg('package.xml$', $name, $match)) {
+            } elseif (preg_match('/package.xml$/D', $name, $match)) {
                 $xml = $name;
                 break;
             }

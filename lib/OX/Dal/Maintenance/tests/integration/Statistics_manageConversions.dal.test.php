@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dal/DataGenerator.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Dal_Maintenance_Statistics_manageConversions extends UnitTestCase
 {
@@ -27,9 +26,9 @@ class Test_OX_Dal_Maintenance_Statistics_manageConversions extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Dal_Maintenance_Statistics_manageConversions()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

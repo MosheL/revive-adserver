@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -56,7 +55,7 @@ class Image_Graph_Dataset_Sequential extends Image_Graph_Dataset_Trivial
     /**
      * Image_Graph_SequentialDataset [Constructor]
      */
-    function Image_Graph_Dataset_Sequential($dataArray = false)
+    function __construct($dataArray = false)
     {
         parent::__construct();
         if (is_array($dataArray)) {

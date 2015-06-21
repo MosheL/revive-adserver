@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -28,8 +27,8 @@
          *    @param string $indent           Indenting to add on each nesting.
          *    @access public
          */
-        function XmlReporter($namespace = false, $indent = '  ') {
-            $this->SimpleReporter();
+        function __construct($namespace = false, $indent = '  ') {
+            parent::__construct();
             $this->_namespace = ($namespace ? $namespace . ':' : '');
             $this->_indent = $indent;
         }
@@ -58,7 +57,7 @@
         	$string = str_replace(
                     array('&', '<', '>', '"', '\''),
                     array('&amp;', '&lt;', '&gt;', '&quot;', '&apos;'),
-                    $text); 
+                    $text);
             return preg_replace('/[^(\x20-\x7F)\r\n\t]/','?', $string);
         }
 
@@ -244,7 +243,7 @@
          *    @param mixed $payload      Message or object.
          *    @access public
          */
-        function paintSignal($type, &$payload) {
+        function paintSignal($type, $payload) {
             parent::paintSignal($type, $payload);
             print $this->_getIndent(1);
             print "<" . $this->_namespace . "signal type=\"$type\">";
@@ -300,7 +299,7 @@
          *    @param hash $attributes   Name value pairs.
          *    @access public
          */
-        function NestingXmlTag($attributes) {
+        function __construct($attributes) {
             $this->_name = false;
             $this->_attributes = $attributes;
         }
@@ -348,8 +347,8 @@
          *    @param hash $attributes   Name value pairs.
          *    @access public
          */
-        function NestingMethodTag($attributes) {
-            $this->NestingXmlTag($attributes);
+        function __construct($attributes) {
+            parent::__construct($attributes);
         }
 
         /**
@@ -388,8 +387,8 @@
          *    @param hash $attributes   Name value pairs.
          *    @access public
          */
-        function NestingCaseTag($attributes) {
-            $this->NestingXmlTag($attributes);
+        function __construct($attributes) {
+            parent::__construct($attributes);
         }
 
         /**
@@ -428,8 +427,8 @@
          *    @param hash $attributes   Name value pairs.
          *    @access public
          */
-        function NestingGroupTag($attributes) {
-            $this->NestingXmlTag($attributes);
+        function __construct($attributes) {
+            parent::__construct($attributes);
         }
 
         /**
@@ -486,7 +485,7 @@
          *    @param SimpleReporter $listener   Listener of tag events.
          *    @access public
          */
-        function SimpleTestXmlParser(&$listener) {
+        function __construct(&$listener) {
             $this->_listener = &$listener;
             $this->_expat = &$this->_createParser();
             $this->_tag_stack = array();

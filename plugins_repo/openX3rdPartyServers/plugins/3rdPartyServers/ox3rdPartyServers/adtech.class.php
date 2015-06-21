@@ -14,7 +14,6 @@
  * @package    MaxPlugins
  * @subpackage 3rdPartyServers
  * @author     Heiko Weber <heiko@wecos.de>
- *
  */
 
 require_once LIB_PATH . '/Extension/3rdPartyServers/3rdPartyServers.php';
@@ -35,7 +34,7 @@ class Plugins_3rdPartyServers_ox3rdPartyServers_adtech extends Plugins_3rdPartyS
      */
     function getName()
     {
-        return $this->translate('Rich Media - adtech');
+        return $this->translate('adtech');
     }
 
     /**

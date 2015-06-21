@@ -20,7 +20,6 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -157,9 +156,9 @@ class DB_odbc extends DB_common
      *
      * @return void
      */
-    function DB_odbc()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}
@@ -181,7 +180,7 @@ class DB_odbc extends DB_common
     function connect($dsn, $persistent = false)
     {
         if (!PEAR::loadExtension('odbc')) {
-            return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
+            return $this->customRaiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
 
         $this->dsn = $dsn;
@@ -222,7 +221,7 @@ class DB_odbc extends DB_common
         }
 
         if (!is_resource($this->connection)) {
-            return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+            return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                      null, null, null,
                                      $this->errorNative());
         }
@@ -523,7 +522,7 @@ class DB_odbc extends DB_common
                 $result = $this->createSequence($seq_name);
                 $this->popErrorHandling();
                 if (DB::isError($result)) {
-                    return $this->raiseError($result);
+                    return $this->customRaiseError($result);
                 }
                 $result = $this->query("insert into ${seqname} (id) values(0)");
             } else {
@@ -532,7 +531,7 @@ class DB_odbc extends DB_common
         } while ($repeat);
 
         if (DB::isError($result)) {
-            return $this->raiseError($result);
+            return $this->customRaiseError($result);
         }
 
         $result = $this->query("select id from ${seqname}");
@@ -676,7 +675,7 @@ class DB_odbc extends DB_common
                         }
                         foreach ($error_regexps as $regexp => $code) {
                             if (preg_match($regexp, $errormsg)) {
-                                return $this->raiseError($code,
+                                return $this->customRaiseError($code,
                                         null, null, null,
                                         $native_code . ' ' . $errormsg);
                             }
@@ -690,7 +689,7 @@ class DB_odbc extends DB_common
                     $errno = $this->errorCode(odbc_error($this->connection));
             }
         }
-        return $this->raiseError($errno, null, null, null,
+        return $this->customRaiseError($errno, null, null, null,
                                  $this->errorNative());
     }
 

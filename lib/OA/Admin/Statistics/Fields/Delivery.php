@@ -20,7 +20,6 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Common.php';
  * @abstract
  * @package    OpenXPlugin
  * @subpackage StatisticsFields
- * @author     Matteo Beccati <matteo@beccati.com>
  */
 class OA_StatisticsFieldsDelivery
 {
@@ -400,11 +399,11 @@ class OA_StatisticsFieldsDelivery
      * Add the fields needed for conversions stats
      *
      * @param array Row of stats
-     * @param array Empty row
      * @param string Invocated method
      * @param array Parameter array
+     * @param array Empty row
      */
-    function mergeConversions(&$aRows, $emptyRow, $method, $aParams)
+    function mergeConversions(&$aRows, $method, $aParams, $emptyRow)
     {
         $conf = $GLOBALS['_MAX']['CONF'];
 
@@ -459,8 +458,8 @@ class OA_StatisticsFieldsDelivery
         $aFields[] = "SUM(IF(diac.connection_status = ".MAX_CONNECTION_STATUS_PENDING.",1,0)) AS sum_conversions_pending";
 
         if (!empty($aParams['day_begin']) && !empty($aParams['day_end'])) {
-            $oStartDate = & new Date("{$aParams['day_begin']} 00:00:00");
-            $oEndDate   = & new Date("{$aParams['day_end']} 23:59:59");
+            $oStartDate = new Date("{$aParams['day_begin']} 00:00:00");
+            $oEndDate   = new Date("{$aParams['day_end']} 23:59:59");
             $oStartDate->toUTC();
             $oEndDate->toUTC();
             $aWhere[] = "diac.tracker_date_time BETWEEN '".$oStartDate->format('%Y-%m-%d %H:%M:%S')."'".

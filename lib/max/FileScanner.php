@@ -18,7 +18,6 @@
  * The idea of this class was taken from: http://sourceforge.net/projects/phpduploc
  *
  * @package    Max
- * @author     Radek Maciaszek <radek@m3.net>
  */
 class MAX_FileScanner
 {
@@ -32,7 +31,7 @@ class MAX_FileScanner
 	/**
 	 * Constructor
 	 */
-	function MAX_FileScanner()
+	function __construct()
 	{
 		$this->_allowedFileTypes = array();
 		$this->_allowedFileMask = null; // eg: '^([a-zA-Z0-9\-]*)\.plugin\.php$'
@@ -198,7 +197,7 @@ class MAX_FileScanner
         // Check if file name is allowed
         if (!empty($this->_allowedFileMask)) {
         	$matches = null;
-            if (!ereg($this->_allowedFileMask, $fileName, $matches)) {
+            if (!preg_match($this->_allowedFileMask, $fileName, $matches)) {
                 return false;
             } else {
                 $this->_lastMatch = $matches;
@@ -251,7 +250,7 @@ class MAX_FileScanner
     	    $matches = $this->_lastMatch;
     	} else {
     		$matches = null;
-    	    ereg($this->_allowedFileMask, $fileName, $matches);
+    	    preg_match($this->_allowedFileMask, $fileName, $matches);
     	}
 	    if (is_array($matches) && count($matches) == 4) {
             $key = $matches[2].':'.$matches[3];

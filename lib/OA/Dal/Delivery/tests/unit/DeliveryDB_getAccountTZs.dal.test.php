@@ -20,16 +20,15 @@ require_once MAX_PATH . '/lib/OA/Dal/DataGenerator.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class Test_OA_Dal_Delivery_getAccountTZs extends UnitTestCase
 {
     var $oDbh;
     var $prefix;
 
-    function Test_OA_Dal_Delivery_getAccountTZs()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->oDbh = OA_DB::singleton();
         $this->prefix = $GLOBALS['_MAX']['CONF']['table']['prefix'];
 
@@ -43,7 +42,7 @@ class Test_OA_Dal_Delivery_getAccountTZs extends UnitTestCase
     {
         // Create the admin account
         $doAccounts = OA_Dal::factoryDO('accounts');
-        $doAccounts->account_name = 'Administrator Account';
+        $doAccounts->account_name = 'System Administrator';
         $doAccounts->account_type = OA_ACCOUNT_ADMIN;
         $adminAccountId = DataGenerator::generateOne($doAccounts);
 

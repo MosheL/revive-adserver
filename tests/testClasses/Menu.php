@@ -19,7 +19,6 @@ require_once 'HTML/TreeMenu.php';
  *
  * @package    Max
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew@m3.net>
  *
  * @todo Consider reducing repetition by extracting "add node" logic.
  */
@@ -34,12 +33,12 @@ class Menu
      */
     function buildTree()
     {
-        preg_match('/^(\d+\.\d+)/', OA_VERSION, $aMatches);
+        preg_match('/^(\d+\.\d+)/', VERSION, $aMatches);
         // Create the root of the test suite
         $menu     = new HTML_TreeMenu();
         $rootNode = new HTML_TreeNode(
                             array(
-                                'text' => MAX_PRODUCT_NAME . ' ' . $aMatches[1] . ' Tests',
+                                'text' => PRODUCT_NAME . ' ' . $aMatches[1] . ' Tests',
                                 'icon' => "package.png"
                             )
                         );

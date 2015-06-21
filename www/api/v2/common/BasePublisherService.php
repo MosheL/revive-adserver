@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Require Publisher Service Implementation
@@ -36,7 +34,7 @@ class BasePublisherService
      * This method initialises Service implementation object field.
      *
      */
-    function BasePublisherService()
+    function __construct()
     {
         $this->_oPublisherServiceImp = new PublisherServiceImpl();
     }

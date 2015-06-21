@@ -43,6 +43,7 @@ if(!is_callable('MAX_adSelect')) {
  * @param boolean $logView      Should this view be logged (views in admin should not be logged
  *                              also - 3rd party callback logging should not be logged at view time)
  * @param boolean $useAlt       Should the backup file be used for this code
+ * @param boolean $richMedia    Does this invocation method allow for serving 3rd party/html ads
  * @param string  $loc          The "current page" URL
  * @param string  $referer      The "referring page" URL
  *
@@ -59,7 +60,7 @@ function Plugin_BannerTypeHTML_vastBannerTypeHtml_vastHtml_Delivery_postAdRender
 }
 
 
-function Plugin_bannerTypeHtml_vastInlineBannerTypeHtml_vastInlineHtml_Delivery_adRender(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $loc, $referer)
+function Plugin_bannerTypeHtml_vastInlineBannerTypeHtml_vastInlineHtml_Delivery_adRender(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $richMedia=true, $loc, $referer)
 {
     return deliverVastAd('vastInline', $aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $loc, $referer);
 }
@@ -115,18 +116,16 @@ if ( !empty($format) && $format == 'vast'){
         $output = MAX_adSelect($what, $clientid, $target, $source, $withtext, $charset, $context, true, $ct0, $GLOBALS['loc'], $GLOBALS['referer']);
 
         ###START_STRIP_DELIVERY
-        OX_Delivery_logMessage('$block='.$block, 7);
-        //OX_Delivery_logMessage(print_r($output, true), 7);
         OX_Delivery_logMessage('output bannerid='.(empty($output['bannerid']) ? ' NO BANNERID' : $output['bannerid']), 7);
         ###END_STRIP_DELIVERY
 
         // BM - output format is vast xml
         if ( $format == 'vast' ){
 
-            if (  $output['html']  && 
+            if (  $output['html']  &&
                  (
-                     ($output['width'] != VAST_OVERLAY_DIMENSIONS) && 
-                     ($output['width'] != VAST_INLINE_DIMENSIONS) 
+                     ($output['width'] != VAST_OVERLAY_DIMENSIONS) &&
+                     ($output['width'] != VAST_INLINE_DIMENSIONS)
                  )
                ){
                 $badZoneId = $output['aRow']['zoneid'];
@@ -137,7 +136,7 @@ if ( !empty($format) && $format == 'vast'){
                 // Store the html2js'd output for this ad
                 $spc_output .= $output['html'] . "\n";
             }
-  
+
             // Help the player (requestor of VAST) to match the ads in the response with his request by using his id in the Ad xml node
             $spc_output = str_replace( '{player_allocated_ad_id}', $varname, $spc_output );
         }
@@ -171,12 +170,10 @@ if ( !empty($format) && $format == 'vast'){
         $spc_output .=  getVastXMLFooter();
         // Setup the banners for this page
         MAX_commonSendContentTypeHeader("application/xml", $charset);
-        header("Content-Length: ".strlen($spc_output));
     }
     else {
         // Setup the banners for this page
         MAX_commonSendContentTypeHeader("application/x-javascript", $charset);
-        header("Content-Length: ".strlen($spc_output));
     }
     $spc_output .= getClientMessages();
     echo $spc_output;

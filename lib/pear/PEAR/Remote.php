@@ -16,7 +16,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
  */
@@ -60,16 +59,16 @@ class PEAR_Remote extends PEAR
 
     // {{{ PEAR_Remote(config_object)
 
-    function PEAR_Remote(&$config)
+    function __construct(&$config)
     {
-        $this->PEAR();
+        parent::__construct();
         $this->config = &$config;
         $this->_registry = &$this->config->getRegistry();
     }
 
     // }}}
     // {{{ setRegistry()
-    
+
     function setRegistry(&$reg)
     {
         $this->_registry = &$reg;

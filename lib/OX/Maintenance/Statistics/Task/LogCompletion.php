@@ -25,9 +25,6 @@ require_once OX_PATH . '/lib/OX.php';
  * @abstract
  * @package    OpenXMaintenance
  * @subpackage Statistics
- * @author     Andrew Hill <andrew.hill@openx.org>
- *
- *
  */
 class OX_Maintenance_Statistics_Task_LogCompletion extends OX_Maintenance_Statistics_Task
 {
@@ -37,9 +34,9 @@ class OX_Maintenance_Statistics_Task_LogCompletion extends OX_Maintenance_Statis
      *
      * @return OX_Maintenance_Statistics_Task_LogCompletion
      */
-    function OX_Maintenance_Statistics_Task_LogCompletion()
+    function __construct()
     {
-        parent::OX_Maintenance_Statistics_Task();
+        parent::__construct();
     }
 
     /**

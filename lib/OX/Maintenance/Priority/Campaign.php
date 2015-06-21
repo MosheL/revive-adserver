@@ -22,7 +22,6 @@ require_once MAX_PATH . '/lib/OA/ServiceLocator.php';
  *
  * @package    OpenXMaintenance
  * @subpackage Priority
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OX_Maintenance_Priority_Campaign
 {
@@ -91,8 +90,8 @@ class OX_Maintenance_Priority_Campaign
     var $conversionTargetDaily;
 
     /**
-     * The placement's priority value (ie. -1 for exclusive,
-     * 0 for low priority, >= 1 for high-priority).
+     * The placement's priority value (ie. -1 for override, 0 for low priority,
+     * >= 1 for high-priority).
      *
      * @var integer
      */
@@ -195,7 +194,7 @@ class OX_Maintenance_Priority_Campaign
      *      'target_conversion' or 'conversion_target_daily' -> The daily conversion target
      *      'priority'                                       -> The placement priority
      */
-    function OX_Maintenance_Priority_Campaign($aParams)
+    function __construct($aParams)
     {
         // Convert "old" input value names to "new", if required
         foreach ($this->aNewOldTypes as $newName => $oldName) {

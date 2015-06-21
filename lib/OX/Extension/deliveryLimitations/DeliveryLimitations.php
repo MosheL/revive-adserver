@@ -29,7 +29,6 @@ require_once LIB_PATH . '/Plugin/Component.php';
  * @abstract
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Chris Nutting <chris@m3.net>
  */
 class Plugins_DeliveryLimitations extends OX_Component
 {
@@ -53,9 +52,18 @@ class Plugins_DeliveryLimitations extends OX_Component
      */
     var $aOperations;
 
-    function Plugins_DeliveryLimitations()
+    function __construct()
     {
         $this->aOperations = MAX_limitationsGetAOperationsForString($this);
+    }
+
+    /**
+     * This is a placeholder for the old PHP4 constructor.
+     *
+     * DO NOT DELETE OTHERWISE THE PLUGIN UPGRADE WILL FAIL!
+     */
+    final function Plugins_DeliveryLimitations()
+    {
     }
 
     /**

@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -23,19 +22,19 @@
         var $_url;
         var $_dry_url;
         var $_size;
-        
+
         /**
          *    Sets the location of the remote test.
          *    @param string $url       Test location.
          *    @param string $dry_url   Location for dry run.
          *    @access public
          */
-        function RemoteTestCase($url, $dry_url = false) {
+        function __construct($url, $dry_url = false) {
             $this->_url = $url;
             $this->_dry_url = $dry_url ? $dry_url : $url;
             $this->_size = false;
         }
-        
+
         /**
          *    Accessor for the test name for subclasses.
          *    @return string           Name of the test.
@@ -67,7 +66,7 @@
             }
             return true;
         }
-        
+
         /**
          *    Creates a new web browser object for fetching
          *    the XML report.
@@ -75,10 +74,10 @@
          *    @access protected
          */
         function &_createBrowser() {
-            $browser = &new SimpleBrowser();
+            $browser = new SimpleBrowser();
             return $browser;
         }
-        
+
         /**
          *    Creates the XML parser.
          *    @param SimpleReporter $reporter    Target of test results.
@@ -86,10 +85,10 @@
          *    @access protected
          */
         function &_createParser(&$reporter) {
-            $parser = &new SimpleTestXmlParser($reporter);
+            $parser = new SimpleTestXmlParser($reporter);
             return $parser;
         }
-        
+
         /**
          *    Accessor for the number of subtests.
          *    @return integer           Number of test cases.
@@ -103,7 +102,7 @@
                     trigger_error('Cannot read remote test URL [' . $this->_dry_url . ']');
                     return false;
                 }
-                $reporter = &new SimpleReporter();
+                $reporter = new SimpleReporter();
                 $parser = &$this->_createParser($reporter);
                 if (! $parser->parse($xml)) {
                     trigger_error('Cannot parse incoming XML from [' . $this->_dry_url . ']');

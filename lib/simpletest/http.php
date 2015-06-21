@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	WebTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -13,7 +12,7 @@
     require_once(dirname(__FILE__) . '/cookies.php');
     require_once(dirname(__FILE__) . '/url.php');
     /**#@-*/
-    
+
     /**
      *    Creates HTTP headers for the end point of
      *    a HTTP request.
@@ -22,16 +21,16 @@
      */
     class SimpleRoute {
         var $_url;
-        
+
         /**
          *    Sets the target URL.
          *    @param SimpleUrl $url   URL as object.
          *    @access public
          */
-        function SimpleRoute($url) {
+        function __construct($url) {
             $this->_url = $url;
         }
-        
+
         /**
          *    Resource name.
          *    @return SimpleUrl        Current url.
@@ -40,7 +39,7 @@
         function getUrl() {
             return $this->_url;
         }
-        
+
         /**
          *    Creates the first line which is the actual request.
          *    @param string $method   HTTP request method, usually GET.
@@ -51,7 +50,7 @@
             return $method . ' ' . $this->_url->getPath() .
                     $this->_url->getEncodedRequest() . ' HTTP/1.0';
         }
-        
+
         /**
          *    Creates the host part of the request.
          *    @return string          Host line content.
@@ -64,7 +63,7 @@
             }
             return $line;
         }
-        
+
         /**
          *    Opens a socket to the route.
          *    @param string $method      HTTP request method, usually GET.
@@ -86,7 +85,7 @@
             }
             return $socket;
         }
-        
+
         /**
          *    Factory for socket.
          *    @param string $scheme                   Protocol to use.
@@ -98,14 +97,14 @@
          */
         function &_createSocket($scheme, $host, $port, $timeout) {
             if (in_array($scheme, array('https'))) {
-                $socket = &new SimpleSecureSocket($host, $port, $timeout);
+                $socket = new SimpleSecureSocket($host, $port, $timeout);
             } else {
-                $socket = &new SimpleSocket($host, $port, $timeout);
+                $socket = new SimpleSocket($host, $port, $timeout);
             }
             return $socket;
         }
     }
-    
+
     /**
      *    Creates HTTP headers for the end point of
      *    a HTTP request via a proxy server.
@@ -116,7 +115,7 @@
         var $_proxy;
         var $_username;
         var $_password;
-        
+
         /**
          *    Stashes the proxy address.
          *    @param SimpleUrl $url     URL as object.
@@ -125,13 +124,13 @@
          *    @param string $password   Password for autentication.
          *    @access public
          */
-        function SimpleProxyRoute($url, $proxy, $username = false, $password = false) {
-            $this->SimpleRoute($url);
+        function __construct($url, $proxy, $username = false, $password = false) {
+            parent::__construct($url);
             $this->_proxy = $proxy;
             $this->_username = $username;
             $this->_password = $password;
         }
-        
+
         /**
          *    Creates the first line which is the actual request.
          *    @param string $method   HTTP request method, usually GET.
@@ -146,7 +145,7 @@
             return $method . ' ' . $scheme . '://' . $url->getHost() . $port .
                     $url->getPath() . $url->getEncodedRequest() . ' HTTP/1.0';
         }
-        
+
         /**
          *    Creates the host part of the request.
          *    @param SimpleUrl $url   URL as object.
@@ -158,7 +157,7 @@
             $port = $this->_proxy->getPort() ? $this->_proxy->getPort() : 8080;
             return "$host:$port";
         }
-        
+
         /**
          *    Opens a socket to the route.
          *    @param string $method       HTTP request method, usually GET.
@@ -198,7 +197,7 @@
         var $_encoding;
         var $_headers;
         var $_cookies;
-        
+
         /**
          *    Builds the socket request from the different pieces.
          *    These include proxy information, URL, cookies, headers,
@@ -208,13 +207,13 @@
          *                                           request.
          *    @access public
          */
-        function SimpleHttpRequest(&$route, $encoding) {
+        function __construct(&$route, $encoding) {
             $this->_route = &$route;
             $this->_encoding = $encoding;
             $this->_headers = array();
             $this->_cookies = array();
         }
-        
+
         /**
          *    Dispatches the content to the route's socket.
          *    @param integer $timeout      Connection timeout.
@@ -231,7 +230,7 @@
             $response = &$this->_createResponse($socket);
             return $response;
         }
-        
+
         /**
          *    Sends the headers.
          *    @param SimpleSocket $socket           Open socket.
@@ -251,7 +250,7 @@
             $socket->write("\r\n");
             $encoding->writeTo($socket);
         }
-        
+
         /**
          *    Adds a header line to the request.
          *    @param string $header_line    Text of full header line.
@@ -260,7 +259,7 @@
         function addHeaderLine($header_line) {
             $this->_headers[] = $header_line;
         }
-        
+
         /**
          *    Reads all the relevant cookies from the
          *    cookie jar.
@@ -271,7 +270,7 @@
         function readCookiesFromJar($jar, $url) {
             $this->_cookies = $jar->selectAsPairs($url);
         }
-        
+
         /**
          *    Wraps the socket in a response parser.
          *    @param SimpleSocket $socket   Responding socket.
@@ -279,14 +278,14 @@
          *    @access protected
          */
         function &_createResponse(&$socket) {
-            $response = &new SimpleHttpResponse(
+            $response = new SimpleHttpResponse(
                     $socket,
                     $this->_route->getUrl(),
                     $this->_encoding);
             return $response;
         }
     }
-    
+
     /**
      *    Collection of header lines in the response.
 	 *    @package SimpleTest
@@ -301,13 +300,13 @@
         var $_cookies;
         var $_authentication;
         var $_realm;
-        
+
         /**
          *    Parses the incoming header block.
          *    @param string $headers     Header block.
          *    @access public
          */
-        function SimpleHttpHeaders($headers) {
+        function __construct($headers) {
             $this->_raw_headers = $headers;
             $this->_response_code = false;
             $this->_http_version = false;
@@ -316,11 +315,11 @@
             $this->_cookies = array();
             $this->_authentication = false;
             $this->_realm = false;
-            foreach (split("\r\n", $headers) as $header_line) {
+            foreach (preg_split("/\r\n/D", $headers) as $header_line) {
                 $this->_parseHeaderLine($header_line);
             }
         }
-        
+
         /**
          *    Accessor for parsed HTTP protocol version.
          *    @return integer           HTTP error code.
@@ -329,7 +328,7 @@
         function getHttpVersion() {
             return $this->_http_version;
         }
-        
+
         /**
          *    Accessor for raw header block.
          *    @return string        All headers as raw string.
@@ -338,7 +337,7 @@
         function getRaw() {
             return $this->_raw_headers;
         }
-        
+
         /**
          *    Accessor for parsed HTTP error code.
          *    @return integer           HTTP error code.
@@ -347,7 +346,7 @@
         function getResponseCode() {
             return (integer)$this->_response_code;
         }
-        
+
         /**
          *    Returns the redirected URL or false if
          *    no redirection.
@@ -357,7 +356,7 @@
         function getLocation() {
             return $this->_location;
         }
-        
+
         /**
          *    Test to see if the response is a valid redirect.
          *    @return boolean       True if valid redirect.
@@ -367,7 +366,7 @@
             return in_array($this->_response_code, array(301, 302, 303, 307)) &&
                     (boolean)$this->getLocation();
         }
-        
+
         /**
          *    Test to see if the response is an authentication
          *    challenge.
@@ -379,7 +378,7 @@
                     (boolean)$this->_authentication &&
                     (boolean)$this->_realm;
         }
-        
+
         /**
          *    Accessor for MIME type header information.
          *    @return string           MIME type.
@@ -388,7 +387,7 @@
         function getMimeType() {
             return $this->_mime_type;
         }
-        
+
         /**
          *    Accessor for authentication type.
          *    @return string        Type.
@@ -397,7 +396,7 @@
         function getAuthentication() {
             return $this->_authentication;
         }
-        
+
         /**
          *    Accessor for security realm.
          *    @return string        Realm.
@@ -406,7 +405,7 @@
         function getRealm() {
             return $this->_realm;
         }
-        
+
         /**
          *    Writes new cookies to the cookie jar.
          *    @param SimpleCookieJar $jar   Jar to write to.
@@ -449,7 +448,7 @@
                 $this->_realm = trim($matches[2]);
             }
         }
-        
+
         /**
          *    Parse the Set-cookie content.
          *    @param string $cookie_line    Text after "Set-cookie:"
@@ -457,7 +456,7 @@
          *    @access private
          */
         function _parseCookie($cookie_line) {
-            $parts = split(";", $cookie_line);
+            $parts = preg_split("/;/D", $cookie_line);
             $cookie = array();
             preg_match('/\s*(.*?)\s*=(.*)/', array_shift($parts), $cookie);
             foreach ($parts as $part) {
@@ -472,7 +471,7 @@
                     isset($cookie["expires"]) ? $cookie["expires"] : false);
         }
     }
-    
+
     /**
      *    Basic HTTP response.
 	 *    @package SimpleTest
@@ -484,7 +483,7 @@
         var $_sent;
         var $_content;
         var $_headers;
-        
+
         /**
          *    Constructor. Reads and parses the incoming
          *    content and headers.
@@ -494,8 +493,8 @@
          *    @param mixed $encoding        Record of content sent.
          *    @access public
          */
-        function SimpleHttpResponse(&$socket, $url, $encoding) {
-            $this->SimpleStickyError();
+        function __construct(&$socket, $url, $encoding) {
+            parent::__construct();
             $this->_url = $url;
             $this->_encoding = $encoding;
             $this->_sent = $socket->getSent();
@@ -507,7 +506,7 @@
             }
             $this->_parse($raw);
         }
-        
+
         /**
          *    Splits up the headers and the rest of the content.
          *    @param string $raw    Content to parse.
@@ -516,16 +515,16 @@
         function _parse($raw) {
             if (! $raw) {
                 $this->_setError('Nothing fetched');
-                $this->_headers = &new SimpleHttpHeaders('');
+                $this->_headers = new SimpleHttpHeaders('');
             } elseif (! strstr($raw, "\r\n\r\n")) {
                 $this->_setError('Could not split headers from content');
-                $this->_headers = &new SimpleHttpHeaders($raw);
+                $this->_headers = new SimpleHttpHeaders($raw);
             } else {
-                list($headers, $this->_content) = split("\r\n\r\n", $raw, 2);
-                $this->_headers = &new SimpleHttpHeaders($headers);
+                list($headers, $this->_content) = preg_split("/\r\n\r\n/D", $raw, 2);
+                $this->_headers = new SimpleHttpHeaders($headers);
             }
         }
-        
+
         /**
          *    Original request method.
          *    @return string        GET, POST or HEAD.
@@ -534,7 +533,7 @@
         function getMethod() {
             return $this->_encoding->getMethod();
         }
-        
+
         /**
          *    Resource name.
          *    @return SimpleUrl        Current url.
@@ -543,7 +542,7 @@
         function getUrl() {
             return $this->_url;
         }
-        
+
         /**
          *    Original request data.
          *    @return mixed              Sent content.
@@ -552,7 +551,7 @@
         function getRequestData() {
             return $this->_encoding;
         }
-        
+
         /**
          *    Raw request that was sent down the wire.
          *    @return string        Bytes actually sent.
@@ -561,7 +560,7 @@
         function getSent() {
             return $this->_sent;
         }
-        
+
         /**
          *    Accessor for the content after the last
          *    header line.
@@ -571,7 +570,7 @@
         function getContent() {
             return $this->_content;
         }
-        
+
         /**
          *    Accessor for header block. The response is the
          *    combination of this and the content.
@@ -581,7 +580,7 @@
         function getHeaders() {
             return $this->_headers;
         }
-        
+
         /**
          *    Accessor for any new cookies.
          *    @return array       List of new cookies.
@@ -590,7 +589,7 @@
         function getNewCookies() {
             return $this->_headers->getNewCookies();
         }
-        
+
         /**
          *    Reads the whole of the socket output into a
          *    single string.
@@ -606,7 +605,7 @@
             }
             return $all;
         }
-        
+
         /**
          *    Test to see if the packet from the socket is the
          *    last one.

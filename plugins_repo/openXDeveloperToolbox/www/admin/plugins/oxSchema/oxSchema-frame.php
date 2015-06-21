@@ -12,11 +12,6 @@
 
 /**
  * OpenX Schema Management Utility
- *
- * @author     Monique Szpak <monique.szpak@openx.org>
- *
- * $Id$
- *
  */
 
 require_once '../../../../init.php';
@@ -61,7 +56,7 @@ setcookie('schemaFile', $schemaFile);
 
 require_once 'lib/oxSchema.inc.php';
 global $oSchema;
-$oSchema = & new openXSchemaEditor($schemaFile, '', $schemaPath);
+$oSchema = new openXSchemaEditor($schemaFile, '', $schemaPath);
 
 require_once 'lib/oxAjax.inc.php';
 

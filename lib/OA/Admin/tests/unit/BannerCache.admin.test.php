@@ -18,15 +18,14 @@ include_once MAX_PATH . '/www/admin/lib-banner.inc.php';
  *
  * @package    OpenXAdmin
  * @subpackage TestSuite
- * @author
  */
 class Test_OA_Admin_BannerCache extends UnitTestCase
 {
     var $aBanners;
 
-    function Test_OA_Admin_BannerCache()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_getBannerCache()
@@ -166,7 +165,7 @@ class Test_OA_Admin_BannerCache extends UnitTestCase
          $aBanner['expected'] = "<a href=\"\" target=\"\">Click Here</a>";
          return $aBanner;
     }
-    
+
     function _getBanner8()
     {
          $aBanner['bannerid'] = 8;
@@ -175,9 +174,10 @@ class Test_OA_Admin_BannerCache extends UnitTestCase
          $aBanner['storagetype'] = 'html';
          $aBanner['filename'] = '';
          $aBanner['imageurl'] = '';
-         $url = 'http://localhost/i.php?a.b=1&c.d=2&whith space and ___ underscore&t[]=k1&t[]=EOF';
+         $url = 'http://localhost/i.php?a.b=1&c.d=2&'.urlencode('whith space and ___ underscore').'&amplify=1&t[]=k1&t[]=EOF';
          $encodedUrl = urlencode($url);
          $aBanner['htmltemplate'] = '<a href=\''.$url.'\'> test my banner</a>
+<a href=\''.htmlspecialchars($url).'\'> test my banner with properly escaped href</a>
 <object>
 <embed src="http://__link_to_flash_video__.swf?clickTAG='.$encodedUrl.'" quality="high" type="application/x-shockwave-flash" width="400" height="300" allowScriptAccess="always"></embed>
 </object>';
@@ -185,13 +185,14 @@ class Test_OA_Admin_BannerCache extends UnitTestCase
          $aBanner['target'] = '_blank';
          $aBanner['url'] = 'http://www.openx.org/';
          $aBanner['adserver'] = 'fake';
-         $aBanner['expected'] = '<a href=\'{clickurl}'.$encodedUrl.'\' target=\'{target}\'> test my banner</a>
+         $aBanner['expected'] = '<a href=\'{clickurl}'.htmlspecialchars($encodedUrl).'\' target=\'{target}\'> test my banner</a>
+<a href=\'{clickurl}'.htmlspecialchars($encodedUrl).'\' target=\'{target}\'> test my banner with properly escaped href</a>
 <object>
-<embed src="http://__link_to_flash_video__.swf?clickTAG={clickurl}'.urlencode($encodedUrl).'" quality="high" type="application/x-shockwave-flash" width="400" height="300" allowScriptAccess="always"></embed>
+<embed src="http://__link_to_flash_video__.swf?clickTAG={clickurl}'.htmlspecialchars(urlencode($encodedUrl)).'" quality="high" type="application/x-shockwave-flash" width="400" height="300" allowScriptAccess="always"></embed>
 </object>';
          return $aBanner;
     }
-    
+
     function _getBanner9()
     {
         $aBanner = $this->_getBanner8();

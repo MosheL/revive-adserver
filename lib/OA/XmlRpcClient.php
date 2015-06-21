@@ -21,7 +21,6 @@ require_once 'XML/RPC.php';
  * Note: Proxy support is currently disabled to keep things simple
  *
  * @package    OpenX
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class OA_XML_RPC_Client extends XML_RPC_Client
 {
@@ -30,7 +29,7 @@ class OA_XML_RPC_Client extends XML_RPC_Client
     var $verifyPeer;
     var $caFile;
 
-    function OA_XML_RPC_Client($path, $server, $port = 0,
+    function __construct($path, $server, $port = 0,
                             $proxy = '', $proxy_port = 0,
                             $proxy_user = '', $proxy_pass = '')
     {
@@ -41,7 +40,7 @@ class OA_XML_RPC_Client extends XML_RPC_Client
 
         $this->verifyPeer = false;
         $this->caFile     = MAX_PATH . '/etc/curl-ca-bundle.crt';
-        parent::XML_RPC_Client($path, $server, $port);
+        parent::__construct($path, $server, $port);
     }
 
     function canUseSSL()

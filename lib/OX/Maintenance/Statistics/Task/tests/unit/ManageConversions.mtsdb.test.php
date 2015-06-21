@@ -20,7 +20,6 @@ require_once LIB_PATH . '/Maintenance/Statistics/Task/ManageConversions.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Maintenance_Statistics_Task_ManageConversions extends UnitTestCase
 {
@@ -28,9 +27,9 @@ class Test_OX_Maintenance_Statistics_Task_ManageConversions extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Maintenance_Statistics_Task_ManageConversions()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -63,7 +62,7 @@ class Test_OX_Maintenance_Statistics_Task_ManageConversions extends UnitTestCase
         Mock::generate('OX_Dal_Maintenance_Statistics');
         $oDal = new MockOX_Dal_Maintenance_Statistics($this);
         $oDal->expectNever('manageConversions');
-        $oDal->OX_Dal_Maintenance_Statistics();
+        $oDal->__construct();
         $oServiceLocator->register('OX_Dal_Maintenance_Statistics', $oDal);
 
         // Set the controlling class' status and test
@@ -93,7 +92,7 @@ class Test_OX_Maintenance_Statistics_Task_ManageConversions extends UnitTestCase
                 new Date('2008-09-08 17:59:59')
             )
         );
-        $oDal->OX_Dal_Maintenance_Statistics();
+        $oDal->__construct();
         $oServiceLocator->register('OX_Dal_Maintenance_Statistics', $oDal);
 
         // Set the controlling class' status and test

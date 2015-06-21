@@ -23,7 +23,6 @@ require_once MAX_PATH . '/lib/max/Delivery/limitations.delivery.php';
  *
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Andrzej Swedrzynski <andrzej@m3.net>
  */
 class Plugins_DeliveryLimitations_ArrayData extends Plugins_DeliveryLimitations
 {
@@ -32,12 +31,21 @@ class Plugins_DeliveryLimitations_ArrayData extends Plugins_DeliveryLimitations
     // The character/string to delimit the data
     var $delimiter = ',';
 
-    function Plugins_DeliveryLimitations_ArrayData()
+    function __construct()
     {
-        $this->Plugins_DeliveryLimitations();
+        parent::__construct();
         $this->aOperations = array(
             '=~' => MAX_Plugin_Translation::translate('Is any of', $this->extension, $this->group),
             '!~' => MAX_Plugin_Translation::translate('Is not any of', $this->extension, $this->group));
+    }
+
+    /**
+     * This is a placeholder for the old PHP4 constructor.
+     *
+     * DO NOT DELETE OTHERWISE THE PLUGIN UPGRADE WILL FAIL!
+     */
+    final function Plugins_DeliveryLimitations_ArrayData()
+    {
     }
 
     function init($data)
@@ -132,13 +140,13 @@ class Plugins_DeliveryLimitations_ArrayData extends Plugins_DeliveryLimitations
 
         return $aResult;
     }
-    
-    
+
+
      /**
      * Method to check input data
      *
-     * @param array $data Most important to check is $data['data'] field. 
-     * By default the empty string check is done. 
+     * @param array $data Most important to check is $data['data'] field.
+     * By default the empty string check is done.
      * @return bool|string true or error message
      */
     function checkInputData($data)
@@ -148,17 +156,17 @@ class Plugins_DeliveryLimitations_ArrayData extends Plugins_DeliveryLimitations
 //            if (is_array($data['data'])) {
 //                foreach ($data['data'] as $dataEntry) {
 //                    if (trim($dataEntry) == '') {
-//                        return MAX_Plugin_Translation::translate($this->group.' - '.$this->getName().': Please provide a non-empty limitation parameters', $this->extension, $this->group);                        
+//                        return MAX_Plugin_Translation::translate($this->group.' - '.$this->getName().': Please provide a non-empty limitation parameters', $this->extension, $this->group);
 //                    }
 //                }
 //            }
 //        }
-//        
+//
 //        return $result;
 
           return true;
     }
-        
+
 
 }
 

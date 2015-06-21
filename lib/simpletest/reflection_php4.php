@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**
@@ -19,7 +18,7 @@
          *    @param string $interface    Class or interface
          *                                to inspect.
          */
-        function SimpleReflection($interface) {
+        function __construct($interface) {
             $this->_interface = $interface;
         }
 

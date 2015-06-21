@@ -17,7 +17,6 @@ require_once MAX_PATH . '/lib/OX/Translation.php';
  *
  * @package    OpenX
  * @subpackage TestSuite
- * @author     Chris Nutting <chris.nutting@openx.org>
  */
 class Test_OX_Translation extends UnitTestCase
 {
@@ -25,9 +24,9 @@ class Test_OX_Translation extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Translation()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

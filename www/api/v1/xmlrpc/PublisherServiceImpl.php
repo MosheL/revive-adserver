@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Base class BaseLogonService
@@ -39,9 +37,9 @@ class PublisherServiceImpl extends BaseServiceImpl
      *
      * The PublisherServiceImpl method is the constructor for the PublisherServiceImpl class.
      */
-    function PublisherServiceImpl()
+    function __construct()
     {
-        $this->BaseServiceImpl();
+        parent::__construct();
         $this->_dllPublisher = new OA_Dll_Publisher();
     }
 

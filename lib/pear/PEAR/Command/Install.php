@@ -16,7 +16,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
  */
@@ -307,9 +306,9 @@ Run post-installation scripts in package <package>, if any exist.
      *
      * @access public
      */
-    function PEAR_Command_Install(&$ui, &$config)
+    function __construct(&$ui, &$config)
     {
-        parent::PEAR_Command_Common($ui, $config);
+        parent::__construct($ui, $config);
     }
 
     // }}}
@@ -322,7 +321,7 @@ Run post-installation scripts in package <package>, if any exist.
         if (!class_exists('PEAR_Downloader')) {
             require_once 'PEAR/Downloader.php';
         }
-        $a = &new PEAR_Downloader($ui, $options, $config);
+        $a = new PEAR_Downloader($ui, $options, $config);
         return $a;
     }
 
@@ -334,7 +333,7 @@ Run post-installation scripts in package <package>, if any exist.
         if (!class_exists('PEAR_Installer')) {
             require_once 'PEAR/Installer.php';
         }
-        $a = &new PEAR_Installer($ui);
+        $a = new PEAR_Installer($ui);
         return $a;
     }
 
@@ -542,7 +541,7 @@ Run post-installation scripts in package <package>, if any exist.
                 $this->ui->outputData('using package root: ' . $options['packagingroot']);
             }
         }
- 
+
         $abstractpackages = array();
         $otherpackages = array();
         // parse params
@@ -564,7 +563,7 @@ Run post-installation scripts in package <package>, if any exist.
                     continue;
                 }
                 if ($reg->packageExists($pf->getPackage(), $pf->getChannel()) &&
-                      version_compare($pf->getVersion(), 
+                      version_compare($pf->getVersion(),
                       $reg->packageInfo($pf->getPackage(), 'version', $pf->getChannel()),
                       '<=')) {
                     if ($this->config->get('verbose')) {
@@ -609,7 +608,7 @@ Run post-installation scripts in package <package>, if any exist.
                     }
                 }
             }
-            $abstractpackages = 
+            $abstractpackages =
                 array_map(array($reg, 'parsedPackageNameToString'), $abstractpackages);
         }
 
@@ -1042,7 +1041,7 @@ Run post-installation scripts in package <package>, if any exist.
         $dest .= DIRECTORY_SEPARATOR . $pkgname;
         $orig = $pkgname . '-' . $pkgversion;
 
-        $tar = &new Archive_Tar($pkgfile->getArchiveFile());
+        $tar = new Archive_Tar($pkgfile->getArchiveFile());
         if (!$tar->extractModify($dest, $orig)) {
             return $this->raiseError('unable to unpack ' . $pkgfile->getArchiveFile());
         }
@@ -1120,7 +1119,7 @@ Run post-installation scripts in package <package>, if any exist.
                 if ($dorest) {
                     $rest = &$this->config->getREST('1.0', array());
                     $installed = array_flip($reg->listPackages($channel));
-                    $latest = $rest->listLatestUpgrades($base, 
+                    $latest = $rest->listLatestUpgrades($base,
                         $this->config->get('preferred_state', null, $channel), $installed,
                         $channel, $reg);
                 } else {

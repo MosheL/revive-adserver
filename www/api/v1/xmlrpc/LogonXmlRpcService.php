@@ -12,10 +12,8 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
  *
  * The logon XML-RPC service enables logon to the OpenX server.
- *
  */
 
 // Require the initialisation file.
@@ -41,9 +39,9 @@ class LogonXmlRpcService extends BaseLogonService
      * initialise the service.
      *
      */
-    function LogonXmlRpcService()
+    function __construct()
     {
-        $this->BaseLogonService();
+        parent::__construct();
     }
 
     /**

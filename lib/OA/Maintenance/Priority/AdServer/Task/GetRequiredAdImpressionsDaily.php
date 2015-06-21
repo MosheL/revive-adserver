@@ -40,7 +40,6 @@ require_once MAX_PATH . '/lib/OA/Dll.php';
  *
  * @package    OpenXMaintenance
  * @subpackage Priority
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsDaily extends OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressions
 {
@@ -50,9 +49,9 @@ class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsDaily extend
      *
      * @return OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsDaily
      */
-    function OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsDaily()
+    function __construct()
     {
-        parent::OA_Maintenance_Priority_Common_Task_GetRequiredAdImpressions();
+        parent::__construct();
         $this->type = 'a daily target is set';
     }
 
@@ -92,7 +91,7 @@ class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsDaily extend
      *
      * @param OX_Maintenance_Priority_Campaign $oCampaign
      */
-    function getCampaignImpressionInventoryRequirement(&$oCampaign)
+    function getCampaignImpressionInventoryRequirement($oCampaign, $type = 'daily', $ignorePast = false)
     {
         parent::getCampaignImpressionInventoryRequirement($oCampaign, 'daily');
     }

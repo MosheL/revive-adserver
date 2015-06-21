@@ -16,7 +16,6 @@ require_once MAX_PATH . '/www/admin/lib-zones.inc.php';
 
 /**
  * @package    MaxDal
- * @author     Scott Switzer <scott@m3.net>
  */
 
 $GLOBALS['_MAX']['Admin_DA']['cacheGroups'] = array(
@@ -219,24 +218,23 @@ class Admin_DA
         switch ($entity) {
 
         case 'agency' : $aLeftJoinedTables[$conf['table']['prefix'].$conf['table']['clients']] = 'a';
-            $aGroupBy = $aColumns;
+            $aGroupBy = array_keys($aColumns);
             $aColumns['COUNT(a.clientid)'] = 'num_children';
             break;
 
         case 'advertiser' : $aLeftJoinedTables[$conf['table']['prefix'].$conf['table']['campaigns']] = 'm';
-            $aGroupBy = $aColumns;
+            $aGroupBy = array_keys($aColumns);
             $aColumns['COUNT(m.campaignid)'] = 'num_children';
-            $aGroupBy['a.type'] = 'a.type'; // Hack to allow this to work with Postgres
             break;
 
         case 'placement' : $aLeftJoinedTables[$conf['table']['prefix'].$conf['table']['banners']] = 'd';
-            $aGroupBy = $aColumns;
+            $aGroupBy = array_keys($aColumns);
             $aGroupBy['m.status'] = 'm.status'; // Hack to allow this to work with Postgres
             $aColumns['COUNT(d.bannerid)'] = 'num_children';
             break;
 
         case 'publisher' : $aLeftJoinedTables[$conf['table']['prefix'].$conf['table']['zones']] = 'z';
-            $aGroupBy = $aColumns;
+            $aGroupBy = array_keys($aColumns);
             $aColumns['COUNT(z.zoneid)'] = 'num_children';
             break;
 
@@ -268,15 +266,9 @@ class Admin_DA
         $aLimitations = array_merge(SqlBuilder::_getStatsLimitations($entity, $aParams),
             SqlBuilder::_getTableLimitations($aTables, $aParams));
 
-        // An ugly hack to get the alias used for the entity table so
-        // the query works with Postgres.
-        end($aColumns);
-        $groupByColumn = key($aColumns);
-        reset($aColumns);
+        $aGroupBy = array($key);
 
-        $aGroups = array($groupByColumn);
-
-        return SqlBuilder::_select($aColumns, $aTables, $aLimitations, $aGroups, $key);
+        return SqlBuilder::_select($aColumns, $aTables, $aLimitations, $aGroupBy, $key);
     }
 
     // +---------------------------------------+
@@ -906,7 +898,7 @@ class Admin_DA
         }
 
         if (empty($campaignVariables['activate_time']) && empty($campaignVariables['expire_time'])) {
-            return PEAR::raiseError($GLOBALS['strEmailNoDates'], MAX_ERROR_EMAILNODATES);
+            return PEAR::raiseError(sprintf($GLOBALS['strEmailNoDates'], PRODUCT_NAME), MAX_ERROR_EMAILNODATES);
         }
         $campaignStart = new Date($campaignVariables['activate_time']);
         $campaignStart->setTZbyID('UTC');
@@ -982,7 +974,8 @@ class Admin_DA
             $azParams['market_ads_include'] = true;
             $azAds = Admin_DA::getAds($azParams);
             if (!empty($azAds)) {
-                // Ad seems OK to link, check if this is an email zone, and enforce only a single active linked ad at a time
+                // Ad seems OK to link, check if this is an email zone, and
+                // enforce only a single active linked ad at a time
                 $aZone = Admin_DA::getZone($aVariables['zone_id']);
                 if ($aZone['type'] == MAX_ZoneEmail) {
                     $aAd = Admin_DA::getAd($azParams['ad_id']);
@@ -1282,7 +1275,6 @@ class Admin_DA
         // the zone. Then links all those ads to the zone if they are not linked already.
         $azParams = Admin_DA::getLinkedAdParams($aVariables['zone_id']);
         $azParams['placement_id'] = $aVariables['placement_id'];
-        $azParams['market_ads_include'] = true;
         $azAds = Admin_DA::getAds($azParams);
         $azLinkedAds = Admin_DA::getAdZones(array('zone_id' => $aVariables['zone_id']), false, 'ad_id');
         foreach ($azAds as $adId => $azAd) {

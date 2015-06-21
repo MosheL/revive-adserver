@@ -13,7 +13,6 @@
 /**
  * OpenXUpgrade Class
  *
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class OA_UpgradeLogger
 {
@@ -40,7 +39,7 @@ class OA_UpgradeLogger
      *
      * @return boolean
      */
-    function OA_UpgradeLogger()
+    function __construct()
     {
         //this->__construct();
         $this->logFile = MAX_PATH."/var/install.log";
@@ -124,7 +123,7 @@ class OA_UpgradeLogger
 
     /**
      * Writes an error message to the log file if $message is not empty.
-     * 
+     *
      * @param string $message
      */
     function logErrorUnlessEmpty($message)
@@ -133,7 +132,7 @@ class OA_UpgradeLogger
             $this->logError($message);
         }
     }
-    
+
     function _logWrite($message)
     {
         if (empty($this->logFile))

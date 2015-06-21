@@ -18,14 +18,13 @@ require_once MAX_PATH . '/lib/OA/Algorithm/Dependency/Source/HoA.php';
  *
  * @package    OpenX
  * @subpackage TestSuite
- * @author     Radek Maciaszek <radek.maciaszek@openx.org>
  */
 class Test_OA_Algorithm_Dependency_Ordered extends UnitTestCase
 {
 
-    function Test_OA_Algorithm_Dependency_Ordered()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function testDependcy()

@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/OA/DB/XmlCache.php';
  *
  * @package    OpenXDB
  * @subpackage TestSuite
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class Test_OA_DB_XmlCache extends UnitTestCase
 {
@@ -30,9 +29,9 @@ class Test_OA_DB_XmlCache extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_DB_XmlCache()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
 
         $this->oDbh    = OA_DB::singleton();
         $this->oCache  = new OA_DB_XmlCache();

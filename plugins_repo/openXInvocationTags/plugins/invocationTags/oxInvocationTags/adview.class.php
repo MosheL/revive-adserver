@@ -13,8 +13,6 @@
 /**
  * @package    OpenXPlugin
  * @subpackage InvocationTags
- * @author     Radek Maciaszek <radek@m3.net>
- *
  */
 
 require_once LIB_PATH . '/Extension/invocationTags/InvocationTags.php';
@@ -55,7 +53,7 @@ class Plugins_InvocationTags_OxInvocationTags_adview extends Plugins_InvocationT
      *
      * @return boolean  True - allowed, false - not allowed
      */
-    function isAllowed($extra)
+    function isAllowed($extra = null)
     {
         $isAllowed = parent::isAllowed($extra);
         if(is_array($extra) && $extra['delivery'] == phpAds_ZoneText) {

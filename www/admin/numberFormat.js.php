@@ -13,7 +13,6 @@
 /**
  * @package    OpenXUI
  * @param 	   lang - symbol of language used on administrator UI (default value = 'en')
- * @author     Andrew Hill <andrew.hill@openx.org>
  *
  * A collection of JavaScript functions for formatting numbers.
  *
@@ -40,6 +39,9 @@
 include('../../constants.php');
 $GLOBALS['_MAX']['CONF'] = true;
 setupConstants();
+
+$PRODUCT_NAME = PRODUCT_NAME;
+$PRODUCT_DOCSURL = PRODUCT_DOCSURL;
 
 //Always load the English language, in case of incomplete translations
 include '../../lib/max/language/en/default.lang.php';

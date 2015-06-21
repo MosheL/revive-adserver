@@ -12,11 +12,6 @@
 
 /**
  * OpenX Plugin Builder
- *
- * @author     Monique Szpak <monique.szpak@openx.org>
- *
- * $Id$
- *
  */
 
 require_once('oxPlugin-common.php');
@@ -137,7 +132,7 @@ function processForm(&$form, $aPluginValues)
 
     $aVersion                   = $aPluginValues['version'];
     $aPluginValues['date']      = date('Y-m-d');
-    $aPluginValues['oxversion'] = OA_VERSION;
+    $aPluginValues['oxversion'] = VERSION;
     $aPluginValues['version']   = $aVersion['major'].'.'.$aVersion['minor'].'.'.$aVersion['build'].$aVersion['status'];
     $aGroupValues               = $aPluginValues['group'];
     unset($aPluginValues['group']);

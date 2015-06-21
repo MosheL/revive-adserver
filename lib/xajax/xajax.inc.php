@@ -29,7 +29,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  *
  * @package xajax
- * @version $Id$
  * @copyright Copyright (c) 2005-2006  by Jared White & J. Max Wilson
  * @license http://www.gnu.org/copyleft/lesser.html#SEC3 LGPL License
  */
@@ -173,7 +172,7 @@ class xajax
 	 * @param string  defaults to XAJAX_DEFAULT_CHAR_ENCODING defined above
 	 * @param boolean defaults to false
 	 */
-	function xajax($sRequestURI="",$sWrapperPrefix="xajax_",$sEncoding=XAJAX_DEFAULT_CHAR_ENCODING,$bDebug=false)
+	function __construct($sRequestURI="",$sWrapperPrefix="xajax_",$sEncoding=XAJAX_DEFAULT_CHAR_ENCODING,$bDebug=false)
 	{
 		$this->aFunctions = array();
 		$this->aObjects = array();

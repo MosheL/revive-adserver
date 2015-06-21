@@ -22,7 +22,6 @@ Language_Loader::load('settings');
  *
  * @package    OpenXPlugin
  * @subpackage Authentication
- * @author     Radek Maciaszek <radek.maciaszek@openx.org>
  */
 class Plugins_Authentication extends OX_Component
 {
@@ -166,34 +165,9 @@ class Plugins_Authentication extends OX_Component
 
         $oTpl = new OA_Admin_Template('login.html');
 
-        // we build the URL of the current page to use a redirect URL after login
-        // this code should work on all server configurations hence why it is a bit complicated
-        // inspired by http://dev.piwik.org/svn/trunk/core/Url.php getCurrentUrl()
-        $url = '';
-        if( !empty($_SERVER['PATH_INFO']) ) { 
-            $url = $_SERVER['PATH_INFO'];
-        } else if( !empty($_SERVER['REQUEST_URI']) ) {
-            if( ($pos = strpos($_SERVER['REQUEST_URI'], "?")) !== false ) {
-                $url = substr($_SERVER['REQUEST_URI'], 0, $pos);
-            } else {
-                $url = $_SERVER['REQUEST_URI'];
-            }
-        }
-        if(empty($url)) {
-            $url = $_SERVER['SCRIPT_NAME'];
-        }
-        if (!empty($_SERVER['QUERY_STRING'])) {
-            $url .= '?'.$_SERVER['QUERY_STRING'];
-        }
-        if(!empty($url)) {
-	        // remove any extra slashes that would confuse the browser (see OX-5234)
-	        $url = '/' . ltrim($url, '/');
-        }
-            
-        $appName = !empty($aConf['ui']['applicationName']) ? $aConf['ui']['applicationName'] : MAX_PRODUCT_NAME;
+        $appName = !empty($aConf['ui']['applicationName']) ? $aConf['ui']['applicationName'] : PRODUCT_NAME;
 
         $oTpl->assign('uiEnabled', $aConf['ui']['enabled']);
-        $oTpl->assign('formAction', $url);
         $oTpl->assign('sessionID', $sessionID);
         $oTpl->assign('appName', $appName);
         $oTpl->assign('message', $sMessage);
@@ -260,8 +234,7 @@ class Plugins_Authentication extends OX_Component
     {
         $userExists = !empty($userData['user_id']);
         $userDetailsFields = array();
-        $oLanguages = new MAX_Admin_Languages();
-        $aLanguages = $oLanguages->AvailableLanguages();
+        $aLanguages = RV_Admin_Languages::getAvailableLanguages();
 
         $userDetailsFields[] = array(
                 'name'      => 'login',
@@ -335,8 +308,8 @@ class Plugins_Authentication extends OX_Component
      */
     function isValidEmail($email)
     {
-        return eregi("^[a-zA-Z0-9]+[_a-zA-Z0-9-]*(\.[_a-z0-9-]+)*@[a-z??????0-9]+"
-                ."(-[a-z??????0-9]+)*(\.[a-z??????0-9-]+)*(\.[a-z]{2,6})$", $email);
+        return preg_match("#^[a-zA-Z0-9]+[_a-zA-Z0-9-]*(\.[_a-z0-9-]+)*@[a-z??????0-9]+"
+                ."(-[a-z??????0-9]+)*(\.[a-z??????0-9-]+)*(\.[a-z]{2,6})$#Di", $email);
     }
 
     function saveUser($userid, $login, $password, $contactName,
@@ -534,7 +507,7 @@ class Plugins_Authentication extends OX_Component
             $this->validateUsersPassword($data['passwd']);
         }
         $this->validateUsersEmail($data['email_address']);
-        
+
         if (!phpAds_SessionValidateToken($data['token'])) {
             $this->addValidationError('Invalid request token');
         }

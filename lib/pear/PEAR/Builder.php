@@ -16,10 +16,9 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
- * 
+ *
  * TODO: log output parameters in PECL command line
  * TODO: msdev path in configuration
  */
@@ -72,9 +71,9 @@ class PEAR_Builder extends PEAR_Common
      *
      * @access public
      */
-    function PEAR_Builder(&$ui)
+    function __construct(&$ui)
     {
-        parent::PEAR_Common();
+        parent::__construct();
         $this->setFrontendObject($ui);
     }
 
@@ -92,7 +91,7 @@ class PEAR_Builder extends PEAR_Common
             $pkg = $descfile;
             $descfile = $pkg->getPackageFile();
         } else {
-            $pf = &new PEAR_PackageFile($this->config, $this->debug);
+            $pf = new PEAR_PackageFile($this->config, $this->debug);
             $pkg = &$pf->fromPackageFile($descfile, PEAR_VALIDATE_NORMAL);
             if (PEAR::isError($pkg)) {
                 return $pkg;
@@ -271,7 +270,7 @@ class PEAR_Builder extends PEAR_Common
             $pkg = $descfile;
             $descfile = $pkg->getPackageFile();
         } else {
-            $pf = &new PEAR_PackageFile($this->config);
+            $pf = new PEAR_PackageFile($this->config);
             $pkg = &$pf->fromPackageFile($descfile, PEAR_VALIDATE_NORMAL);
             if (PEAR::isError($pkg)) {
                 return $pkg;

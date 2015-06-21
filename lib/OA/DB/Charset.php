@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/OA/DB.php';
  *
  * @package    OpenXDB
  * @subpackage Charset
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class OA_DB_Charset
 {
@@ -33,7 +32,7 @@ class OA_DB_Charset
      * @param MDB2_Driver_Common $oDbh
      * @return OA_DB_Charset
      */
-    function OA_DB_Charset(&$oDbh)
+    function __construct(&$oDbh)
     {
         if (!empty($oDbh) && !PEAR::isError($oDbh)) {
             $connection = $oDbh->getConnection();

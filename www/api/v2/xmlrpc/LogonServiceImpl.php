@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Require the base class, BaseLogonService.
@@ -30,9 +28,9 @@ class LogonServiceImpl extends BaseServiceImpl
      * The LogonServiceImpl constructor calls the base constructor for the class.
      *
      */
-    function LogonServiceImpl()
+    function __construct()
     {
-        $this->BaseServiceImpl();
+        parent::__construct();
     }
 
     /**

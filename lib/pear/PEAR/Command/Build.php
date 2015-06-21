@@ -17,7 +17,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
  */
@@ -65,9 +64,9 @@ Builds one or more extensions contained in a package.'
      *
      * @access public
      */
-    function PEAR_Command_Build(&$ui, &$config)
+    function __construct(&$ui, &$config)
     {
-        parent::PEAR_Command_Common($ui, $config);
+        parent::__construct($ui, $config);
     }
 
     // }}}
@@ -80,7 +79,7 @@ Builds one or more extensions contained in a package.'
         if (sizeof($params) < 1) {
             $params[0] = 'package.xml';
         }
-        $builder = &new PEAR_Builder($this->ui);
+        $builder = new PEAR_Builder($this->ui);
         $this->debug = $this->config->get('verbose');
         $err = $builder->build($params[0], array(&$this, 'buildCallback'));
         if (PEAR::isError($err)) {

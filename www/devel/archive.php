@@ -12,11 +12,6 @@
 
 /**
 * OpenX Schema Management Utility
-*
-* @author     Monique Szpak <monique.szpak@openx.org>
-*
-* $Id$
-*
 */
 
 function getLastChangeset()
@@ -113,7 +108,7 @@ else if (array_key_exists('btn_migration_create', $_POST))
         $schemaFile = 'changes/'.str_replace('changes_', 'schema_', $changesFile);
 
         require_once 'oaSchema.php';
-        $oaSchema = & new Openads_Schema_Manager($schemaFile, '', $schemaPath);
+        $oaSchema = new Openads_Schema_Manager($schemaFile, '', $schemaPath);
 
         if (($aErrs = $oaSchema->checkPermissions()) !== true) {
             die(join("<br />\n", $aErrs));
@@ -149,7 +144,7 @@ else if (array_key_exists('btn_field_save', $_POST))
     }
 
     require_once 'oaSchema.php';
-    $oaSchema = & new Openads_Schema_Manager($schemaFile, $changesFile, $schemaPath);
+    $oaSchema = new Openads_Schema_Manager($schemaFile, $changesFile, $schemaPath);
 
     if (($aErrs = $oaSchema->checkPermissions()) !== true) {
         die(join("<br />\n", $aErrs));
@@ -180,7 +175,7 @@ else if (array_key_exists('btn_table_save', $_POST))
     }
 
     require_once 'oaSchema.php';
-    $oaSchema = & new Openads_Schema_Manager($schemaFile, $changesFile, $schemaPath);
+    $oaSchema = new Openads_Schema_Manager($schemaFile, $changesFile, $schemaPath);
 
     if (($aErrs = $oaSchema->checkPermissions()) !== true) {
         die(join("<br />\n", $aErrs));

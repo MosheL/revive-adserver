@@ -32,7 +32,6 @@
  * @author     Martin Jansen <mj@php.net>
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1999-2001 Edd Dumbill, 2001-2006 The PHP Group
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/XML_RPC
  */
 
@@ -260,7 +259,7 @@ function XML_RPC_Server_debugmsg($m)
  *     ),
  *     1,
  *     0
- * ); 
+ * );
  * </code>
  *
  * @category   Web Services
@@ -339,7 +338,7 @@ class XML_RPC_Server
      *
      * @return void
      */
-    function XML_RPC_Server($dispMap, $serviceNow = 1, $debug = 0)
+    function __construct($dispMap, $serviceNow = 1, $debug = 0)
     {
         global $HTTP_RAW_POST_DATA;
 
@@ -374,7 +373,7 @@ class XML_RPC_Server
 
         if ($XML_RPC_Server_debuginfo != '') {
             return "<!-- PEAR XML_RPC SERVER DEBUG INFO:\n\n"
-                   . $GLOBALS['XML_RPC_func_ereg_replace']('--', '- - ', $XML_RPC_Server_debuginfo)
+                   . str_replace('--', '- - ', $XML_RPC_Server_debuginfo)
                    . "-->\n";
         } else {
             return '';
@@ -431,9 +430,9 @@ class XML_RPC_Server
          * that someone composed a single header with multiple lines, which
          * the RFCs allow.
          */
-        $this->server_headers = $GLOBALS['XML_RPC_func_ereg_replace']("[\r\n]+[ \t]+",
+        $this->server_headers = preg_replace("/[\r\n]+[ \t]+/",
                                 ' ', trim($this->server_headers));
-        $headers = $GLOBALS['XML_RPC_func_split']("[\r\n]+", $this->server_headers);
+        $headers = preg_split("/[\r\n]+/", $this->server_headers);
         foreach ($headers as $header)
         {
             header($header);
@@ -567,8 +566,9 @@ class XML_RPC_Server
         $XML_RPC_xh[$parser]['isf']    = 0;
         $XML_RPC_xh[$parser]['params'] = array();
         $XML_RPC_xh[$parser]['method'] = '';
-        $XML_RPC_xh[$parser]['stack'] = array();	
-        $XML_RPC_xh[$parser]['valuestack'] = array();	
+        $XML_RPC_xh[$parser]['stack'] = array();
+        $XML_RPC_xh[$parser]['valuestack'] = array();
+        $XML_RPC_xh[$parser]['max_data_len'] = strlen($data) * 2;
 
         $plist = '';
 

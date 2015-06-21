@@ -17,8 +17,6 @@ require_once 'Cache/Lite.php';
  *
  * It features a predictable cache file name and automatic (un)serialising
  * and zlib (de)compression
- *
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class OA_PermanentCache
 {
@@ -39,7 +37,7 @@ class OA_PermanentCache
      *
      * @return OA_PermanentCache
      */
-    function OA_PermanentCache($cachePath = null)
+    function __construct($cachePath = null)
     {
         $this->cachePath = is_null($cachePath) ? MAX_PATH . '/etc/permanentcache/' : $cachePath;
         if (substr($cachePath, -1) != '/') {

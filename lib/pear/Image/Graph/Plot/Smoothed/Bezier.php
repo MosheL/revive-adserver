@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -70,7 +69,7 @@ class Image_Graph_Plot_Smoothed_Bezier extends Image_Graph_Plot
      * @param string $title The title of the plot (used for legends, {@link
      *   Image_Graph_Legend})
      */
-    function Image_Graph_Plot_Smoothed_Bezier(& $dataset, $title = '')
+    function __construct(& $dataset, $title = '')
     {
         parent::__construct($dataset, 'normal', $title);
     }

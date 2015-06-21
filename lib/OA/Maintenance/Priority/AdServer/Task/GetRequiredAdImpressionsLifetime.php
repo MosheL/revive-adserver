@@ -41,7 +41,6 @@ require_once MAX_PATH . '/lib/OA/Dll.php';
  *
  * @package    OpenXMaintenance
  * @subpackage Priority
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsLifetime extends OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressions
 {
@@ -51,9 +50,9 @@ class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsLifetime ext
      *
      * @return OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsLifetime
      */
-    function OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsLifetime()
+    function __construct()
     {
-        parent::OA_Maintenance_Priority_Common_Task_GetRequiredAdImpressions();
+        parent::__construct();
         $this->type = 'campaign lifetime target(s) and end date are set';
     }
 
@@ -101,7 +100,7 @@ class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsLifetime ext
      *
      * @param OX_Maintenance_Priority_Campaign $oCampaign
      */
-    function getCampaignImpressionInventoryRequirement(&$oCampaign)
+    function getCampaignImpressionInventoryRequirement($oCampaign, $type = 'total', $ignorePast = false)
     {
         parent::getCampaignImpressionInventoryRequirement($oCampaign, 'total');
     }

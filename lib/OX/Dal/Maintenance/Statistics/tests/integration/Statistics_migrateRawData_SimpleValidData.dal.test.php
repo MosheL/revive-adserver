@@ -19,7 +19,6 @@ require_once LIB_PATH . '/Dal/Maintenance/Statistics/Factory.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Dal_Maintenance_Statistics_migrateRawData_Simple extends UnitTestCase
 {
@@ -42,9 +41,9 @@ class Test_OX_Dal_Maintenance_Statistics_migrateRawData_Simple extends UnitTestC
     /**
      * The constructor method.
      */
-    function Test_OX_Dal_Maintenance_Statistics_migrateRawData_Simple()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
 
         // Prepare the database connection for use in the tests
         $this->oDbh = OA_DB::singleton();

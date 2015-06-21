@@ -15,7 +15,6 @@
  * @author     Stig Bakken <ssb@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/manual/en/core.ppm.php#core.ppm.pear-autoloader
  * @since      File available since Release 0.1
  * @deprecated File deprecated in Release 1.4.0a1
@@ -149,7 +148,7 @@ class PEAR_Autoloader extends PEAR
             $include_file = preg_replace('/[^a-z0-9]/i', '_', $classname);
             include_once $include_file;
         }
-        $obj =& new $classname;
+        $obj = new $classname;
         $methods = get_class_methods($classname);
         foreach ($methods as $method) {
             // don't import priviate methods and constructors

@@ -15,8 +15,6 @@
 // +----------------------------------------------------------------------+
 // | Author: Marshall Roch <marshall@exclupen.com>                        |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 /**
  * @package Services_ExchangeRates
@@ -159,7 +157,7 @@ class Services_ExchangeRates {
     * @param string Driver name for country code list (not yet used for anything)
     * @param array  Array to override default settings
     */
-    function Services_ExchangeRates($ratesSource = 'ECB',
+    function __construct($ratesSource = 'ECB',
                                     $currencySource = 'UN',
                                     $countrySource = 'UN',
                                     $options = array(NULL)) {

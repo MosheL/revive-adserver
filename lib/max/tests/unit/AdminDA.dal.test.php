@@ -13,7 +13,6 @@
 /**
  * @package    MaxDal
  * @subpackage TestSuite
- * @author     Demian Turner <demian@m3.net>
  */
 
 require_once MAX_PATH . '/lib/max/Admin_DA.php';
@@ -54,9 +53,9 @@ class Admin_DaTest extends DalUnitTestCase
     // +---------------------------------------+
     var $dbh = null;
 
-    function Admin_DaTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->dbh =& OA_DB::singleton();
     }
 
@@ -131,12 +130,7 @@ class Admin_DaTest extends DalUnitTestCase
         foreach ($entities as $entity => $hash) {
             $ret = SqlBuilder::_getTables($entity, array());
             $this->assertTrue(is_array($ret));
-            if($entity == 'stats') {
-                $expected = 4;
-            } else {
-                $expected = 1;
-            }
-            $this->assertTrue(count($ret) == $expected);
+            $this->assertTrue(count($ret) == 1);
             $keys = array_keys($ret);
             $vals = array_values($ret);
             $this->assertTrue(is_string($keys[0]));
@@ -757,7 +751,6 @@ class Admin_DaTest extends DalUnitTestCase
         unset($aZone1['capping']);
         unset($aZone1['session_capping']);
         unset($aZone1['category']);
-        unset($aZone1['is_in_ad_direct']);
         unset($aZone1['rate']);
         unset($aZone1['pricing']);
         unset($aZone1['show_capped_no_cookie']);
@@ -822,7 +815,7 @@ class Admin_DaTest extends DalUnitTestCase
 
     function testAddCategory()
     {
-        $name = & new Text_Password();
+        $name = new Text_Password();
 
         TestEnv::startTransaction();
 

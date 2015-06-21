@@ -260,7 +260,7 @@ function initAccoutSwitcher(searchUrl)
   $switcher.accountswitch({
     searchUrl: searchUrl
   });
-  
+
   $breadcrumb = $("#thirdLevelHeader > .breadcrumb");
 
   $(".switchTrigger").hover(function() {
@@ -402,7 +402,9 @@ function initCampaignForm(formId)
 
 	initCampaignBookedInput($impressionsField, $impressionsUnlimitedField, 'openadsRemainingImpressions');
 	initCampaignBookedInput($clicksField, $clicksUnlimitedField,  'openadsRemainingClicks');
-	initCampaignBookedInput($conversionsField, $conversionsUnlimitedField);
+    if ($conversionsField && $conversionsUnlimitedField) {
+        initCampaignBookedInput($conversionsField, $conversionsUnlimitedField);
+    }
 
     initEcpmInput($pricingField);
     initEcpmInput($revenueField);
@@ -456,7 +458,9 @@ function initCampaignForm(formId)
     //update fields states to reflect current values
     formFormat($impressionsField.get(0), true);
     formFormat($clicksField.get(0), true);
-    formFormat($conversionsField.get(0), true);
+    if ($conversionsField) {
+        formFormat($conversionsField.get(0), true);
+    }
 
     //show hide sections
     updateCampaignTypeForm();
@@ -482,7 +486,7 @@ function updateCampaignDateAndLimitsAndType()
 	});
 
 	if (campaignType == CAMPAIGN_TYPE_REMNANT || campaignType == CAMPAIGN_TYPE_ECPM
-        || campaignType == CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE)
+        || campaignType == CAMPAIGN_TYPE_OVERRIDE)
     {
 	     $("#excl-limit-date-both-set, #low-limit-date-both-set, #ecpm-limit-date-both-set").hide();
 
@@ -510,13 +514,13 @@ function updateCampaignDateAndLimitsAndType()
 	     }
 	}
     else { //no type or high
-        //clear all remnant/exclusive warnings
+        //clear all remnant/override warnings
         $unlimitedCheckboxes.attr("disabled", false);
         $("#endSet_specific").attr("disabled", false);
         $("#impr-disabled-note, #click-disabled-note, #conv-disabled-note").hide();
         $("#date-section-limit-date-set").hide();
 
-        //check if both date and limit is set and disable exclusive
+        //check if both date and limit is set and disable override
         if ((campaignType == CAMPAIGN_TYPE_CONTRACT_NORMAL || campaignType == CAMPAIGN_TYPE_CONTRACT_ECPM) && dateSet && limitClicked) {
             $("#excl-limit-date-both-set, #low-limit-date-both-set, #ecpm-limit-date-both-set").show();
             $("#priority-e, #priority-l").attr("disabled", true);
@@ -592,7 +596,7 @@ function updateCampaignTypeForm()
     updateCampaignDateAndLimitsAndType();
 
     if (campaignType == CAMPAIGN_TYPE_CONTRACT_NORMAL ||
-        campaignType == CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE ||
+        campaignType == CAMPAIGN_TYPE_OVERRIDE ||
         campaignType == CAMPAIGN_TYPE_CONTRACT_ECPM ||
         campaignType == CAMPAIGN_TYPE_REMNANT ||
         campaignType == CAMPAIGN_TYPE_ECPM) {
@@ -749,9 +753,9 @@ function updateCampaignPrioritySection()
             $lowExclPrioritySection.show();
         }
     }
-    else if (campaignType == CAMPAIGN_TYPE_CONTRACT_NORMAL || campaignType == CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE || campaignType == CAMPAIGN_TYPE_CONTRACT_ECPM) {
-	   //if exclusive selected - show weight
-	   if (campaignType == CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE) {
+    else if (campaignType == CAMPAIGN_TYPE_CONTRACT_NORMAL || campaignType == CAMPAIGN_TYPE_OVERRIDE || campaignType == CAMPAIGN_TYPE_CONTRACT_ECPM) {
+	   //if override selected - show weight
+	   if (campaignType == CAMPAIGN_TYPE_OVERRIDE) {
 	        $highPrioritySection.hide();
 	        $lowExclPrioritySection.show();
 	   }
@@ -822,13 +826,13 @@ function campaignFormPriorityCheck(form)
 {
     var campaignType = getCampaignType();
 
-    if (campaignType == CAMPAIGN_TYPE_CONTRACT_NORMAL || campaignType == CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE
+    if (campaignType == CAMPAIGN_TYPE_CONTRACT_NORMAL || campaignType == CAMPAIGN_TYPE_OVERRIDE
         || campaignType == CAMPAIGN_TYPE_CONTRACT_ECPM)
     {
-	    if (campaignType == CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE && !parseInt($("#weight").val())) {
-	        return confirm (strCampaignWarningExclusiveNoWeight);
+	    if (campaignType == CAMPAIGN_TYPE_OVERRIDE && !parseInt($("#weight").val())) {
+	        return confirm (strCampaignWarningOverrideNoWeight);
 	    }
-	    else if (campaignType != CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE
+	    else if (campaignType != CAMPAIGN_TYPE_OVERRIDE
             && ($("#endSet_immediate").attr("checked") == true || !campaignHasAnyLimitSet())
             && !parseInt($("#target_value").val()) ) {
             return confirm (strCampaignWarningNoTargetMessage);
@@ -864,7 +868,7 @@ function getCampaignType()
             }
 	    }
 	    else if ($("#priority-e").attr("checked") == true) {
-	        return CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE;
+	        return CAMPAIGN_TYPE_OVERRIDE;
 	    }
 	    else if ($("#priority-l").attr("checked") == true) {
             if ($("[@name=remnant_ecpm_enabled]").val() == 1) {

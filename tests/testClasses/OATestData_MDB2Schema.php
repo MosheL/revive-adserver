@@ -16,8 +16,6 @@ require_once MAX_PATH . '/tests/testClasses/OATestData.php';
  *
  * @abstract A base class for loading test data using MDB2_Schema
  * @package Test Classes
- * @author Monique Szpak <monique.szpak@openads.org>
-  *
  */
 class OA_Test_Data_MDB2Schema extends OA_Test_Data
 {
@@ -31,7 +29,7 @@ class OA_Test_Data_MDB2Schema extends OA_Test_Data
     /**
      * The constructor method.
      */
-    function OA_Test_Data_MDB2Schema()
+    function __construct()
     {
 
     }

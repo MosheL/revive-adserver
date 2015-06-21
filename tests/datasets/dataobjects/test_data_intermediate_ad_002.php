@@ -14,8 +14,6 @@
  *
  * @abstract A class for generating/loading a dataset for delivery testing
  * @package Test Classes
- * @author Radek Maciaszek <radek.maciaszek@urbantrip.com>
- *
  */
 
 require_once MAX_PATH . '/tests/testClasses/OATestData_DataObjects.php';
@@ -24,15 +22,11 @@ require_once MAX_PATH . '/lib/OA/Maintenance/Priority/AdServer/Task/ECPMforRemna
 class OA_Test_Data_data_intermediate_ad_002 extends OA_Test_Data_DataObjects
 {
 
-    function OA_Test_Data_data_intermediate_ad_002()
-    {
-    }
-
     /**
      * method for extending OA_Test_Data_DataObject
      */
 
-    function generateTestData()
+    function generateTestData($linkAdZone=false)
     {
         if (!parent::init())
         {

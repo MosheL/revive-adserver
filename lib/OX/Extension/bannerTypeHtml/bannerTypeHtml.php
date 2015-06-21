@@ -17,7 +17,6 @@ require_once LIB_PATH . '/Plugin/Component.php';
  *
  * @package    OpenXPlugin
  * @subpackage Plugins_BannerTypes
- * @author     Monique Szpak <monique.szpak@openx.org>
  * @abstract
  */
 class Plugins_BannerTypeHTML extends OX_Component
@@ -49,8 +48,8 @@ class Plugins_BannerTypeHTML extends OX_Component
     /**
      * Append type-specific form elements to the base form
      *
-     * @param object form
-     * @param integer banner id
+     * @param object &$form
+     * @param array &$row
      */
     function buildForm(&$form, &$row)
     {
@@ -77,9 +76,16 @@ class Plugins_BannerTypeHTML extends OX_Component
         $htmlG['select'] = HTML_QuickForm::createElement('select', 'adserver', $GLOBALS['strAlterHTML'], $adPluginsList, $aSelectAttributes);
         $form->addGroup($htmlG, 'html_banner_g', null, array("<br>", ""), false);
 
-        $form->addElement('header', 'header_b_links', "Banner link");
-        $form->addElement('text', 'url', $GLOBALS['strURL']);
-        $form->addElement('text', 'target', $GLOBALS['strTarget']);
+        $form->addElement('advcheckbox', 'iframe_friendly', $GLOBALS['strIframeFriendly']);
+
+        if ($row['bannerid'] && ($row['url'] || $row['target'])) {
+            // The "url" and "target" elements remain as part of the form definition
+            // for HTML banners only for existing banners that have either
+            // url or target already set.
+            $form->addElement('header', 'header_b_links', "Banner link");
+            $form->addElement('text', 'url', $GLOBALS['strURL']);
+            $form->addElement('text', 'target', $GLOBALS['strTarget']);
+        }
 
         $form->addElement('header', 'header_b_display', 'Banner display');
         $sizeG['width'] = $form->createElement('text', 'width', $GLOBALS['strWidth'].":");
@@ -106,12 +112,12 @@ class Plugins_BannerTypeHTML extends OX_Component
             'height' => array($heightRequiredRule, $numericRule)));
     }
 
-    function preprocessForm($insert, $bannerid, $aFields)
+    function preprocessForm($insert, $bannerid, &$aFields, &$aVariables)
     {
         return true;
     }
 
-    function processForm($insert, $bannerid, $aFields)
+    function processForm($insert, $bannerid, &$aFields, &$aVariables)
     {
         return true;
     }

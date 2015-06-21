@@ -13,10 +13,6 @@
 /**
  * OpenX Upgrade Audit Class
  *
- * @author     Matthieu Aubry <matthieu.aubry@openx.org>
- *
- * $Id$
- *
  */
 
 class OA_BaseUpgradeAuditor
@@ -27,11 +23,11 @@ class OA_BaseUpgradeAuditor
 
     var $logTable   = '';
 
-	function OA_BaseUpgradeAuditor()
+	function __construct()
 	{
 	}
 
-	function init(&$oDbh='', $oLogger='')
+	function init($oDbh='', $oLogger='')
 	{
 	    if ($oDbh)
 	    {

@@ -12,10 +12,8 @@
 
 /**
  * @package    OpenX
- * @author     Ivan Klishch <iklishch@lohika.com>
  *
  * The zone XML-RPC service enables XML-RPC communication with the zone object.
- *
  */
 
 // Require the initialisation file.
@@ -44,9 +42,9 @@ class ZoneXmlRpcService extends BaseZoneService
      * to initialise the service.
      *
      */
-    function ZoneXmlRpcService()
+    function __construct()
     {
-        $this->BaseZoneService();
+        parent::__construct();
     }
 
     /**

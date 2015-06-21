@@ -20,7 +20,6 @@ require_once MAX_PATH . '/lib/max/Dal/DataObjects/Campaigns.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Radek Maciaszek <radek@urbantrip.com>
  */
 class Test_OA_Dal_Maintenance_Priority_getEcpmAgenciesIds extends UnitTestCase
 {
@@ -29,9 +28,9 @@ class Test_OA_Dal_Maintenance_Priority_getEcpmAgenciesIds extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_Dal_Maintenance_Priority_getEcpmAgenciesIds()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -64,7 +63,7 @@ class Test_OA_Dal_Maintenance_Priority_getEcpmAgenciesIds extends UnitTestCase
         $doClients = OA_Dal::factoryDO('clients');
         $doClients->agencyid = $agencyId1;
         $clientId1 = DataGenerator::generateOne($doClients);
-        
+
         $doClients = OA_Dal::factoryDO('clients');
         $doClients->agencyid = $agencyId2;
         $clientId2 = DataGenerator::generateOne($doClients);

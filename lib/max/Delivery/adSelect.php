@@ -13,7 +13,6 @@
 /**
  * @package    MaxDelivery
  * @subpackage adSelect
- * @author     Chris Nutting <chris@m3.net>
  *
  * This library contains the functions to select an ad either by zone or direct selection
  * and generate the HTML for an ad
@@ -147,7 +146,7 @@ function MAX_adSelect($what, $campaignid = '', $target = '', $source = '', $with
     } elseif (strpos($what, 'bannerid:') === 0) {
         $originalBannerId = intval(substr($what,9));
     }
-    $userid = MAX_cookieGetUniqueViewerID();
+    $userid = MAX_cookieGetUniqueViewerId();
     MAX_cookieAdd($conf['var']['viewerId'], $userid, _getTimeYearFromNow());
     $outputbuffer = '';
     // Set flag
@@ -250,7 +249,8 @@ function MAX_adSelect($what, $campaignid = '', $target = '', $source = '', $with
             'bannerContent' => $row['bannerContent'],
             'clickwindow'   => $row['clickwindow'],
             'aRow'          => $row,
-            'context'       => _adSelectBuildContext($row, $context)
+            'context'       => _adSelectBuildContext($row, $context),
+            'iframeFriendly' => (bool)$row['iframe_friendly'],
         );
         // Init block/capping fields to avoid notices below
         $row += array(
@@ -279,6 +279,16 @@ function MAX_adSelect($what, $campaignid = '', $target = '', $source = '', $with
             MAX_Delivery_log_setLastAction(0, array($row['bannerid']), array($zoneId), array($row['viewwindow']));
         }
     } else {
+
+        // Blank impression beacon
+        if (!empty($zoneId)) {
+            $logUrl = _adRenderBuildLogURL(array(
+                'ad_id' => 0,
+                'placement_id' => 0,
+            ), $zoneId, $source, $loc, $referer, '&');
+            $g_append = str_replace('{random}', MAX_getRandomNumber(), MAX_adRenderImageBeacon($logUrl)).$g_append;
+        }
+
         // No banner found
         if (!empty($row['default'])) {
             // Return the default banner
@@ -462,7 +472,7 @@ function _adSelectZone($zoneId, $context = array(), $source = '', $richMedia = t
 
 
 /**
- * This function selects an ad cyclying through exclusive, paid, low-pri etc.
+ * This function selects an ad cyclying through override, contract, renmant, etc.
  *
  * @param string  $aAds         The array of ads to pick from
  * @param array   $context      The context of this ad selection
@@ -506,7 +516,7 @@ function _adSelectCommon($aAds, $context, $source, $richMedia)
 }
 
 /**
- * This internal function selects an ad cyclying through exclusive, paid, low-pri etc.
+ * This internal function selects an ad cyclying through override, contract, remnant, etc.
  * taking into account companion positioning as requested
  *
  * @param callback $adSelectFunction The plugin callback function

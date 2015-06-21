@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -56,7 +55,7 @@ class Image_Graph_DataPreprocessor_RomanNumerals extends Image_Graph_DataPreproc
      *
      * See {@link http://pear.php.net/package/Numbers_Roman Numbers_Roman}
      */
-    function Image_Graph_DataPreprocessor_RomanNumerals()
+    function __construct()
     {
         parent::__construct();
         include_once 'Numbers/Roman.php';

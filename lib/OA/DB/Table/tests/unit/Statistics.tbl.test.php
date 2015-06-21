@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/OA/DB/Table/Statistics.php';
  *
  * @package    OpenXDB
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_DB_Table_Statistics extends UnitTestCase
 {
@@ -26,9 +25,9 @@ class Test_OA_DB_Table_Statistics extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_DB_Table_Statistics()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -41,7 +40,7 @@ class Test_OA_DB_Table_Statistics extends UnitTestCase
     {
         // Mock the OA_DB class used in the constructor method
         Mock::generate('OA_DB');
-        $oDbh =& new MockOA_DB($this);
+        $oDbh = new MockOA_DB($this);
 
         // Partially mock the OA_DB_Table_Statistics class, overriding the
         // inherited _getDbConnection() method

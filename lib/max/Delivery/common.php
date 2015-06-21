@@ -25,7 +25,6 @@ require_once MAX_PATH . '/lib/max/Delivery/log.php';
 /**
  * @package    MaxDelivery
  * @subpackage common
- * @author     Chris Nutting <chris@m3.net>
  *
  * This library defines functions that need to be available to
  * all delivery engine scripts
@@ -224,6 +223,9 @@ function MAX_commonSetNoCacheHeaders()
     MAX_header('Pragma: no-cache');
     MAX_header('Cache-Control: private, max-age=0, no-cache');
     MAX_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+
+    // Also send default CORS headers
+    MAX_header('Access-Control-Allow-Origin: *');
 }
 
 /**
@@ -499,6 +501,13 @@ function MAX_header($value)
 function MAX_redirect($url)
 {
     if (!preg_match('/^(?:javascript|data):/i', $url)) {
+        $host = @parse_url($url, PHP_URL_HOST);
+        if (function_exists('idn_to_ascii')) {
+            $idn = idn_to_ascii($host);
+            if ($host != $idn) {
+                $url = preg_replace('#^(.*?://)'.preg_quote($host, '#').'#', '$1'.$idn, $url);
+            }
+        }
         header('Location: '.$url);
         MAX_sendStatusCode(302);
     }

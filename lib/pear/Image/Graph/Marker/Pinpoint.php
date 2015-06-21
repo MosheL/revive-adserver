@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -51,7 +50,7 @@ class Image_Graph_Marker_Pinpoint extends Image_Graph_Marker_Icon
     /**
      * Create the marker as a pin point
      */
-    function Image_Graph_Marker_Pinpoint()
+    function __construct()
     {
         parent::__construct(
             dirname(__FILE__).'/../Images/Icons/pinpoint.png'

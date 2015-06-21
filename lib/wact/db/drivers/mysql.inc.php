@@ -45,7 +45,7 @@ class MySQLConnection {
     * @param object Connection Configuration information
 	* @access private
 	*/
-	function MySQLConnection(&$config) {
+	function __construct(&$config) {
 	    $this->config =& $config;
 	}
 
@@ -137,7 +137,7 @@ class MySQLConnection {
     * @access public
     */
     function &NewRecord($DataSpace = NULL) {
-        $Record =& new MySqlRecord($this);
+        $Record = new MySqlRecord($this);
         if (!is_null($DataSpace)) {
             $Record->import($DataSpace->export());
         }
@@ -154,7 +154,7 @@ class MySQLConnection {
     * @access public
     */
     function &NewRecordSet($query, $filter = NULL) {
-        $RecordSet =& new MySqlRecordSet($this, $query);
+        $RecordSet = new MySqlRecordSet($this, $query);
         if (!is_null($filter)) {
             $RecordSet->registerFilter($filter);
         }
@@ -184,7 +184,7 @@ class MySQLConnection {
 	* @access public
 	*/
 	function &FindRecord($query) {
-		$Record =& new MySqlRecord($this);
+		$Record = new MySqlRecord($this);
 		$QueryId = $this->_execute($query);
 		$Record->properties =& mysql_fetch_assoc($QueryId);
 		mysql_free_result($QueryId);
@@ -299,7 +299,7 @@ class MySqlRecord extends DataSpace {
 	* Conecruct a record
 	* @param object Connection
 	*/
-	function MySqlRecord($Connection) {
+	function __construct($Connection) {
 		$this->Connection = $Connection;
 	}
 
@@ -440,7 +440,7 @@ class MySqlRecordSet /* implements iterator */ extends MySqlRecord {
 	* @return void
 	* @access public
 	*/
-	function MySqlRecordSet($Connection, $Query_String) {
+	function __construct($Connection, $Query_String) {
 		$this->Connection = $Connection;
 		$this->Query = $Query_String;
 	}
@@ -489,7 +489,7 @@ class MySqlRecordSet /* implements iterator */ extends MySqlRecord {
 	function reset() {
 		if (isset($this->QueryId) && is_resource($this->QueryId)) {
 			if (mysql_data_seek($this->QueryId, 0) === FALSE) {
-				$this->Connection->RaiseError();
+				$this->Connection->customRaiseError();
 			}
 		} else {
 			$query = $this->Query;

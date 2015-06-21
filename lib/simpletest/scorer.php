@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+*/
@@ -28,7 +27,7 @@
          *    Starts the test run with no results.
          *    @access public
          */
-        function SimpleScorer() {
+        function __construct() {
             $this->_passes = 0;
             $this->_fails = 0;
             $this->_exceptions = 0;
@@ -166,7 +165,7 @@
         function paintException($exception) {
             $this->_exceptions++;
         }
-		
+
 		/**
 		 *    Prints the message for skipping tests.
          *    @param string $message    Text of skip condition.
@@ -247,13 +246,13 @@
          *    Starts the display with no results in.
          *    @access public
          */
-        function SimpleReporter() {
-            $this->SimpleScorer();
+        function __construct() {
+            parent::__construct();
             $this->_test_stack = array();
             $this->_size = null;
             $this->_progress = 0;
         }
-        
+
         /**
          *    Gets the formatter for variables and other small
          *    generic data items.
@@ -422,7 +421,7 @@
          *    Mediates between the reporter and the test case.
          *    @param SimpleScorer $reporter       Reporter to receive events.
          */
-        function SimpleReporterDecorator(&$reporter) {
+        function __construct(&$reporter) {
             $this->_reporter = &$reporter;
         }
 
@@ -469,7 +468,7 @@
         function &createInvoker(&$invoker) {
             return $this->_reporter->createInvoker($invoker);
         }
-        
+
         /**
          *    Gets the formatter for variables and other small
          *    generic data items.
@@ -571,7 +570,7 @@
         function paintException($exception) {
             $this->_reporter->paintException($exception);
         }
-		
+
 		/**
 		 *    Prints the message for skipping tests.
          *    @param string $message    Text of skip condition.
@@ -689,7 +688,7 @@
             }
             return $invoker;
         }
-        
+
         /**
          *    Gets the formatter for variables and other small
          *    generic data items.
@@ -800,7 +799,7 @@
                 $this->_reporters[$i]->paintError($message);
             }
         }
-		
+
         /**
          *    Chains to the wrapped reporter.
          *    @param Exception $exception    Exception to display.

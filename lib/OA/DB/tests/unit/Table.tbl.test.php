@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  *
  * @package    OpenXDB
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_DB_Table extends UnitTestCase
 {
@@ -27,9 +26,9 @@ class Test_OA_DB_Table extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_DB_Table()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
 
         // Mock the OA_DB class
         Mock::generate('OA_DB');
@@ -235,7 +234,7 @@ class Test_OA_DB_Table extends UnitTestCase
         $oTable->setReturnReference('_getDbConnection', $oDbh);
 
         // Test 1
-        $oTable->OA_DB_Table();
+        $oTable->__construct();
         $this->assertEqual(strtolower(get_class($oTable)), strtolower('PartialMockOA_DB_Table'));
         $oDbhReturn = $oTable->_getDbConnection();
         $this->assertIdentical($oDbh, $oDbhReturn);

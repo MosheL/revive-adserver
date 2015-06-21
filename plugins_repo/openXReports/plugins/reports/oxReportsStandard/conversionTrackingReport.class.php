@@ -105,8 +105,6 @@ require_once LIB_PATH . '/Extension/reports/ReportsScope.php';
  *
  * @package    OpenXPlugin
  * @subpackage Reports
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Scott Switzer <scott@switzer.org>
  */
 class Plugins_Reports_OxReportsStandard_ConversionTrackingReport extends Plugins_ReportsScope
 {
@@ -198,7 +196,7 @@ class Plugins_Reports_OxReportsStandard_ConversionTrackingReport extends Plugins
      * @param Admin_UI_OrganisationScope $oScope The advertiser/publisher scope limitation object.
      * @param array $aSheets  An array of sheets that should be in the report.
      */
-    function execute($oDaySpan, $oScope, $aSheets)
+    function execute($oDaySpan = null, $oScope = null, $aSheets = null)
     {
         $checkResult = $this->_checkParameters($oDaySpan, $oScope, $aSheets);
         if ($checkResult !== true) {

@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Maintenance_Priority_DeliveryLimitation_Common extends UnitTestCase
 {
@@ -26,9 +25,9 @@ class Test_OA_Maintenance_Priority_DeliveryLimitation_Common extends UnitTestCas
     /**
      * The constructor method.
      */
-    function Test_OA_Maintenance_Priority_DeliveryLimitation_Common()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -38,9 +37,10 @@ class Test_OA_Maintenance_Priority_DeliveryLimitation_Common extends UnitTestCas
      */
     function testDeliveryBlocked()
     {
-        $oDate = new Date();
+        $oCommon = new OA_Maintenance_Priority_DeliveryLimitation_Common(array());
+
         PEAR::pushErrorHandling(null);
-        $this->assertTrue(is_a(OA_Maintenance_Priority_DeliveryLimitation_Common::deliveryBlocked($oDate), 'pear_error'));
+        $this->assertTrue($oCommon->deliveryBlocked(new Date()) instanceof PEAR_Error);
         PEAR::popErrorHandling();
     }
 }

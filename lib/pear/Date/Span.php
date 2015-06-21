@@ -15,9 +15,6 @@
 // +----------------------------------------------------------------------+
 // | Author: Leandro Lucarella <llucax@php.net>                           |
 // +----------------------------------------------------------------------+
-//
-// $Id$
-//
 
 require_once 'Date.php';
 require_once 'Date/Calc.php';
@@ -102,7 +99,7 @@ class Date_Span {
      * @see    set()
      * @access public
      */
-    function Date_Span($time = 0, $format = null)
+    function __construct($time = 0, $format = null)
     {
         $this->set($time, $format);
     }

@@ -29,7 +29,6 @@ require_once 'MDB2/Schema.php';
  *
  * @package    OpenXDB
  * @subpackage Table
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_DB_Table
 {
@@ -68,7 +67,7 @@ class OA_DB_Table
     /**
      * The class constructor method.
      */
-    function OA_DB_Table()
+    function __construct()
     {
         $this->oDbh =& $this->_getDbConnection();
     }
@@ -164,7 +163,7 @@ class OA_DB_Table
     function listOATablesCaseSensitive($like='')
     {
         OA_DB::setCaseSensitive();
-        $oDbh =& OA_DB::singleton();
+        $oDbh = OA_DB::singleton();
         $aDBTables = $oDbh->manager->listTables(null, $GLOBALS['_MAX']['CONF']['table']['prefix'].$like);
         OA_DB::disableCaseSensitive();
         sort($aDBTables);

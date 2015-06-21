@@ -12,10 +12,7 @@
 
 /**
  * @package    OpenXDll
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
-
 
 // Required permission class
 require_once MAX_PATH . '/lib/OA/Permission.php';
@@ -67,7 +64,7 @@ class OA_Dll extends OA_BaseObjectWithErrors
      */
     function checkEmail($emailAddress)
     {
-        if (!eregi('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$', $emailAddress)) {
+        if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/Di', $emailAddress)) {
 	        $this->raiseError('Email is not valid');
 	        return false;
         }

@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 3.0.5
+Release Notes: Revive Adserver 3.2.1
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,53 +14,46 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 3.0.5
+What's New in Revive Adserver 3.2.1
 -----------------------------------
 
- * Release date: 14 May 2014
+ * Release date: 2015-06-03
 
  Security Updates
  ----------------
 
- * CVE-2013-5954 - Fixed CSRF vulnerability a number of UI pages performing
-   delete and unlink actions (www/admin/admin-user-unlink.php,
-   www/admin/advertiser-delete.php, www/admin/advertiser-user-unlink.php,
-   www/admin/affiliate-delete.php, www/admin/affiliate-user-unlink.php,
-   www/admin/agency-delete.php, www/admin/agency-user-unlink.php,
-   www/admin/banner-delete.php, www/admin/campaign-delete.php,
-   www/admin/channel-delete.php, www/admin/tracker-delete.php,
-   www/admin/userlog-delete.php and www/admin/zone-delete.php).
-   For more information:
-   http://www.revive-adserver.com/security/revive-sa-2014-001
+ * None
 
  New Features
  ------------
 
- * An error message is now displayed when trying to install or upgrade Revive
-   Adserver with unsupported PHP 5.4/5.5 versions (< 5.4.20 or < 5.5.2).
- * Updated the MaxMind GeoIP plugin to include the May 2014 MaxMind GeoCountry
-   database.
+ * None
 
  Bug Fixes
  ---------
 
- * Fixed bad translation in the Russian language translation.
- * Fixed history statistics screens to prevent displaying future dates when
-   showing "All statistics".
- * Fixed broken "DeliveryDataPrepare:dataPageInfo" and
-   "DeliveryDataPrepare:dataUserAgent" components of the standard delivery
-   logging plugin.
- * Added proper Content-Type header with charset to some scripts in order to
-   override the webserver default.
- * Changed a few occurrences of the non-existing "Content-Size" header to
-   "Content-Length".
- * Switched a few deprecated "ereg" calls to "preg" in PEAR libraries.
+ * Fixed issue with getBannerTargeting API call when the banner didn't have
+   any delivery limitation.
+
+ * Fixed issue with SWF banners not working with asynchronous tags.
+
+ * The campaign edit screen was triggering JS errors when switching to some
+   languages other than English and was therefore unusable.
+
+ * Regular Javascript Tag is no longer hidden in the invocation screen
+   dropdown.
+
+ * Added back some translation strings that were mistakenly removed. This
+   especially fixes issues in the delivery limitations screen.
+ 
+ * HTML entities, such as "&amp;", are now properly parsed when using the
+   "Alter  HTML" functionality. This should fix a problem with truncated
+   destination URLs.
 
  Non-Backwards Compatible Changes
  --------------------------------
 
  * None
-
 
 System Requirements
 -------------------
@@ -96,7 +89,7 @@ Downloading and Installing
    ---------------------------------------------------------------
    | Product                             | Version(s)            |
    ---------------------------------------------------------------
-   | Revive Adserver 3.0                 | All versions          |
+   | Revive Adserver 3.x                 | All versions          |
    ---------------------------------------------------------------
    | OpenX 2.8                           | All versions          |
    ---------------------------------------------------------------
@@ -141,9 +134,6 @@ this before reporting any new bugs.
    http://www.revive-adserver.com/docs/faq for more information if you
    have a large database.
 
- * Revive Adserver requires PHP 5. If you are using PHP 4, you will need to
-   update your web server to use PHP 5 before upgrading.
-
  * If you want to run Revive Adserver with MySQL, please note that MySQL 4.1 or
    higher is required. If you are using an older version of MySQL, you will
    need to update you database software before upgrading.
@@ -170,7 +160,7 @@ FAQ
  1. What happened to OpenX Source?
 
     OpenX Source has re-branded as Revive Adserver. It is still a completely
-    free, open source ad serving solution, and remains licenses under the
+    free, open source ad serving solution, and remains licensed under the
     GPL v2 or greater license. Apart from the code moving home and a change of
     name, Revive Adserver is just the same as the old OpenX Source application.
 

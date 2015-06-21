@@ -22,21 +22,16 @@
 function setupConstants()
 {
     // Define this version of Revive Adserver's constants
-    define('VERSION', '3.0.5');
-    define('PRODUCT_NAME',      'Revive Adserver');
-    define('PRODUCT_URL',       'www.revive-adserver.com');
-    define('PRODUCT_DOCSURL',   'http://documentation.revive-adserver.com');
+    define('VERSION', '3.2.1');
+    define('PRODUCT_NAME', 'Revive Adserver');
+    define('PRODUCT_URL', 'www.revive-adserver.com');
+    define('PRODUCT_DOCSURL', 'http://documentation.revive-adserver.com');
 
     // Deprecated constants for backwards compatibility. Please use the ones above
-    define('OA_VERSION',         VERSION);
-    define('MAX_PRODUCT_NAME',   PRODUCT_NAME);
-    define('MAX_PRODUCT_URL',    PRODUCT_URL);
+    define('OA_VERSION', VERSION);
+    define('MAX_PRODUCT_NAME', PRODUCT_NAME);
+    define('MAX_PRODUCT_URL', PRODUCT_URL);
     define('OX_PRODUCT_DOCSURL', PRODUCT_DOCSURL);
-
-    // PHP <5.3 compatibility
-    if (!defined('E_DEPRECATED')) {
-        define('E_DEPRECATED', 0);
-    }
 
     define('OA_INSTALLATION_STATUS_NOTINSTALLED' ,   -1);
     define('OA_INSTALLATION_STATUS_UPGRADING'    ,    0);
@@ -47,7 +42,7 @@ function setupConstants()
     //campaign types
     define('OX_CAMPAIGN_TYPE_REMNANT', 1);
     define('OX_CAMPAIGN_TYPE_CONTRACT_NORMAL', 2);
-    define('OX_CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE', 3);
+    define('OX_CAMPAIGN_TYPE_OVERRIDE', 3);
     define('OX_CAMPAIGN_TYPE_ECPM', 4);
     define('OX_CAMPAIGN_TYPE_CONTRACT_ECPM', 5);
 
@@ -205,29 +200,11 @@ function setupConstants()
         if (!defined('RV_PATH')) {
             define('RV_PATH', MAX_PATH);
         }
-        // Ensure that the DIRECTORY_SEPARATOR and PATH_SEPARATOR
-        // constants are correctly defined
-        if (!defined('DIRECTORY_SEPARATOR')) {
-            if (strpos($_ENV['OS'], 'Win') !== false) {
-                // Windows
-                define('DIRECTORY_SEPARATOR', '/');
-            } else {
-                // UNIX
-                define('DIRECTORY_SEPARATOR', '\\');
-            }
-        }
-        if (!defined('PATH_SEPARATOR')) {
-            if (strpos($_ENV['OS'], 'Win') !== false) {
-                // Windows
-                define('PATH_SEPARATOR', ';');
-            } else {
-                // UNIX
-                define('PATH_SEPARATOR', ':');
-            }
-        }
         if (!defined('LIB_PATH')) {
             define('LIB_PATH', MAX_PATH. DIRECTORY_SEPARATOR. 'lib'. DIRECTORY_SEPARATOR. 'OX');
         }
+
+        define('IS_WINDOWS', (DIRECTORY_SEPARATOR === '\\'));
 
         // Setup the include path
         setupIncludePath();

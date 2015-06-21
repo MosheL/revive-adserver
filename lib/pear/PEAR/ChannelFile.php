@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -128,11 +127,11 @@ define('PEAR_CHANNELFILE_ERROR_NO_STATICVERSION', 34);
  * Error code when <baseurl> contains no type attribute in a <rest> protocol definition
  */
 define('PEAR_CHANNELFILE_ERROR_NOBASEURLTYPE', 35);
-/** 
+/**
  * Error code when a mirror is defined and the channel.xml represents the __uri pseudo-channel
  */
 define('PEAR_CHANNELFILE_URI_CANT_MIRROR', 36);
-/** 
+/**
  * Error code when ssl attribute is present and is not "yes"
  */
 define('PEAR_CHANNELFILE_ERROR_INVALID_SSL', 37);
@@ -163,7 +162,7 @@ class PEAR_ChannelFile {
      * @access private
      */
     var $_stack;
-    
+
     /**
      * Supported channel.xml versions, for parsing
      * @var array
@@ -191,7 +190,7 @@ class PEAR_ChannelFile {
      * @access private
      */
     var $_mirrorIndex;
-    
+
     /**
      * Flag used to determine the validity of parsed content
      * @var boolean
@@ -199,13 +198,13 @@ class PEAR_ChannelFile {
      */
     var $_isValid = false;
 
-    function PEAR_ChannelFile()
+    function __construct()
     {
-        $this->_stack = &new PEAR_ErrorStack('PEAR_ChannelFile');
+        $this->_stack = new PEAR_ErrorStack('PEAR_ChannelFile');
         $this->_stack->setErrorMessageTemplate($this->_getErrorMessage());
         $this->_isValid = false;
     }
-    
+
     /**
      * @return array
      * @access protected
@@ -297,7 +296,7 @@ class PEAR_ChannelFile {
             return false;
         }
     }
-    
+
     /**
      * @return array
      */
@@ -308,7 +307,7 @@ class PEAR_ChannelFile {
         }
         return $this->_channelInfo;
     }
-    
+
     /**
      * @param array
      * @static
@@ -338,7 +337,7 @@ class PEAR_ChannelFile {
         $a->_fromArray($data);
         return $a;
     }
-    
+
     /**
      * @param array
      * @access private
@@ -347,7 +346,7 @@ class PEAR_ChannelFile {
     {
         $this->_channelInfo = $data;
     }
-    
+
     /**
      * Wrapper to {@link PEAR_ErrorStack::getErrors()}
      * @param boolean determines whether to purge the error stack after retrieving
@@ -874,7 +873,7 @@ class PEAR_ChannelFile {
      * @param string|false mirror name or false for primary server
      */
     function getPath($protocol, $mirror = false)
-    {   
+    {
         if (!in_array($protocol, array('xmlrpc', 'soap'))) {
             return false;
         }
@@ -1100,7 +1099,7 @@ class PEAR_ChannelFile {
             break;
         }
     }
-    
+
     /**
      * @return array
      */
@@ -1567,7 +1566,7 @@ class PEAR_ChannelFile {
         if (isset($this->_channelInfo['validatepackage'])) {
             if ($package == $this->_channelInfo['validatepackage']) {
                 // channel validation packages are always validated by PEAR_Validate
-                $val = &new PEAR_Validate;
+                $val = new PEAR_Validate;
                 return $val;
             }
             if (!class_exists(str_replace('.', '_',
@@ -1578,7 +1577,7 @@ class PEAR_ChannelFile {
                         $this->_channelInfo['validatepackage']['_content']) . '.php';
                     $vclass = str_replace('.', '_',
                         $this->_channelInfo['validatepackage']['_content']);
-                    $val = &new $vclass;
+                    $val = new $vclass;
                 } else {
                     $a = false;
                     return $a;
@@ -1586,10 +1585,10 @@ class PEAR_ChannelFile {
             } else {
                 $vclass = str_replace('.', '_',
                     $this->_channelInfo['validatepackage']['_content']);
-                $val = &new $vclass;
+                $val = new $vclass;
             }
         } else {
-            $val = &new PEAR_Validate;
+            $val = new PEAR_Validate;
         }
         return $val;
     }

@@ -25,7 +25,6 @@ require_once LIB_PATH . '/OperationInterval.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTestCase
 {
@@ -33,9 +32,9 @@ class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTest
     /**
      * The constructor method.
      */
-    function Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -133,7 +132,7 @@ class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTest
 
                 // Create the OX_Maintenance_Statistics_Task_SetUpdateRequirements
                 // object and run the task
-                $oSetUpdateRequirements->OX_Maintenance_Statistics_Task_SetUpdateRequirements($this);
+                $oSetUpdateRequirements->__construct($this);
                 $oSetUpdateRequirements->run();
 
                 // Test the results of the task run
@@ -196,7 +195,7 @@ class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTest
 
                 // Create the OX_Maintenance_Statistics_Task_SetUpdateRequirements
                 // object and run the task
-                $oSetUpdateRequirements->OX_Maintenance_Statistics_Task_SetUpdateRequirements($this);
+                $oSetUpdateRequirements->__construct($this);
                 $oSetUpdateRequirements->run();
 
                 // Test the results of the task run
@@ -283,7 +282,7 @@ class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTest
 
                 // Create the OX_Maintenance_Statistics_Task_SetUpdateRequirements
                 // object and run the task
-                $oSetUpdateRequirements->OX_Maintenance_Statistics_Task_SetUpdateRequirements($this);
+                $oSetUpdateRequirements->__construct($this);
                 $oSetUpdateRequirements->run();
 
                 // Test the results of the task run
@@ -365,7 +364,7 @@ class Test_OX_Maintenance_Statistics_Task_SetUpdateRequirements extends UnitTest
 
                 // Create the OX_Maintenance_Statistics_Task_SetUpdateRequirements
                 // object and run the task
-                $oSetUpdateRequirements->OX_Maintenance_Statistics_Task_SetUpdateRequirements($this);
+                $oSetUpdateRequirements->__construct($this);
                 $oSetUpdateRequirements->run();
 
                 // Test the results of the task run

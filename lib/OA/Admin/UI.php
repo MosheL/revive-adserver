@@ -166,23 +166,23 @@ class OA_Admin_UI
         global $conf, $phpAds_CharSet, $phpAds_breadcrumbs_extra;
         $conf = $GLOBALS['_MAX']['CONF'];
 
-        $ID = $this->getId($ID);
+        $ID = $this->getID($ID);
         $this->setCurrentId($ID);
 
         if (!defined('phpAds_installing')) {
             OX_Admin_UI_Hooks::beforePageHeader($ID, $this->getLinkParams(), $oHeaderModel);
         }
 
-        $pageTitle = !empty($conf['ui']['applicationName']) ? $conf['ui']['applicationName'] : MAX_PRODUCT_NAME;
+        $pageTitle = !empty($conf['ui']['applicationName']) ? $conf['ui']['applicationName'] : PRODUCT_NAME;
         $aMainNav        = array();
         $aLeftMenuNav    = array();
         $aLeftMenuSubNav = array();
         $aSectionNav     = array();
 
         if ($ID !== phpAds_Login && $ID !== phpAds_Error && $ID !== phpAds_PasswordRecovery) {
-            //get system navigation
+            // Get system navigation
             $oMenu = OA_Admin_Menu::singleton();
-            //update page title
+            // Update page title
             $oCurrentSection = $oMenu->get($ID);
 
             $this->redirectSectionToCorrectUrlIfOldUrlDetected($oCurrentSection);
@@ -372,8 +372,8 @@ class OA_Admin_UI
     function _assignLayout($pageTitle)
     {
         $this->oTpl->assign('pageTitle', $pageTitle);
-        $this->oTpl->assign('metaGenerator', MAX_PRODUCT_NAME.' v'.OA_VERSION.' - http://'.MAX_PRODUCT_URL);
-        $this->oTpl->assign('oxpVersion', OA_VERSION);
+        $this->oTpl->assign('metaGenerator', PRODUCT_NAME.' v'.VERSION.' - http://'.PRODUCT_URL);
+        $this->oTpl->assign('oxpVersion', VERSION);
     }
 
 
@@ -415,7 +415,7 @@ class OA_Admin_UI
         {
             $this->oTpl->assign('customBranding', true);
         }
-        $this->oTpl->assign('productName', MAX_PRODUCT_NAME);
+        $this->oTpl->assign('productName', PRODUCT_NAME);
     }
 
 

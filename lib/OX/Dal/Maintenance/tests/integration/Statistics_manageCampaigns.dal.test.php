@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dal/DataGenerator.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Dal_Maintenance_Statistics_manageCampaigns extends UnitTestCase
 {
@@ -32,9 +31,9 @@ class Test_OX_Dal_Maintenance_Statistics_manageCampaigns extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Dal_Maintenance_Statistics_manageCampaigns()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->doCampaigns =  OA_Dal::factoryDO('campaigns');
         $this->doClients   =  OA_Dal::factoryDO('clients');
         $this->doBanners   =  OA_Dal::factoryDO('banners');
@@ -927,7 +926,7 @@ class Test_OX_Dal_Maintenance_Statistics_manageCampaigns extends UnitTestCase
     {
         // Create the admin account
         $doAccounts = OA_Dal::factoryDO('accounts');
-        $doAccounts->account_name = 'Administrator Account';
+        $doAccounts->account_name = 'System Administrator';
         $doAccounts->account_type = OA_ACCOUNT_ADMIN;
         $adminAccountId = DataGenerator::generateOne($doAccounts);
 

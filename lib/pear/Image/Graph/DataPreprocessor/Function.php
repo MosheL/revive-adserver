@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -68,7 +67,7 @@ class Image_Graph_DataPreprocessor_Function extends Image_Graph_DataPreprocessor
      *   a preprocessor, this function must take a single parameter and return a
      *   formatted version of this parameter
      */
-    function Image_Graph_DataPreprocessor_Function($function)
+    function __construct($function)
     {
         parent::__construct();
         $this->_dataFunction = $function;

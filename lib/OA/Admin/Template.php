@@ -13,6 +13,7 @@
 define('SMARTY_DIR', MAX_PATH . '/lib/smarty/');
 
 require_once MAX_PATH . '/lib/smarty/Smarty.class.php';
+require_once MAX_PATH . '/lib/smarty/plugins/modifier.escape.php';
 require_once MAX_PATH . '/lib/OA/Dll.php';
 require_once MAX_PATH . '/lib/pear/Date.php';
 require_once MAX_PATH . '/lib/OX/Translation.php';
@@ -22,7 +23,6 @@ require_once MAX_PATH . '/lib/max/other/html.php';
  * A UI templating class.
  *
  * @package    OpenXAdmin
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class OA_Admin_Template extends Smarty
 {
@@ -41,7 +41,7 @@ class OA_Admin_Template extends Smarty
      */
     var $_tabIndex = 0;
 
-    function OA_Admin_Template($templateName)
+    function __construct($templateName)
     {
         $this->init($templateName);
     }
@@ -177,13 +177,13 @@ class OA_Admin_Template extends Smarty
         $this->caching = 2;
     }
 
-    function is_cached()
+    function is_cached($tpl_file = null, $cache_id = null, $compile_id = null)
     {
         return parent::is_cached($this->templateName, $this->cacheId);
     }
 
 
-    function display()
+    function display($resource_name = null, $cache_id = null, $compile_id = null)
     {
         parent::display($this->templateName, $this->cacheId);
     }
@@ -205,11 +205,19 @@ class OA_Admin_Template extends Smarty
             } else {
                 $aValues = array();
             }
-            return $oTrans->translate($aParams['str'], $aValues);
-        } else
-        if (!empty($aParams['key'])) {
-            return $oTrans->translate($aParams['key']);
+            $t = $oTrans->translate($aParams['str'], $aValues);
+        } elseif (!empty($aParams['key'])) {
+            $t = $oTrans->translate($aParams['key']);
         }
+
+        if (isset($t)) {
+            if (empty($aParams['escape'])) {
+                return $t;
+            }
+
+            return smarty_modifier_escape($t, $aParams['escape']);
+        }
+
         // If nothing found in global scope, return the value unchanged
         if (!empty($aParams['str'])) {
             return $aParams['str'];
@@ -217,6 +225,7 @@ class OA_Admin_Template extends Smarty
         if (!empty($aParams['key'])) {
             return $aParams['key'];
         }
+
         $smarty->trigger_error("t: missing 'str' or 'key' parameters: ".$aParams['str']);
     }
 
@@ -553,7 +562,9 @@ class OA_Admin_Template extends Smarty
 				$type = $aParams['type'];
 				$translation = new OX_Translation ();
 
-				if ($type == OX_CAMPAIGN_TYPE_CONTRACT_NORMAL || $type == OX_CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE) {
+                if ($type == OX_CAMPAIGN_TYPE_OVERRIDE) {
+					return "<span class='campaign-type campaign-override'>" . $translation->translate('Override') . "</span>";
+                } elseif ($type == OX_CAMPAIGN_TYPE_CONTRACT_NORMAL) {
 					return "<span class='campaign-type campaign-contract'>" . $translation->translate('Contract') . "</span>";
 				} elseif ($type == OX_CAMPAIGN_TYPE_REMNANT || $type == OX_CAMPAIGN_TYPE_ECPM){
 					return "<span class='campaign-type campaign-remnant'>" . $translation->translate('Remnant') . "</span>";

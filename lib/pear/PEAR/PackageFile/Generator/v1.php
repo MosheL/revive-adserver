@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -45,7 +44,7 @@ class PEAR_PackageFile_Generator_v1
      * @var PEAR_PackageFile_v1
      */
     var $_packagefile;
-    function PEAR_PackageFile_Generator_v1(&$packagefile)
+    function __construct(&$packagefile)
     {
         $this->_packagefile = &$packagefile;
     }
@@ -115,7 +114,7 @@ class PEAR_PackageFile_Generator_v1
         // }}}
         $packagexml = $this->toPackageFile($where, PEAR_VALIDATE_PACKAGING, 'package.xml', true);
         if ($packagexml) {
-            $tar =& new Archive_Tar($dest_package, $compress);
+            $tar = new Archive_Tar($dest_package, $compress);
             $tar->setErrorHandling(PEAR_ERROR_RETURN); // XXX Don't print errors
             // ----- Creates with the package.xml file
             $ok = $tar->createModify(array($packagexml), '', $where);
@@ -831,9 +830,9 @@ class PEAR_PackageFile_Generator_v1
     /**
      * Post-process special files with install-as/platform attributes and
      * make the release tag.
-     * 
+     *
      * This complex method follows this work-flow to create the release tags:
-     * 
+     *
      * <pre>
      * - if any install-as/platform exist, create a generic release and fill it with
      *   o <install as=..> tags for <file name=... install-as=...>
@@ -849,10 +848,10 @@ class PEAR_PackageFile_Generator_v1
      *   o <ignore> tags for <file name=... platform=other platform install-as=..>
      *   o <ignore> tags for <file name=... platform=!this platform install-as=..>
      * </pre>
-     * 
+     *
      * It does this by accessing the $package parameter, which contains an array with
      * indices:
-     * 
+     *
      *  - platform: mapping of file => OS the file should be installed on
      *  - install-as: mapping of file => installed name
      *  - osmap: mapping of OS => list of files that should be installed
@@ -866,7 +865,7 @@ class PEAR_PackageFile_Generator_v1
      */
     function _convertRelease2_0(&$release, $package)
     {
-        //- if any install-as/platform exist, create a generic release and fill it with 
+        //- if any install-as/platform exist, create a generic release and fill it with
         if (count($package['platform']) || count($package['install-as'])) {
             $generic = array();
             $genericIgnore = array();

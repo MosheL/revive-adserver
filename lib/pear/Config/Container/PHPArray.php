@@ -14,8 +14,6 @@
 // +----------------------------------------------------------------------+
 // | Authors: Bertrand Mansion <bmansion@mamasam.com>                     |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 /**
 * Config parser for common PHP configuration array
@@ -51,7 +49,7 @@ class Config_Container_PHPArray {
     * @access public
     * @param    string  $options    Options to be used by renderer
     */
-    function Config_Container_PHPArray($options = array())
+    function __construct($options = array())
     {
         foreach ($options as $key => $value) {
             $this->options[$key] = $value;
@@ -75,7 +73,7 @@ class Config_Container_PHPArray {
             $this->_parseArray($datasrc, $obj->container);
         } else {
             if (!file_exists($datasrc)) {
-                return PEAR::raiseError("Datasource file does not exist.", null, PEAR_ERROR_RETURN);        
+                return PEAR::raiseError("Datasource file does not exist.", null, PEAR_ERROR_RETURN);
             } else {
                 include($datasrc);
                 if (!isset(${$this->options['name']}) || !is_array(${$this->options['name']})) {

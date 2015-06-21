@@ -11,15 +11,14 @@
  * http://www.php.net/license/3_01.txt If you did not receive a copy of
  * the PHP License and are unable to obtain it through the web, please
  * send a note to license@php.net so we can mail you a copy immediately.
- * 
+ *
  * @category    HTML
  * @package     HTML_Common
  * @author      Adam Daniel <adaniel1@eesus.jnj.com>
  * @copyright   2001-2007 The PHP Group
  * @license     http://www.php.net/license/3_01.txt PHP License 3.01
- * @version     CVS: $Id$
  * @link        http://pear.php.net/package/HTML_Common/
- */ 
+ */
 
 /**
  * Base class for all HTML classes
@@ -77,7 +76,7 @@ class HTML_Common
      * @param    int     $tabOffset      Indent offset in tabs
      * @access   public
      */
-    function HTML_Common($attributes = null, $tabOffset = 0)
+    function __construct($attributes = null, $tabOffset = 0)
     {
         $this->setAttributes($attributes);
         $this->setTabOffset($tabOffset);
@@ -444,8 +443,8 @@ class HTML_Common
      * $charset = HTML_Common::charset();
      * </code>
      *
-     * @param   string  New charset to use. Omit if just getting the 
-     *                  current value. Consult the htmlspecialchars() docs 
+     * @param   string  New charset to use. Omit if just getting the
+     *                  current value. Consult the htmlspecialchars() docs
      *                  for a list of supported character sets.
      * @return  string  Current charset
      * @access  public

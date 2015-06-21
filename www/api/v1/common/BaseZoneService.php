@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
 
 // Require Zone Service Implementation
@@ -36,7 +34,7 @@ class BaseZoneService
      * This method initialises Service implementation object field.
      *
      */
-    function BaseZoneService()
+    function __construct()
     {
         $this->_oZoneServiceImp = new ZoneServiceImpl();
     }

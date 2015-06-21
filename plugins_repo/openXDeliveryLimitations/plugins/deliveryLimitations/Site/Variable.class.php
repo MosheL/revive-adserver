@@ -13,8 +13,6 @@
 /**
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Chris Nutting <chris.nutting@openx.org>
- *
  */
 
 require_once LIB_PATH . '/Extension/deliveryLimitations/DeliveryLimitationsCommaSeparatedData.php';
@@ -27,7 +25,7 @@ require_once MAX_PATH . '/lib/max/Delivery/limitations.delivery.php';
  */
 class Plugins_DeliveryLimitations_Site_Variable extends Plugins_DeliveryLimitations_CommaSeparatedData
 {
-    function Plugins_DeliveryLimitations_Site_Variable()
+    function __construct()
     {
         $this->delimiter = '|';
         $this->aOperations = MAX_limitationsGetAOperationsForString($this) + MAX_limitationsGetAOperationsForNumeric($this);
@@ -63,10 +61,10 @@ class Plugins_DeliveryLimitations_Site_Variable extends Plugins_DeliveryLimitati
         $tabindex =& $GLOBALS['tabindex'];
 		echo "<table width='275' cellpadding='0' cellspacing='0' border='0'>";
 		echo "<tr>";
-		echo "    <td align='left' width='50'><strong>Name:</strong></td><td><input type='text' size='10' name='acl[{$this->executionorder}][data][]' value='" . ((!empty($this->data[0])) ? htmlspecialchars($this->data[0], ENT_QUOTES) : '') . "' tabindex='".($tabindex++)."'></td>";
+		echo "    <td align='left' width='50'><strong>Name:</strong></td><td><input type='text' size='10' name='acl[{$this->executionorder}][data][]' value='" . ((isset($this->data[0])) ? htmlspecialchars($this->data[0], ENT_QUOTES) : '') . "' tabindex='".($tabindex++)."'></td>";
 		echo "</tr>";
 		echo "<tr>";
-		echo "    <td align='left' width='50'><strong>Value:</strong></td><td><input type='text' size='10' name='acl[{$this->executionorder}][data][]' value='" . ((!empty($this->data[1])) ? htmlspecialchars($this->data[1], ENT_QUOTES) : '') . "' tabindex='".($tabindex++)."'></td>";
+		echo "    <td align='left' width='50'><strong>Value:</strong></td><td><input type='text' size='10' name='acl[{$this->executionorder}][data][]' value='" . ((isset($this->data[1])) ? htmlspecialchars($this->data[1], ENT_QUOTES) : '') . "' tabindex='".($tabindex++)."'></td>";
         echo "</tr>";
 		echo "</table>";
     }

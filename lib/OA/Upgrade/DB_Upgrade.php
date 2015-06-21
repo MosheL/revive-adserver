@@ -13,10 +13,6 @@
 /**
 * OpenX Schema Management Utility
 *
-* @author     Monique Szpak <monique.szpak@openx.org>
-*
-* $Id$
-*
 */
 
 require_once MAX_PATH . '/lib/OA/DB/XmlCache.php';
@@ -103,7 +99,7 @@ class OA_DB_Upgrade
      * php4 class constructor
      *
      */
-    function OA_DB_Upgrade($oLogger='')
+    function __construct($oLogger='')
     {
         //this->__construct();
         $this->path_changes = MAX_PATH.'/etc/changes/';
@@ -125,7 +121,7 @@ class OA_DB_Upgrade
      */
     function initMDB2Schema()
     {
-        $result  =&  MDB2_Schema::factory(OA_DB::singleton(OA_DB::getDsn()));
+        $result  = MDB2_Schema::factory(OA_DB::singleton(OA_DB::getDsn()));
         if (!$this->_isPearError($result, 'failed to instantiate MDB2_Schema'))
         {
             $this->oSchema = $result;

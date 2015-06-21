@@ -40,15 +40,13 @@ class DataObjects_Affiliates extends DB_DataObjectCommon
     public $email;                           // VARCHAR(64) => openads_varchar => 130 
     public $website;                         // VARCHAR(255) => openads_varchar => 2 
     public $updated;                         // DATETIME() => openads_datetime => 142 
-    public $an_website_id;                   // INT(11) => openads_int => 1 
     public $oac_country_code;                // CHAR(2) => openads_char => 130 
     public $oac_language_id;                 // INT(11) => openads_int => 1 
     public $oac_category_id;                 // INT(11) => openads_int => 1 
-    public $as_website_id;                   // INT(11) => openads_int => 1 
     public $account_id;                      // MEDIUMINT(9) => openads_mediumint => 1 
 
     /* Static get */
-    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('DataObjects_Affiliates',$k,$v); }
+    function staticGet($k,$v=NULL) { return DB_DataObject::staticGetFromClassName('DataObjects_Affiliates',$k,$v); }
 
     var $defaultValues = array(
                 'agencyid' => 0,

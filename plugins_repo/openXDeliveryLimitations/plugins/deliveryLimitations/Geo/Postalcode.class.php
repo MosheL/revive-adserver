@@ -21,15 +21,13 @@ require_once LIB_PATH . '/Extension/deliveryLimitations/DeliveryLimitations.php'
  *
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Andrew Hill <andrew@m3.net>
- * @author     Chris Nutting <chris@m3.net>
  */
 class Plugins_DeliveryLimitations_Geo_Postalcode extends Plugins_DeliveryLimitations
 {
 
-    function Plugins_DeliveryLimitations_Geo_Postalcode()
+    function __construct()
     {
-        $this->Plugins_DeliveryLimitations();
+        parent::__construct();
         $this->columnName = 'geo_postal_code';
         $this->nameEnglish = 'Geo - US/Canada Postal Code';
     }
@@ -39,7 +37,7 @@ class Plugins_DeliveryLimitations_Geo_Postalcode extends Plugins_DeliveryLimitat
      *
      * @return boolean
      */
-    function isAllowed()
+    function isAllowed($page = false)
     {
         return ((isset($GLOBALS['_MAX']['GEO_DATA']['postal_code']))
             || $GLOBALS['_MAX']['CONF']['geotargeting']['showUnavailable']);
