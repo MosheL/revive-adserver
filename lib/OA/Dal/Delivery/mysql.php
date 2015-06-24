@@ -177,7 +177,8 @@ function OX_bucket_prepareUpdateQuery($tableName, $aQuery, $increment = true, $c
  	OA_Dal_Delivery_connect('rawDatabase');
 
     $aQuery = array_map('OX_escapeString', $aQuery);
-    if ($increment) {
+   if ( isset($aQuery[$counter]))
+    if ($increment ) {
     $aQuery[$counter] = 1;
     } else {
         $aQuery[$counter] = -1;
