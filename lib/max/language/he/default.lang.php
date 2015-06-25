@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /*
   +---------------------------------------------------------------------------+
@@ -1082,3 +1082,5 @@ $GLOBALS['keyNext'] = "ב";
 $GLOBALS['keyPrevious'] = "ק";
 $GLOBALS['keyLinkUser'] = "u";
 $GLOBALS['keyWorkingAs'] = "w";
+
+?>
