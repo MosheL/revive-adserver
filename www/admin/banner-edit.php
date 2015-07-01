@@ -155,6 +155,8 @@ if ($bannerid != '') {
 
 }
 else {
+ 	$client= Admin_DA::getPlacement($campaignid);
+	$aBanner['description'] = $client ['name']  . ' - ';
     // Set default values for new banner
     $aBanner['bannerid']     = '';
     $aBanner['campaignid']   = $campaignid;
@@ -168,7 +170,7 @@ else {
     $aBanner['width']        = '';
     $aBanner['height']       = '';
     $aBanner['htmltemplate'] = '';
-    $aBanner['description']  = '';
+    //$aBanner['description']  = '';
     $aBanner['comments']     = '';
     $aBanner['contenttype']  = '';
     $aBanner['adserver']     = '';
@@ -823,7 +825,7 @@ function processForm($bannerid, $form, &$oComponent, $formDisabled=false)
             $nextPage = "banner-swf.php?clientid=".$aFields['clientid']."&campaignid=".$aFields['campaignid']."&bannerid=$bannerid&insert=true";
         }
         else {
-            $nextPage = "campaign-banners.php?clientid=".$aFields['clientid']."&campaignid=".$aFields['campaignid'];
+            $nextPage = "banner-zone.php?clientid=".$aFields['clientid']."&campaignid=".$aFields['campaignid']."&bannerid=$bannerid";
         }
     }
     else {

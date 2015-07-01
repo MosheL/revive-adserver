@@ -3315,6 +3315,6 @@ function AddParamIfContains($orig,$newkey,$newvalue,$contain){
 	else return $orig;
 }
 function AddParamIfTheUrlIsLeads($orig,$newkey,$newvalue){
-	return AddParamIfContains($orig,$newkey,$newvalue,'/leads/view/');
+        return AddParamIfContains($orig,$newkey,$newvalue,'/leads/view/|pnima|2.inn.co.il/files/|leads.tips');
 }
 ?>
