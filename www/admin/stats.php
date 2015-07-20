@@ -133,42 +133,6 @@ if (!isset($breakdown)) {
 
 
 
-if ($campaignid) {
-	$doCampaigns = OA_Dal::factoryDO ('campaigns');
-	$doCampaigns->get ( $campaignid);
-	$campaign = $doCampaigns->toArray ();
-	$name=$campaign['campaignname'];
-	echo("<a style=color:white; href='campaign-edit.php?clientid=$clientid&campaignid=$campaignid'>$name </a>");
-
-	//print_r($data);
-
-	$aOtherAdvertisers = Admin_DA::getAdvertisers(array('agency_id' => $agencyId));
-	$aOtherCampaigns = Admin_DA::getPlacements(array('advertiser_id' => $clientid));
-}
-
-if ($bannerid)
-{
-	$doBanners = OA_Dal::factoryDO('banners');
-    if ($doBanners->get($bannerid)) {
-        $aBanner = $doBanners->toArray();
-    }
-	$name=$aBanner['description'];
-	echo("<a style=color:white; href='banner-edit.php?clientid=$clientid&campaignid=$campaignid&bannerid=$bannerid'>$name </a>");
-}
-
-
-if ($zoneid)
-{
-	$doZones = OA_Dal::factoryDO('zones');
-    if ($doZones->get($zoneid)) {
-        $aZones = $doZones->toArray();
-    }
-	$name=$aZones['zonename'];
-	echo("<a style=color:white; href='zone-edit.php?zoneid=$zoneid'>$name </a>");
-}
-
-
-
 // Add all manipulated values to globals
 $_REQUEST['zoneid']         = $zoneid;
 $_REQUEST['affiliateid']    = $affiliateid;
@@ -207,7 +171,47 @@ if (isset($plugin) && $plugin != '') {
     require_once MAX_PATH . '/lib/OA/Admin/Reports/Export.php';
     $oModule = new OA_Admin_Reports_Export($oStatsController);
     $oModule->export();
+//	die();
 }
+
+
+
+
+
+if ($campaignid) {
+	$doCampaigns = OA_Dal::factoryDO ('campaigns');
+	$doCampaigns->get ( $campaignid);
+	$campaign = $doCampaigns->toArray ();
+	$name=$campaign['campaignname'];
+	echo("<a style=color:white; href='campaign-edit.php?clientid=$clientid&campaignid=$campaignid'>$name </a>");
+
+	//print_r($data);
+
+	$aOtherAdvertisers = Admin_DA::getAdvertisers(array('agency_id' => $agencyId));
+	$aOtherCampaigns = Admin_DA::getPlacements(array('advertiser_id' => $clientid));
+}
+
+if ($bannerid)
+{
+	$doBanners = OA_Dal::factoryDO('banners');
+    if ($doBanners->get($bannerid)) {
+        $aBanner = $doBanners->toArray();
+    }
+	$name=$aBanner['description'];
+	echo("<a style=color:white; href='banner-edit.php?clientid=$clientid&campaignid=$campaignid&bannerid=$bannerid'>$name </a>");
+}
+
+
+if ($zoneid)
+{
+	$doZones = OA_Dal::factoryDO('zones');
+    if ($doZones->get($zoneid)) {
+        $aZones = $doZones->toArray();
+    }
+	$name=$aZones['zonename'];
+	echo("<a style=color:white; href='zone-edit.php?zoneid=$zoneid'>$name </a>");
+}
+
 
 // ... otherwise, output in HTML
 $oStatsController->output();

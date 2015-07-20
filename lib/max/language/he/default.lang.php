@@ -289,8 +289,8 @@ $GLOBALS['strAdvertiserLimitation'] = "הצג רק באנר אחד ממפרסם 
 $GLOBALS['strAllowAuditTrailAccess'] = "אפשר למשתמש זה לגשת לדוח ביקורת";
 
 // Campaign
-$GLOBALS['strCampaign'] = "מערכה";
-$GLOBALS['strCampaigns'] = "מערכות פרסום";
+$GLOBALS['strCampaign'] = "קמפיין";
+$GLOBALS['strCampaigns'] = "קמפיינים";
 $GLOBALS['strAddCampaign'] = "הוסף קמפיין";
 $GLOBALS['strAddCampaign_Key'] = "הוסף קמפיין <u>ח</u>דש";
 $GLOBALS['strCampaignForAdvertiser'] = "עבור המפרסם";

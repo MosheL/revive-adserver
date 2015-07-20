@@ -46,8 +46,6 @@ if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
 	{
 		$phpAds_raw = view_local('', $z[$i], 0, 0, '', '', '', $phpAds_context_campaign, '');
 		// re-try if needed
-		if(empty($phpAds_raw["bannerid"])){echo("/*retry*/"); $phpAds_raw = view_local('', $z[$i], 0, 0, '', '', '', $phpAds_context_campaign, '');}
-		if(empty($phpAds_raw["bannerid"])){echo("/*retry*/"); $phpAds_raw = view_local('', $z[$i], 0, 0, '', '', '', $phpAds_context_campaign, '');}
 		if(empty($phpAds_raw["bannerid"])) {echo("/*retry */"); $phpAds_raw = view_local('', $z[$i], 0, 0, '', '', '0',$phpAds_context_banners, '');}
 
 

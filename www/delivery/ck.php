@@ -3293,8 +3293,8 @@ return $adId;
 
 /*Arye 31/5/2012*/
 function Contains($orig,$searchkey){
-        $pos=strpos($orig,$searchkey);
-        return ($pos===false)?false:true;
+        return  preg_match($searchkey,$orig);
+     //   return ($pos===false)?false:true;
 }
 function AddParam($orig, $newkey, $newvalue){
         $temp='';
@@ -3315,6 +3315,6 @@ function AddParamIfContains($orig,$newkey,$newvalue,$contain){
 	else return $orig;
 }
 function AddParamIfTheUrlIsLeads($orig,$newkey,$newvalue){
-        return AddParamIfContains($orig,$newkey,$newvalue,'/leads/view/|pnima|2.inn.co.il/files/|leads.tips');
+        return AddParamIfContains($orig,$newkey,$newvalue,'(\/leads\/view|pnima|2.inn.co.il|leads\.tips)');
 }
 ?>
