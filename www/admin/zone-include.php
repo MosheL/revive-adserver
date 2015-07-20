@@ -88,19 +88,20 @@ phpAds_SessionDataStore();
             if (!isset($aLinkedAds[$adId])) {
                 $result = Admin_DA::addAdZone(array('zone_id' => $zoneId, 'ad_id' => $adId));
             }
-
-            // Queue confirmation message
-            $translation = new OX_Translation ();
-            $translated_message = $translation->translate ( $GLOBALS['strZoneLinkedBanner'], array(
-                MAX::constructURL(MAX_URL_ADMIN, 'zone-edit.php?affiliateid=' .  $publisherId . '&zoneid=' . $zoneId),
-                htmlspecialchars($aZone['name'])
-            ));
-            OA_Admin_UI::queueMessage($translated_message, 'local', 'confirm', 0);
+            if (!PEAR::isError($result)) {
+                // Queue confirmation message
+                $translation = new OX_Translation();
+                $translated_message = $translation->translate ( $GLOBALS['strZoneLinkedBanner'], array(
+                    MAX::constructURL(MAX_URL_ADMIN, 'zone-edit.php?affiliateid=' .  $publisherId . '&zoneid=' . $zoneId),
+                    htmlspecialchars($aZone['name'])
+                ));
+                OA_Admin_UI::queueMessage($translated_message, 'local', 'confirm', 0);
+            }
         } elseif ($action == 'remove' && !empty($placementId) && empty($adId)) {
             Admin_DA::deletePlacementZones(array('zone_id' => $zoneId, 'placement_id' => $placementId));
 
             // Queue confirmation message
-            $translation = new OX_Translation ();
+            $translation = new OX_Translation();
             $translated_message = $translation->translate ( $GLOBALS['strZoneRemovedCampaign'], array(
                 MAX::constructURL(MAX_URL_ADMIN, 'zone-edit.php?affiliateid=' .  $publisherId . '&zoneid=' . $zoneId),
                 htmlspecialchars($aZone['name'])
@@ -188,24 +189,13 @@ phpAds_SessionDataStore();
         // Message
         echo "<br>";
         echo "<div class='errormessage'><img class='errormessage' src='" . OX::assetPath() . "/images/errormessage.gif' align='absmiddle'>";
-        echo "<span class='tab-r'>{$GLOBALS['strUnableToLinkBanner']}</span><br><br>{$GLOBALS['strErrorLinkingBanner']} <br />" . $result->message . "</div><br>";
+        echo "<span class='tab-r'> {$GLOBALS['strUnableToLinkBanner']}</span><br /><br />";
+        echo "{$GLOBALS['strErrorLinkingBanner']} <br />" . $result->message . "</div><br />";
     }
 
     MAX_displayPlacementAdSelectionViewForm($publisherId, $zoneId, $view, $pageName, $tabIndex, $aOtherZones);
 
     $aParams = MAX_getLinkedAdParams($zoneId);
-
-    // if the selected campaign is a market campaign, we switch to the Link banner by parent campaign mode
-    // as Market contract campaign don't have banner to be linked individually
-    if(!empty($placementId)) {
-        $doCampaign = OA_Dal::factoryDO('campaigns');
-        $doCampaign->campaignid = $placementId;
-        $doCampaign->find();
-        $doCampaign->fetch();
-        if($doCampaign->type == DataObjects_Campaigns::CAMPAIGN_TYPE_MARKET_CONTRACT) {
-            $view = 'placement';
-        }
-    }
 
     if ($view == 'placement') {
         $aDirectLinkedAds = Admin_DA::getAdZones(array('zone_id' => $zoneId), true, 'ad_id');

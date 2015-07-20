@@ -7,7 +7,7 @@
 | Copyright: See the COPYRIGHT.txt file.                                    |
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
-  
+
 -->*}
 {*debug*}
 
@@ -30,7 +30,7 @@
 <script type="text/javascript">
 <!--
     var CAMPAIGN_TYPE_CONTRACT_NORMAL = {$CAMPAIGN_TYPE_CONTRACT_NORMAL};
-    var CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE = {$CAMPAIGN_TYPE_CONTRACT_EXCLUSIVE};
+    var CAMPAIGN_TYPE_OVERRIDE = {$CAMPAIGN_TYPE_OVERRIDE};
     var CAMPAIGN_TYPE_REMNANT = {$CAMPAIGN_TYPE_REMNANT};
     var CAMPAIGN_TYPE_ECPM = {$CAMPAIGN_TYPE_ECPM};
     var CAMPAIGN_TYPE_CONTRACT_ECPM = {$CAMPAIGN_TYPE_CONTRACT_ECPM};
@@ -40,8 +40,9 @@
     var MODEL_CPC = {$MODEL_CPC};
     var MODEL_CPA = {$MODEL_CPA};
 
+    var MODEL_MT;
     {if $MODEL_MT != ''}
-        var MODEL_MT = {$MODEL_MT};
+        MODEL_MT = {$MODEL_MT};
     {/if}
 
     var calendarBeginOfWeek = {$calendarBeginOfWeek};
@@ -50,10 +51,10 @@
     var clicks_delivered = {$clicksDelivered};
     var conversions_delivered = {$conversionsDelivered};
 
-    var strCampaignWarningNoTargetMessage = '{$strCampaignWarningNoTargetMessage}';
-    var strCampaignWarningRemnantNoWeight ='{$strCampaignWarningRemnantNoWeight}';
-    var strCampaignWarningEcpmNoRevenue ='{$strCampaignWarningEcpmNoRevenue}';
-    var strCampaignWarningExclusiveNoWeight ='{$strCampaignWarningExclusiveNoWeight}';
+    var strCampaignWarningNoTargetMessage = '{t str="CampaignWarningNoTarget" escape="javascript"}';
+    var strCampaignWarningRemnantNoWeight = '{t str="CampaignWarningRemnantNoWeight" escape="javascript"}';
+    var strCampaignWarningEcpmNoRevenue = '{t str="CampaignWarningEcpmNoRevenue" escape="javascript"}';
+    var strCampaignWarningOverrideNoWeight = '{t str="CampaignWarningOverrideNoWeight" escape="javascript"}';
 
     $(document).ready(function() {ldelim}
         initCampaignForm('{$campaignFormId}');

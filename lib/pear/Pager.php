@@ -33,7 +33,6 @@
  * @author     Richard Heyes <richard@phpguru.org>
  * @copyright  2003-2006 Lorenzo Alberton, Richard Heyes
  * @license    http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Pager
  */
 
@@ -138,7 +137,7 @@ class Pager
      *                          their values.
      * @access public
      */
-    function Pager($options = array())
+    function __construct($options = array())
     {
         //this check evaluates to true on 5.0.0RC-dev,
         //so i'm using another one, for now...
@@ -180,7 +179,7 @@ class Pager
 
         // If the class exists, return a new instance of it.
         if (class_exists($classname)) {
-            $pager =& new $classname($options);
+            $pager = new $classname($options);
             return $pager;
         }
 

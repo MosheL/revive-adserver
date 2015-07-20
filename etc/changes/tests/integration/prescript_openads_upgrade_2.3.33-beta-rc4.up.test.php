@@ -17,7 +17,6 @@ require_once MAX_PATH.'/lib/OA/Upgrade/Upgrade.php';
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_prescript_2_3_33_beta_rc4 extends UnitTestCase
 {
@@ -30,7 +29,7 @@ class Test_prescript_2_3_33_beta_rc4 extends UnitTestCase
      */
     function Test_OA_Upgrade()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->prefix  = $GLOBALS['_MAX']['CONF']['table']['prefix'];
         $this->configFile = MAX_PATH.'/var/test.conf.php';
     }

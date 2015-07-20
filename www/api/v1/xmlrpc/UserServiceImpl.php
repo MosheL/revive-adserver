@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Matteo Beccati <matteo.beccati@openx.org>
- *
  */
 
 // Require the base class, BaseLogonService
@@ -40,9 +38,9 @@ class UserServiceImpl extends BaseServiceImpl
      * The UserServiceImpl method is the constructor for the
      * UserServiceImpl class.
      */
-    function UserServiceImpl()
+    function __construct()
     {
-        $this->BaseServiceImpl();
+        parent::__construct();
         $this->_dllUser = new OA_Dll_User();
     }
 

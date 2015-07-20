@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -81,7 +80,7 @@ class PEAR_Dependency2
      * @param array format of PEAR_Registry::parsedPackageName()
      * @param int installation state (one of PEAR_VALIDATE_*)
      */
-    function PEAR_Dependency2(&$config, $installoptions, $package,
+    function __construct(&$config, $installoptions, $package,
                               $state = PEAR_VALIDATE_INSTALLING)
     {
         $this->_config = &$config;
@@ -826,7 +825,7 @@ class PEAR_Dependency2
                 if (!isset($this->_options['nodeps']) && !isset($this->_options['force']) &&
                       !isset($this->_options['loose'])) {
                     return $this->raiseError('%s dependency package "' . $depname .
-                        '" ' . $installed . ' version ' . $version . 
+                        '" ' . $installed . ' version ' . $version .
                         ' is not the recommended version ' . $dep['recommended'] .
                         ', but may be compatible, use --force to install');
                 } else {
@@ -863,7 +862,7 @@ class PEAR_Dependency2
             if (!class_exists('PEAR_Downloader_Package')) {
                 require_once 'PEAR/Downloader/Package.php';
             }
-            $dp = &new PEAR_Downloader_Package($dl);
+            $dp = new PEAR_Downloader_Package($dl);
             $dp->setPackageFile($downloaded[$i]);
             $params[$i] = &$dp;
         }
@@ -1103,7 +1102,7 @@ class PEAR_Dependency2
 
     /**
      * validate a downloaded package against installed packages
-     * 
+     *
      * As of PEAR 1.4.3, this will only validate
      *
      * @param array|PEAR_Downloader_Package|PEAR_PackageFile_v1|PEAR_PackageFile_v2
@@ -1126,7 +1125,7 @@ class PEAR_Dependency2
             if (!class_exists('PEAR_Downloader_Package')) {
                 require_once 'PEAR/Downloader/Package.php';
             }
-            $dp = &new PEAR_Downloader_Package($dl);
+            $dp = new PEAR_Downloader_Package($dl);
             if (is_object($pkg)) {
                 $dp->setPackageFile($pkg);
             } else {
@@ -1148,7 +1147,7 @@ class PEAR_Dependency2
                         }
                     }
                     foreach ($ds as $d) {
-                        $checker = &new PEAR_Dependency2($this->_config, $this->_options,
+                        $checker = new PEAR_Dependency2($this->_config, $this->_options,
                             array('channel' => $channel, 'package' => $package), $this->_state);
                         $dep = $d['dep'];
                         $required = $d['type'] == 'required';

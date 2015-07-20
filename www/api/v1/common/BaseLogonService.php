@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Require the XMLRPC classes
@@ -37,7 +35,7 @@ class BaseLogonService
      * This method initialises Service implementation object field.
      *
      */
-    function BaseLogonService()
+    function __construct()
     {
         $this->logonServiceImp = new LogonServiceImpl();
     }

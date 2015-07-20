@@ -20,7 +20,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Maintenance_Priority_AdServer_Task_AllocateZoneImpressions extends UnitTestCase
 {
@@ -28,9 +27,9 @@ class Test_OA_Maintenance_Priority_AdServer_Task_AllocateZoneImpressions extends
     /**
      * The constructor method.
      */
-    function Test_OA_Maintenance_Priority_AdServer_Task_AllocateZoneImpressions()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generate('MAX_Dal_Entities');
         Mock::generate('OA_Dal_Maintenance_Priority');
         Mock::generate('OA_DB_Table_Priority');

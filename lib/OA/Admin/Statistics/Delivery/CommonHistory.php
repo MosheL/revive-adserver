@@ -18,8 +18,6 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Delivery/Common.php';
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
- * @author     Matteo Beccati <matteo@beccati.com>
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Statistics_Delivery_CommonHistory extends OA_Admin_Statistics_Delivery_Common
 {
@@ -98,14 +96,6 @@ class OA_Admin_Statistics_Delivery_CommonHistory extends OA_Admin_Statistics_Del
         // Store the preferences
         $this->aPagePrefs['listorder']      = $this->listOrderField;
         $this->aPagePrefs['orderdirection'] = $this->listOrderDirection;
-    }
-
-    /**
-     * PHP4-style constructor
-     */
-    function OA_Admin_Statistics_Delivery_CommonHistory($params)
-    {
-        $this->__construct($params);
     }
 
     /**
@@ -236,7 +226,7 @@ class OA_Admin_Statistics_Delivery_CommonHistory extends OA_Admin_Statistics_Del
 
         // Merge plugin additional $oPlugin
         foreach ($this->aPlugins as $oPlugin) {
-            $oPlugin->mergeData($aStats, $this->aEmptyRow, $method, $aParams + $this->aDates);
+            $oPlugin->mergeData($aStats, $method, $aParams + $this->aDates, $this->aEmptyRow);
         }
 
         if (count($aStats) == 0) {

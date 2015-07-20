@@ -26,7 +26,6 @@ require_once MAX_PATH . '/lib/pear/Image/Graph.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Maintenance_Priority_AdServer_Task_PriorityCompensation_ScaleBack extends UnitTestCase
 {
@@ -34,9 +33,9 @@ class Test_OA_Maintenance_Priority_AdServer_Task_PriorityCompensation_ScaleBack 
     /**
      * The constructor method.
      */
-    function Test_OA_Maintenance_Priority_AdServer_Task_PriorityCompensation_ScaleBack()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generate('OA_Dal_Maintenance_Priority');
         Mock::generatePartial(
             'OA_Maintenance_Priority_AdServer_Task_PriorityCompensation',

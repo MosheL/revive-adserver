@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
 
 // Require Banner Service Implementation
@@ -36,7 +34,7 @@ class BaseBannerService
      * This method initialises Service implementation object field.
      *
      */
-    function BaseBannerService()
+    function __construct()
     {
         $this->_oBannerServiceImp = new BannerServiceImpl();
     }

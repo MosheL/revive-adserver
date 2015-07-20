@@ -24,10 +24,9 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
- 
+
 /**
  * Include file Image/Graph/DataPreprocessor.php
  */
@@ -76,7 +75,7 @@ class Image_Graph_DataPreprocessor_Array extends Image_Graph_DataPreprocessor
      *
      * @param array $array The array to use as a lookup table
      */
-    function Image_Graph_DataPreprocessor_Array($array)
+    function __construct($array)
     {
         parent::__construct();
         $this->_dataArray = $array;

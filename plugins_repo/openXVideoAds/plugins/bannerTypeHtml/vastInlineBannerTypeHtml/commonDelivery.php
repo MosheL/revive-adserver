@@ -20,7 +20,7 @@
 
 require_once MAX_PATH . '/plugins/bannerTypeHtml/vastInlineBannerTypeHtml/common.php';
 
-function deliverVastAd($pluginType, &$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $loc, $referer)
+function deliverVastAd($pluginType, &$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $richMedia=true, $loc, $referer)
 {
     global $format;
     extractVastParameters( $aBanner );
@@ -82,10 +82,6 @@ function getVastXMLFooter()
 	return $footer;
 }
 
-/*
- * By default we return something like this:
- * http://.../openx/www/delivery_dev/fc.php?script=deliveryLog:logVastEvent:logVastEvent&banner_id=7&zone_id=2&source=&vast_event=start
- */
 function getVideoPlayerUrl($parameterId)
 {
     static $aDefaultPlayerFiles = array(
@@ -219,22 +215,22 @@ function prepareTrackingParams(&$aOutputParams, $aBanner, $zoneId, $source, $loc
     $aOutputParams['impressionUrl'] =  _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&');
     if ( $aOutputParams['format'] == 'vast' ){
         $trackingUrl = MAX_commonGetDeliveryUrl($conf['file']['frontcontroller']).
-            "?script=deliveryLog:oxLogVast:logImpressionVast&banner_id={$aBanner['bannerid']}&zone_id={$zoneId}";
+            "?script=videoAds:vastEvent&bannerid={$aBanner['bannerid']}&zoneid={$zoneId}";
         if (!empty($source)) {
-            $trackingUrl .= "&source={$source}";
+            $trackingUrl .= "&source=".urlencode($source);
         }
-        $aOutputParams['trackUrlStart'] = $trackingUrl . '&vast_event=start';
-        $aOutputParams['trackUrlMidPoint'] = $trackingUrl . '&vast_event=midpoint';
-        $aOutputParams['trackUrlFirstQuartile'] = $trackingUrl . '&vast_event=firstquartile';
-        $aOutputParams['trackUrlThirdQuartile'] = $trackingUrl . '&vast_event=thirdquartile';
-        $aOutputParams['trackUrlComplete'] = $trackingUrl . '&vast_event=complete';
-        $aOutputParams['trackUrlMute'] = $trackingUrl . '&vast_event=mute';
-        $aOutputParams['trackUrlPause'] = $trackingUrl . '&vast_event=pause';
-        $aOutputParams['trackReplay'] = $trackingUrl . '&vast_event=replay';
-        $aOutputParams['trackUrlFullscreen'] = $trackingUrl . '&vast_event=fullscreen';
-        $aOutputParams['trackUrlStop'] = $trackingUrl . '&vast_event=stop';
-        $aOutputParams['trackUrlUnmute'] = $trackingUrl . '&vast_event=unmute';
-        $aOutputParams['trackUrlResume'] = $trackingUrl . '&vast_event=resume';
+        $aOutputParams['trackUrlStart'] = $trackingUrl . '&event=start';
+        $aOutputParams['trackUrlMidPoint'] = $trackingUrl . '&event=midpoint';
+        $aOutputParams['trackUrlFirstQuartile'] = $trackingUrl . '&event=firstquartile';
+        $aOutputParams['trackUrlThirdQuartile'] = $trackingUrl . '&event=thirdquartile';
+        $aOutputParams['trackUrlComplete'] = $trackingUrl . '&event=complete';
+        $aOutputParams['trackUrlMute'] = $trackingUrl . '&event=mute';
+        $aOutputParams['trackUrlPause'] = $trackingUrl . '&event=pause';
+        $aOutputParams['trackReplay'] = $trackingUrl . '&event=replay';
+        $aOutputParams['trackUrlFullscreen'] = $trackingUrl . '&event=fullscreen';
+        $aOutputParams['trackUrlStop'] = $trackingUrl . '&event=stop';
+        $aOutputParams['trackUrlUnmute'] = $trackingUrl . '&event=unmute';
+        $aOutputParams['trackUrlResume'] = $trackingUrl . '&event=resume';
         $aOutputParams['vastVideoClickThroughUrl'] = _adRenderBuildVideoClickThroughUrl($aBanner, $zoneId, $source, $ct0 );
     }
     $aOutputParams['clickUrl'] = _adRenderBuildClickUrl($aBanner, $zoneId, $source, $ct0, $logClick);
@@ -335,11 +331,13 @@ function getImageUrlFromFilename($filename)
 
 function renderVastOutput( $aOut, $pluginType, $vastAdDescription )
 {
+    $adSystem = $GLOBALS['_MAX']['CONF']['ui']['applicationName'] ? $GLOBALS['_MAX']['CONF']['ui']['applicationName'] : 'Revive Adserver';
+
     $adName = $aOut['name'];
     $player = "";
     $player .= "    <Ad id=\"{player_allocated_ad_id}\" >";
     $player .= "        <InLine>";
-    $player .= "            <AdSystem>OpenX</AdSystem>\n";
+    $player .= "            <AdSystem><![CDATA[$adSystem]]></AdSystem>\n";
     $player .= "                <AdTitle><![CDATA[$adName]]></AdTitle>\n";
     $player .= "                    <Description><![CDATA[$vastAdDescription]]></Description>\n";
     $player .= "                    <Impression>\n";

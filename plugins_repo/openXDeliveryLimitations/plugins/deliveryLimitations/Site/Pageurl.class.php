@@ -22,16 +22,14 @@ require_once MAX_PATH . '/lib/max/Plugin/Translation.php';
  *
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Andrew Hill <andrew@m3.net>
- * @author     Chris Nutting <chris@m3.net>
  */
 class Plugins_DeliveryLimitations_Site_Pageurl extends Plugins_DeliveryLimitations
 {
     var $defaultComparison = '=~';
 
-    function Plugins_DeliveryLimitations_Site_Pageurl()
+    function __construct()
     {
-        $this->Plugins_DeliveryLimitations();
+        parent::__construct();
 
         $aConf = $GLOBALS['_MAX']['CONF'];
         if ($aConf['database']['type'] == 'mysql') {

@@ -30,7 +30,6 @@ require_once dirname(dirname(dirname(__FILE__))) . '/oxMemcached/oxMemcached.cla
  *
  * @package    OpenXPlugin
  * @subpackage TestSuite
- * @author     Lukasz Wikierski <lukasz.wikierski@openx.org>
  */
 class Plugins_TestOfPlugins_DeliveryCacheStore_oxMemcached_oxMemcached extends UnitTestCase
 {
@@ -44,7 +43,7 @@ class Plugins_TestOfPlugins_DeliveryCacheStore_oxMemcached_oxMemcached extends U
      */
     function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         _oxMemcached_MemcachedInit();
         $this->oMemcached = $GLOBALS['OA_Delivery_Cache']['MemcachedObject'];
     }

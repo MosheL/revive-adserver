@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -92,7 +91,7 @@ class Image_Graph_Plotarea_Map extends Image_Graph_Plotarea
      * @param string $map The name of the map, i.e. the [name].png and  [name].
      *   txt files located in the Images/maps folder
      */
-    function Image_Graph_Plotarea_Map($map)
+    function __construct($map)
     {
         parent::__construct();
 

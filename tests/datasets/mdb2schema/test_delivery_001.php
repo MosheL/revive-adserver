@@ -14,8 +14,6 @@
  *
  * @abstract A class for generating/loading a dataset for delivery testing
  * @package Test Classes
- * @author Monique Szpak <monique.szpak@openads.org>
- *
  */
 
 //require_once MAX_PATH . '/tests/testClasses/OATestData_DataObjects.php';
@@ -23,10 +21,6 @@
 require_once MAX_PATH . '/tests/testClasses/OATestData_MDB2Schema.php';
 class OA_Test_Data_delivery_001 extends OA_Test_Data_MDB2Schema
 {
-
-    function OA_Test_Data_delivery_001()
-    {
-    }
 
     /**
      * method for extending OA_Test_Data_MDB2Schema

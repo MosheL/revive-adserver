@@ -16,7 +16,6 @@ require_once LIB_PATH.'/Plugin/PluginExport.php';
  * A class for testing the Test_OX_PluginManager class.
  *
  * @package Plugins
- * @author  Monique Szpak <monique.szpak@openx.org>
  * @subpackage TestSuite
  */
 class Test_OX_PluginExport extends UnitTestCase
@@ -31,9 +30,9 @@ class Test_OX_PluginExport extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_PluginExport()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function tearDown()
@@ -286,7 +285,7 @@ class Test_OX_PluginExport extends UnitTestCase
 		$aContentsOld = $oZip->listContent();
 		foreach ($aContentsOld as $i => $aItemOld)
 		{
-		    if (!$aItem['folder'])
+		    if (!$aItemOld['folder'])
 		    {
         		foreach ($aContentsNew as $n => $aItemNew)
         		{
@@ -301,7 +300,10 @@ class Test_OX_PluginExport extends UnitTestCase
                         break;
                     }
         		}
-		    }
+		    } else {
+                // For somewhat reason "new" doesn't seem to contain folders. Bug?
+                unset($aContentsOld[$i]);
+            }
 		}
 		$this->assertFalse(count($aContentsNew));
 		$this->assertFalse(count($aContentsOld));

@@ -17,8 +17,6 @@ require_once MAX_PATH . '/lib/Max.php';
  *
  * @package    MaxDelivery
  * @subpackage TestSuite
- * @author
- *
  */
 class test_MAX extends UnitTestCase
 {
@@ -28,9 +26,9 @@ class test_MAX extends UnitTestCase
     /**
      * The constructor method.
      */
-    function test_MAX()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function setUp()

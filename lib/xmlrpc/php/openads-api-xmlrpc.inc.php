@@ -32,7 +32,6 @@ require_once('ZoneInfo.php');
  *
  * @package    OpenX
  * @subpackage ExternalLibrary
- * @author     Chris Nutting <Chris.Nutting@openx.org>
  */
 
 class OA_Api_Xmlrpc
@@ -73,7 +72,7 @@ class OA_Api_Xmlrpc
      * @param bool   $ssl       Set to true to connect using an SSL connection.
      * @param int    $timeout   The timeout period to wait for a response.
      */
-    function OA_Api_Xmlrpc($host, $basepath, $username, $password, $port = 0, $ssl = false, $timeout = 15)
+    function __construct($host, $basepath, $username, $password, $port = 0, $ssl = false, $timeout = 15)
     {
         $this->host = $host;
         $this->basepath = $basepath;
@@ -93,7 +92,7 @@ class OA_Api_Xmlrpc
      */
     function &_getClient($service)
     {
-        $oClient = &new XML_RPC_Client($this->basepath . '/' . $service . $this->debug, $this->host);
+        $oClient = new XML_RPC_Client($this->basepath . '/' . $service . $this->debug, $this->host);
         return $oClient;
     }
 
@@ -703,7 +702,7 @@ class OA_Api_Xmlrpc
 
         return $oBannerInfo;
     }
-    
+
     /**
      * This method returns TargetingInfo for a specified banner.
      *
@@ -742,7 +741,7 @@ class OA_Api_Xmlrpc
         return (bool) $this->_sendWithSession('BannerXmlRpcService.php',
                                               'setBannerTargeting', array((int) $bannerId, $aTargetingInfoObjects));
     }
-    
+
     /**
      * This method returns a list of banners for a specified campaign.
      *

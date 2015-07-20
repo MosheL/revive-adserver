@@ -17,8 +17,6 @@ require_once MAX_PATH . '/lib/max/Delivery/common.php';
  *
  * @package    MaxDelivery
  * @subpackage TestSuite
- * @author
- *
  */
 class Test_DeliveryCommon extends UnitTestCase
 {
@@ -30,7 +28,7 @@ class Test_DeliveryCommon extends UnitTestCase
      */
     function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function setUp()

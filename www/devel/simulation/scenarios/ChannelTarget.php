@@ -17,7 +17,6 @@ require_once SIM_PATH . 'SimulationScenario.php';
  *
  * @package
  * @subpackage
- * @author
  */
 class ChannelTarget extends SimulationScenario
 {
@@ -25,7 +24,7 @@ class ChannelTarget extends SimulationScenario
     /**
      * The constructor method.
      */
-    function ChannelTarget()
+    function __construct()
     {
         $this->init("ChannelTarget");
     }

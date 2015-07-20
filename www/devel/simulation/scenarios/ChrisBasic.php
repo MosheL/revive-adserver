@@ -17,7 +17,6 @@ require_once SIM_PATH . 'SimulationScenario.php';
  *
  * @package
  * @subpackage
- * @author
  */
 class ChrisBasic extends SimulationScenario
 {
@@ -25,7 +24,7 @@ class ChrisBasic extends SimulationScenario
     /**
      * The constructor method.
      */
-    function ChrisBasic()
+    function __construct()
     {
         $this->init("ChrisBasic");
         $this->setDateTime($GLOBALS['_MAX']['CONF']['sim']['starthour'], $GLOBALS['_MAX']['CONF']['sim']['startday']);

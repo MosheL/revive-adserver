@@ -1,8 +1,10 @@
-Revive Adserver is Copyright (c) 2013-2014 Matteo Beccati & Andrew Hill
+Revive Adserver is Copyright (c) 2013-2015 Matteo Beccati & Andrew Hill
 
 Revive Adserver thanks the following members of the community for their
 contributions to the code:
 
+ - Mohammed El-Hakim
+ - Pedro Faustino
  - Erik Geurts
  - Cédric Jouannin
  - Itai Lulu Koren
@@ -12,6 +14,14 @@ contributions to the code:
  - Segr
  - Stelios Skiathitis
  - Sunci Syz
+ - Heiko Weber
+ - Karen Mikaela Saavedra Chavez
+
+Please note: The Revive Adserver team does not have time to track every single
+pull request that is merged into the project. If you would like your name
+included in the above list, please include the change in your pull request or
+simply ask to have it added in GitHub. Otherwise, thank you so much to everyone
+who contributes but is not listed above!
 
 --------------------------------------------------------------------------------
 

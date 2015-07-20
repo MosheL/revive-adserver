@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
 
 // Require Advertiser Service Implementation
@@ -36,7 +34,7 @@ class BaseAdvertiserService
      * This method initialises Service implementation object field.
      *
      */
-    function BaseAdvertiserService()
+    function __construct()
     {
         $this->_oAdvertiserServiceImp = new AdvertiserServiceImpl();
     }

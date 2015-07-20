@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/pear/Config.php';
  * A class for managing the OpenX settings configuration file(s).
  *
  * @package    OpenXAdmin
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Settings
 {
@@ -41,7 +40,7 @@ class OA_Admin_Settings
      * The constructor method. Stores the current parse result of the
      * configuration .conf.php file so that it can be (locally) modified.
      */
-    function OA_Admin_Settings($isNewConfig = false)
+    function __construct($isNewConfig = false)
     {
         if ($isNewConfig) {
             $this->aConf = array();

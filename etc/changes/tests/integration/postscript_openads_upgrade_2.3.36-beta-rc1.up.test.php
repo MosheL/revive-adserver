@@ -17,7 +17,6 @@ require_once MAX_PATH.'/lib/OA/Upgrade/Upgrade.php';
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_postscript_2_3_36_beta_rc1 extends UnitTestCase
 {
@@ -28,7 +27,7 @@ class Test_postscript_2_3_36_beta_rc1 extends UnitTestCase
      */
     function Test_OA_Upgrade()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->prefix  = 'oaTest_';
     }
 

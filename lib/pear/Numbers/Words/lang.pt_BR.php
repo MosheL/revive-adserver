@@ -17,8 +17,6 @@
 // | Authors: Marcelo Subtil Marcal <jason@conectiva.com.br>, Mario H.C.T. <mariolinux@mitus.com.br>
 // +----------------------------------------------------------------------+
 //
-// $Id$
-//
 // Numbers_Words class extension to spell numbers in Brazilian Portuguese language.
 //
 
@@ -232,8 +230,8 @@ class Numbers_Words_pt_BR extends Numbers_Words
             $num = "0" . $num;
         }
 
-        $num = ereg_replace("(...)", "\\1.", $num);
-        $num = ereg_replace("\.$", "", $num);
+        $num = preg_replace("/(...)/D", "\\1.", $num);
+        $num = preg_replace("/\.$/D", "", $num);
 
         $inteiro = explode(".", $num);
 

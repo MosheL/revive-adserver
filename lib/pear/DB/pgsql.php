@@ -21,7 +21,6 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -152,9 +151,9 @@ class DB_pgsql extends DB_common
      *
      * @return void
      */
-    function DB_pgsql()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}
@@ -187,12 +186,12 @@ class DB_pgsql extends DB_common
      * Example of connecting to a new link via a socket:
      * <code>
      * require_once 'DB.php';
-     * 
+     *
      * $dsn = 'pgsql://user:pass@unix(/tmp)/dbname?new_link=true';
      * $options = array(
      *     'portability' => DB_PORTABILITY_ALL,
      * );
-     * 
+     *
      * $db =& DB::connect($dsn, $options);
      * if (PEAR::isError($db)) {
      *     die($db->getMessage());
@@ -209,7 +208,7 @@ class DB_pgsql extends DB_common
     function connect($dsn, $persistent = false)
     {
         if (!PEAR::loadExtension('pgsql')) {
-            return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
+            return $this->customRaiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
 
         $this->dsn = $dsn;
@@ -284,7 +283,7 @@ class DB_pgsql extends DB_common
         }
 
         if (!$this->connection) {
-            return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+            return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                      null, null, null,
                                      $php_errormsg);
         }
@@ -684,14 +683,14 @@ class DB_pgsql extends DB_common
                 $result = $this->createSequence($seq_name);
                 $this->popErrorHandling();
                 if (DB::isError($result)) {
-                    return $this->raiseError($result);
+                    return $this->customRaiseError($result);
                 }
             } else {
                 $repeat = false;
             }
         } while ($repeat);
         if (DB::isError($result)) {
-            return $this->raiseError($result);
+            return $this->customRaiseError($result);
         }
         $arr = $result->fetchRow(DB_FETCHMODE_ORDERED);
         $result->free();
@@ -782,7 +781,7 @@ class DB_pgsql extends DB_common
         if ($errno === null) {
             $errno = $this->errorCode($native);
         }
-        return $this->raiseError($errno, null, null, null, $native);
+        return $this->customRaiseError($errno, null, null, null, $native);
     }
 
     // }}}
@@ -791,7 +790,7 @@ class DB_pgsql extends DB_common
     /**
      * Gets the DBMS' native error message produced by the last query
      *
-     * {@internal Error messages are used instead of error codes 
+     * {@internal Error messages are used instead of error codes
      * in order to support older versions of PostgreSQL.}}
      *
      * @return string  the DBMS' error message

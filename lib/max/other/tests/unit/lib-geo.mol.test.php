@@ -17,16 +17,15 @@ require_once MAX_PATH . '/lib/max/other/lib-geo.inc.php';
  *
  * @package    OpenXPlugin
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew@m3.net>
  */
 class LibGeometryTest extends UnitTestCase
 {
      /**
      * The constructor method.
      */
-    function LibGeometryTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
 

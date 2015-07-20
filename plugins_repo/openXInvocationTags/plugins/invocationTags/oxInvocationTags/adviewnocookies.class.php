@@ -13,7 +13,6 @@
 /**
  * @package    OpenXPlugin
  * @subpackage InvocationTags
- * @author     Radek Maciaszek <radek@m3.net>
  */
 
 require_once LIB_PATH . '/Extension/invocationTags/InvocationTags.php';
@@ -59,7 +58,7 @@ class Plugins_InvocationTags_OxInvocationTags_adviewnocookies extends Plugins_In
      *
      * @return boolean  True - allowed, false - not allowed
      */
-    function isAllowed($extra)
+    function isAllowed($extra = null)
     {
         $isAllowed = parent::isAllowed($extra);
         if((is_array($extra) && $extra['delivery'] != MAX_ZoneEmail) || $this->maxInvocation->zone_invocation) {
@@ -103,8 +102,8 @@ class Plugins_InvocationTags_OxInvocationTags_adviewnocookies extends Plugins_In
     function generateInvocationCode()
     {
         $aComments = array(
-            'Third Party Comment'  => '', 
-            'SSL Delivery Comment' => '', 
+            'Third Party Comment'  => '',
+            'SSL Delivery Comment' => '',
             'Comment'              => '',
             );
         parent::prepareCommonInvocationData($aComments);

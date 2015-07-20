@@ -21,7 +21,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  * @static
  * @package    OpenXMaintenance
  * @subpackage Pruning
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Maintenance_Pruning extends MAX_Dal_Common
 {
@@ -29,9 +28,9 @@ class OA_Maintenance_Pruning extends MAX_Dal_Common
     /**
      * The class constructor method.
      */
-    function OA_Maintenance_Pruning()
+    function __construct()
     {
-        parent::MAX_Dal_Common();
+        parent::__construct();
     }
 
     function run()

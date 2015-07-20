@@ -19,17 +19,15 @@ require_once LIB_PATH . '/OperationInterval.php';
  *
  * @package    MaxDelivery
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_Max_Delivery_Log_A extends UnitTestCase
 {
     /**
      * The constructor method.
      */
-    function Test_Max_Delivery_Log_A()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

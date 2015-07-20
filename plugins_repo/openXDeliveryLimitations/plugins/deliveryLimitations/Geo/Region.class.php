@@ -28,8 +28,6 @@ require_once LIB_PATH . '/Extension/deliveryLimitations/DeliveryLimitationsComma
  *
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Andrew Hill <andrew@m3.net>
- * @author     Chris Nutting <chris@m3.net>
  *
  * @TODO Does this need to be updated to use =~ and !~ comparison operators?
  */
@@ -55,7 +53,7 @@ class Plugins_DeliveryLimitations_Geo_Region extends Plugins_DeliveryLimitations
      *
      * @return boolean
      */
-    function isAllowed()
+    function isAllowed($page = false)
     {
         return isset($GLOBALS['_MAX']['GEO_DATA']['region'])
             || $GLOBALS['_MAX']['CONF']['geotargeting']['showUnavailable'];

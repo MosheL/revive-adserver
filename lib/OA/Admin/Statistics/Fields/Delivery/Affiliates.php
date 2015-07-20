@@ -18,14 +18,13 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Fields/Delivery.php';
  * @abstract
  * @package    OpenXPlugin
  * @subpackage StatisticsFields
- * @author     Matteo Beccati <matteo@beccati.com>
  */
 class OA_StatisticsFieldsDelivery_Affiliates extends OA_StatisticsFieldsDelivery
 {
     /**
      * Constructor
      */
-    function OA_StatisticsFieldsDelivery_Affiliates()
+    function __construct()
     {
 
         $aConf = $GLOBALS['_MAX']['CONF'];

@@ -49,7 +49,7 @@ class MDB2Connection {
 	* @param object Connection Configuration information
 	* @access private
 	*/
-	function MDB2Connection(&$config) {
+	function __construct(&$config) {
 		$this->config =& $config;
 	}
 
@@ -154,7 +154,7 @@ class MDB2Connection {
 	* @access public
 	*/
 	function &NewRecord($DataSpace = NULL) {
-		$Record =& new MDB2Record($this);
+		$Record = new MDB2Record($this);
 		if (!is_null($DataSpace)) {
 			$Record->import($DataSpace->export());
 		}
@@ -171,7 +171,7 @@ class MDB2Connection {
 	* @access public
 	*/
 	function &NewRecordSet($query, $filter = NULL) {
-		$RecordSet =& new MDB2RecordSet($this, $query);
+		$RecordSet = new MDB2RecordSet($this, $query);
 		if (!is_null($filter)) {
 			$RecordSet->registerFilter($filter);
 		}
@@ -201,7 +201,7 @@ class MDB2Connection {
 	* @access public
 	*/
 	function &FindRecord($query) {
-		$Record =& new MDB2Record($this);
+		$Record = new MDB2Record($this);
 		$QueryId = $this->_execute($query);
 		$Record->properties =& $QueryId->fetchRow(MDB2_FETCHMODE_ASSOC);
 		$QueryId->free();
@@ -324,7 +324,7 @@ class MDB2Record extends DataSpace {
 	* @param MDB2Connection
 	* @access protected
 	*/
-	function MDB2Record(& $Connection) {
+	function __construct(& $Connection) {
 		$this->Connection = & $Connection;
 	}
 
@@ -491,7 +491,7 @@ class MDB2RecordSet extends MDB2Record {
 	* @param string SQL SELECT, SHOW, DESCRIBE, or EXPLAIN statement
 	* @access public
 	*/
-	function MDB2RecordSet($Connection, $Query_String) {
+	function __construct($Connection, $Query_String) {
 		$this->Connection = $Connection;
 		$this->Query = $Query_String;
 	}

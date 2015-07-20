@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -88,7 +87,7 @@ class Image_Graph_Layout_Horizontal extends Image_Graph_Layout
      * @param Image_Graph_Element $part2 The 2nd part of the layout
      * @param int $percentage The percentage of the layout to split at
      */
-    function Image_Graph_Layout_Horizontal(& $part1, & $part2, $percentage = 50)
+    function __construct(& $part1, & $part2, $percentage = 50)
     {
         parent::__construct();
         if (!is_a($part1, 'Image_Graph_Layout')) {
@@ -125,7 +124,7 @@ class Image_Graph_Layout_Horizontal extends Image_Graph_Layout
      * @return int The number of pixels the edge should be pushed
 	 * @since 0.3.0dev2
      * @access private
-     */    
+     */
     function _getAbsolute(&$part)
     {
         $part1Size = $this->_part1->_getAutoSize();
@@ -176,7 +175,7 @@ class Image_Graph_Layout_Horizontal extends Image_Graph_Layout
     function _done()
     {
         if (($this->_part1) && ($this->_part2)) {
-            return (($this->_part1->_done()) && ($this->_part2->_done()));            
+            return (($this->_part1->_done()) && ($this->_part2->_done()));
         }
         return true;
     }

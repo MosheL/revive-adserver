@@ -21,7 +21,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Dal_Maintenance_Common extends UnitTestCase
 {
@@ -29,9 +28,9 @@ class Test_OA_Dal_Maintenance_Common extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_Dal_Maintenance_Common()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

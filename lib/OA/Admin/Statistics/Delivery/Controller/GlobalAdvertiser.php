@@ -19,8 +19,6 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Delivery/CommonEntity.php';
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
- * @author     Matteo Beccati <matteo@beccati.com>
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Statistics_Delivery_Controller_GlobalAdvertiser extends OA_Admin_Statistics_Delivery_CommonEntity
 {
@@ -45,21 +43,6 @@ class OA_Admin_Statistics_Delivery_Controller_GlobalAdvertiser extends OA_Admin_
         $this->showDaySpanSelector = true;
 
         parent::__construct($aParams);
-    }
-
-    /**
-     * PHP4-style constructor
-     *
-     * @param array $aParams An array of parameters. The array should
-     *                       be indexed by the name of object variables,
-     *                       with the values that those variables should
-     *                       be set to. For example, the parameter:
-     *                       $aParams = array('foo' => 'bar')
-     *                       would result in $this->foo = bar.
-     */
-    function OA_Admin_Statistics_Delivery_Controller_GlobalAdvertiser($aParams)
-    {
-        $this->__construct($aParams);
     }
 
     /**
@@ -113,7 +96,7 @@ class OA_Admin_Statistics_Delivery_Controller_GlobalAdvertiser extends OA_Admin_
         // Summarise the values into a the totals array, & format
         $this->_summariseTotalsAndFormat($this->aEntitiesData);
 
-        
+
         $this->showHideLevels = array();
         switch ($this->startLevel)
         {

@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -342,7 +341,7 @@ class PEAR_PackageFile_v1
      *
      * - package name
      * - channel name
-     * - dependencies 
+     * - dependencies
      * @var boolean
      * @access private
      */
@@ -352,9 +351,9 @@ class PEAR_PackageFile_v1
      * @param bool determines whether to return a PEAR_Error object, or use the PEAR_ErrorStack
      * @param string Name of Error Stack class to use.
      */
-    function PEAR_PackageFile_v1()
+    function __construct()
     {
-        $this->_stack = &new PEAR_ErrorStack('PEAR_PackageFile_v1');
+        $this->_stack = new PEAR_ErrorStack('PEAR_PackageFile_v1');
         $this->_stack->setErrorMessageTemplate($this->_getErrorMessage());
         $this->_isValid = 0;
     }
@@ -1299,7 +1298,7 @@ class PEAR_PackageFile_v1
         if (!class_exists('PEAR_PackageFile_Generator_v1')) {
             require_once 'PEAR/PackageFile/Generator/v1.php';
         }
-        $a = &new PEAR_PackageFile_Generator_v1($this);
+        $a = new PEAR_PackageFile_Generator_v1($this);
         return $a;
     }
 
@@ -1322,7 +1321,7 @@ class PEAR_PackageFile_v1
             if (!class_exists('Archive_Tar')) {
                 require_once 'Archive/Tar.php';
             }
-            $tar = &new Archive_Tar($this->_archiveFile);
+            $tar = new Archive_Tar($this->_archiveFile);
             $tar->pushErrorHandling(PEAR_ERROR_RETURN);
             if ($file != 'package.xml' && $file != 'package2.xml') {
                 $file = $this->getPackage() . '-' . $this->getVersion() . '/' . $file;
@@ -1460,7 +1459,7 @@ class PEAR_PackageFile_v1
                     if (version_compare(zend_version(), '2.0', '<')) {
                         if (in_array(strtolower($data),
                             array('public', 'private', 'protected', 'abstract',
-                                  'interface', 'implements', 'throw') 
+                                  'interface', 'implements', 'throw')
                                  )) {
                             $this->_validateWarning(PEAR_PACKAGEFILE_ERROR_PHP5,
                                 array($file));

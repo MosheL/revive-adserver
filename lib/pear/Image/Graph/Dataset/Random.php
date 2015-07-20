@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -59,7 +58,7 @@ class Image_Graph_Dataset_Random extends Image_Graph_Dataset_Trivial
      * @param bool $includeZero Whether 0 should be included or not as an X
      *   value, may be omitted, default: false</false>
      */
-    function Image_Graph_Dataset_Random($count, $minimum, $maximum, $includeZero = false)
+    function __construct($count, $minimum, $maximum, $includeZero = false)
     {
         parent::__construct();
         $i = 0;

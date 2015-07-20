@@ -925,6 +925,7 @@ $query = "
             d.parameters AS parameters,
             d.transparent AS transparent,
             d.ext_bannertype AS ext_bannertype,
+            d.iframe_friendly AS iframe_friendly,
             az.priority AS priority,
             az.priority_factor AS priority_factor,
             az.to_be_delivered AS to_be_delivered,
@@ -1205,6 +1206,7 @@ $query = "
         d.parameters AS parameters,
         d.transparent AS transparent,
         d.ext_bannertype AS ext_bannertype,
+        d.iframe_friendly AS iframe_friendly,
         c.campaignid AS campaign_id,
         c.block AS block_campaign,
         c.capping AS cap_campaign,
@@ -1415,6 +1417,7 @@ $aColumns = array(
 'd.parameters AS parameters',
 'd.transparent AS transparent',
 'd.ext_bannertype AS ext_bannertype',
+'d.iframe_friendly AS iframe_friendly',
 'az.priority AS priority',
 'az.priority_factor AS priority_factor',
 'az.to_be_delivered AS to_be_delivered',
@@ -2448,6 +2451,7 @@ function MAX_commonSetNoCacheHeaders()
 MAX_header('Pragma: no-cache');
 MAX_header('Cache-Control: private, max-age=0, no-cache');
 MAX_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+MAX_header('Access-Control-Allow-Origin: *');
 }
 function MAX_commonAddslashesRecursive($a)
 {
@@ -2630,6 +2634,13 @@ function MAX_header($value)
 function MAX_redirect($url)
 {
 if (!preg_match('/^(?:javascript|data):/i', $url)) {
+$host = @parse_url($url, PHP_URL_HOST);
+if (function_exists('idn_to_ascii')) {
+$idn = idn_to_ascii($host);
+if ($host != $idn) {
+$url = preg_replace('#^(.*?://)'.preg_quote($host, '#').'#', '$1'.$idn, $url);
+}
+}
 header('Location: '.$url);
 MAX_sendStatusCode(302);
 }
@@ -3288,12 +3299,21 @@ $append = !empty($aBanner['append']) ? $aBanner['append'] : '';
 $width = !empty($aBanner['width']) ? $aBanner['width'] : 0;
 $height = !empty($aBanner['height']) ? $aBanner['height'] : 0;
 $pluginVersion = !empty($aBanner['pluginversion']) ? _adRenderGetRealPluginVersion($aBanner['pluginversion']) : '4';
+$logURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&');
 if (!empty($aBanner['alt_filename']) || !empty($aBanner['alt_imageurl'])) {
 $altImageAdCode = _adRenderImage($aBanner, $zoneId, $source, $ct0, false, $logClick, false, true, true, $loc, $referer, false);
 $fallBackLogURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&', true);
 } else {
-$altImageAdCode = "<img src='" . _adRenderBuildImageUrlPrefix() . '/1x1.gif' . "' alt='".$aBanner['alt']."' title='".$aBanner['alt']."' border='0' />";
+$alt = !empty($aBanner['alt']) ? htmlspecialchars($aBanner['alt'], ENT_QUOTES) : '';
+$altImageAdCode = "<img src='" . _adRenderBuildImageUrlPrefix() . '/1x1.gif' . "' alt='".$alt."' title='".$alt."' border='0' />";
+if ($zoneId) {
+$fallBackLogURL = _adRenderBuildLogURL(array(
+'ad_id' => 0,
+'placement_id' => 0,
+), $zoneId, $source, $loc, $referer, '&', true);
+} else {
 $fallBackLogURL = false;
+}
 }
 $clickUrl = _adRenderBuildClickUrl($aBanner, $zoneId, $source, $ct0, $logClick);
 if (!empty($clickUrl)) {  $status = _adRenderBuildStatusCode($aBanner);
@@ -3320,30 +3340,28 @@ $swfParams["atar{$iKey}"] = $aSwf['tar'];
 }
 }
 $fileUrl = _adRenderBuildFileUrl($aBanner, false);
-$rnd = md5(microtime());
+$id = 'rv_swf_{random}';
 $swfId = (!empty($aBanner['alt']) ? $aBanner['alt'] : 'Advertisement');
+$swfId = 'id-' . preg_replace('/[a-z0-1]+/', '', strtolower($swfId));
 $code = "
-<div id='ox_$rnd' style='display: inline;'>$altImageAdCode</div>
+<div id='{$id}' style='display: inline;'>$altImageAdCode</div>
 <script type='text/javascript'><!--/"."/ <![CDATA[
     var ox_swf = new FlashObject('{$fileUrl}', '{$swfId}', '{$width}', '{$height}', '{$pluginVersion}');\n";
 foreach ($swfParams as $key => $value) {
 $code .= "    ox_swf.addVariable('{$key}', '" . preg_replace('#%7B(.*?)%7D#', '{$1}', urlencode($value)) . "');\n";
 }
 if (!empty($aBanner['transparent'])) {
-$code .= "\n   ox_swf.addParam('wmode','transparent');";
+$code .= "    ox_swf.addParam('wmode','transparent');\n";
 } else {
-$code .= "\n   ox_swf.addParam('wmode','opaque');";
+$code .= "    ox_swf.addParam('wmode','opaque');\n";
 }
-$code .= "
-    ox_swf.addParam('allowScriptAccess','always');
-    ox_swf.write('ox_$rnd');\n";
+$code .= "    ox_swf.addParam('allowScriptAccess','always');\n";
 if ($logView && $conf['logging']['adImpressions']) {
-$code .= "    if (ox_swf.installedVer.versionIsValid(ox_swf.getAttribute('version'))) { document.write(\""._adRenderImageBeacon($aBanner, $zoneId, $source, $loc, $referer)."\"); }";
-if ($fallBackLogURL) {
-$code .= ' else { document.write("'._adRenderImageBeacon($aBanner, $zoneId, $source, $loc, $referer, $fallBackLogURL).'"); }';
+$code .= "    ox_swf.write('{$id}', ".json_encode($logURL).", ".json_encode($fallBackLogURL).");\n";
+} else {
+$code .= "    ox_swf.write('{$id}');\n";
 }
-}
-$code .= "\n/"."/ ]]> --></script>";
+$code .= "/"."/ ]]> --></script>";
 if ($fallBackLogURL) {
 $code .= '<noscript>' . _adRenderImageBeacon($aBanner, $zoneId, $source, $loc, $referer, $fallBackLogURL) . '</noscript>';
 }
@@ -3356,7 +3374,7 @@ $aConf = $GLOBALS['_MAX']['CONF'];
 if (!function_exists('Plugin_BannerTypeHtml_delivery_adRender')) {
 @include LIB_PATH . '/Extension/bannerTypeHtml/bannerTypeHtmlDelivery.php';
 }
-return Plugin_BannerTypeHtml_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $loc, $referer);
+return Plugin_BannerTypeHtml_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $richMedia, $loc, $referer);
 }
 function _adRenderText(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $richMedia=false, $loc='', $referer='', $context=array())
 {
@@ -3364,7 +3382,7 @@ $aConf = $GLOBALS['_MAX']['CONF'];
 if (!function_exists('Plugin_BannerTypeText_delivery_adRender')) {
 @include LIB_PATH . '/Extension/bannerTypeText/bannerTypeTextDelivery.php';
 }
-return Plugin_BannerTypeText_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $loc, $referer);
+return Plugin_BannerTypeText_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $richMedia, $loc, $referer);
 }
 function _adRenderBuildFileUrl($aBanner, $useAlt = false, $params = '')
 {
@@ -3597,7 +3615,7 @@ $originalCampaignId = intval(substr($what,11));
 } elseif (strpos($what, 'bannerid:') === 0) {
 $originalBannerId = intval(substr($what,9));
 }
-$userid = MAX_cookieGetUniqueViewerID();
+$userid = MAX_cookieGetUniqueViewerId();
 MAX_cookieAdd($conf['var']['viewerId'], $userid, _getTimeYearFromNow());
 $outputbuffer = '';
 $found = false;
@@ -3683,7 +3701,8 @@ $output = array(
 'bannerContent' => $row['bannerContent'],
 'clickwindow' => $row['clickwindow'],
 'aRow' => $row,
-'context' => _adSelectBuildContext($row, $context)
+'context' => _adSelectBuildContext($row, $context),
+'iframeFriendly' => (bool)$row['iframe_friendly'],
 );
 $row += array(
 'block_ad' => 0,
@@ -3709,6 +3728,13 @@ MAX_Delivery_cookie_setCapping('Zone', $row['zoneid'], $row['block_zone'], $row[
 MAX_Delivery_log_setLastAction(0, array($row['bannerid']), array($zoneId), array($row['viewwindow']));
 }
 } else {
+if (!empty($zoneId)) {
+$logUrl = _adRenderBuildLogURL(array(
+'ad_id' => 0,
+'placement_id' => 0,
+), $zoneId, $source, $loc, $referer, '&');
+$g_append = str_replace('{random}', MAX_getRandomNumber(), MAX_adRenderImageBeacon($logUrl)).$g_append;
+}
 if (!empty($row['default'])) {
 if (empty($target)) {
 $target = '_blank';  }
@@ -4328,7 +4354,13 @@ function MAX_{$row['bannerid']}_pop() {
       }
       MAX_{$row['bannerid']}.resizeTo(outerX, outerY);
     }";
-if (!empty($left) && !empty($top)) {
+if (!empty($left) || !empty($top)) {
+if (!isset($left) || empty($left)) {
+$left = 0;
+}
+if (!isset($top) || empty($top)) {
+$top = 0;
+}
 echo "
     if (window.moveTo) {";
 if ($left == 'center') {

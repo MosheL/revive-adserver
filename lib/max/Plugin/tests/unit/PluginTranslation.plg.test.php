@@ -13,7 +13,6 @@
 /**
  * @package    Max
  * @subpackage TestSuite
- * @author     Radek Maciaszek <radek@m3.net>
  */
 
     require_once(MAX_PATH . '/lib/max/Plugin/Translation.php');
@@ -22,8 +21,8 @@
 
     class TestOfPluginTranslation extends UnitTestCase {
 
-        function TestOfPluginTranslation() {
-            $this->UnitTestCase('PluginTranslation test');
+        function __construct() {
+            parent::__construct('PluginTranslation test');
         }
 
         function testIncludePluginLanguageFile() {
@@ -89,7 +88,7 @@
             $package = 'packageName';
             $processSections = false;
 
-            $mockPlugin = &new MockMAX_Plugin($this);
+            $mockPlugin = new MockMAX_Plugin($this);
             $mockPlugin->setReturnValue('getConfigByFileName', true);
 
             $mockPlugin->expectOnce('getConfigByFileName');

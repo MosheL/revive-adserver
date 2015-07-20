@@ -16,7 +16,6 @@
  * @author     Gregory Beaver <cellog@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since PEAR 0.1
  */
@@ -74,7 +73,7 @@
 // Darwin home-eden.local 7.5.0 Darwin Kernel Version 7.5.0: Thu Aug  5 19:26:16 PDT 2004; root:xnu/xnu-517.7.21.obj~3/RELEASE_PPC  Power Macintosh
 //
 // Mac OS X early versions
-// 
+//
 
 // }}}
 
@@ -105,7 +104,7 @@ class OS_Guess
     var $release;
     var $extra;
 
-    function OS_Guess($uname = null)
+    function __construct($uname = null)
     {
         list($this->sysname,
              $this->release,
@@ -128,7 +127,7 @@ class OS_Guess
         if ($uname === null) {
             $uname = php_uname();
         }
-        $parts = split('[[:space:]]+', trim($uname));
+        $parts = preg_split('/[[:space:]]+/D', trim($uname));
         $n = count($parts);
 
         $release = $machine = $cpu = '';
@@ -158,7 +157,7 @@ class OS_Guess
             case 'Linux' :
                 $extra = $this->_detectGlibcVersion();
                 // use only the first two digits from the kernel version
-                $release = ereg_replace('^([[:digit:]]+\.[[:digit:]]+).*', '\1', $parts[2]);
+                $release = preg_replace('/^([[:digit:]]+\.[[:digit:]]+).*/D', '\1', $parts[2]);
                 break;
             case 'Mac' :
                 $sysname = 'darwin';
@@ -176,10 +175,10 @@ class OS_Guess
                         $cpu = 'powerpc';
                     }
                 }
-                $release = ereg_replace('^([[:digit:]]+\.[[:digit:]]+).*', '\1', $parts[2]);
+                $release = preg_replace('/^([[:digit:]]+\.[[:digit:]]+).*/D', '\1', $parts[2]);
                 break;
             default:
-                $release = ereg_replace('-.*', '', $parts[2]);
+                $release = preg_replace('/-.*/D', '', $parts[2]);
                 break;
         }
 
@@ -258,7 +257,7 @@ class OS_Guess
         } // features.h
         if (!($major && $minor) && @is_link('/lib/libc.so.6')) {
             // Let's try reading the libc.so.6 symlink
-            if (ereg('^libc-(.*)\.so$', basename(readlink('/lib/libc.so.6')), $matches)) {
+            if (preg_match('/^libc-(.*)\.so$/D', basename(readlink('/lib/libc.so.6')), $matches)) {
                 list($major, $minor) = explode('.', $matches[1]);
             }
         }
@@ -328,8 +327,8 @@ class OS_Guess
     function _matchFragment($fragment, $value)
     {
         if (strcspn($fragment, '*?') < strlen($fragment)) {
-            $reg = '^' . str_replace(array('*', '?', '/'), array('.*', '.', '\\/'), $fragment) . '$';
-            return eregi($reg, $value);
+            $reg = '/^' . str_replace(array('*', '?', '/'), array('.*', '.', '\\/'), $fragment) . '$/Di';
+            return preg_match($reg, $value);
         }
         return ($fragment == '*' || !strcasecmp($fragment, $value));
     }

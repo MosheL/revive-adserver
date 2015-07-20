@@ -27,9 +27,6 @@ require_once LIB_PATH . '/Extension/reports/Reports.php';
  *
  * @package    OpenXPlugin
  * @subpackage Reports
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Chris Nutting <chris@m3.net>
- * @author     Radek Maciaszek <radek@m3.net>
  */
 class Plugins_Reports_OxReportsAdmin_Breakdown extends Plugins_Reports
 {
@@ -88,7 +85,7 @@ class Plugins_Reports_OxReportsAdmin_Breakdown extends Plugins_Reports
         phpAds_SessionDataStore();
     }
 
-    function execute($oDaySpan)
+    function execute($oDaySpan = null)
     {
         $this->isAllowedToExecute();
         // Prepare the range information for the report

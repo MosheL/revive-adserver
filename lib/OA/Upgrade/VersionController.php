@@ -15,7 +15,6 @@ require_once MAX_PATH.'/lib/OA/Dal.php';
 /**
  * OpenX Upgrade Class
  *
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class OA_Version_Controller
 {
@@ -25,7 +24,7 @@ class OA_Version_Controller
 
     var $versionTablename;
 
-    function OA_Version_Controller()
+    function __construct()
     {
 
     }

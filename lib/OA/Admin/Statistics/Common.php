@@ -27,8 +27,6 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/History.php';
  *
  * @package    OpenXAdmin
  * @subpackage Statistics
- * @author     Matteo Beccati <matteo@beccati.com>
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
 {
@@ -323,9 +321,6 @@ class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
         }
         $this->coreParams = self::getCoreParams();
 
-        $this->strMarketCampaignOptin = $GLOBALS['strMarketCampaignOptin'];
-        $this->strMarketZoneOptin = $GLOBALS['strMarketZoneOptin'];
-
         // Ensure that the entity/breakdown values are set
         if (empty($this->entity)) {
             $this->entity = 'entity';
@@ -396,20 +391,6 @@ class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
     {
         $coreParams = array();
         return $coreParams;
-    }
-    /**
-     * PHP4-style constructor
-     *
-     * @param array $aParams An array of parameters. The array should
-     *                       be indexed by the name of object variables,
-     *                       with the values that those variables should
-     *                       be set to. For example, the parameter:
-     *                       $aParams = array('foo' => 'bar')
-     *                       would result in $this->foo = bar.
-     */
-    function OA_Admin_Statistics_Common($aParams)
-    {
-        $this->__construct($aParams);
     }
 
     function prepare(&$aParams)

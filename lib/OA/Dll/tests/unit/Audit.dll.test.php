@@ -18,9 +18,6 @@ require_once MAX_PATH . '/lib/OA/Dll/tests/util/DllUnitTestCase.php';
  *
  * @package    OpenadsDll
  * @subpackage TestSuite
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- * @author     Alexander J. Tarachanowicz II <aj.tarachanowicz@openads.org>
- *
  */
 
 
@@ -36,9 +33,9 @@ class OA_Dll_AuditTest extends DllUnitTestCase
     /**
      * The constructor method.
      */
-    function OA_Dll_AuditTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generatePartial(
             'OA_Dll_Audit',
             'PartialMockOA_Dll_Audit',
@@ -72,7 +69,7 @@ class OA_Dll_AuditTest extends DllUnitTestCase
 
         $oSpanDay  = new Date_Span('1-0-0-0');
 
-        $oDate = & new Date(OA::getNow());
+        $oDate = new Date(OA::getNow());
         $oDate->toUTC();
         $oDate->subtractSpan(new Date_Span('8-0-0-0'));
 
@@ -127,7 +124,7 @@ class OA_Dll_AuditTest extends DllUnitTestCase
 
         $oSpanDay  = new Date_Span('1-0-0-0');
 
-        $oDate = & new Date(OA::getNow());
+        $oDate = new Date(OA::getNow());
         $oDate->toUTC();
         $oDate->subtractSpan(new Date_Span('8-0-0-0'));
 
@@ -218,7 +215,7 @@ class OA_Dll_AuditTest extends DllUnitTestCase
 
         $oSpanDay  = new Date_Span('1-0-0-0');
 
-        $oSpanDate = & new Date(OA::getNow());
+        $oSpanDate = new Date(OA::getNow());
         $oSpanDate->toUTC();
         $oSpanDate->subtractSpan(new Date_Span('8-0-0-0'));
 
@@ -301,7 +298,7 @@ class OA_Dll_AuditTest extends DllUnitTestCase
 
         $oSpanDay  = new Date_Span('1-0-0-0');
 
-        $oDate = & new Date(OA::getNow());
+        $oDate = new Date(OA::getNow());
         $oDate->toUTC();
         $oDate->subtractSpan(new Date_Span('8-0-0-0'));
 
@@ -386,7 +383,7 @@ class OA_Dll_AuditTest extends DllUnitTestCase
 
         $oSpanDay  = new Date_Span('1-0-0-0');
 
-        $oDate = & new Date(OA::getNow());
+        $oDate = new Date(OA::getNow());
         $oDate->toUTC();
         $oDate->subtractSpan(new Date_Span('8-0-0-0'));
 
@@ -489,7 +486,7 @@ class OA_Dll_AuditTest extends DllUnitTestCase
 
         $oSpanDay  = new Date_Span('1-0-0-0');
 
-        $oDate = & new Date(OA::getNow());
+        $oDate = new Date(OA::getNow());
         $oDate->toUTC();
         $oDate->subtractSpan(new Date_Span('8-0-0-0'));
 

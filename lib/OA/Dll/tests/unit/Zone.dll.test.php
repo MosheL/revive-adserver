@@ -22,8 +22,6 @@ require_once MAX_PATH . '/lib/max/Dal/DataObjects/Campaigns.php';
  *
  * @package    OpenXDll
  * @subpackage TestSuite
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
 
 
@@ -44,9 +42,9 @@ class OA_Dll_ZoneTest extends DllUnitTestCase
     /**
      * The constructor method.
      */
-    function OA_Dll_ZoneTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generatePartial(
             'OA_Dll_Publisher',
             'PartialMockOA_Dll_Publisher_ZoneTest',

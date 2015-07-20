@@ -33,7 +33,6 @@
  * @author     Richard Heyes <richard@phpguru.org>,
  * @copyright  2003-2006 Lorenzo Alberton, Richard Heyes
  * @license    http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Pager
  */
 
@@ -65,7 +64,7 @@ class Pager_Jumping extends Pager_Common
      *                          and their values
      * @access public
      */
-    function Pager_Jumping($options = array())
+    function __construct($options = array())
     {
         $err = $this->setOptions($options);
         if ($err !== PAGER_OK) {

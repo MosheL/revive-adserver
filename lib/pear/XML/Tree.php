@@ -13,14 +13,11 @@
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Authors: Bernd Römer <berndr@bonn.edu>                               |
+// | Authors: Bernd Rï¿½mer <berndr@bonn.edu>                               |
 // |          Sebastian Bergmann <sb@sebastian-bergmann.de>               |
 // |          Tomas V.V.Cox <cox@idecnet.com>                             |
 // |          Michele Manzato <michele.manzato@verona.miz.it>             |
 // +----------------------------------------------------------------------+
-//
-// $Id$
-//
 
 require_once 'XML/Parser.php';
 require_once 'XML/Tree/Node.php';
@@ -42,7 +39,7 @@ require_once 'XML/Tree/Node.php';
  *
  *    $tree->dump(true);
  *
- * @author  Bernd Römer <berndr@bonn.edu>
+ * @author  Bernd Rï¿½mer <berndr@bonn.edu>
  * @package XML
  * @version $Version$ - 1.0
  */
@@ -97,7 +94,7 @@ class XML_Tree extends XML_Parser
      * @param  string  filename  Filename where to read the XML
      * @param  string  version   XML Version to apply
      */
-    function XML_Tree($filename = '', $version = '1.0')
+    function __construct($filename = '', $version = '1.0')
     {
         $this->filename = $filename;
         $this->version  = $version;
@@ -126,7 +123,7 @@ class XML_Tree extends XML_Parser
         if (!is_null($this->root)) {
             return $this->root;
         }
-        return $this->raiseError("No root");
+        return $this->customRaiseError("No root");
     }
 
     /**
@@ -232,7 +229,7 @@ class XML_Tree extends XML_Parser
     function &getTreeFromFile ()
     {
         $this->folding = false;
-        $this->XML_Parser(null, 'event');
+        parent::__construct(null, 'event');
         $err = $this->setInputFile($this->filename);
         if (PEAR::isError($err)) {
             return $err;
@@ -255,7 +252,7 @@ class XML_Tree extends XML_Parser
     {
         $this->i = null;
         $this->folding = false;
-        $this->XML_Parser(null, 'event');
+        parent::__construct(null, 'event');
         $this->cdata = null;
         $err = $this->parseString($str);
         if (PEAR::isError($err)) {
@@ -286,10 +283,10 @@ class XML_Tree extends XML_Parser
             if (!empty($this->cdata)) {
                 $parent_id = 'obj' . ($this->i - 1);
                 $parent    =& $this->$parent_id;
-                $parent->children[] = &new XML_Tree_Node(null, $this->cdata, null, $lineno);
+                $parent->children[] = new XML_Tree_Node(null, $this->cdata, null, $lineno);
             }
             $obj_id = 'obj' . $this->i++;
-            $this->$obj_id = &new XML_Tree_Node($elem, null, $attribs, $lineno);
+            $this->$obj_id = new XML_Tree_Node($elem, null, $attribs, $lineno);
         }
         $this->cdata = null;
         return null;
@@ -314,7 +311,7 @@ class XML_Tree extends XML_Parser
             // mixed contents
             if (count($node->children) > 0) {
                 if (trim($this->cdata) != '') {
-                    $node->children[] = &new XML_Tree_Node(null, $this->cdata);
+                    $node->children[] = new XML_Tree_Node(null, $this->cdata);
                 }
             } else {
                 $node->setContent($this->cdata);
@@ -327,7 +324,7 @@ class XML_Tree extends XML_Parser
             $node =& $this->obj1;
             if (count($node->children) > 0) {
                 if (trim($this->cdata)) {
-                    $node->children[] = &new XML_Tree_Node(null, $this->cdata);
+                    $node->children[] = new XML_Tree_Node(null, $this->cdata);
                 }
             } else {
                 $node->setContent($this->cdata);
@@ -404,7 +401,7 @@ class XML_Tree extends XML_Parser
         if (!is_null($this->root))
         {
             if(!is_object($this->root) || (strtolower(get_class($this->root)) != 'xml_tree_node'))
-            return $this->raiseError("Bad XML root node");
+            return $this->customRaiseError("Bad XML root node");
             $out .= $this->root->get($this->use_cdata_sections);
         }
         return $out;
@@ -458,24 +455,24 @@ class XML_Tree extends XML_Parser
     function &getNodeAt($path)
     {
         if (is_null($this->root)){
-            return $this->raiseError("XML_Tree hasn't a root node");
+            return $this->customRaiseError("XML_Tree hasn't a root node");
         }
         if (is_string($path))
             $path = explode("/", $path);
         if (sizeof($path) == 0) {
-            return $this->raiseError("Path to node is empty");
+            return $this->customRaiseError("Path to node is empty");
         }
         $path1 = $path;
         $rootName = array_shift($path1);
         if ($this->root->name != $rootName) {
-            return $this->raiseError("Path does not match the document root");
+            return $this->customRaiseError("Path does not match the document root");
         }
         $x =& $this->root->getNodeAt($path1);
         if (!PEAR::isError($x)) {
             return $x;
         }
         // No node with that name found
-        return $this->raiseError("Bad path to node: [".implode('/', $path)."]");
+        return $this->customRaiseError("Bad path to node: [".implode('/', $path)."]");
     }
 
     /**
@@ -491,7 +488,7 @@ class XML_Tree extends XML_Parser
     function &getElementsByTagName($tagName)
     {
         if (empty($tagName)) {
-            return $this->raiseError('Empty tag name');
+            return $this->customRaiseError('Empty tag name');
         }
         $result = array();
         foreach ($this->root->children as $child) {
@@ -517,7 +514,7 @@ class XML_Tree extends XML_Parser
     function &getElementsByTagNameFromNode($tagName, &$node)
     {
         if (empty($tagName)) {
-            return $this->raiseError('Empty tag name');
+            return $this->customRaiseError('Empty tag name');
         }
         $result = array();
         foreach ($node->children as $child) {

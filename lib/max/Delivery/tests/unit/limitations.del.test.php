@@ -18,8 +18,6 @@ require_once MAX_PATH . '/lib/max/Delivery/limitations.php';
  *
  * @package    MaxDelivery
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_DeliveryLimitations extends UnitTestCase
 {
@@ -31,7 +29,7 @@ class Test_DeliveryLimitations extends UnitTestCase
      */
     function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

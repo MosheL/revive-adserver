@@ -18,9 +18,6 @@ require_once LIB_PATH . '/Dal/Maintenance/Statistics/Factory.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     James Floyd <james@m3.net>
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Demian Turner <demian@m3.net>
  */
 class Test_OX_Dal_Maintenance_Statistics_saveSummary extends UnitTestCase
 {
@@ -28,9 +25,9 @@ class Test_OX_Dal_Maintenance_Statistics_saveSummary extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Dal_Maintenance_Statistics_saveSummary()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

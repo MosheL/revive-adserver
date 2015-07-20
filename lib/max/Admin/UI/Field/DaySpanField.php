@@ -14,7 +14,6 @@
  * A view field for the OA_Admin_DaySpan object.
  *
  * @package    Max
- * @author     Scott Switzer <scott@switzer.org>
  */
 require_once MAX_PATH . '/lib/max/Admin/UI/Field.php';
 
@@ -35,7 +34,7 @@ class Admin_UI_DaySpanField extends Admin_UI_Field
      * @param array $aFieldSelectionNames A list of the predefined 'friendly' selections.
      * @param string $fieldSelectionDefault The default selection.
      */
-    function Admin_UI_DaySpanField($name = 'DaySpanField',
+    function __construct($name = 'DaySpanField',
                          $fieldSelectionDefault = 'last_month',
                          $aFieldSelectionNames = null
                         )

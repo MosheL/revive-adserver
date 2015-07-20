@@ -40,8 +40,6 @@
 // +----------------------------------------------------------------------+
 // | Author: Paul Cooper <pgc@ucecom.com>                                 |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 require_once 'MDB2/Schema.php';
 
@@ -62,7 +60,7 @@ class MDB2_Schema_TestCase extends PHPUnit_TestCase {
     var $backup_extension = '.before';
 
     function MDB2_Schema_Test($name) {
-        $this->PHPUnit_TestCase($name);
+        parent::__construct($name);
     }
 
     function setUp() {

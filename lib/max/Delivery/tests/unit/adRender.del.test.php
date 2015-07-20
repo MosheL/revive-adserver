@@ -17,7 +17,6 @@ require_once MAX_PATH . '/lib/max/Delivery/adRender.php';
  *
  * @package    MaxDelivery
  * @subpackage TestSuite
- * @author
  *
  */
 class Test_DeliveryAdRender extends UnitTestCase
@@ -28,7 +27,7 @@ class Test_DeliveryAdRender extends UnitTestCase
      */
     function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

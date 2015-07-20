@@ -15,9 +15,6 @@
  *
  * @package    OpenXDal
  * @subpackage Delivery
- * @author     Chris Nutting <chris.nutting@openx.org>
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 
 
@@ -348,10 +345,10 @@ function OA_Dal_Delivery_getPublisherZones($publisherid) {
  * @return array|false
  *               The array containg zone information with nested arrays of linked ads
  *               or false on failure. Note that:
- *                  - Contract (exclusive) campaign creatives are in "xAds"
+ *                  - Override campaign creatives are in "xAds"
  *                  - Contract campaign creatives are in "ads"
  *                  - Remnant campaign creatives ads are in "lAds"
- *                  - Contract (Exclusive) and Remnant campaign creatives have had
+ *                  - Override and Remnant campaign creatives have had
  *                    their priorities calculated on the basis of the campaign and
  *                    creative weights
  */
@@ -415,6 +412,7 @@ function OA_Dal_Delivery_getZoneLinkedAds($zoneid) {
             d.parameters AS parameters,
             d.transparent AS transparent,
             d.ext_bannertype AS ext_bannertype,
+            d.iframe_friendly AS iframe_friendly,
             az.priority AS priority,
             az.priority_factor AS priority_factor,
             az.to_be_delivered AS to_be_delivered,
@@ -464,9 +462,9 @@ function OA_Dal_Delivery_getZoneLinkedAds($zoneid) {
 
     while ($aAd = OA_Dal_Delivery_fetchAssoc($rAds)) {
         $aAd['tracker_status'] = (!empty($aConversionLinkedCreatives[$aAd['ad_id']]['status'])) ? $aConversionLinkedCreatives[$aAd['ad_id']]['status'] : null;
-        // Is the creative from a contract (exclusive), contract or remnant campaign?
+        // Is the creative from an override, contract or remnant campaign?
         if ($aAd['campaign_priority'] == -1) {
-            // Creative is in a contract (exclusive) campaign
+            // Creative is in an override campaign
             $aRows['xAds'][$aAd['ad_id']] = $aAd;
             $aRows['count_active']++;
         } elseif ($aAd['campaign_priority'] == 0) {
@@ -487,7 +485,7 @@ function OA_Dal_Delivery_getZoneLinkedAds($zoneid) {
             $aRows['zone_companion'][] = $aAd['placement_id'];
         }
     }
-    // If there are contract (exclusive) campaign creatives, sort by priority
+    // If there are override campaign creatives, sort by priority
     if (is_array($aRows['xAds'])) {
         $totals['xAds'] = _setPriorityFromWeights($aRows['xAds']);
     }
@@ -517,10 +515,10 @@ function OA_Dal_Delivery_getZoneLinkedAds($zoneid) {
  * @return array|false
  *               The array containg zone information with nested arrays of linked ads
  *               or false on failure. Note that:
- *                  - Contract (exclusive) campaign creatives are in "xAds"
+ *                  - Override campaign creatives are in "xAds"
  *                  - Contract campaign creatives are in "ads"
  *                  - Remnant campaign creatives ads are in "lAds"
- *                  - Contract (Exclusive) and Remnant campaign creatives have had
+ *                  - Override and Remnant campaign creatives have had
  *                    their priorities calculated on the basis of the campaign and
  *                    creative weights
  */
@@ -594,9 +592,9 @@ function OA_Dal_Delivery_getZoneLinkedAdInfos($zoneid) {
     }
 
     while ($aAd = OA_Dal_Delivery_fetchAssoc($rAds)) {
-        // Is the creative from a contract (exclusive), contract or remnant campaign?
+        // Is the creative from an override, contract or remnant campaign?
         if ($aAd['campaign_priority'] == -1) {
-            // Creative is in a contract (exclusive) campaign
+            // Creative is in an override campaign
             $aRows['xAds'][$aAd['ad_id']] = $aAd;
             $aRows['count_active']++;
         } elseif ($aAd['campaign_priority'] == 0) {
@@ -666,9 +664,9 @@ function OA_Dal_Delivery_getLinkedAdInfos($search, $campaignid = '', $lastpart =
     }
 
     while ($aAd = OA_Dal_Delivery_fetchAssoc($rAds)) {
-        // Is the creative from a contract (exclusive), contract or remnant campaign?
+        // Is the creative from an override, contract or remnant campaign?
         if ($aAd['campaign_priority'] == -1) {
-            // Creative is in a contract (exclusive) campaign
+            // Creative is in an override campaign
             $aAd['priority'] = $aAd['campaign_weight'] * $aAd['weight'];
             $aRows['xAds'][$aAd['ad_id']] = $aAd;
             $aRows['count_active']++;
@@ -742,9 +740,9 @@ function OA_Dal_Delivery_getLinkedAds($search, $campaignid = '', $lastpart = tru
 
     while ($aAd = OA_Dal_Delivery_fetchAssoc($rAds)) {
         $aAd['tracker_status'] = (!empty($aConversionLinkedCreatives[$aAd['ad_id']]['status'])) ? $aConversionLinkedCreatives[$aAd['ad_id']]['status'] : null;
-        // Is the creative from a contract (exclusive), contract or remnant campaign?
+        // Is the creative from an override, contract or remnant campaign?
         if ($aAd['campaign_priority'] == -1) {
-            // Creative is in a contract (exclusive) campaign
+            // Creative is in an override campaign
             $aAd['priority'] = $aAd['campaign_weight'] * $aAd['weight'];
             $aRows['xAds'][$aAd['ad_id']] = $aAd;
             $aRows['count_active']++;
@@ -765,7 +763,7 @@ function OA_Dal_Delivery_getLinkedAds($search, $campaignid = '', $lastpart = tru
             $aRows['count_active']++;
         }
     }
-    // If there are contract (exclusive) campaign creatives, sort by priority
+    // If there are override campaign creatives, sort by priority
     if (isset($aRows['xAds']) && is_array($aRows['xAds'])) {
         $totals['xAds'] = _setPriorityFromWeights($aRows['xAds']);
     }
@@ -844,6 +842,7 @@ function OA_Dal_Delivery_getAd($ad_id) {
         d.parameters AS parameters,
         d.transparent AS transparent,
         d.ext_bannertype AS ext_bannertype,
+        d.iframe_friendly AS iframe_friendly,
         c.campaignid AS campaign_id,
         c.block AS block_campaign,
         c.capping AS cap_campaign,
@@ -1113,6 +1112,7 @@ function OA_Dal_Delivery_buildQuery($part, $lastpart, $precondition)
             'd.parameters AS parameters',
             'd.transparent AS transparent',
             'd.ext_bannertype AS ext_bannertype',
+            'd.iframe_friendly AS iframe_friendly',
             'az.priority AS priority',
             'az.priority_factor AS priority_factor',
             'az.to_be_delivered AS to_be_delivered',
@@ -1731,7 +1731,7 @@ function OA_Dal_Delivery_buildAdInfoQuery($part, $lastpart, $precondition)
 
 
 /**
- * A private function to calculate priority for contract (exclusive) and remnant campagins
+ * A private function to calculate priority for override and remnant campagins
  *
  * @param  array $aAds Ads array
  *

@@ -23,9 +23,6 @@ require_once OX_PATH . '/lib/OX.php';
  * @abstract
  * @package    OpenXMaintenance
  * @subpackage Statistics
- * @author     Andrew Hill <andrew.hill@openx.org>
- *
- *
  */
 class OX_Maintenance_Statistics_Task_DeDuplicateConversions extends OX_Maintenance_Statistics_Task
 {
@@ -35,9 +32,9 @@ class OX_Maintenance_Statistics_Task_DeDuplicateConversions extends OX_Maintenan
      *
      * @return OX_Maintenance_Statistics_Task_DeDuplicateConversions
      */
-    function OX_Maintenance_Statistics_Task_DeDuplicateConversions()
+    function __construct()
     {
-        parent::OX_Maintenance_Statistics_Task();
+        parent::__construct();
     }
 
     /**

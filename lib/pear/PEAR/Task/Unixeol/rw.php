@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a10
  */
@@ -36,7 +35,7 @@ require_once 'PEAR/Task/Unixeol.php';
  */
 class PEAR_Task_Unixeol_rw extends PEAR_Task_Unixeol
 {
-    function PEAR_Task_Unixeol_rw(&$pkg, &$config, &$logger, $fileXml)
+    function __construct(&$pkg, &$config, &$logger, $fileXml)
     {
         parent::PEAR_Task_Common($config, $logger, PEAR_TASK_PACKAGE);
         $this->_contents = $fileXml;

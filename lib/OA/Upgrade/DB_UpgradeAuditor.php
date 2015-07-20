@@ -13,10 +13,6 @@
 /**
  * OpenX Schema Management Utility
  *
- * @author     Monique Szpak <monique.szpak@openx.org>
- *
- * $Id$
- *
  */
 
 define('DB_UPGRADE_TIMING_CONSTRUCTIVE_DEFAULT',                   0);
@@ -78,9 +74,9 @@ class OA_DB_UpgradeAuditor extends OA_BaseUpgradeAuditor
      * php4 class constructor
      *
      */
-    function OA_DB_UpgradeAuditor()
+    function __construct()
     {
-    	$this->OA_BaseUpgradeAuditor();
+    	parent::__construct();
         //this->__construct();
     }
 

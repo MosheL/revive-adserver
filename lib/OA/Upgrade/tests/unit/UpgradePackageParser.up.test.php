@@ -17,7 +17,6 @@ require_once MAX_PATH.'/lib/OA/Upgrade/UpgradePackageParser.php';
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_OA_UpgradePackageParser extends UnitTestCase
 {
@@ -25,9 +24,9 @@ class Test_OA_UpgradePackageParser extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_UpgradePackageParser()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_parse()

@@ -32,7 +32,6 @@
  * @author     Lorenzo Alberton <l dot alberton at quipo dot it>
  * @copyright  2003-2006 Lorenzo Alberton
  * @license    http://www.debian.org/misc/bsd.license  BSD License (3 Clause)
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Pager
  */
 
@@ -43,14 +42,14 @@
 class Pager_HtmlWidgets
 {
     var $pager = null;
-    
+
     // {{{ constructor
-    
-    function Pager_HtmlWidgets(&$pager)
+
+    function __construct(&$pager)
     {
         $this->pager =& $pager;
     }
-    
+
     // }}}
     // {{{ getPerPageSelectBox()
 
@@ -98,7 +97,7 @@ class Pager_HtmlWidgets
         }
 
         if (!strstr($optionText, '%d')) {
-            return $this->pager->raiseError(
+            return $this->pager->customRaiseError(
                 $this->pager->errorMessage(ERROR_PAGER_INVALID_PLACEHOLDER),
                 ERROR_PAGER_INVALID_PLACEHOLDER
             );
@@ -111,7 +110,7 @@ class Pager_HtmlWidgets
         } else {
             $selected = $this->pager->_perPage;
         }
-        
+
         if ($checkMaxLimit && $this->pager->_totalItems > 0 && $this->pager->_totalItems < $end) {
             $end = $this->pager->_totalItems;
         }
@@ -172,12 +171,12 @@ class Pager_HtmlWidgets
         }
 
         if (!strstr($optionText, '%d')) {
-            return $this->pager->raiseError(
+            return $this->pager->customRaiseError(
                 $this->pager->errorMessage(ERROR_PAGER_INVALID_PLACEHOLDER),
                 ERROR_PAGER_INVALID_PLACEHOLDER
             );
         }
-        
+
         $tmp = '<select name="'.$this->pager->_urlVar.'"';
         if (!empty($extraAttributes)) {
             $tmp .= ' '.$extraAttributes;
@@ -223,7 +222,7 @@ class Pager_HtmlWidgets
         $tmp .= '</select>';
         return $tmp;
     }
-    
+
     // }}}
 }
 ?>

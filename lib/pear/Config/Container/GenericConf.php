@@ -14,8 +14,6 @@
 // +----------------------------------------------------------------------+
 // | Author: Bertrand Mansion <bmansion@mamasam.com>                      |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 /**
 * Config parser for  generic .conf files like
@@ -42,7 +40,7 @@ class Config_Container_GenericConf {
     * @access public
     * @param    string  $options    (optional)Options to be used by renderer
     */
-    function Config_Container_GenericConf($options = array())
+    function __construct($options = array())
     {
         if (empty($options['comment'])) {
             $options['comment'] = '#';
@@ -76,7 +74,7 @@ class Config_Container_GenericConf {
         $currentSection =& $obj->container;
         foreach ($lines as $line) {
             $n++;
-            if (!preg_match('/^\s*'.$this->options['comment'].'/', $line) && 
+            if (!preg_match('/^\s*'.$this->options['comment'].'/', $line) &&
                  preg_match('/^\s*(.*)\s+'.$this->options['newline'].'\s*$/', $line, $match)) {
                 // directive on more than one line
                 $lastline .= $match[1].' ';

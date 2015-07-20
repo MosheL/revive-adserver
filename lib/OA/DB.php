@@ -22,8 +22,6 @@ define('OA_DB_MDB2_DEFAULT_OPTIONS', MDB2_PORTABILITY_ALL ^ MDB2_PORTABILITY_EMP
  * A class for creating database connections. Currently uses PEAR::MDB2.
  *
  * @package    OpenXDB
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Demian Turner <demian@m3.net>
  */
 class OA_DB
 {
@@ -201,7 +199,7 @@ class OA_DB
             $oDbh->loadModule('Datatype');
             $oDbh->loadModule('Manager');
             // Store the database connection
-            $GLOBALS['_OA']['CONNECTIONS'][$dsnMd5] = &$oDbh;
+            $GLOBALS['_OA']['CONNECTIONS'][$dsnMd5] = $oDbh;
             // Set MySQL 4 compatibility if needed
             if (strcasecmp($databaseType, 'mysql') === 0 && !empty($aConf['database']['mysql4_compatibility'])) {
                 $oDbh->exec("SET SESSION sql_mode='MYSQL40'");

@@ -925,6 +925,7 @@ $query = "
             d.parameters AS parameters,
             d.transparent AS transparent,
             d.ext_bannertype AS ext_bannertype,
+            d.iframe_friendly AS iframe_friendly,
             az.priority AS priority,
             az.priority_factor AS priority_factor,
             az.to_be_delivered AS to_be_delivered,
@@ -1205,6 +1206,7 @@ $query = "
         d.parameters AS parameters,
         d.transparent AS transparent,
         d.ext_bannertype AS ext_bannertype,
+        d.iframe_friendly AS iframe_friendly,
         c.campaignid AS campaign_id,
         c.block AS block_campaign,
         c.capping AS cap_campaign,
@@ -1415,6 +1417,7 @@ $aColumns = array(
 'd.parameters AS parameters',
 'd.transparent AS transparent',
 'd.ext_bannertype AS ext_bannertype',
+'d.iframe_friendly AS iframe_friendly',
 'az.priority AS priority',
 'az.priority_factor AS priority_factor',
 'az.to_be_delivered AS to_be_delivered',
@@ -2448,6 +2451,7 @@ function MAX_commonSetNoCacheHeaders()
 MAX_header('Pragma: no-cache');
 MAX_header('Cache-Control: private, max-age=0, no-cache');
 MAX_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+MAX_header('Access-Control-Allow-Origin: *');
 }
 function MAX_commonAddslashesRecursive($a)
 {
@@ -2630,6 +2634,13 @@ function MAX_header($value)
 function MAX_redirect($url)
 {
 if (!preg_match('/^(?:javascript|data):/i', $url)) {
+$host = @parse_url($url, PHP_URL_HOST);
+if (function_exists('idn_to_ascii')) {
+$idn = idn_to_ascii($host);
+if ($host != $idn) {
+$url = preg_replace('#^(.*?://)'.preg_quote($host, '#').'#', '$1'.$idn, $url);
+}
+}
 header('Location: '.$url);
 MAX_sendStatusCode(302);
 }

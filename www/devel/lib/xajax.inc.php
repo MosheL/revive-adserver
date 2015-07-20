@@ -12,11 +12,6 @@
 
 /**
  * OpenX Schema Management Utility
- *
- * @author     Monique Szpak <monique.szpak@openx.org>
- *
- * $Id$
- *
  */
 
 function testAjax($form)
@@ -155,7 +150,7 @@ function loadSchemaList()
                 continue;
             }
             $relPath = $pluginPath.$folder.'/etc/';
-            $dhPlgs = opendir(MAX_PATH.$relPath);
+            $dhPlgs = @opendir(MAX_PATH.$relPath);
             if ($dhPlgs)
             {
                 while (false !== ($file = readdir($dhPlgs)))

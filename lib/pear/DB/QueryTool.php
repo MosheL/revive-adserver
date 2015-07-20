@@ -18,7 +18,6 @@
  * @author     Paolo Panto <wk@visionp.de>
  * @copyright  2003-2005 Wolfram Kriesing, Paolo Panto
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB_QueryTool
  */
 
@@ -53,7 +52,7 @@ class DB_QueryTool extends DB_QueryTool_EasyJoin
      * @param mixed $dsn DSN string, DSN array or DB object
      * @param array $options
      */
-    function DB_QueryTool($dsn=false, $options=array())
+    function __construct($dsn=false, $options=array())
     {
         parent::__construct($dsn, $options);
     }

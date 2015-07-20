@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	MockObjects
-     *	@version	$Id$
      */
 
     /**#@+
@@ -43,8 +42,8 @@
          *    @param string $message    Customised message on failure.
          *    @access public
          */
-        function ParametersExpectation($expected = false, $message = '%s') {
-            $this->SimpleExpectation($message);
+        function __construct($expected = false, $message = '%s') {
+            parent::__construct($message);
             $this->_expected = $expected;
         }
 
@@ -151,7 +150,7 @@
             $descriptions = array();
             if (is_array($args)) {
                 foreach ($args as $arg) {
-                    $dumper = &new SimpleDumper();
+                    $dumper = new SimpleDumper();
                     $descriptions[] = $dumper->describeValue($arg);
                 }
             }
@@ -173,10 +172,10 @@
          *    @param integer $count    Expected number of calls.
          *    @param string $message   Custom error message.
          */
-        function CallCountExpectation($method, $count, $message = '%s') {
+        function __construct($method, $count, $message = '%s') {
             $this->_method = $method;
             $this->_count = $count;
-            $this->SimpleExpectation($message);
+            parent::__construct($message);
         }
 
         /**
@@ -216,10 +215,10 @@
          *    @param integer $count    Minimum number of calls.
          *    @param string $message   Custom error message.
          */
-        function MinimumCallCountExpectation($method, $count, $message = '%s') {
+        function __construct($method, $count, $message = '%s') {
             $this->_method = $method;
             $this->_count = $count;
-            $this->SimpleExpectation($message);
+            parent::__construct($message);
         }
 
         /**
@@ -259,10 +258,10 @@
          *    @param integer $count    Minimum number of calls.
          *    @param string $message   Custom error message.
          */
-        function MaximumCallCountExpectation($method, $count, $message = '%s') {
+        function __construct($method, $count, $message = '%s') {
             $this->_method = $method;
             $this->_count = $count;
-            $this->SimpleExpectation($message);
+            parent::__construct($message);
         }
 
         /**
@@ -301,7 +300,7 @@
          *    Creates an empty call map.
          *    @access public
          */
-        function CallMap() {
+        function __construct() {
             $this->_map = array();
         }
 
@@ -405,7 +404,7 @@
          *    @param boolean $is_strict      Enables method name checks on
          *                                   expectations.
          */
-        function SimpleMock() {
+        function __construct() {
             $this->_returns = array();
             $this->_return_sequence = array();
             $this->_call_counts = array();
@@ -880,7 +879,7 @@
          *    Factory for mock object classes.
          *    @access public
          */
-        function Mock() {
+        function __construct() {
             trigger_error('Mock factory methods are static.');
         }
 
@@ -949,7 +948,7 @@
         var $_mock_base;
         var $_reflection;
 
-        function MockGenerator($class, $mock_class) {
+        function __construct($class, $mock_class) {
             $this->_class = $class;
             $this->_mock_class = $mock_class;
             $this->_mock_base = SimpleTest::getMockBaseClass();
@@ -1019,9 +1018,6 @@
             	$implements = 'implements ' . implode(', ', $interfaces);
             }
             $code = "class " . $this->_mock_class . " extends " . $this->_mock_base . " $implements {\n";
-            $code .= "    function " . $this->_mock_class . "() {\n";
-            $code .= "        \$this->" . $this->_mock_base . "();\n";
-            $code .= "    }\n";
             $code .= $this->_createHandlerCode($methods);
             $code .= "}\n";
             return $code;
@@ -1041,7 +1037,7 @@
             $code .= $this->_addMethodList($methods);
             $code .= "\n";
             $code .= "    function " . $this->_mock_class . "() {\n";
-            $code .= "        \$this->_mock = &new " . $this->_mock_base . "();\n";
+            $code .= "        \$this->_mock = new " . $this->_mock_base . "();\n";
             $code .= "        \$this->_mock->disableExpectationNameChecks();\n";
             $code .= "    }\n";
             $code .= $this->_chainMockReturns();

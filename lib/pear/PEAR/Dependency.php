@@ -18,7 +18,6 @@
 // +----------------------------------------------------------------------+
 //
 // THIS FILE IS DEPRECATED IN FAVOR OF DEPENDENCY2.PHP, AND IS NOT USED IN THE INSTALLER
-// $Id$
 
 require_once "PEAR.php";
 require_once "OS/Guess.php";
@@ -52,7 +51,7 @@ class PEAR_Dependency
      * @param  object Registry object
      * @return void
      */
-    function PEAR_Dependency(&$registry)
+    function __construct(&$registry)
     {
         $this->registry = &$registry;
     }

@@ -27,9 +27,6 @@ require_once MAX_PATH . '/lib/OA/Maintenance/Priority/DeliveryLimitation/Common.
  *
  * @package    OpenXPlugin
  * @subpackage DeliveryLimitations
- * @author     Andrew Hill <andrew@m3.net>
- * @author     Chris Nutting <chris@m3.net>
- * @author     Andrzej Swedrzynski <andrzej.swedrzynski@m3.net>
  */
 class Plugins_DeliveryLimitations_Time_Hour extends Plugins_DeliveryLimitations_AbstractTimePlugin
 {
@@ -39,7 +36,7 @@ class Plugins_DeliveryLimitations_Time_Hour extends Plugins_DeliveryLimitations_
      *
      * @return Plugins_DeliveryLimitations_Time_Hour
      */
-    function Plugins_DeliveryLimitations_Time_Hour()
+    function __construct()
     {
         $this->Plugins_DeliveryLimitations_Time_Base(0, 23);
 

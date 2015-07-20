@@ -19,7 +19,6 @@
  * @author     Lorenzo Alberton <l dot alberton at quipo dot it>
  * @copyright  2003-2005 Wolfram Kriesing, Paolo Panto, Lorenzo Alberton
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB_QueryTool
  */
 
@@ -78,7 +77,7 @@ class DB_QueryTool_Result
      * @author     Wolfram Kriesing <wolfram@kriesing.de>
      * @param      array   the data returned by the result
      */
-    function DB_QueryTool_Result($data)
+    function __construct($data)
     {
         if (!count($data)) {
             $this->_count = 0;

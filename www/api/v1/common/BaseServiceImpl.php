@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Require the XMLRPC classes
@@ -39,7 +37,7 @@ class BaseServiceImpl extends  OA_BaseObjectWithErrors
      * Constructor
      *
      */
-    function BaseServiceImpl()
+    function __construct()
     {
         $this->BaseObjectWithErrors();
 

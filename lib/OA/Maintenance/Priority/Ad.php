@@ -19,7 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dll.php';
  *
  * @package    OpenXMaintenance
  * @subpackage Priority
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Maintenance_Priority_Ad
 {
@@ -85,7 +84,7 @@ class OA_Maintenance_Priority_Ad
      *      'type'   -> The ad type (eg. 'sql').
      *      'weight' -> The ad weight.
      */
-	function OA_Maintenance_Priority_Ad($aParams)
+	function __construct($aParams)
     {
         // Test the input values
         $valid = true;

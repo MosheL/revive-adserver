@@ -12,10 +12,8 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
  *
  * The publisher XML-RPC service enables XML-RPC communication with the publisher object.
- *
  */
 
 // Require the initialisation file.
@@ -45,9 +43,9 @@ class PublisherXmlRpcService extends BasePublisherService
      * to initialise the service.
      *
      */
-    function PublisherXmlRpcService()
+    function __construct()
     {
-        $this->BasePublisherService();
+        parent::__construct();
     }
 
     /**

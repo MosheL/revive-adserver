@@ -23,8 +23,6 @@ require_once MAX_PATH . '/lib/OA/Dll/tests/util/DllUnitTestCase.php';
  *
  * @package    OpenXDll
  * @subpackage TestSuite
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
 
 
@@ -49,9 +47,9 @@ class OA_Dll_BannerTest extends DllUnitTestCase
     /**
      * The constructor method.
      */
-    function OA_Dll_BannerTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generatePartial(
             'OA_Dll_Banner',
             'PartialMockOA_Dll_Banner',

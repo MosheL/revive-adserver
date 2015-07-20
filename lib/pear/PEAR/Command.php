@@ -16,7 +16,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 0.1
  */
@@ -140,7 +139,7 @@ class PEAR_Command
             return $a;
         }
         $ui =& PEAR_Command::getFrontendObject();
-        $obj = &new $class($ui, $config);
+        $obj = new $class($ui, $config);
         return $obj;
     }
 
@@ -157,7 +156,7 @@ class PEAR_Command
         }
         $ui =& PEAR_Command::getFrontendObject();
         $config = &PEAR_Config::singleton();
-        $obj = &new $class($ui, $config);
+        $obj = new $class($ui, $config);
         return $obj;
     }
 

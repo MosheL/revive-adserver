@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/OX/Dal/Maintenance/Statistics/Factory.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Dal_Maintenance_Statistics_Factory extends UnitTestCase
 {
@@ -33,9 +32,9 @@ class Test_OX_Dal_Maintenance_Statistics_Factory extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Dal_Maintenance_Statistics_Factory()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $oDbh =& OA_DB::singleton();
         $this->dbType = $oDbh->dsn['phptype'];
     }

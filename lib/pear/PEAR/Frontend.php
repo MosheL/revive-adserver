@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -87,7 +86,7 @@ class PEAR_Frontend extends PEAR
             }
         }
         if (class_exists($uiclass)) {
-            $obj = &new $uiclass;
+            $obj = new $uiclass;
             // quick test to see if this class implements a few of the most
             // important frontend methods
             if (is_a($obj, 'PEAR_Frontend')) {

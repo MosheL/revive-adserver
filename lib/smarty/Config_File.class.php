@@ -25,8 +25,6 @@
  * @package Smarty
  */
 
-/* $Id$ */
-
 /**
  * Config file reading class
  * @package Smarty
@@ -69,7 +67,7 @@ class Config_File {
      *
      * @param string $config_path (optional) path to the config files
      */
-    function Config_File($config_path = NULL)
+    function __construct($config_path = NULL)
     {
         if (isset($config_path))
             $this->set_path($config_path);
@@ -297,7 +295,7 @@ class Config_File {
                         $vars = array();
                         continue;
                     }
-                } else {                    
+                } else {
                     $section_name = $match[1];
                 }
                 if (!isset($config_data['sections'][$section_name]))

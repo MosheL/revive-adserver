@@ -23,11 +23,8 @@ require_once 'Log.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Unknown!
  *
- *
- * this method combines and replaces the previously separate mysql and pgsql tests
- *
+ * This method combines and replaces the previously separate mysql and pgsql tests
  */
 class Test_OA_Dal_DeliveryDB extends UnitTestCase
 {
@@ -35,9 +32,9 @@ class Test_OA_Dal_DeliveryDB extends UnitTestCase
     var $prefix;
     var $aIds;
 
-    function Test_OA_Dal_DeliveryDB()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->oDbh = OA_DB::singleton();
         $this->prefix = $GLOBALS['_MAX']['CONF']['table']['prefix'];
         $this->aIds = TestEnv::loadData('delivery_001','mdb2schema');
@@ -146,6 +143,10 @@ class Test_OA_Dal_DeliveryDB extends UnitTestCase
         $this->assertIsA($aReturn['lAds'], 'array');
         $this->assertIsA($aReturn['count_active'], 'integer');
         $this->assertIsA($aReturn['zone_companion'], 'boolean');
+
+        // Test for bug #352 (pgsql regex returns 't'/'f')
+        $this->assertTrue(empty($aReturn['xAds'][227]['html_ssl_unsafe']));
+        $this->assertTrue(empty($aReturn['xAds'][227]['url_ssl_unsafe']));
     }
 
     /**
@@ -297,7 +298,7 @@ class Test_OA_Dal_DeliveryDB extends UnitTestCase
     }
 
     /**
-     * proper low/exclusive prioritisation with campaign weight coming first
+     * proper low/override prioritisation with campaign weight coming first
      *
      */
     function test_setPriorityFromWeights()

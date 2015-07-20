@@ -20,7 +20,6 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -169,9 +168,9 @@ class DB_oci8 extends DB_common
      *
      * @return void
      */
-    function DB_oci8()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}
@@ -208,7 +207,7 @@ class DB_oci8 extends DB_common
     function connect($dsn, $persistent = false)
     {
         if (!PEAR::loadExtension('oci8')) {
-            return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
+            return $this->customRaiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
 
         $this->dsn = $dsn;
@@ -261,7 +260,7 @@ class DB_oci8 extends DB_common
         if (!$this->connection) {
             $error = OCIError();
             $error = (is_array($error)) ? $error['message'] : null;
-            return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+            return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                      null, null, null,
                                      $error);
         }
@@ -373,7 +372,7 @@ class DB_oci8 extends DB_common
     function fetchInto($result, &$arr, $fetchmode, $rownum = null)
     {
         if ($rownum !== null) {
-            return $this->raiseError(DB_ERROR_NOT_CAPABLE);
+            return $this->customRaiseError(DB_ERROR_NOT_CAPABLE);
         }
         if ($fetchmode & DB_FETCHMODE_ASSOC) {
             $moredata = @OCIFetchInto($result,$arr,OCI_ASSOC+OCI_RETURN_NULLS+OCI_RETURN_LOBS);
@@ -488,11 +487,11 @@ class DB_oci8 extends DB_common
             {
                 $this->last_query = $save_query;
                 $this->last_stmt = $save_stmt;
-                return $this->raiseError(DB_ERROR_NOT_CAPABLE);
+                return $this->customRaiseError(DB_ERROR_NOT_CAPABLE);
             }
             return $row[0];
         }
-        return $this->raiseError(DB_ERROR_NOT_CAPABLE);
+        return $this->customRaiseError(DB_ERROR_NOT_CAPABLE);
     }
 
     // }}}
@@ -624,7 +623,7 @@ class DB_oci8 extends DB_common
 
         $types =& $this->prepare_types[(int)$stmt];
         if (count($types) != count($data)) {
-            $tmp =& $this->raiseError(DB_ERROR_MISMATCH);
+            $tmp =& $this->customRaiseError(DB_ERROR_MISMATCH);
             return $tmp;
         }
 
@@ -643,7 +642,7 @@ class DB_oci8 extends DB_common
             } elseif ($types[$i] == DB_PARAM_OPAQUE) {
                 $fp = @fopen($data[$key], 'rb');
                 if (!$fp) {
-                    $tmp =& $this->raiseError(DB_ERROR_ACCESS_VIOLATION);
+                    $tmp =& $this->customRaiseError(DB_ERROR_ACCESS_VIOLATION);
                     return $tmp;
                 }
                 $data[$key] = fread($fp, filesize($data[$key]));
@@ -669,7 +668,7 @@ class DB_oci8 extends DB_common
             $tmp = DB_OK;
         } else {
             @ocisetprefetch($stmt, $this->options['result_buffering']);
-            $tmp =& new DB_result($this, $stmt);
+            $tmp = new DB_result($this, $stmt);
         }
         return $tmp;
     }
@@ -864,14 +863,14 @@ class DB_oci8 extends DB_common
                 $repeat = 1;
                 $result = $this->createSequence($seq_name);
                 if (DB::isError($result)) {
-                    return $this->raiseError($result);
+                    return $this->customRaiseError($result);
                 }
             } else {
                 $repeat = 0;
             }
         } while ($repeat);
         if (DB::isError($result)) {
-            return $this->raiseError($result);
+            return $this->customRaiseError($result);
         }
         $arr = $result->fetchRow(DB_FETCHMODE_ORDERED);
         return $arr[0];
@@ -931,14 +930,14 @@ class DB_oci8 extends DB_common
     {
         if ($errno === null) {
             $error = @OCIError($this->connection);
-            return $this->raiseError($this->errorCode($error['code']),
+            return $this->customRaiseError($this->errorCode($error['code']),
                                      null, null, null, $error['message']);
         } elseif (is_resource($errno)) {
             $error = @OCIError($errno);
-            return $this->raiseError($this->errorCode($error['code']),
+            return $this->customRaiseError($this->errorCode($error['code']),
                                      null, null, null, $error['message']);
         }
-        return $this->raiseError($this->errorCode($errno));
+        return $this->customRaiseError($this->errorCode($errno));
     }
 
     // }}}
@@ -1071,7 +1070,7 @@ class DB_oci8 extends DB_common
                     }
                 }
             } else {
-                return $this->raiseError(DB_ERROR_NOT_CAPABLE);
+                return $this->customRaiseError(DB_ERROR_NOT_CAPABLE);
             }
         }
         return $res;

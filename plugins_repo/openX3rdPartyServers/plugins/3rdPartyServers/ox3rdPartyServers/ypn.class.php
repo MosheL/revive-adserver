@@ -13,8 +13,6 @@
 /**
  * @package    OpenXPlugin
  * @subpackage 3rdPartyServers
- * @author     Matteo Beccati <matteo.beccati@openx.org>
- *
  */
 
 require_once LIB_PATH . '/Extension/3rdPartyServers/3rdPartyServers.php';
@@ -35,7 +33,7 @@ class Plugins_3rdPartyServers_ox3rdPartyServers_ypn extends Plugins_3rdPartyServ
      */
     function getName()
     {
-        return $this->translate('Rich Media - Yahoo! Publisher Network');
+        return $this->translate('Yahoo! Publisher Network');
     }
 
     /**

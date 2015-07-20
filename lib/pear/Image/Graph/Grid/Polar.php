@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  * @since      File available since Release 0.3.0dev2
  */
@@ -55,7 +54,7 @@ class Image_Graph_Grid_Polar extends Image_Graph_Grid
     /**
      * GridLines [Constructor]
      */
-    function Image_Graph_Grid_Polar()
+    function __construct()
     {
         parent::__construct();
         $this->_lineStyle = 'lightgrey';
@@ -78,7 +77,7 @@ class Image_Graph_Grid_Polar extends Image_Graph_Grid
         }
 
         $this->_canvas->startGroup(get_class($this));
-        
+
         $value = false;
 
         $p0 = array ('X' => '#min#', 'Y' => '#min#');
@@ -101,9 +100,9 @@ class Image_Graph_Grid_Polar extends Image_Graph_Grid
             $this->_getLineStyle();
             $this->_canvas->ellipse(array('x' => $cx, 'y' => $cy, 'rx' => $r, 'ry' => $r));
         }
-        
+
         $this->_canvas->endGroup();
-        
+
         return true;
     }
 

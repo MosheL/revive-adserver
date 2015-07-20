@@ -30,8 +30,6 @@ require_once MAX_PATH . '/lib/max/Dal/DataObjects/Campaigns.php';
  *
  * @package    OpenXPlugin
  * @subpackage Reports
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Scott Switzer <scott@switzer.org>
  */
 class Plugins_Reports_OxReportsStandard_LiveCampaignDeliveryReport extends Plugins_ReportsScope
 {
@@ -109,7 +107,7 @@ class Plugins_Reports_OxReportsStandard_LiveCampaignDeliveryReport extends Plugi
      * @param OA_Admin_DaySpan       $oDaySpan The OA_Admin_DaySpan object for the report.
      * @param OA_Admin_Reports_Scope $oScope   ???
      */
-    function execute($oDaySpan, $oScope)
+    function execute($oDaySpan = null, $oScope = null)
     {
         // Save the scope for use later
         $this->_oScope = $oScope;
@@ -448,7 +446,7 @@ class Plugins_Reports_OxReportsStandard_LiveCampaignDeliveryReport extends Plugi
                 $aCampaignDisplayData[] = $this->_calculateOverallMisdelivery($aCampaignData);
                 $aCampaignDisplayData[] = $this->_calculateTodaysMisdelivery($aCampaignData);
             } else {
-                // Campaign is either exclusive or low priority
+                // Campaign is either override or remnant
                 $aCampaignDisplayData[] = false;
                 $aCampaignDisplayData[] = false;
                 $aCampaignDisplayData[] = false;
@@ -514,11 +512,11 @@ class Plugins_Reports_OxReportsStandard_LiveCampaignDeliveryReport extends Plugi
     function _decodePriority($priorityCode)
     {
         if ($priorityCode == -1) {
-            $type = $this->translate("1: Exclusive");
+            $type = $this->translate("Override");
         } else if ($priorityCode == 0) {
-            $type = $this->translate("3: Low");
+            $type = $this->translate("Remnant");
         } else {
-            $type = $this->translate("2: High");
+            $type = $this->translate("Contract");
         }
         return $type;
     }

@@ -18,8 +18,6 @@ require_once MAX_PATH . '/lib/OA/Dal/Statistics/tests/util/DalStatisticsUnitTest
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 
@@ -35,9 +33,9 @@ class OA_Dal_Statistics_PublisherTest extends DalStatisticsUnitTestCase
     /**
      * The constructor method.
      */
-    function OA_Dal_Statistics_PublisherTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function setUp()

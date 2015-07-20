@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 3.0.6
+Release Notes: Revive Adserver 3.2.2
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,10 +14,10 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 3.0.6
+What's New in Revive Adserver 3.2.2
 -----------------------------------
 
- * Release date: TBA
+ * Release date: n/a
 
  Security Updates
  ----------------
@@ -27,27 +27,29 @@ What's New in Revive Adserver 3.0.6
  New Features
  ------------
 
- * None
+ * The campaign banner overview page now displays shortened URLs (when they are
+   very long) and displays a tool tip for the complete URL, to improve the
+   legibility of the page.
 
  Bug Fixes
  ---------
 
- * VAST tracking URLs are now using https when the call is performed via SSL
- * Allow domain for the viewerId cookie to be set separately
- * Removed useless Content-Length headers when sending the 1x1 transparent gif
-   and spc delivery files, as the header interferes with ob_gzhandler and/or
-   zlib.output_compression
-
+ * Pop-up and pop-under windows with only the X or Y axis opening position set
+   will now open correctly with that axis position (it is no longer necessary
+   to set a value for both axes).
+ * Asynchronous javascript invocation no longer triggers JS errors on
+   unsupported browsers (e.g. IE8).
+ * Asynchronous javascript invocation now works even when fl.js has been
+   renamed.
+ * Asynchronous javascript invocation was triggering an error when displaying a
+   banner with <script> tag(s) nested in other elements (e.g. inside a <div>).
+ * Fixed an issue with email validation for new users not accepting the
+   user+ext@example.com format.
 
  Non-Backwards Compatible Changes
  --------------------------------
 
- * Activation/deactivation emails and scheduled reports are now disabled by
-   default when creating new advertisers via the API, in order to match the UI
-   behaviour. This does not affect any existing advertiser account settings for
-   this feature; but please be aware that the default for all new advertiser
-   accounts has been changed.
-
+ * None
 
 System Requirements
 -------------------
@@ -83,7 +85,7 @@ Downloading and Installing
    ---------------------------------------------------------------
    | Product                             | Version(s)            |
    ---------------------------------------------------------------
-   | Revive Adserver 3.0                 | All versions          |
+   | Revive Adserver 3.x                 | All versions          |
    ---------------------------------------------------------------
    | OpenX 2.8                           | All versions          |
    ---------------------------------------------------------------
@@ -128,9 +130,6 @@ this before reporting any new bugs.
    http://www.revive-adserver.com/docs/faq for more information if you
    have a large database.
 
- * Revive Adserver requires PHP 5. If you are using PHP 4, you will need to
-   update your web server to use PHP 5 before upgrading.
-
  * If you want to run Revive Adserver with MySQL, please note that MySQL 4.1 or
    higher is required. If you are using an older version of MySQL, you will
    need to update you database software before upgrading.
@@ -157,7 +156,7 @@ FAQ
  1. What happened to OpenX Source?
 
     OpenX Source has re-branded as Revive Adserver. It is still a completely
-    free, open source ad serving solution, and remains licenses under the
+    free, open source ad serving solution, and remains licensed under the
     GPL v2 or greater license. Apart from the code moving home and a change of
     name, Revive Adserver is just the same as the old OpenX Source application.
 

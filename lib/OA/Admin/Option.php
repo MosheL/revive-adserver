@@ -20,7 +20,6 @@ require_once(MAX_PATH.'/lib/OA/Cache.php');
  * A class to deal with the display of settings and preferences
  *
  * @package    OpenXAdmin
- * @author     Miguel Correa <miguel.correa@openx.org>
  */
 class OA_Admin_Option
 {
@@ -46,7 +45,7 @@ class OA_Admin_Option
      *                           on if the options are to be displayed in the Settings,
      *                           Account Preferences or User Preferences section.
      */
-    function OA_Admin_Option($optionType)
+    function __construct($optionType)
     {
         // Load the required language files
         Language_Loader::load('default');
@@ -418,7 +417,7 @@ class OA_Admin_Option
             				// If that did not work, and the item is a setting, try to load the
             				// item value from the settings configuration file
             				if (is_null($value) && $this->_optionType == 'account-settings') {
-            					$aNameExploded = explode('_', $aItem['name']);
+            					$aNameExploded = explode('_', $aItem['name'], 2);
             					$aSettingSection = isset($aNameExploded[0]) ? $aNameExploded[0] : null;
             					$aSettingKey     = isset($aNameExploded[1]) ? $aNameExploded[1] : null;
             					if (isset($aConf[$aSettingSection][$aSettingKey])) {
@@ -657,8 +656,8 @@ class OA_Admin_Option
             $GLOBALS['phpAds_hlp_'.$name] = '';
         }
         $string = $GLOBALS['phpAds_hlp_'.$name];
-        $string = ereg_replace ("[\n\r\t]", " ", $string);
-        $string = ereg_replace ("[ ]+", " ", $string);
+        $string = preg_replace ("/[\n\r\t]/D", " ", $string);
+        $string = preg_replace ("/[ ]+/D", " ", $string);
         $string = str_replace("'", "\\'", $string);
         $string = trim ($string);
         return "helpArray['$name'] = '".$string."';\n";
@@ -675,16 +674,16 @@ class OA_Admin_Option
     {
         $formName = empty($GLOBALS['settings_formName']) ? 'settingsform' : $GLOBALS['settings_formName'];
         if (isset($aItem['depends'])) {
-            $depends    = split('[ ]+', $aItem['depends']);
+            $depends    = preg_split('/[ ]+/D', $aItem['depends']);
             $javascript = "\tenabled = (";
             $result     = true;
             foreach ($depends as $word) {
-                if (ereg('[\&\|]{1,2}', $word)) {
+                if (preg_match('/[\&\|]{1,2}/D', $word)) {
                     // Operator
                     $javascript .= " ".$word." ";
                 } else {
                     // Assignment
-                    eregi ("^(\(?)([a-z0-9_-]+)([\=\!\<\>]{1,2})([\"\'a-z0-9_-]+)(\)?)$", $word, $regs);
+                    preg_match ("/^(\(?)([a-z0-9_-]+)([\=\!\<\>]{1,2})([\"\'a-z0-9_-]+)(\)?)$/Di", $word, $regs);
                     $type          = $this->_showGetType($aData, $regs[2]);
                     $javascript .= $regs[1]."document.".$formName.".".$regs[2].".";
                     switch ($type){

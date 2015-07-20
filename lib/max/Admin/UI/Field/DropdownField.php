@@ -14,7 +14,6 @@
  * A view field for a dropdown (HTML SELECT).
  *
  * @package    Max
- * @author     Scott Switzer <scott@switzer.org>
  */
 require_once MAX_PATH . '/lib/max/Admin/UI/Field.php';
 
@@ -29,7 +28,7 @@ class Admin_UI_DropdownField extends Admin_UI_Field
      * @param array $aFieldSelectionNames A list of the predefined 'friendly' selections.
      * @param string $fieldSelectionDefault The default selection.
      */
-    function Admin_UI_DropdownField($aFieldSelectionNames = array(), $fieldSelectionDefault = '')
+    function __construct($aFieldSelectionNames = array(), $fieldSelectionDefault = '')
     {
         parent::__construct();
         $this->_fieldSelectionNames = $aFieldSelectionNames;

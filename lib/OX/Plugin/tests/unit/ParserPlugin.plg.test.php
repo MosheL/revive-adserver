@@ -16,7 +16,6 @@ require_once LIB_PATH.'/Plugin/ParserPlugin.php';
  * A class for testing the ParserPackage class.
  *
  * @package Plugins
- * @author  Monique Szpak <monique.szpak@openx.org>
  * @subpackage TestSuite
  */
 class Test_OX_ParserPlugin extends UnitTestCase
@@ -25,9 +24,9 @@ class Test_OX_ParserPlugin extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_ParserPlugin()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_ParseEmpty()
@@ -72,7 +71,7 @@ class Test_OX_ParserPlugin extends UnitTestCase
 
             $this->_assertStructure($aPlugin);
             $this->assertEqual($aPlugin['version'], '0.0.1-test-RC1');
-            
+
             $this->assertEqual(count($aPlugin['install']['contents']),2);
             $this->assertEqual($aPlugin['install']['contents'][1]['name'],'testPlugin1');
             $this->assertEqual($aPlugin['install']['contents'][2]['name'],'testPlugin2');

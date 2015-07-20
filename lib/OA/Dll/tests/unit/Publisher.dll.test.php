@@ -21,8 +21,6 @@ require_once MAX_PATH . '/lib/OA/Dll/tests/util/DllUnitTestCase.php';
  *
  * @package    OpenXDll
  * @subpackage TestSuite
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 class OA_Dll_PublisherTest extends DllUnitTestCase
 {
@@ -40,15 +38,15 @@ class OA_Dll_PublisherTest extends DllUnitTestCase
     /**
      * The constructor method.
      */
-    function OA_Dll_PublisherTest()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generatePartial(
             'OA_Dll_Agency',
             'PartialMockOA_Dll_Agency_PublisherTest',
             array('checkPermissions')
         );
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generatePartial(
             'OA_Dll_Publisher',
             'PartialMockOA_Dll_Publisher_PublisherTest',

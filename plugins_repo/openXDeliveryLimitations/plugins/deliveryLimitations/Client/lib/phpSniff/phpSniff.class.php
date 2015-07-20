@@ -17,7 +17,6 @@
 *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *
 *  @author Roger Raymond <epsilon7@users.sourceforge.net>
-*  @version $Id$
 *  @copyright Copyright &copy; 2002-2004 Roger Raymond
 *  @package phpSniff
 *  @license http://opensource.org/licenses/lgpl-license.php GNU Lesser General Public License
@@ -302,7 +301,7 @@ class phpSniff
      *  @return object phpSniff object
      */
     
-    function phpSniff($UA='',$settings = true)
+    function __construct($UA='',$settings = true)
     {   //  populate the HTTP_USER_AGENT string
         //  20020425 :: rraymond
         //      routine for easier configuration of the client at runtime

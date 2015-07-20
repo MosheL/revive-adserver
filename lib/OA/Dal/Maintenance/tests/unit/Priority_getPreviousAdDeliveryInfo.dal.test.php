@@ -21,8 +21,6 @@ require_once MAX_PATH . '/lib/OX/Maintenance/Priority/Zone.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Dal_Maintenance_Priority_getPreviousAdDeliveryInfo extends UnitTestCase
 {
@@ -32,9 +30,9 @@ class Test_OA_Dal_Maintenance_Priority_getPreviousAdDeliveryInfo extends UnitTes
     /**
      * The constructor method.
      */
-    function Test_OA_Dal_Maintenance_Priority_getPreviousAdDeliveryInfo()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->doInterAd = OA_Dal::factoryDO('data_intermediate_ad');
         $this->doAdZone = OA_Dal::factoryDO('data_summary_ad_zone_assoc');
     }

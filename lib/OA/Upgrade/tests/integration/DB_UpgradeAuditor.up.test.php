@@ -18,7 +18,6 @@ require_once MAX_PATH.'/lib/OA/Upgrade/tests/integration/BaseUpgradeAuditor.up.t
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 
 class Test_OA_DB_UpgradeAuditor extends Test_OA_BaseUpgradeAuditor
@@ -28,9 +27,9 @@ class Test_OA_DB_UpgradeAuditor extends Test_OA_BaseUpgradeAuditor
     /**
      * The constructor method.
      */
-    function Test_OA_DB_UpgradeAuditor()
+    function __construct()
     {
-        $this->Test_OA_BaseUpgradeAuditor();
+        parent::__construct();
         $this->path = MAX_PATH.'/lib/OA/Upgrade/tests/data/';
 
 

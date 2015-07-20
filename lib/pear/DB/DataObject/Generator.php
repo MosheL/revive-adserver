@@ -15,7 +15,6 @@
  * @author     Alan Knowles <alan@akbkhome.com>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB_DataObject
  */
 
@@ -854,7 +853,7 @@ class DB_DataObject_Generator extends DB_DataObject
         // simple creation tools ! (static stuff!)
         $body .= "{$n}";
         $body .= "    /* Static get */{$n}";
-        $body .= "    function staticGet(\$k,\$v=NULL) { return DB_DataObject::staticGet('{$this->classname}',\$k,\$v); }{$n}";
+        $body .= "    function staticGet(\$k,\$v=NULL) { return DB_DataObject::staticGetFromClassName('{$this->classname}',\$k,\$v); }{$n}";
 
         // generate getter and setter methods
         $body .= $this->_generateGetters($input);

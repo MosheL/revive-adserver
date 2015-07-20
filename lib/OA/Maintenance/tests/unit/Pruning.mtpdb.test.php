@@ -20,7 +20,6 @@ require_once MAX_PATH . '/lib/pear/Date/Span.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_Priority extends UnitTestCase
 {
@@ -34,9 +33,9 @@ class Test_Priority extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_Priority()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -78,7 +77,7 @@ class Test_Priority extends UnitTestCase
         $oDate      = new Date();
         $oServiceLocator =& OA_ServiceLocator::instance();
         $oServiceLocator->register('now', $oDate);
-        $oDal       =& new OA_Maintenance_Pruning();
+        $oDal       = new OA_Maintenance_Pruning();
         $doDSAZA    = OA_Dal::factoryDO('data_summary_ad_zone_assoc');
 
         // Test 1: table is empty : nothing to delete
@@ -133,7 +132,7 @@ class Test_Priority extends UnitTestCase
         $oExpire->subtractSpan(new Date_Span('10-0-0-0'));
         $today      = $oToday->getDate(DATE_FORMAT_ISO);
         $expire     = $oExpire->getDate(DATE_FORMAT_ISO);
-        $oDal       =& new OA_Maintenance_Pruning();
+        $oDal       = new OA_Maintenance_Pruning();
 
         $doDSAZA    = OA_Dal::factoryDO('data_summary_ad_zone_assoc');
 
@@ -179,7 +178,7 @@ class Test_Priority extends UnitTestCase
         // 2 records remain
         $this->assertEqual($this->_countRowsInDSAZA(),2);
 
-        // ad_id 1 => campaignid 1 => not active, exclusive (low priority)
+        // ad_id 1 => campaignid 1 => not active, override (low priority)
         $doCampaigns = OA_Dal::staticGetDO('campaigns', $this->idCampaign1);
         $doCampaigns->priority          = -1;
         $doCampaigns->status            = OA_ENTITY_STATUS_EXPIRED;
@@ -292,7 +291,7 @@ class Test_Priority extends UnitTestCase
         $oExpire->subtractSeconds(999999);
         $today      = $oToday->getDate();
         $expire     = $oExpire->getDate();
-        $oDal       =& new OA_Maintenance_Pruning();
+        $oDal       = new OA_Maintenance_Pruning();
 
         $doDSAZA    = OA_Dal::factoryDO('data_summary_ad_zone_assoc');
         $doDIA      = OA_Dal::factoryDO('data_intermediate_ad');

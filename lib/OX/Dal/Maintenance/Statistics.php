@@ -34,7 +34,6 @@ define('OX_DAL_MAINTENANCE_STATISTICS_UPDATE_BOTH', 2);
  *
  * @package    OpenXDal
  * @subpackage MaintenanceStatistics
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 abstract class OX_Dal_Maintenance_Statistics extends MAX_Dal_Common
 {
@@ -49,20 +48,12 @@ abstract class OX_Dal_Maintenance_Statistics extends MAX_Dal_Common
      *      timestamp_column
      *  VALUES
      *      (
-     *          '2007-04-11 13:49:18'{$this->timestampCastSting}
+     *          '2007-04-11 13:49:18'{$this->timestampCastString}
      *      );
      *
      * @var string
      */
-    var $timestampCastSting;
-
-    /**
-     * The class constructor method.
-     */
-    function OX_Dal_Maintenance_Statistics()
-    {
-        parent::MAX_Dal_Common();
-    }
+    var $timestampCastString;
 
     /**
      * A method to perform the migration of logged bucket-based aggregate statistics
@@ -238,7 +229,7 @@ abstract class OX_Dal_Maintenance_Statistics extends MAX_Dal_Common
         if (!empty($aExtras) && is_array($aExtras)) {
             foreach ($aExtras as $key => $value) {
                 $aDestinationColumns[] = $this->oDbh->quoteIdentifier($key, true);
-                if (is_numeric($value) || preg_match("/^['|\"]\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}['|\"]" . $this->timestampCastSting . "/", $value)) {
+                if (is_numeric($value) || preg_match("/^['|\"]\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}['|\"]" . $this->timestampCastString . "/", $value)) {
                     $aSelectColumns[]  = $value . ' AS ' . $this->oDbh->quoteIdentifier($key, true);
                 } else {
                     $aSelectColumns[]  = $this->oDbh->quoteIdentifier($value, true) . ' AS ' . $this->oDbh->quoteIdentifier($key, true);

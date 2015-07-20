@@ -2,26 +2,15 @@
 
 /*
 +---------------------------------------------------------------------------+
-| Openads v2.4                                                              |
-| ============                                                              |
+| Revive Adserver                                                           |
+| http://www.revive-adserver.com                                            |
 |                                                                           |
-| Copyright (c) 2003-2007 Openads Limited                                   |
-| For contact details, see: http://www.openads.org/                         |
-|   Translation :  Adel Shia Ali  http://MasterDesign.ir                    |
+| Copyright: See the COPYRIGHT.txt file.                                    |
+| License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
-$Id$
 */
 
-/**
- * A file for holding the information about the English translation.
- *
- * @package    Adel Shia Ali
- * @subpackage Languages
- */
-
 // Meta information
-$translation_readable   = "فارسی (ایران)";
-$translation_maintainer	= "Adel Shia Ali";
-$translation_contact	= "Info@MasterDesign.ir";
-
-?>
+$translation_readable   = "فارسی";
+$translation_maintainer	= "Revive Adserver Team";
+$translation_contact	= "noreply@revive-adserver.com";

@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -51,7 +50,7 @@ class Image_Graph_Plotarea_Radar extends Image_Graph_Plotarea
     /**
      * Create the plotarea, implicitely creates 2 normal axis
      */
-    function Image_Graph_Plotarea_Radar()
+    function __construct()
     {
         parent::__construct();
         $this->_padding = array('left' => 10, 'top' => 10, 'right' => 10, 'bottom' => 10);
@@ -227,7 +226,7 @@ class Image_Graph_Plotarea_Radar extends Image_Graph_Plotarea
         $this->_plotBottom = $this->_fillBottom();
 
         Image_Graph_Element::_updateCoords();
-        
+
         if (is_object($this->_axisX)) {
             $this->_axisX->_updateCoords();
         }
@@ -235,7 +234,7 @@ class Image_Graph_Plotarea_Radar extends Image_Graph_Plotarea
         if (is_object($this->_axisY)) {
             $this->_axisY->_updateCoords();
         }
-        
+
     }
 
 }

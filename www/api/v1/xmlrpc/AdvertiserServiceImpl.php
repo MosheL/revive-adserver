@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Ivan Klishch <iklishch@lohika.com>
- *
  */
 
 // Require the base class, BaseLogonService
@@ -40,9 +38,9 @@ class AdvertiserServiceImpl extends BaseServiceImpl
      * The AdvertiserServiceImpl method is the constructor for the
      * AdvertiserServiceImpl class.
      */
-    function AdvertiserServiceImpl()
+    function __construct()
     {
-        $this->BaseServiceImpl();
+        parent::__construct();
         $this->_dllAdvertiser = new OA_Dll_Advertiser();
     }
 

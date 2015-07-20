@@ -3,7 +3,6 @@
      *	base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**
@@ -19,7 +18,7 @@
          *    @param string $interface    Class or interface
          *                                to inspect.
          */
-        function SimpleReflection($interface) {
+        function __construct($interface) {
             $this->_interface = $interface;
         }
 
@@ -124,7 +123,7 @@
             }
             return array_unique($methods);
         }
-        
+
         /**
          *    Checks to see if the method signature has to be tightly
          *    specified.
@@ -199,20 +198,15 @@
         	if ($name == '__call') {
         		return 'function __call($method, $arguments)';
         	}
-            if (version_compare(phpversion(), '5.1.0', '>=')) {
-                if (in_array($name, array('__get', '__isset', $name == '__unset'))) {
-                    return "function {$name}(\$key)";
-                }
+            if (in_array($name, array('__get', '__isset', $name == '__unset'))) {
+                return "function {$name}(\$key)";
             }
         	if (! is_callable(array($this->_interface, $name))) {
         		return "function $name()";
         	}
-        	if ($this->_isInterfaceMethod($name)) {
-        	    return $this->_getFullSignature($name);
-        	}
-        	return "function $name()";
+            return $this->_getFullSignature($name);
         }
-        
+
         /**
          *    For a signature specified in an interface, full
          *    details must be replicated to be a valid implementation.

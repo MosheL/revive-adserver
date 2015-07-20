@@ -9,11 +9,12 @@
     <!-- Files in the main directory -->
     <include name="COPYRIGHT.txt"/>
     <include name="LICENSE.txt"/>
-    <include name="README.txt"/>
+    <include name="README.md"/>
     <include name="RELEASE_NOTES.txt"/>
     <include name="*.php"/>
     <include name="*.js"/>
     <include name="robots.txt"/>
+    <include name="crossdomain.xml"/>
     <exclude name="build.sh"/>
 
     <!-- Subdirectory rules -->
@@ -31,6 +32,7 @@
     <include name="scripts/maintenance/**"/>
     <include name="scripts/rpm/**"/>
     <exclude name="scripts/rpm/*.spec*" />
+    <exclude name="scripts/translations/**"/>
     <include name="scripts/.htaccess"/>
     <include name="var/cache/README.txt"/>
     <include name="var/plugins/cache"/>
@@ -70,7 +72,9 @@
     <include name="*.properties"/>
     <include name="*.properties.example"/>
     <include name="build.sh"/>
+    <include name="crowdin.*"/>
     <include name="should_not_exist"/><!-- Required for one of the tests - ask Andrew -->
+    <exclude name="crossdomain.xml"/>
 
     <!-- Subdirectory rules -->
     <include name="build/**"/>

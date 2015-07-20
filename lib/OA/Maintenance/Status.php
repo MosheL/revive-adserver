@@ -17,7 +17,6 @@ require_once LIB_PATH . '/Maintenance.php';
  * A class for providing information about maintenance status
  *
  * @package    OpenXMaintenance
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 class OA_Maintenance_Status
 {
@@ -26,7 +25,7 @@ class OA_Maintenance_Status
     var $isScheduledMaintenanceRunning = false;
     var $isAutoMaintenanceRunning      = false;
 
-    function OA_Maintenance_Status()
+    function __construct()
     {
         // Check auto-maintenance settings
         $aConf = $GLOBALS['_MAX']['CONF'];

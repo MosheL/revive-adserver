@@ -20,7 +20,6 @@ require_once MAX_PATH . '/lib/OA/Admin/Menu.php';
  *
  * @package    OpenXAdmin
  * @subpackage Reports
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Reports_Export extends Plugins_ReportsScope
 {
@@ -39,7 +38,7 @@ class OA_Admin_Reports_Export extends Plugins_ReportsScope
      * @param OA_Admin_Statistics_Common $oStatsController
      * @return OA_Admin_Reports_Export
      */
-    function OA_Admin_Reports_Export($oStatsController)
+    function __construct($oStatsController)
     {
         $this->oStatsController = $oStatsController;
         // Set the Excel Report writer
@@ -53,7 +52,7 @@ class OA_Admin_Reports_Export extends Plugins_ReportsScope
      */
     function export()
     {
-        // Prepare the report name        
+        // Prepare the report name
         // Get system navigation
         $oMenu = OA_Admin_Menu::singleton();
         // Get section by pageId

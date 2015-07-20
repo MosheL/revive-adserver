@@ -18,7 +18,6 @@
  * @author     Stig Bakken <stig@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -94,9 +93,9 @@ class DB_storage extends PEAR
      * a reference to this object
      *
      */
-    function DB_storage($table, $keycolumn, &$dbh, $validator = null)
+    function __construct($table, $keycolumn, &$dbh, $validator = null)
     {
-        $this->PEAR('DB_Error');
+        parent::__construct('DB_Error');
         $this->_table = $table;
         $this->_keycolumn = $keycolumn;
         $this->_dbh = $dbh;
@@ -293,7 +292,7 @@ class DB_storage extends PEAR
     function &create($table, &$data)
     {
         $classname = strtolower(get_class($this));
-        $obj =& new $classname($table);
+        $obj = new $classname($table);
         foreach ($data as $name => $value) {
             $obj->_properties[$name] = true;
             $obj->$name = &$value;

@@ -18,14 +18,13 @@ require_once MAX_PATH.'/lib/OA/Upgrade/Upgrade.php';
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Bernard Lange <bernard.lange@openx.org>
  */
 class Test_postscript_2_7_11_dev extends UnitTestCase
 {
     /**
      * The constructor method.
      */
-    function Test_postscript_2_7_11_dev()
+    function __construct()
     {
     }
 

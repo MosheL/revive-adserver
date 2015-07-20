@@ -3,7 +3,6 @@
      *	Global state for SimpleTest and kicker script in future versions.
      *	@package	SimpleTest
      *	@subpackage	UnitTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -271,7 +270,7 @@
          */
         function &get($resource) {
             if (! isset($this->_resources[$resource])) {
-                $this->_resources[$resource] = &new $resource();
+                $this->_resources[$resource] = new $resource();
             }
             return $this->_resources[$resource];
         }
@@ -291,7 +290,7 @@
          *    @param array $prefixes      List of method prefixes
          *                                to search for.
          */
-        function SimpleStackTrace($prefixes) {
+        function __construct($prefixes) {
             $this->_prefixes = $prefixes;
         }
 

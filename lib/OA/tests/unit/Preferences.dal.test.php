@@ -18,7 +18,6 @@ require_once MAX_PATH . '/lib/OA/Dal/DataGenerator.php';
  *
  * @package    OpenXPermission
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Preferences extends UnitTestCase
 {
@@ -26,9 +25,9 @@ class Test_OA_Preferences extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_Preferences()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function tearDown()
@@ -61,7 +60,7 @@ class Test_OA_Preferences extends UnitTestCase
 
         // Create the admin account
         $doAccounts = OA_Dal::factoryDO('accounts');
-        $doAccounts->account_name = 'Administrator Account';
+        $doAccounts->account_name = 'System Administrator';
         $doAccounts->account_type = OA_ACCOUNT_ADMIN;
         $adminAccountId = DataGenerator::generateOne($doAccounts);
 
@@ -509,7 +508,7 @@ class Test_OA_Preferences extends UnitTestCase
 
         // Create the admin account
         $doAccounts = OA_Dal::factoryDO('accounts');
-        $doAccounts->account_name = 'Administrator Account';
+        $doAccounts->account_name = 'System Administrator';
         $doAccounts->account_type = OA_ACCOUNT_ADMIN;
         $adminAccountId = DataGenerator::generateOne($doAccounts);
 

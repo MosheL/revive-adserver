@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Heiko Weber <heiko@wecos.de>
- *
  */
 
 // Base class BaseLogonService
@@ -41,7 +39,7 @@ class ChannelServiceImpl extends BaseServiceImpl
      */
     function __construct()
     {
-        $this->BaseServiceImpl();
+        parent::__construct();
         $this->_dllChannel = new OA_Dll_Channel();
     }
 

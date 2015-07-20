@@ -23,7 +23,6 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -130,9 +129,9 @@ class DB_msql extends DB_common
      *
      * @return void
      */
-    function DB_msql()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}
@@ -146,13 +145,13 @@ class DB_msql extends DB_common
      * Example of how to connect:
      * <code>
      * require_once 'DB.php';
-     * 
+     *
      * // $dsn = 'msql://hostname/dbname';  // use a TCP connection
      * $dsn = 'msql:///dbname';             // use a socket
      * $options = array(
      *     'portability' => DB_PORTABILITY_ALL,
      * );
-     * 
+     *
      * $db =& DB::connect($dsn, $options);
      * if (PEAR::isError($db)) {
      *     die($db->getMessage());
@@ -167,7 +166,7 @@ class DB_msql extends DB_common
     function connect($dsn, $persistent = false)
     {
         if (!PEAR::loadExtension('msql')) {
-            return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
+            return $this->customRaiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
 
         $this->dsn = $dsn;
@@ -198,11 +197,11 @@ class DB_msql extends DB_common
 
         if (!$this->connection) {
             if (($err = @msql_error()) != '') {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+                return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                          null, null, null,
                                          $err);
             } else {
-                return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+                return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                          null, null, null,
                                          $php_errormsg);
             }
@@ -452,14 +451,14 @@ class DB_msql extends DB_common
                 $result = $this->createSequence($seq_name);
                 $this->popErrorHandling();
                 if (DB::isError($result)) {
-                    return $this->raiseError($result);
+                    return $this->customRaiseError($result);
                 }
             } else {
                 $repeat = false;
             }
         } while ($repeat);
         if (DB::isError($result)) {
-            return $this->raiseError($result);
+            return $this->customRaiseError($result);
         }
         $arr = $result->fetchRow(DB_FETCHMODE_ORDERED);
         $result->free();
@@ -527,7 +526,7 @@ class DB_msql extends DB_common
      */
     function quoteIdentifier($str)
     {
-        return $this->raiseError(DB_ERROR_UNSUPPORTED);
+        return $this->customRaiseError(DB_ERROR_UNSUPPORTED);
     }
 
     // }}}
@@ -569,7 +568,7 @@ class DB_msql extends DB_common
         if ($errno === null) {
             $errno = $this->errorCode($native);
         }
-        return $this->raiseError($errno, null, null, null, $native);
+        return $this->customRaiseError($errno, null, null, null, $native);
     }
 
     // }}}
@@ -709,7 +708,7 @@ class DB_msql extends DB_common
         }
 
         if (!is_resource($id)) {
-            return $this->raiseError(DB_ERROR_NEED_MORE_DATA);
+            return $this->customRaiseError(DB_ERROR_NEED_MORE_DATA);
         }
 
         if ($this->options['portability'] & DB_PORTABILITY_LOWERCASE) {

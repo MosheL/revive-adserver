@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -62,7 +61,7 @@ class Image_Graph_Marker_Pointing_Radial extends Image_Graph_Marker_Pointing
      * @param Marker $markerEnd The ending marker that represents 'the head of
      * the pin'
      */
-    function Image_Graph_Marker_Pointing_Radial($radius, & $markerEnd)
+    function __construct($radius, & $markerEnd)
     {
         parent::__construct(0, 0, $markerEnd);
         $this->_radius = $radius;

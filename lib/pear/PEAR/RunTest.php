@@ -16,7 +16,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.3.3
  */
@@ -77,7 +76,7 @@ class PEAR_RunTest
      * An object that supports the PEAR_Common->log() signature, or null
      * @param PEAR_Common|null
      */
-    function PEAR_RunTest($logger = null, $options = array())
+    function __construct($logger = null, $options = array())
     {
         $this->ini_overwrites[] = 'error_reporting=' . E_ALL;
         if (is_null($logger)) {

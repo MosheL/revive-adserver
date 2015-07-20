@@ -15,14 +15,13 @@
  *
  * @package    OpenXPlugin
  * @subpackage InvocationTags
- * @author     Radek Maciaszek <radek@m3.net>
  */
 class Plugins_InvocationTagsOptions
 {
     var $maxInvocation;
 
     var $defaultValues = array();
-    function Plugins_InvocationTagsOptions()
+    function __construct()
     {
         $conf = $GLOBALS['_MAX']['CONF'];
         $this->defaultValues = array(
@@ -50,7 +49,7 @@ class Plugins_InvocationTagsOptions
             'charset'           => '',
         );
     }
-    
+
     /**
      * Return name of plugin
      *

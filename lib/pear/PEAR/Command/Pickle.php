@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  2005-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.1
  */
@@ -82,9 +81,9 @@ generate both package.xml.
      *
      * @access public
      */
-    function PEAR_Command_Pickle(&$ui, &$config)
+    function __construct(&$ui, &$config)
     {
-        parent::PEAR_Command_Common($ui, $config);
+        parent::__construct($ui, $config);
     }
 
 
@@ -98,7 +97,7 @@ generate both package.xml.
         if (!class_exists('PEAR_Packager')) {
             require_once 'PEAR/Packager.php';
         }
-        $a = &new PEAR_Packager;
+        $a = new PEAR_Packager;
         return $a;
     }
 
@@ -118,7 +117,7 @@ generate both package.xml.
         if (!class_exists('PEAR/PackageFile.php')) {
             require_once 'PEAR/PackageFile.php';
         }
-        $a = &new PEAR_PackageFile($config, $debug, $tmpdir);
+        $a = new PEAR_PackageFile($config, $debug, $tmpdir);
         $common = new PEAR_Common;
         $common->ui = $this->ui;
         $a->setLogger($common);
@@ -306,7 +305,7 @@ generate both package.xml.
         $contents = $pf2->getContents();
         $release = $pf2->getReleases();
         if (isset($releases[0])) {
-            return $this->raiseError('Cannot safely process "' . $packagexml . '" contains ' 
+            return $this->raiseError('Cannot safely process "' . $packagexml . '" contains '
             . 'multiple extsrcrelease/zendextsrcrelease tags.  Using a PEAR_PackageFileManager-based script ' .
             'or the convert command is an option');
         }
@@ -317,7 +316,7 @@ generate both package.xml.
             }
         }
         if (isset($release['filelist']['ignore'])) {
-            return $this->raiseError('Cannot safely process "' . $packagexml . '" contains ' 
+            return $this->raiseError('Cannot safely process "' . $packagexml . '" contains '
             . 'ignore tags.  Using a PEAR_PackageFileManager-based script or the convert' .
             ' command is an option');
         }

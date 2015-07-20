@@ -20,7 +20,6 @@
  * @author     Daniel Convissor <danielc@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/DB
  */
 
@@ -128,9 +127,9 @@ class DB_fbsql extends DB_common
      *
      * @return void
      */
-    function DB_fbsql()
+    function __construct()
     {
-        $this->DB_common();
+        parent::__construct();
     }
 
     // }}}
@@ -149,7 +148,7 @@ class DB_fbsql extends DB_common
     function connect($dsn, $persistent = false)
     {
         if (!PEAR::loadExtension('fbsql')) {
-            return $this->raiseError(DB_ERROR_EXTENSION_NOT_FOUND);
+            return $this->customRaiseError(DB_ERROR_EXTENSION_NOT_FOUND);
         }
 
         $this->dsn = $dsn;
@@ -178,7 +177,7 @@ class DB_fbsql extends DB_common
         }
 
         if (!$this->connection) {
-            return $this->raiseError(DB_ERROR_CONNECT_FAILED,
+            return $this->customRaiseError(DB_ERROR_CONNECT_FAILED,
                                      null, null, null,
                                      $php_errormsg);
         }
@@ -605,7 +604,7 @@ class DB_fbsql extends DB_common
         if ($errno === null) {
             $errno = $this->errorCode(fbsql_errno($this->connection));
         }
-        return $this->raiseError($errno, null, null, null,
+        return $this->customRaiseError($errno, null, null, null,
                                  @fbsql_error($this->connection));
     }
 
@@ -737,7 +736,7 @@ class DB_fbsql extends DB_common
                        . ' "table_type" = \'VIEW\''
                        . ' AND "schema_name" = current_schema';
             case 'users':
-                return 'SELECT "user_name" from information_schema.users'; 
+                return 'SELECT "user_name" from information_schema.users';
             case 'functions':
                 return 'SELECT "routine_name" FROM'
                        . ' information_schema.psm_routines'

@@ -24,10 +24,9 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
- 
+
 /**
  * Include file Image/Graph/Axis.php
  */
@@ -59,7 +58,7 @@ class Image_Graph_Axis_Logarithmic extends Image_Graph_Axis
      *   for an X-axis (default, may be omitted) and IMAGE_GRAPH_AXIS_Y for Y-
      *   axis)
      */
-    function Image_Graph_Axis_Logarithmic($type = IMAGE_GRAPH_AXIS_X)
+    function __construct($type = IMAGE_GRAPH_AXIS_X)
     {
         parent::__construct($type);
         $this->showLabel(IMAGE_GRAPH_LABEL_MINIMUM + IMAGE_GRAPH_LABEL_MAXIMUM);
@@ -78,7 +77,7 @@ class Image_Graph_Axis_Logarithmic extends Image_Graph_Axis
     function _calcLabelInterval()
     {
         $result = parent::_calcLabelInterval();
-        $this->_axisValueSpan = $this->_value($this->_axisSpan);                
+        $this->_axisValueSpan = $this->_value($this->_axisSpan);
         return $result;
     }
 
@@ -113,7 +112,7 @@ class Image_Graph_Axis_Logarithmic extends Image_Graph_Axis
             $base = floor($value);
             $frac = $value - $base;
             for ($i = 2; $i < 10; $i++) {
-                if ($frac <= (log10($i)-0.01)) {                    
+                if ($frac <= (log10($i)-0.01)) {
                     $label = pow(10, $base)*$i;
                     if ($label > $this->_getMaximum()) {
                         return false;
@@ -140,13 +139,13 @@ class Image_Graph_Axis_Logarithmic extends Image_Graph_Axis
      * @access private
      */
     function _intersectPoint($value)
-    {        
+    {
         if (($value <= 0) && ($value !== 'max') && ($value !== 'min')) {
             $value = 1;
         }
         return parent::_intersectPoint($value);
     }
-    
+
 }
 
 ?>

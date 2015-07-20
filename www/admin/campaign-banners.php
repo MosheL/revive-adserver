@@ -180,6 +180,14 @@ while ($doBanners->fetch() && $row = $doBanners->toArray()) {
     if ($row['status'] == OA_ENTITY_STATUS_RUNNING) {
         $countActive++;
     }
+
+    // Build banner preview
+    if ($row['bannerid'] && !empty($GLOBALS['_MAX']['PREF']['ui_show_campaign_preview']) && empty($_GET['nopreview'])) {
+        $bannerCode = MAX_bannerPreview($row['bannerid']);
+    } else {
+        $bannerCode = '';
+    }
+    $banners[$row['bannerid']]['preview'] = $bannerCode;
 }
 
 $aCount = array(
@@ -188,7 +196,7 @@ $aCount = array(
 );
 
 
-// Figure out which banners are inactive,
+// Figure out which banners are inactive and prepare trimmed URLs for display
 $bannersHidden = 0;
 if (isset($banners) && is_array($banners) && count($banners) > 0) {
     reset ($banners);
@@ -198,6 +206,8 @@ if (isset($banners) && is_array($banners) && count($banners) > 0) {
             $bannersHidden++;
 			$aCount['banners_hidden']++;
             unset($banners[$key]);
+        } elseif (strlen($banner['url']) > 40) {
+            $banners[$key]['url_trimmed'] = substr_replace($banner['url'], ' ...', 40);
         }
     }
 }

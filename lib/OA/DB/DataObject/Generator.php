@@ -18,8 +18,6 @@ require_once MAX_PATH.'/lib/OA/DB/Table/Core.php';
  * Extending standard PEAR DB_DataObject Generator tool
  *
  * @package    OpenXDB
- * @author     Monique Szpak <monique.szpak@openx.org>
- * @author     Lukasz Wikierski <lukasz.wikierski@openx.org>
  */
 class OA_DB_DataObject_Generator extends DB_DataObject_Generator
 {
@@ -362,7 +360,7 @@ class OA_DB_DataObject_Generator extends DB_DataObject_Generator
         // simple creation tools ! (static stuff!)
         $body .= "{$n}";
         $body .= "    /* Static get */{$n}";
-        $body .= "    function staticGet(\$k,\$v=NULL) { return DB_DataObject::staticGet('{$this->classname}',\$k,\$v); }{$n}";
+        $body .= "    function staticGet(\$k,\$v=NULL) { return DB_DataObject::staticGetFromClassName('{$this->classname}',\$k,\$v); }{$n}";
 
         // generate getter and setter methods
         $body .= $this->_generateGetters($input);

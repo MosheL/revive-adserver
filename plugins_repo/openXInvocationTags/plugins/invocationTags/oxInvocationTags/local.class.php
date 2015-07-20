@@ -18,8 +18,6 @@ require_once MAX_PATH . '/lib/max/Plugin/Translation.php';
  *
  * @package    OpenXPlugin
  * @subpackage InvocationTags
- * @author     Radek Maciaszek <radek@m3.net>
- *
  */
 class Plugins_InvocationTags_OxInvocationTags_local extends Plugins_InvocationTags
 {
@@ -51,7 +49,7 @@ class Plugins_InvocationTags_OxInvocationTags_local extends Plugins_InvocationTa
      *
      * @return boolean  True - allowed, false - not allowed
      */
-    function isAllowed($extra, $server_same)
+    function isAllowed($extra = null, $server_same = true)
     {
         // Set "same_server" as a property on this object, but still permit invocation
         $this->same_server = $server_same;
@@ -104,7 +102,7 @@ class Plugins_InvocationTags_OxInvocationTags_local extends Plugins_InvocationTa
         parent::prepareCommonInvocationData($aComments);
 
         $conf = $GLOBALS['_MAX']['CONF'];
-        $name = (!empty($GLOBALS['_MAX']['PREF']['name'])) ? $GLOBALS['_MAX']['PREF']['name'] : MAX_PRODUCT_NAME;
+        $name = PRODUCT_NAME;
         $mi = &$this->maxInvocation;
 
         $buffer = $mi->buffer;

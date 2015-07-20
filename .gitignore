@@ -5,6 +5,7 @@
 /var/INSTALLED
 /var/*.conf.php
 /var/*.log
+/var/*.log.rollback
 /var/*.xml
 /var/cache/*.html
 /var/cache/*.php
@@ -19,5 +20,4 @@
 /var/templates_compiled/*.serial
 /www/admin/plugins/*
 /www/images/
-/plugins_repo/build-ap.xml
-lib/max/language/he/default.lang (2).php
+/plugins_repo/release/*.ziplib/max/language/he/default.lang (2).php

@@ -17,7 +17,6 @@ require_once MAX_PATH . '/lib/OA/Maintenance/Priority/AdServer/Task.php';
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Demian Turner <demian@m3.net>
  */
 class Test_OA_Maintenance_Priority_AdServer_Task extends UnitTestCase
 {
@@ -25,9 +24,9 @@ class Test_OA_Maintenance_Priority_AdServer_Task extends UnitTestCase
    /**
     * The constructor method.
     */
-    function Test_OA_Maintenance_Priority_AdServer_Task()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         Mock::generate('OA_Dal_Maintenance_Priority');
     }
 

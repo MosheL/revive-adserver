@@ -17,10 +17,9 @@ require_once '../../init.php';
 require_once MAX_PATH . '/lib/OA/Admin/Option.php';
 require_once MAX_PATH . '/lib/OA/Admin/UI/UserAccess.php';
 
-require_once MAX_PATH . '/lib/max/Admin/Languages.php';
 require_once MAX_PATH . '/lib/max/Plugin/Translation.php';
 require_once MAX_PATH . '/www/admin/config.php';
-require_once MAX_PATH . '/lib/max/Admin/Languages.php';
+require_once MAX_PATH . '/lib/RV/Admin/Languages.php';
 
 
 // Security check
@@ -76,15 +75,15 @@ if (isset($_POST['submitok']) && $_POST['submitok'] == 'true') {
 // Display the settings page's header and sections
 phpAds_PageHeader("5.1");
 if (OA_Permission::isAccount(OA_ACCOUNT_ADMIN)) {
-    // Show all "My Account" sections
+    // Show all "Preferences" sections
     phpAds_ShowSections(array("5.1", "5.2", "5.3", "5.5", "5.6", "5.4"));
 }
 else if (OA_Permission::isAccount(OA_ACCOUNT_MANAGER)) {
-    // Show the "Preferences", "User Log" and "Channel Management" sections of the "My Account" sections
+    // Show the "Account Preferences", "User Log" and "Channel Management" sections of the "Preferences" sections
     phpAds_ShowSections(array("5.1", "5.2", "5.4", "5.7"));
 }
 else if (OA_Permission::isAccount(OA_ACCOUNT_TRAFFICKER) || OA_Permission::isAccount(OA_ACCOUNT_ADVERTISER)) {
-    // Show the "User Preferences" section of the "My Account" sections
+    // Show the "User Preferences" section of the "Preferences" sections
     $sections = array("5.1", "5.2");
     if (OA_Permission::hasPermission(OA_PERM_USER_LOG_ACCESS)) {
         $sections[] = "5.4";
@@ -98,9 +97,6 @@ $oOptions->selection("name-language");
 // Get the current logged in user details
 $oUser = OA_Permission::getCurrentUser();
 $aUser = $oUser->aUser;
-
-//$aLanguages = MAX_Admin_Languages::AvailableLanguages();
-$aLanguages = new MAX_Admin_Languages;
 
 // Prepare an array of HTML elements to display for the form, and
 // output using the $oOption object
@@ -144,7 +140,7 @@ $aSettings = array (
                 'type'    => 'select',
                 'name'    => 'language',
                 'text'    => $strLanguage,
-                'items'   => $aLanguages->AvailableLanguages(),
+                'items'   => RV_Admin_Languages::getAvailableLanguages(),
                 'value'   => $GLOBALS['_MAX']['PREF']['language']
             )
         )

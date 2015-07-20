@@ -21,16 +21,15 @@ require_once(MAX_PATH.'/lib/OA/Upgrade/DB_UpgradeAuditor.php');
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_DB_Upgrade extends UnitTestCase
 {
     /**
      * The constructor method.
      */
-    function Test_DB_Upgrade()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_prepPreScript()
@@ -116,7 +115,7 @@ class Test_DB_Upgrade extends UnitTestCase
 
     function _newDBUpgradeObject($timing='constructive')
     {
-        $oDB_Upgrade =&  new OA_DB_Upgrade();
+        $oDB_Upgrade = new OA_DB_Upgrade();
         $oDB_Upgrade->initMDB2Schema();
         $oDB_Upgrade->timingStr = $timing;
         $oDB_Upgrade->timingInt = ($timing ? 0 : 1);

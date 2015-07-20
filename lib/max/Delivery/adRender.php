@@ -13,7 +13,6 @@
 /**
  * @package    MaxDelivery
  * @subpackage ad
- * @author     Chris Nutting <chris@m3.net>
  *
  * This library contains the functions to select and generate the HTML for an ad
  *
@@ -284,6 +283,7 @@ function _adRenderImage(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
  * @param bookean $logClick     Should this click be logged (clicks in admin should not be logged)
  * @param boolean $logView      Should this view be logged (views in admin should not be logged
  *                              also - 3rd party callback logging should not be logged at view time)
+ * @param boolean $richMedia    Does this invocation method allow for serving 3rd party/html ads
  * @param string  $loc          The "current page" URL
  * @param string  $referer      The "referring page" URL
  *
@@ -297,13 +297,25 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
     $width = !empty($aBanner['width']) ? $aBanner['width'] : 0;
     $height = !empty($aBanner['height']) ? $aBanner['height'] : 0;
     $pluginVersion = !empty($aBanner['pluginversion']) ? _adRenderGetRealPluginVersion($aBanner['pluginversion']) : '4';
-    // $imageUrlPrefix = ($_SERVER['SERVER_PORT'] == $conf['openads']['sslPort']) ? $conf['type_web_ssl_url'] : $conf['type_web_url'];
+    $logURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&');
+
     if (!empty($aBanner['alt_filename']) || !empty($aBanner['alt_imageurl'])) {
         $altImageAdCode = _adRenderImage($aBanner, $zoneId, $source, $ct0, false, $logClick, false, true, true, $loc, $referer, false);
         $fallBackLogURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&', true);
     } else {
-        $altImageAdCode = "<img src='" . _adRenderBuildImageUrlPrefix() . '/1x1.gif' . "' alt='".$aBanner['alt']."' title='".$aBanner['alt']."' border='0' />";
-        $fallBackLogURL = false;
+        $alt = !empty($aBanner['alt']) ? htmlspecialchars($aBanner['alt'], ENT_QUOTES) : '';
+        $altImageAdCode = "<img src='" . _adRenderBuildImageUrlPrefix() . '/1x1.gif' . "' alt='".$alt."' title='".$alt."' border='0' />";
+
+        if ($zoneId) {
+            // Log a blank impression instead
+            $fallBackLogURL = _adRenderBuildLogURL(array(
+                    'ad_id' => 0,
+                    'placement_id' => 0,
+                ), $zoneId, $source, $loc, $referer, '&', true);
+        } else {
+            // No zone, skip logging
+            $fallBackLogURL = false;
+        }
     }
 
     // Create the anchor tag..
@@ -336,12 +348,13 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
         }
     }
     $fileUrl = _adRenderBuildFileUrl($aBanner, false);
-    $rnd = md5(microtime());
+    $id = 'rv_swf_{random}';
 
     $swfId = (!empty($aBanner['alt']) ? $aBanner['alt'] : 'Advertisement');
+    $swfId = 'id-' . preg_replace('/[a-z0-1]+/', '', strtolower($swfId));
 
     $code = "
-<div id='ox_$rnd' style='display: inline;'>$altImageAdCode</div>
+<div id='{$id}' style='display: inline;'>$altImageAdCode</div>
 <script type='text/javascript'><!--/"."/ <![CDATA[
     var ox_swf = new FlashObject('{$fileUrl}', '{$swfId}', '{$width}', '{$height}', '{$pluginVersion}');\n";
     foreach ($swfParams as $key => $value) {
@@ -349,23 +362,21 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
         $code .= "    ox_swf.addVariable('{$key}', '" . preg_replace('#%7B(.*?)%7D#', '{$1}', urlencode($value)) . "');\n";
     }
     if (!empty($aBanner['transparent'])) {
-        $code .= "\n   ox_swf.addParam('wmode','transparent');";
+        $code .= "    ox_swf.addParam('wmode','transparent');\n";
     } else {
-        $code .= "\n   ox_swf.addParam('wmode','opaque');";
+        $code .= "    ox_swf.addParam('wmode','opaque');\n";
     }
-    $code .= "
-    ox_swf.addParam('allowScriptAccess','always');
-    ox_swf.write('ox_$rnd');\n";
+    $code .= "    ox_swf.addParam('allowScriptAccess','always');\n";
 
     if ($logView && $conf['logging']['adImpressions']) {
         // Only render the log beacon if the user has the minumum required flash player version
-        $code .= "    if (ox_swf.installedVer.versionIsValid(ox_swf.getAttribute('version'))) { document.write(\""._adRenderImageBeacon($aBanner, $zoneId, $source, $loc, $referer)."\"); }";
         // Otherwise log a fallback impression (if there is a fallback creative configured)
-        if ($fallBackLogURL) {
-            $code .= ' else { document.write("'._adRenderImageBeacon($aBanner, $zoneId, $source, $loc, $referer, $fallBackLogURL).'"); }';
-        }
+        $code .= "    ox_swf.write('{$id}', ".json_encode($logURL).", ".json_encode($fallBackLogURL).");\n";
+    } else {
+        $code .= "    ox_swf.write('{$id}');\n";
     }
-    $code .= "\n/"."/ ]]> --></script>";
+
+    $code .= "/"."/ ]]> --></script>";
     if ($fallBackLogURL) {
         $code .= '<noscript>' . _adRenderImageBeacon($aBanner, $zoneId, $source, $loc, $referer, $fallBackLogURL) . '</noscript>';
     }
@@ -386,6 +397,7 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
  * @param boolean $logView      Should this view be logged (views in admin should not be logged
  *                              also - 3rd party callback logging should not be logged at view time)
  * @param boolean $useAlt       Should the backup file be used for this code
+ * @param boolean $richMedia    Does this invocation method allow for serving 3rd party/html ads
  * @param string  $loc          The "current page" URL
  * @param string  $referer      The "referring page" URL
  *
@@ -398,7 +410,7 @@ function _adRenderHtml(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fals
     if (!function_exists('Plugin_BannerTypeHtml_delivery_adRender')) {
         @include LIB_PATH . '/Extension/bannerTypeHtml/bannerTypeHtmlDelivery.php';
     }
-    return Plugin_BannerTypeHtml_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $loc, $referer);
+    return Plugin_BannerTypeHtml_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $richMedia, $loc, $referer);
 }
 
 /**
@@ -413,6 +425,7 @@ function _adRenderHtml(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fals
  * @param boolean $logView      Should this view be logged (views in admin should not be logged
  *                              also - 3rd party callback logging should not be logged at view time)
  * @param boolean $useAlt       Should the backup file be used for this code
+ * @param boolean $richMedia    Does this invocation method allow for serving 3rd party/html ads
  * @param string  $loc          The "current page" URL
  * @param string  $referer      The "referring page" URL
  *
@@ -425,7 +438,7 @@ function _adRenderText(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fals
     if (!function_exists('Plugin_BannerTypeText_delivery_adRender')) {
         @include LIB_PATH . '/Extension/bannerTypeText/bannerTypeTextDelivery.php';
     }
-    return Plugin_BannerTypeText_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $loc, $referer);
+    return Plugin_BannerTypeText_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $richMedia, $loc, $referer);
 }
 
 /**

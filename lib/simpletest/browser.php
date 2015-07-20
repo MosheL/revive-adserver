@@ -3,7 +3,6 @@
      *	Base include file for SimpleTest
      *	@package	SimpleTest
      *	@subpackage	WebTester
-     *	@version	$Id$
      */
 
     /**#@+
@@ -35,7 +34,7 @@
          *    Starts empty.
          *    @access public
          */
-        function SimpleBrowserHistory() {
+        function __construct() {
             $this->_sequence = array();
             $this->_position = -1;
         }
@@ -171,13 +170,13 @@
          *    set up if specified in the options.
          *    @access public
          */
-        function SimpleBrowser() {
+        function __construct() {
             $this->_user_agent = &$this->_createUserAgent();
             $this->_user_agent->useProxy(
                     SimpleTest::getDefaultProxy(),
                     SimpleTest::getDefaultProxyUsername(),
                     SimpleTest::getDefaultProxyPassword());
-            $this->_page = &new SimplePage();
+            $this->_page = new SimplePage();
             $this->_history = &$this->_createHistory();
             $this->_ignore_frames = false;
             $this->_maximum_nested_frames = DEFAULT_MAX_NESTED_FRAMES;
@@ -189,7 +188,7 @@
          *    @access protected
          */
         function &_createUserAgent() {
-            $user_agent = &new SimpleUserAgent();
+            $user_agent = new SimpleUserAgent();
             return $user_agent;
         }
 
@@ -199,7 +198,7 @@
          *    @access protected
          */
         function &_createHistory() {
-            $history = &new SimpleBrowserHistory();
+            $history = new SimpleBrowserHistory();
             return $history;
         }
 
@@ -220,7 +219,7 @@
         function useFrames() {
             $this->_ignore_frames = false;
         }
-        
+
         /**
          *    Switches off cookie sending and recieving.
          *    @access public
@@ -228,7 +227,7 @@
         function ignoreCookies() {
             $this->_user_agent->ignoreCookies();
         }
-        
+
         /**
          *    Switches back on the cookie sending and recieving.
          *    @access public
@@ -250,14 +249,14 @@
             if ($this->_ignore_frames || ! $page->hasFrames() || ($depth > $this->_maximum_nested_frames)) {
                 return $page;
             }
-            $frameset = &new SimpleFrameset($page);
+            $frameset = new SimpleFrameset($page);
             foreach ($page->getFrameset() as $key => $url) {
                 $frame = &$this->_fetch($url, new SimpleGetEncoding(), $depth + 1);
                 $frameset->addFrame($frame, $key);
             }
             return $frameset;
         }
-        
+
         /**
          *    Assembles the parsing machinery and actually parses
          *    a single page. Frees all of the builder memory and so
@@ -267,7 +266,7 @@
          *    @access protected
          */
         function &_buildPage($response) {
-            $builder = &new SimplePageBuilder();
+            $builder = new SimplePageBuilder();
             $page = &$builder->parse($response);
             $builder->free();
             unset($builder);
@@ -286,7 +285,7 @@
         function &_fetch($url, $encoding, $depth = 0) {
             $response = &$this->_user_agent->fetchResponse($url, $encoding);
             if ($response->isError()) {
-                $page = &new SimplePage($response);
+                $page = new SimplePage($response);
             } else {
                 $page = &$this->_parse($response, $depth);
             }
@@ -894,7 +893,7 @@
                     $form->submitButton(new SimpleById($id), $additional));
             return ($success ? $this->getContent() : $success);
         }
-        
+
         /**
          *    Tests to see if a submit button exists with this
          *    label.
@@ -973,7 +972,7 @@
                     $form->submitImage(new SimpleById($id), $x, $y, $additional));
             return ($success ? $this->getContent() : $success);
         }
-        
+
         /**
          *    Tests to see if an image exists with this
          *    title or alt text.
@@ -1041,7 +1040,7 @@
             $this->_load($url, new SimpleGetEncoding());
             return $this->getContent();
         }
-        
+
         /**
          *    Finds a link by id attribute.
          *    @param string $id        ID attribute value.

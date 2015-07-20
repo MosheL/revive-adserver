@@ -17,7 +17,6 @@ require_once SIM_PATH . 'SimulationScenario.php';
  *
  * @package
  * @subpackage
- * @author
  */
 class RunOfSite extends SimulationScenario
 {
@@ -25,7 +24,7 @@ class RunOfSite extends SimulationScenario
     /**
      * The constructor method.
      */
-    function RunOfSite()
+    function __construct()
     {
         $this->init("RunOfSite");
     }

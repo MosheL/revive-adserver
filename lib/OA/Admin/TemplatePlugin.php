@@ -22,7 +22,6 @@ require_once MAX_PATH . '/lib/pear/Date.php';
  * A UI templating class.
  *
  * @package    OpenadsAdmin
- * @author     Monique Szpak <monique.szpak@openads.org>
  */
 class OA_Plugin_Template
     extends OA_Admin_Template
@@ -42,7 +41,7 @@ class OA_Plugin_Template
      */
     var $_tabIndex = 0;
 
-    function OA_Plugin_Template($templateName, $adminGroupName)
+    function __construct($templateName, $adminGroupName)
     {
         $this->init($templateName, $adminGroupName);
     }
@@ -57,10 +56,10 @@ class OA_Plugin_Template
         //if not use relative one
         $pluginBaseDir = $this->get_template_vars('pluginBaseDir'); //with trailing /
         $pluginTemplateDir = $this->get_template_vars('pluginTemplateDir'); //with trailing /
-        
+
         $absoluteTemplateDir = $pluginBaseDir.$adminGroupName.$pluginTemplateDir;
-        
-        $this->template_dir = is_dir($absoluteTemplateDir) 
+
+        $this->template_dir = is_dir($absoluteTemplateDir)
             ? $absoluteTemplateDir : $pluginTemplateDir;
     }
 }

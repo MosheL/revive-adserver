@@ -15,7 +15,6 @@ require_once MAX_PATH.'/lib/OA/DB.php';
 /**
  * OpenX Upgrade Class
  *
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class OA_phpAdsNew
 {
@@ -31,7 +30,7 @@ class OA_phpAdsNew
     var $engine     = '';
     var $version    = '';
 
-    function OA_phpAdsNew()
+    function __construct()
     {
 
     }
@@ -73,7 +72,12 @@ class OA_phpAdsNew
     {
         if (file_exists(MAX_PATH.$this->pathCfg.$this->fileCfg))
         {
-            include MAX_PATH.$this->pathCfg.$this->fileCfg;
+            $config = file_get_contents(MAX_PATH.$this->pathCfg.$this->fileCfg);
+            $config = preg_replace('/set_magic_quotes_runtime\s*\(/', '//$1', $config);
+            $tmpFile = tempnam(MAX_PATH.'/var', 'pan_');
+            file_put_contents($tmpFile, $config);
+            include $tmpFile;
+            unlink($tmpFile);
             if (is_array($phpAds_config))
             {
                 $this->detected = true;

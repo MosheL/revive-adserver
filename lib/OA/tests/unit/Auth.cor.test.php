@@ -18,14 +18,13 @@ require_once MAX_PATH . '/lib/OA/Auth.php';
  *
  * @package    OpenX
  * @subpackage TestSuite
- * @author     Radek Maciaszek <radek.maciaszek@openx.org>
  */
 class Test_OA_Auth extends UnitTestCase
 {
 
-    function Test_OA_Auth()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

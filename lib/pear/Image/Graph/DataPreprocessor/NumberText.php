@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -65,7 +64,7 @@ class Image_Graph_DataPreprocessor_NumberText extends Image_Graph_DataPreprocess
      *
      * @param string $langugage The language identifier for the language.
      */
-    function Image_Graph_DataPreprocessor_NumberText($language = 'en_US')
+    function __construct($language = 'en_US')
     {
         parent::__construct();
         $this->_language = $language;

@@ -16,7 +16,6 @@ require_once LIB_PATH.'/Plugin/UpgradeComponentGroup.php';
  * A class for testing the Test_OX_Plugin_UpgradeComponentGroup class.
  *
  * @package Plugins
- * @author  Monique Szpak <monique.szpak@openx.org>
  * @subpackage TestSuite
  */
 class Test_OX_Plugin_UpgradeComponentGroup extends UnitTestCase
@@ -30,9 +29,9 @@ class Test_OX_Plugin_UpgradeComponentGroup extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OX_Plugin_UpgradeComponentGroup()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
         $this->aUpload['name'] = $this->packageName.'.zip';
         $this->aUpload['tmp_name'] = MAX_PATH.$this->testpathData.$this->aUpload['name'];
     }

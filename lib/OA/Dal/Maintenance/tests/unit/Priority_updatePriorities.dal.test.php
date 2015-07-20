@@ -19,8 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dal/Maintenance/Priority.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OA_Dal_Maintenance_Priority_updatePriorities extends UnitTestCase
 {
@@ -29,9 +27,9 @@ class Test_OA_Dal_Maintenance_Priority_updatePriorities extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_Dal_Maintenance_Priority_updatePriorities()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -141,7 +139,7 @@ class Test_OA_Dal_Maintenance_Priority_updatePriorities extends UnitTestCase
         $this->assertEqual($aRow['created_by'], 0);
         $this->assertNull($aRow['expired']);
         $this->assertNull($aRow['expired_by']);
-        
+
         // Test 3
         $aData =
             array(

@@ -11,33 +11,32 @@
 * Technical choices are described in the 'docs/technical' file
 *
 * @package Cache_Lite
-* @version $Id$
 * @author Fabien MARTY <fab@php.net>
 */
- 
+
 require_once('Cache/Lite.php');
 
 class Cache_Lite_File extends Cache_Lite
 {
 
     // --- Private properties ---
-    
+
     /**
     * Complete path of the file used for controlling the cache lifetime
     *
     * @var string $_masterFile
     */
     var $_masterFile = '';
-    
+
     /**
     * Masterfile mtime
     *
     * @var int $_masterFile_mtime
     */
     var $_masterFile_mtime = 0;
-    
+
     // --- Public methods ----
-    
+
     /**
     * Constructor
     *
@@ -53,10 +52,10 @@ class Cache_Lite_File extends Cache_Lite
     * @param array $options options
     * @access public
     */
-    function Cache_Lite_File($options = array(NULL))
-    {   
+    function __construct($options = array(NULL))
+    {
         $options['lifetime'] = 0;
-        $this->Cache_Lite($options);
+        parent::__construct($options);
         if (isset($options['masterFile'])) {
             $this->_masterFile = $options['masterFile'];
         } else {
@@ -66,7 +65,7 @@ class Cache_Lite_File extends Cache_Lite
             $this->raiseError('Cache_Lite_File : Unable to read masterFile : '.$this->_masterFile, -3);
         }
     }
-    
+
     /**
     * Test if a cache is available and (if yes) return it
     *

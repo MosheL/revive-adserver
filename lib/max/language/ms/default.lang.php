@@ -1,38 +1,41 @@
 <?php
 
 /*
-+---------------------------------------------------------------------------+
-| Revive Adserver                                                           |
-| http://www.revive-adserver.com                                            |
-|                                                                           |
-| Copyright: See the COPYRIGHT.txt file.                                    |
-| License: GPLv2 or later, see the LICENSE.txt file.                        |
-+---------------------------------------------------------------------------+
-*/
+  +---------------------------------------------------------------------------+
+  | Revive Adserver                                                           |
+  | http://www.revive-adserver.com                                            |
+  |                                                                           |
+  | Copyright: See the COPYRIGHT.txt file.                                    |
+  | License: GPLv2 or later, see the LICENSE.txt file.                        |
+  +---------------------------------------------------------------------------+
+ */
 
-// Note: New translations not found in original lang files but found in CSV
+// Set text direction and characterset
+
+
+// Date & time configuration
+
+// Formats used by PEAR Spreadsheet_Excel_Writer packate
+
+/* ------------------------------------------------------- */
+/* Translations                                          */
+/* ------------------------------------------------------- */
+
 $GLOBALS['strHelp'] = "Bantuan";
 $GLOBALS['strStartOver'] = "Mula kembali";
-$GLOBALS['strNavigation'] = "Navigasi";
 $GLOBALS['strAdminstration'] = "Inventori";
 $GLOBALS['strMaintenance'] = "Baikpulih";
 $GLOBALS['strProbability'] = "Kebarangkalian";
 $GLOBALS['strInvocationcode'] = "Kod seruan";
-$GLOBALS['strTrackerVariables'] = "Pembolehubah pencari jejak";
 $GLOBALS['strBasicInformation'] = "Maklumat Asas";
-$GLOBALS['strLoginInformation'] = "Maklumat Log Masuk";
-$GLOBALS['strPreferences'] = "Pilihan";
 $GLOBALS['strDetails'] = "secara terperinci";
+$GLOBALS['strCheckForUpdates'] = "Periksa untuk versi baru";
 $GLOBALS['strCompact'] = "Padat";
 $GLOBALS['strUser'] = "Pengguna";
-$GLOBALS['strEdit'] = "Menyunting";
-$GLOBALS['strCreate'] = "Mencipta";
 $GLOBALS['strDuplicate'] = "Salinan";
-$GLOBALS['strStatusDuplicate'] = "Salinan";
 $GLOBALS['strMoveTo'] = "Pindah ke";
 $GLOBALS['strDelete'] = "Padam";
 $GLOBALS['strActivate'] = "Aktifkan";
-$GLOBALS['strDeActivate'] = "Nyahaktifkan";
 $GLOBALS['strConvert'] = "Tukar";
 $GLOBALS['strRefresh'] = "Pamer kembali";
 $GLOBALS['strSaveChanges'] = "Simpan penukaran";
@@ -45,38 +48,170 @@ $GLOBALS['strNext'] = "Seterusnya";
 $GLOBALS['strYes'] = "Ya";
 $GLOBALS['strNo'] = "Tidak";
 $GLOBALS['strNone'] = "Tiada";
-$GLOBALS['strOther'] = "Lain-lain";
 $GLOBALS['strUnlimited'] = "Tiada had";
 $GLOBALS['strUntitled'] = "Tiada tajuk";
-$GLOBALS['strAll'] = "Semua";
-$GLOBALS['strAvg'] = "Avg.";
 $GLOBALS['strAverage'] = "Purata";
 $GLOBALS['strOverall'] = "Kesemuanya";
 $GLOBALS['strTotal'] = "Jumlah";
-$GLOBALS['strActive'] = "Aktif";
 $GLOBALS['strTo'] = "kepada";
 $GLOBALS['strLinkedTo'] = "dihubungkan ke";
 $GLOBALS['strDaysLeft'] = "baki hari yang masih ada";
 $GLOBALS['strCheckAllNone'] = "Tanda Semua / Tiada";
-$GLOBALS['strKiloByte'] = "KB";
 $GLOBALS['strShowAll'] = "Papar Semua";
 $GLOBALS['strWarning'] = "Amaran";
+
+// Dashboard
+// Dashboard Errors
+
+// Priority
+
+// Properties
+
+// User access
+
+// Login & Permissions
 $GLOBALS['strLogin'] = "Log Masuk";
 $GLOBALS['strPassword'] = "Kata Laluan";
+
+// General advertising
+
+// Finance
+
+// Time and date related
+
+
+$GLOBALS['strDayFullNames'] = array();
+
+$GLOBALS['strDayShortCuts'] = array();
+
+
+// Advertiser
+
+// Advertisers properties
+
+// Campaign
 $GLOBALS['strHiddenZone'] = "Tiada";
-$GLOBALS['strZone'] = "Tiada";
-$GLOBALS['strAffiliateInvocation'] = "Kod seruan";
-$GLOBALS['strZones'] = "Tiada";
-$GLOBALS['strConnTypeSale'] = "Simpan";
-$GLOBALS['strAdminSettings'] = "Konfigurasi Pentadbir";
-$GLOBALS['strChooseSection'] = "Pilih bahagian";
+
+// Campaign-zone linking page
+
+
+// Campaign properties
+$GLOBALS['strCampaignStatusInactive'] = "Aktif";
+$GLOBALS['strCampaignStatusDeleted'] = "Padam";
+
+// Tracker
+
+// Banners (General)
+
+// Banner Preferences
 $GLOBALS['strTypeHtmlAllow'] = "Benarkan banner HTML";
 $GLOBALS['strTypeTxtAllow'] = "Benarkan Iklan Teks";
+
+// Banner (Properties)
+
+// Banner (advanced)
+
+// Banner (swf)
+
+// Display limitations
+
+
+$GLOBALS['strCappingBanner'] = array();
+
+$GLOBALS['strCappingCampaign'] = array();
+
+$GLOBALS['strCappingZone'] = array();
+
+// Website
+
+// Website (properties)
+
+// Website (properties - payment information)
+
+// Website (properties - other information)
+
+// Zone
+$GLOBALS['strZone'] = "Tiada";
+$GLOBALS['strZones'] = "Tiada";
+
+
+// Advanced zone settings
+
+// Zone probability
+
+// Linked banners/campaigns/trackers
+$GLOBALS['strStatusDuplicate'] = "Salinan";
+
+// Statistics
+
+// Expiration
+
+// Reports
+
+// Admin_UI_Fields
+
+// Userlog
+
+// Code generation
+
+
+// Errors
+
+//Validation
+
+// Email
+
+// Priority
+
+// Preferences
+$GLOBALS['strPreferences'] = "Pilihan";
 $GLOBALS['strAdminEmailWarnings'] = "Alamat emel Pentadbir";
-$GLOBALS['strCampaignStatusDeleted'] = "Padam";
-$GLOBALS['strCheckForUpdates'] = "Periksa untuk versi baru";
-$GLOBALS['strCampaignStatusInactive'] = "Aktif";
-$GLOBALS['strSyncSettings'] = "Konfigurasi Sikronisasi";
-$GLOBALS['strTimezoneInformation'] = "Maklumat Zon Waktu (Perubahan terhadap zon waktu akan mengakibatkan perubahan kepada perkiraan statistik)";
-$GLOBALS['strPreference'] = "Pilihan";
-?>
+
+// Long names
+
+// Short names
+
+// Global Settings
+$GLOBALS['strChooseSection'] = 'Pilih bahagian';
+
+// Product Updates
+
+// Agency
+
+// Channels
+
+// Tracker Variables
+
+// Password recovery
+
+// Audit
+
+// Widget - Audit
+
+// Widget - Campaign
+
+
+
+//confirmation messages
+
+
+
+
+
+
+
+
+
+
+// Report error messages
+
+/* ------------------------------------------------------- */
+/* Keyboard shortcut assignments                           */
+/* ------------------------------------------------------- */
+
+// Reserved keys
+// Do not change these unless absolutely needed
+
+// Other keys
+// Please make sure you underline the key you
+// used in the string in default.lang.php

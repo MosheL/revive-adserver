@@ -19,8 +19,6 @@ require_once 'Image/Graph.php';
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
- * @author     Matteo Beccati <matteo@beccati.com>
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OA_Admin_Statistics_Delivery_Common extends OA_Admin_Statistics_Delivery_Flexy
 {
@@ -59,21 +57,6 @@ class OA_Admin_Statistics_Delivery_Common extends OA_Admin_Statistics_Delivery_F
     }
 
     /**
-     * PHP4-style constructor
-     *
-     * @param array $aParams An array of parameters. The array should
-     *                       be indexed by the name of object variables,
-     *                       with the values that those variables should
-     *                       be set to. For example, the parameter:
-     *                       $aParams = array('foo' => 'bar')
-     *                       would result in $this->foo = bar.
-     */
-    function OA_Admin_Statistics_Delivery_Common($aParams)
-    {
-        $this->__construct($aParams);
-    }
-
-    /**
      * A private method that can be inherited and used by children classes to
      * load the required plugins during instantiation.
      *
@@ -82,17 +65,17 @@ class OA_Admin_Statistics_Delivery_Common extends OA_Admin_Statistics_Delivery_F
     function _loadPlugins()
     {
         require_once MAX_PATH . '/lib/OA/Admin/Statistics/Fields/Delivery/Default.php';
-        $aPlugins['default'] = & new OA_StatisticsFieldsDelivery_Default();
+        $aPlugins['default'] = new OA_StatisticsFieldsDelivery_Default();
         require_once MAX_PATH . '/lib/OA/Admin/Statistics/Fields/Delivery/Affiliates.php';
-        $aPlugins['affiliates'] = & new OA_StatisticsFieldsDelivery_Affiliates();
+        $aPlugins['affiliates'] = new OA_StatisticsFieldsDelivery_Affiliates();
         $this->aPlugins = $aPlugins;
     }
-    
-    
+
+
     /**
      * Add a plugin in the list of registered stats plugin
      */
-    function addPlugin($pluginName, $plugin) 
+    function addPlugin($pluginName, $plugin)
     {
         $this->aPlugins[$pluginName] = $plugin;
     }

@@ -18,10 +18,7 @@
 // |                                                                      |
 // +----------------------------------------------------------------------+
 //
-// $Id$
-//
 // Date_TimeZone Class
-//
 
 /**
  * TimeZone representation class, along with time zone information data.
@@ -101,7 +98,7 @@ class Date_TimeZone
      * @param string $id the time zone id
      * @return object Date_TimeZone the new Date_TimeZone object
      */
-    function Date_TimeZone($id)
+    function __construct($id)
     {
         global $_DATE_TIMEZONE_DATA;
         if(Date_TimeZone::isValidID($id)) {

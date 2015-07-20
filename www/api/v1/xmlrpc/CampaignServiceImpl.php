@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Base class BaseLogonService
@@ -39,9 +37,9 @@ class CampaignServiceImpl extends BaseServiceImpl
      *
      * The CampaignServiceImpl method is the constructor for the CampignServiceImpl class.
      */
-    function CampaignServiceImpl()
+    function __construct()
     {
-        $this->BaseServiceImpl();
+        parent::__construct();
         $this->_dllCampaign = new OA_Dll_Campaign();
     }
 

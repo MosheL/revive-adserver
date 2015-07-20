@@ -12,7 +12,6 @@
 
 /**
  * @package    OpenadsDll
- * @author     Alexander J. Tarachanowicz II <aj.tarachanowicz@openads.org>
  */
 
 // Require the following classes:
@@ -262,6 +261,8 @@ class OA_Dll_Audit extends OA_Dll
 
             if ((!empty($aParam['startRecord']) || $aParam['startRecord'] >= 0) && $aParam['perPage']) {
                 $doAudit->limit($aParam['startRecord'], $aParam['perPage']);
+            }else{
+                $doAudit->limit(0,500); //force to a limit, to avoid unlimited querie
             }
 
             $numRows = $doAudit->find();

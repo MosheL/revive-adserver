@@ -12,8 +12,6 @@
 
 /**
  * @package    OpenX
- * @author     Andriy Petlyovanyy <apetlyovanyy@lohika.com>
- *
  */
 
 // Require Campaign Service Implementation
@@ -36,7 +34,7 @@ class BaseCampaignService
      * This method initialises Service implementation object field.
      *
      */
-    function BaseCampaignService()
+    function __construct()
     {
         $this->_oCampaignServiceImp = new CampaignServiceImpl();
     }

@@ -26,7 +26,7 @@ require_once MAX_PATH . '/lib/OX/Upgrade/PostUpgradeTask/Controller.php';
 
 // required files for header & nav
 require_once MAX_PATH.'/lib/JSON/JSON.php';
-require_once MAX_PATH . '/lib/max/Admin/Languages.php';
+require_once MAX_PATH . '/lib/RV/Admin/Languages.php';
 require_once MAX_PATH . '/lib/max/language/Loader.php';
 require_once MAX_PATH . '/lib/OA/Upgrade/Upgrade.php';
 require_once MAX_PATH . '/lib/OA/Upgrade/Login.php';
@@ -40,7 +40,6 @@ require_once MAX_PATH . '/www/admin/lib-gui.inc.php';
 /**
  * @package OX_Admin_UI
  * @subpackage Install
- * @author Bernard Lange <bernard@openx.org>
  */
 class OX_Admin_UI_Install_InstallController
     extends OX_Admin_UI_Controller_BaseController
@@ -190,19 +189,19 @@ class OX_Admin_UI_Install_InstallController
 
         if ($oStatus->isRecovery()) {
             $pageTitle = $this->oTranslation->translate('InstallStatusRecovery',
-                array(OA_VERSION));
+                array(VERSION));
         }
         else if ($oStatus->isInstall()) {
             $pageTitle = $this->oTranslation->translate('InstallStatusInstall',
-                array(OA_VERSION));
+                array(VERSION));
         }
         else if ($oStatus->isUpgrade()) {
             $pageTitle = $this->oTranslation->translate('InstallStatusUpgrade',
-                array(OA_VERSION));
+                array(VERSION));
         }
         else if ($oStatus->isUpToDate()) {
             $pageTitle = $this->oTranslation->translate('InstallStatusUpToDate',
-                array(OA_VERSION));
+                array(VERSION));
         }
         $this->setModelProperty('pageHeader', new OA_Admin_UI_Model_PageHeaderModel($pageTitle));
 
@@ -289,7 +288,7 @@ class OX_Admin_UI_Install_InstallController
         $this->setModelProperty('isUpgrade', $this->getInstallStatus()->isUpgrade());
         $this->setModelProperty('oWizard', $oWizard);
         $this->setModelProperty('loaderMessage', $GLOBALS['strSyscheckProgressMessage']);
-        $this->setModelProperty('oxVersion', OA_VERSION);
+        $this->setModelProperty('oxVersion', VERSION);
         $this->setModelProperty('LICENSE', file_get_contents(RV_PATH . '/LICENSE.txt'));
     }
 
@@ -378,8 +377,7 @@ class OX_Admin_UI_Install_InstallController
         //setup form
         $aPluginsVerifyResult = OX_Admin_UI_Install_InstallUtils::checkPluginsVerified();
         $prevPathRequired = !$aPluginsVerifyResult['verified'];
-        $oLanguage = new MAX_Admin_Languages();
-        $aLanguages = $oLanguage->AvailableLanguages();
+        $aLanguages = RV_Admin_Languages::getAvailableLanguages();
         $aTimezones = OX_Admin_Timezones::AvailableTimezones(true);
         $oForm = new OX_Admin_UI_Install_ConfigForm($this->oTranslation, $oWizard->getCurrentStep(),
              $aLanguages, $aTimezones, $isUpgrade, $prevPathRequired);

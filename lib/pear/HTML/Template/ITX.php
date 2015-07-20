@@ -14,9 +14,6 @@
 // | Author: Ulf Wendel <ulf.wendel@phpdoc.de>                            |
 // |         Pierre-Alain Joye <pajoye@php.net>                           |
 // +----------------------------------------------------------------------+
-//
-// $Id$
-//
 
 require_once 'HTML/Template/IT.php';
 require_once 'HTML/Template/IT_Error.php';
@@ -35,7 +32,6 @@ require_once 'HTML/Template/IT_Error.php';
 *
 * @author   Ulf Wendel <uw@netuse.de>
 * @access   public
-* @version  $Id$
 * @package  HTML_Template_IT
 */
 class HTML_Template_ITX extends HTML_Template_IT
@@ -115,14 +111,14 @@ class HTML_Template_ITX extends HTML_Template_IT
     *
     * @see    HTML_Template_IT()
     */
-    function HTML_Template_ITX($root = '')
+    function __construct($root = '')
     {
 
         $this->checkblocknameRegExp = '@' . $this->blocknameRegExp . '@';
         $this->functionRegExp = '@' . $this->functionPrefix . '(' .
                                 $this->functionnameRegExp . ')\s*\(@sm';
 
-        $this->HTML_Template_IT($root);
+        parent::__construct($root);
     } // end func constructor
 
     function init()

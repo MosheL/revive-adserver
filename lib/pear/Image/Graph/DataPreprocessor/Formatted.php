@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -67,7 +66,7 @@ class Image_Graph_DataPreprocessor_Formatted extends Image_Graph_DataPreprocesso
      * @param string $format See {@link http://www.php.net/manual/en/function.sprintf.php
      *   PHP Manual} for a description
      */
-    function Image_Graph_DataPreprocessor_Formatted($format)
+    function __construct($format)
     {
         parent::__construct();
         $this->_format = $format;

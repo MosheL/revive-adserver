@@ -24,7 +24,6 @@
  * @author     Jesper Veggerby <pear.nosey@veggerby.dk>
  * @copyright  Copyright (C) 2003, 2004 Jesper Veggerby Hansen
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Image_Graph
  */
 
@@ -76,7 +75,7 @@ class Image_Graph_Marker_Icon extends Image_Graph_Marker
      * @param int $width The 'new' width of the icon if it is to be resized
      * @param int $height The 'new' height of the icon if it is to be resized
      */
-    function Image_Graph_Marker_Icon($filename, $width = 0, $height = 0)
+    function __construct($filename, $width = 0, $height = 0)
     {
         parent::__construct();
         $this->_filename = $filename;
@@ -119,9 +118,9 @@ class Image_Graph_Marker_Icon extends Image_Graph_Marker
         if ($this->_filename) {
             $this->_canvas->image(
             	array(
-            		'x' => $x, 
-            		'y' => $y, 
-            		'filename' => $this->_filename, 
+            		'x' => $x,
+            		'y' => $y,
+            		'filename' => $this->_filename,
 					'alignment' => array('horizontal' => 'center', 'vertical' => 'center')
 				)
 			);

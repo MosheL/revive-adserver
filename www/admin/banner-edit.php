@@ -107,7 +107,7 @@ html html
 /* HTML framework                                        */
 /*-------------------------------------------------------*/
 
-//decide whether this is add or edit, get banner data or initialise it
+// Decide whether this is add or edit, get banner data or initialise it
 if ($bannerid != '') {
     // Fetch the data from the database
     $doBanners = OA_Dal::factoryDO('banners');
@@ -175,13 +175,14 @@ else {
     $aBanner['keyword']      = '';
     $aBanner["weight"]       = $pref['default_banner_weight'];
 
+    $aBanner['iframe_friendly'] = true;
+
     $aBanner['hardcoded_links'] = array();
     $aBanner['hardcoded_targets'] = array();
 }
 if ($ext_bannertype)
 {
-    list($extension, $group, $plugin) = explode(':', $ext_bannertype);
-    $oComponent = &OX_Component::factory($extension, $group, $plugin);
+    $oComponent = OX_Component::factoryByComponentIdentifier($ext_bannertype);
     //  we may want to use the ancestor class for some sort of generic functionality
     if (!$oComponent)
     {
@@ -191,8 +192,7 @@ if ($ext_bannertype)
 }
 if ((!$ext_bannertype) && $type && (!in_array($type, array('sql','web','url','html','txt'))))
 {
-    list($extension, $group, $plugin) = explode('.',$type);
-    $oComponent = &OX_Component::factoryByComponentIdentifier($extension,$group,$plugin);
+    $oComponent = OX_Component::factoryByComponentIdentifier($type);
     $formDisabled = (!$oComponent || !$oComponent->enabled);
     if ($oComponent)
     {
@@ -513,8 +513,7 @@ function buildBannerForm($type, $aBanner, &$oComponent=null, $formDisabled=false
     }
 
     //html & text banners
-    if ($oComponent)
-    {
+    if ($oComponent) {
         $oComponent->buildForm($form, $aBanner);
     }
 
@@ -638,6 +637,7 @@ function processForm($bannerid, $form, &$oComponent, $formDisabled=false)
     $aVariables['storagetype']     = $aFields['type'];
     $aVariables['ext_bannertype']  = $aFields['ext_bannertype'];
     $aVariables['comments']        = $aFields['comments'];
+    $aVariables['iframe_friendly'] = $aFields['iframe_friendly'] ? 1 : 0;
 
     $aVariables['filename']        = !empty($aBanner['filename']) ? $aBanner['filename'] : '';
     $aVariables['contenttype']     = !empty($aBanner['contenttype']) ? $aBanner['contenttype'] : '';
@@ -658,7 +658,7 @@ function processForm($bannerid, $form, &$oComponent, $formDisabled=false)
     $aVariables['alt_imageurl']    = !empty($aFields['alt_imageurl']) ? $aFields['alt_imageurl'] : '';
 
     if (isset($aFields['keyword']) && $aFields['keyword'] != '') {
-        $keywordArray = split('[ ,]+', $aFields['keyword']);
+        $keywordArray = preg_split('/[ ,]+/D', $aFields['keyword']);
         $aVariables['keyword'] = implode(' ', $keywordArray);
     } else {
         $aVariables['keyword'] = '';
@@ -684,7 +684,15 @@ function processForm($bannerid, $form, &$oComponent, $formDisabled=false)
 
         // Delete the old file for this banner
         if (!empty($aBanner['filename']) && ($aBanner['filename'] != $aFile['filename']) && ($aBanner['storagetype'] == 'web' || $aBanner['storagetype'] == 'sql')) {
-            DataObjects_Banners::deleteBannerFile($aBanner['storagetype'], $aBanner['filename']);
+            /*
+             * Actually, don't delete it. It might be still being used until the
+             * cache expires. See:
+             *  - https://github.com/revive-adserver/revive-adserver/issues/341
+             *  - https://github.com/revive-adserver/revive-adserver/issues/421
+             *
+             * DataObjects_Banners::deleteBannerFile($aBanner['storagetype'], $aBanner['filename']);
+             *
+             */
         }
     }
     if (!empty($_FILES['uploadalt']) && $_FILES['uploadalt']['size'] > 0

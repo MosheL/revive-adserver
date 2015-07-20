@@ -15,9 +15,6 @@
  *
  * @package    OpenXDal
  * @subpackage Delivery
- * @author     Chris Nutting <chris.nutting@openx.org>
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
 
 /**
@@ -162,7 +159,7 @@ function OX_unescapeBlob($blob)
 
 function OX_Dal_Delivery_regex($column, $regexp)
 {
-    return $column." ~* E'".$regexp."'";
+    return "(CASE WHEN {$column} ~* E'{$regexp}' THEN 1 ELSE 0 END)";
 }
 
 function OX_bucket_updateTable($tableName, $aQuery, $increment = true, $counter = 'count')

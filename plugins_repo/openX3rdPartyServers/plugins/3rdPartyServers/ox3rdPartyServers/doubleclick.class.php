@@ -13,8 +13,6 @@
 /**
  * @package    OpenXPlugin
  * @subpackage 3rdPartyServers
- * @author     Radek Maciaszek <radek@m3.net>
- *
  */
 
 require_once LIB_PATH . '/Extension/3rdPartyServers/3rdPartyServers.php';
@@ -38,7 +36,7 @@ class Plugins_3rdPartyServers_ox3rdPartyServers_doubleclick extends Plugins_3rdP
      */
     function getName()
     {
-        return $this->translate('Rich Media - Doubleclick');
+        return $this->translate('Doubleclick/DFP');
     }
 
     /**

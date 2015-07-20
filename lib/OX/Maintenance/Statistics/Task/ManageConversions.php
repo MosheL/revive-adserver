@@ -24,7 +24,6 @@ require_once LIB_PATH . '/Maintenance/Statistics/Task.php';
  *
  * @package    OpenXMaintenance
  * @subpackage Statistics
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class OX_Maintenance_Statistics_Task_ManageConversions extends OX_Maintenance_Statistics_Task
 {
@@ -34,9 +33,9 @@ class OX_Maintenance_Statistics_Task_ManageConversions extends OX_Maintenance_St
      *
      * @return OX_Maintenance_Statistics_Task_ManageConversions
      */
-    function OX_Maintenance_Statistics_Task_ManageConversions()
+    function __construct()
     {
-        parent::OX_Maintenance_Statistics_Task();
+        parent::__construct();
     }
 
     /**

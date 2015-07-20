@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.3
  */
@@ -44,9 +43,9 @@ class PEAR_REST_11
      */
     var $_rest;
 
-    function PEAR_REST_11($config, $options = array())
+    function __construct($config, $options = array())
     {
-        $this->_rest = &new PEAR_REST($config, $options);
+        $this->_rest = new PEAR_REST($config, $options);
     }
 
     function listAll($base, $dostable, $basic = true)

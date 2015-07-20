@@ -19,9 +19,6 @@ require_once MAX_PATH . '/lib/OA/Dal/DataGenerator.php';
  *
  * @package    OpenXDal
  * @subpackage TestSuite
- * @author     James Floyd <james@m3.net>
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Demian Turner <demian@m3.net>
  */
 class Test_OA_Dal_Maintenance_Statistics_summariseBucketsRaw extends UnitTestCase
 {
@@ -29,9 +26,9 @@ class Test_OA_Dal_Maintenance_Statistics_summariseBucketsRaw extends UnitTestCas
     /**
      * The constructor method.
      */
-    function Test_OA_Dal_Maintenance_Statistics_summariseBucketsRaw()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**

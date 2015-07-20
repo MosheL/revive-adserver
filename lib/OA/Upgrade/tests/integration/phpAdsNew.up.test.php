@@ -17,7 +17,6 @@ require_once MAX_PATH.'/lib/OA/Upgrade/phpAdsNew.php';
  *
  * @package    OpenX Upgrade
  * @subpackage TestSuite
- * @author     Monique Szpak <monique.szpak@openx.org>
  */
 class Test_OA_phpAdsNew extends UnitTestCase
 {
@@ -25,9 +24,9 @@ class Test_OA_phpAdsNew extends UnitTestCase
     /**
      * The constructor method.
      */
-    function Test_OA_phpAdsNew()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     function test_init()

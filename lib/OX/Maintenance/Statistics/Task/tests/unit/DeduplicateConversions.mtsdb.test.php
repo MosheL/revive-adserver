@@ -22,7 +22,6 @@ require_once LIB_PATH . '/Maintenance/Statistics/Task/DeduplicateConversions.php
  *
  * @package    OpenXMaintenance
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
  */
 class Test_OX_Maintenance_Statistics_Task_DeduplicateConversions extends UnitTestCase
 {
@@ -30,9 +29,9 @@ class Test_OX_Maintenance_Statistics_Task_DeduplicateConversions extends UnitTes
     /**
      * The constructor method.
      */
-    function Test_OX_Maintenance_Statistics_Task_DeduplicateConversions()
+    function __construct()
     {
-        $this->UnitTestCase();
+        parent::__construct();
     }
 
     /**
@@ -70,7 +69,7 @@ class Test_OX_Maintenance_Statistics_Task_DeduplicateConversions extends UnitTes
         $oDal = new $mockClassName($this);
         $oDal->expectNever('deduplicateConversions');
         $oDal->expectNever('rejectEmptyVarConversions');
-        $oDal->OX_Dal_Maintenance_Statistics();
+        $oDal->__construct();
         $oServiceLocator->register('OX_Dal_Maintenance_Statistics', $oDal);
 
         // Set the controlling class' status and test
@@ -107,7 +106,7 @@ class Test_OX_Maintenance_Statistics_Task_DeduplicateConversions extends UnitTes
                 new Date('2008-09-08 17:59:59')
             )
         );
-        $oDal->OX_Dal_Maintenance_Statistics();
+        $oDal->__construct();
         $oServiceLocator->register('OX_Dal_Maintenance_Statistics', $oDal);
 
         // Set the controlling class' status and test

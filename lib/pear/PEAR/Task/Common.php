@@ -15,7 +15,6 @@
  * @author     Greg Beaver <cellog@php.net>
  * @copyright  1997-2006 The PHP Group
  * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
- * @version    CVS: $Id$
  * @link       http://pear.php.net/package/PEAR
  * @since      File available since Release 1.4.0a1
  */
@@ -95,7 +94,7 @@ class PEAR_Task_Common
      * @param PEAR_Config
      * @param PEAR_Common
      */
-    function PEAR_Task_Common(&$config, &$logger, $phase)
+    function __construct(&$config, &$logger, $phase)
     {
         $this->config = &$config;
         $this->registry = &$config->getRegistry();

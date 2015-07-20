@@ -23,8 +23,6 @@ require_once MAX_PATH . '/lib/OA/Upgrade/Upgrade.php';
  *
  * @package    MigrationPackages
  * @subpackage TestSuite
- * @author     Andrew Hill <andrew.hill@openx.org>
- * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
  class Test_Migration_546 extends MigrationTest
 {
@@ -291,7 +289,7 @@ require_once MAX_PATH . '/lib/OA/Upgrade/Upgrade.php';
         )
     );
 
-    function Test_Migration_546()
+    function __construct()
     {
         // Ensure that the old preference table conf entry exists
         $GLOBALS['_MAX']['CONF']['table']['preference'] = 'preference';
@@ -586,7 +584,7 @@ require_once MAX_PATH . '/lib/OA/Upgrade/Upgrade.php';
             if (array_key_exists($nameNew, $aExpectations))
             {
                 // Deal with the conversion of display/don't display values in column preferences
-                if (ereg('ui_column_', $newName)) {
+                if (strpos($newName, 'ui_column_') !== false) {
                     if ($aExpectations[$nameNew]['value'] == 0) {
                         $value = '';
                     } else if ($aExpectations[$nameNew]['value'] == 1) {

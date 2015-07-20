@@ -40,8 +40,6 @@
 // +----------------------------------------------------------------------+
 // | Author: Paul Cooper <pgc@ucecom.com>                                 |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 require_once 'MDB2/Schema.php';
 
@@ -56,7 +54,7 @@ class MDB2_Validate_TestCase extends PHPUnit_TestCase {
     var $schema;
 
     function MDB2_Validate_Test($name) {
-        $this->PHPUnit_TestCase($name);
+        parent::__construct($name);
     }
 
     function setUp() {
@@ -86,7 +84,7 @@ class MDB2_Validate_TestCase extends PHPUnit_TestCase {
         $valid_types = $this->schema->options['valid_types'];
         $force_defaults = '';
 
-        $validator =& new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
+        $validator = new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
 
         /* text */
         $field_name = 'test';
@@ -301,7 +299,7 @@ class MDB2_Validate_TestCase extends PHPUnit_TestCase {
         $valid_types = $this->schema->options['valid_types'];
         $force_defaults = '';
 
-        $validator =& new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
+        $validator = new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
 
         /* Have we got a name? */
         $field_name = '';
@@ -495,7 +493,7 @@ class MDB2_Validate_TestCase extends PHPUnit_TestCase {
         $valid_types = $this->schema->options['valid_types'];
         $force_defaults = '';
 
-        $validator =& new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
+        $validator = new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
 
         /* Have we got a name? */
         $tables = array();
@@ -555,7 +553,7 @@ class MDB2_Validate_TestCase extends PHPUnit_TestCase {
         $valid_types = $this->schema->options['valid_types'];
         $force_defaults = '';
 
-        $validator =& new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
+        $validator = new MDB2_Schema_Validate($fail_on_invalid_names, $valid_types, $force_defaults);
 
         /* Have we got a name? */
         $table_indexes = array();
