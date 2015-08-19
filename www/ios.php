@@ -27,7 +27,7 @@ $ip=arr_GetCotendoIp();
 if (strpos($ip,"95.86")||strpos($ip,"212.76")||strpos($ip,"213.151")||strpos($ip,"31.44")||strpos($ip,"37.60"))  $_REQUEST["rimon"]=1; 
 
 // The MAX_PATH below should point to the base of your OpenX installation
-define('MAX_PATH',str_replace("7/www","7/",getcwd()));
+define('MAX_PATH',getcwd() . "/../");
 if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
 
 	$phpAds_context_banners = array();
