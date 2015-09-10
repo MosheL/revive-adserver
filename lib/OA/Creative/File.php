@@ -38,13 +38,12 @@ class OA_Creative_File extends OA_Creative
      * @param string $filePath
      * @return mixed True on success, PEAR_Error otherwise
      */
-    function loadFile($filePath)
+    function loadFile($filePath,$fileName)
     {
         if (($this->content = @file_get_contents($filePath)) === false) {
             return new PEAR_Error("Cannot load image file");
         }
-
-        return $this->readCreativeDetails($filePath);
+        return $this->readCreativeDetails($filePath,null,$fileName);
     }
 
     /**
@@ -54,14 +53,13 @@ class OA_Creative_File extends OA_Creative
      * @param array  $aTypes Optional parameters of allowed types (@see getimagesize)
      * @return mixed True on success, PEAR_Error otherwise
      */
-    function readCreativeDetails($filePath, $aTypes = null)
+    function readCreativeDetails($filePath, $aTypes = null,$fileName)
     {
         if (!isset($aTypes)) {
             $aTypes = array(
                 IMAGETYPE_GIF  => 'gif',
                 IMAGETYPE_PNG  => 'png',
-                IMAGETYPE_JPEG => 'jpeg',
-				IMAGETYPE_HTML => 'html',
+                IMAGETYPE_JPEG => 'jpeg'
             );
         }
 
@@ -139,7 +137,6 @@ class OA_Creative_File extends OA_Creative
         if (empty($fileName)) {
             $fileName = basename($filePath);
         }
-
         $validImageExtensions = 'png|svg|gif|jpg|jpeg|jpe|tif|tiff|ppm|bmp|rle|dib|tga|pcz|wbmp|wbm';
         if (preg_match('/\.swf$/i', $fileName)) {
             $type = 'Swf';
@@ -157,7 +154,7 @@ class OA_Creative_File extends OA_Creative
 
         $oCreative = new $className($fileName);
 
-        $result = $oCreative->loadFile($filePath);
+        $result = $oCreative->loadFile($filePath, $fileName);
         if (PEAR::isError($result)) {
             return $result;
         }
