@@ -108,7 +108,7 @@ if($zone=="")return;
 
 	$append=str_replace("\"","\\\'",$append);
 	
-if ($type=="html"||$type=="") {
+if (($type=="html"||$type=="")&&$html!="") {
 		$html = str_replace("\"", "'", $html);
 		$html = str_replace("\n", " ", $html);
 		$html = str_replace("\r", "", $html);
