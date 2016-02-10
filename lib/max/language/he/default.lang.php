@@ -31,18 +31,26 @@ $GLOBALS['weekiso_format'] = "%V/%G";
 
 $GLOBALS['strHome'] = "ראשי";
 $GLOBALS['strHelp'] = "עזרה";
+$GLOBALS['strStartOver'] = "התחל מחדש";
 $GLOBALS['strShortcuts'] = "קיצורים";
+$GLOBALS['strActions'] = "Actions";
+$GLOBALS['strAndXMore'] = "and %s more";
 $GLOBALS['strAdminstration'] = "מלאי";
 $GLOBALS['strMaintenance'] = "תחזוקה";
 $GLOBALS['strProbability'] = "סיכויים";
 $GLOBALS['strInvocationcode'] = "קוד תצוגה";
 $GLOBALS['strBasicInformation'] = "מידע בסיסי";
+$GLOBALS['strAppendTrackerCode'] = "Append Tracker Code";
 $GLOBALS['strOverview'] = "סקירה כללית";
 $GLOBALS['strSearch'] = "חפ<u>ש</u>";
 $GLOBALS['strDetails'] = "פרטים";
+$GLOBALS['strUpdateSettings'] = "Update Settings";
+$GLOBALS['strCheckForUpdates'] = "Check for updates";
+$GLOBALS['strWhenCheckingForUpdates'] = "When checking for updates";
 $GLOBALS['strCompact'] = "קומפקטי";
 $GLOBALS['strUser'] = "משתמש";
 $GLOBALS['strDuplicate'] = "שכפל";
+$GLOBALS['strCopyOf'] = "העתק ל";
 $GLOBALS['strMoveTo'] = "העבר ל";
 $GLOBALS['strDelete'] = "מחק";
 $GLOBALS['strActivate'] = "הפעל";
@@ -53,6 +61,7 @@ $GLOBALS['strUp'] = "למעלה";
 $GLOBALS['strDown'] = "למטה";
 $GLOBALS['strSave'] = "שמור";
 $GLOBALS['strCancel'] = "בטל";
+$GLOBALS['strBack'] = "Back";
 $GLOBALS['strPrevious'] = "קודם";
 $GLOBALS['strNext'] = "הבם";
 $GLOBALS['strYes'] = "כן";
@@ -63,11 +72,13 @@ $GLOBALS['strDefault'] = "ברירת מחדל";
 $GLOBALS['strUnknown'] = "לא ידוע";
 $GLOBALS['strUnlimited'] = "ללא הגבלה";
 $GLOBALS['strUntitled'] = "ללא שם";
+$GLOBALS['strAll'] = "all";
 $GLOBALS['strAverage'] = "ממוצע";
 $GLOBALS['strOverall'] = "כללי";
 $GLOBALS['strTotal'] = "סך הכל";
 $GLOBALS['strFrom'] = "מ";
 $GLOBALS['strTo'] = "ל";
+$GLOBALS['strAdd'] = "Add";
 $GLOBALS['strLinkedTo'] = "מקושר ל";
 $GLOBALS['strDaysLeft'] = "ימים שנותרו";
 $GLOBALS['strCheckAllNone'] = "סמן הכל/ או כלום";
@@ -817,10 +828,43 @@ $GLOBALS['strThirdPartyComment'] = "
   *";
 
 // Errors
-$GLOBALS['strErrorDBPlain'] = "ארעה שגיאה בגישה לבסיס הנתונים";
-$GLOBALS['strErrorDBSerious'] = "ארעה שגיאה חמורה בבסיס הנתונים";
-$GLOBALS['strErrorDBCorrupt'] = "טבלאות בסיס הנתונים כנראה קרסו ודורשות תיקון. מידע נוסף בדבר תיקון טבלאות שקרסו ניתן למצוא בפרק <i>Troubleshooting</i> של ה<i>Administrator guide</i>.";
-$GLOBALS['strErrorDBContact'] = "אנא צור קשר עא האחראי של שרת זה והודיע לו לגבי הבעיה.";
+$GLOBALS['strErrorDatabaseConnetion'] = "Database connection error.";
+$GLOBALS['strErrorCantConnectToDatabase'] = "A fatal error occurred %s can't connect to the database. Because
+                                                   of this it isn't possible to use the administrator interface. The delivery
+                                                   of banners might also be affected. Possible reasons for the problem are:
+                                                   <ul>
+                                                     <li>The database server isn't functioning at the moment</li>
+                                                     <li>The location of the database server has changed</li>
+                                                     <li>The username or password used to contact the database server are not correct</li>
+                                                     <li>PHP has not loaded the MySQL Extension</li>
+                                                   </ul>";
+$GLOBALS['strNoMatchesFound'] = "No matches were found";
+$GLOBALS['strErrorOccurred'] = "An error occurred";
+$GLOBALS['strErrorDBPlain'] = "An error occurred while accessing the database";
+$GLOBALS['strErrorDBSerious'] = "A serious problem with the database has been detected";
+$GLOBALS['strErrorDBNoDataPlain'] = "Due to a problem with the database {$PRODUCT_NAME} couldn't retrieve or store data. ";
+$GLOBALS['strErrorDBNoDataSerious'] = "Due to a serious problem with the database, {$PRODUCT_NAME} couldn't retrieve data";
+$GLOBALS['strErrorDBCorrupt'] = "The database table is probably corrupt and needs to be repaired. For more information about repairing corrupted tables please read the chapter <i>Troubleshooting</i> of the <i>Administrator guide</i>.";
+$GLOBALS['strErrorDBContact'] = "Please contact the administrator of this server and notify him or her of the problem.";
+$GLOBALS['strErrorDBSubmitBug'] = "If this problem is reproducable it might be caused by a bug in {$PRODUCT_NAME}. Please report the following information to the creators of {$PRODUCT_NAME}. Also try to describe the actions that led to this error as clearly as possible.";
+$GLOBALS['strMaintenanceNotActive'] = "The maintenance script has not been run in the last 24 hours.
+In order for the application to function correctly it needs to run
+every hour.
+
+Please read the Administrator guide for more information
+about configuring the maintenance script.";
+$GLOBALS['strErrorLinkingBanner'] = "It was not possible to link this banner to this zone because:";
+$GLOBALS['strUnableToLinkBanner'] = "Cannot link this banner: ";
+$GLOBALS['strErrorEditingCampaignRevenue'] = "incorrect number format in Revenue Information field";
+$GLOBALS['strErrorEditingCampaignECPM'] = "incorrect number format in ECPM Information field";
+$GLOBALS['strErrorEditingZone'] = "Error updating zone:";
+$GLOBALS['strUnableToChangeZone'] = "Cannot apply this change because:";
+$GLOBALS['strDatesConflict'] = "Dates of the campaign you are trying to link overlap with the dates of a campaign already linked ";
+$GLOBALS['strEmailNoDates'] = "Campaigns linked to Email Zones must have a start and end date set. {$PRODUCT_NAME} ensures that on a given date, only one active banner is linked to an Email Zone. Please ensure that the campaigns already linked to the zone do not have overlapping dates with the campaign you are trying to link.";
+$GLOBALS['strWarningInaccurateStats'] = "Some of these statistics were logged in a non-UTC timezone, and may not be displayed in the correct timezone.";
+$GLOBALS['strWarningInaccurateReadMore'] = "Read more about this";
+$GLOBALS['strWarningInaccurateReport'] = "Some of the statistics in this report were logged in a non-UTC timezone, and may not be displayed in the correct timezone";
+
 
 //Validation
 $GLOBALS['strRequiredFieldLegend'] = "denotes required field";
@@ -834,8 +878,17 @@ $GLOBALS['strXPositiveWholeNumberField'] = "%s must be a positive whole number";
 $GLOBALS['strInvalidWebsiteURL'] = "Invalid Website URL";
 
 // Email
+$GLOBALS['strSirMadam'] = "א.נ.";
 $GLOBALS['strMailSubject'] = "דוח מפרסם";
+$GLOBALS['strMailHeader'] = "שלום {contact},";
 $GLOBALS['strMailBannerStats'] = "בהמשך תמצא את הסטטיסטיקה עבור הבאנרים של {clientname}:";
+$GLOBALS['strMailBannerActivatedSubject'] = "Campaign activated";
+$GLOBALS['strMailBannerDeactivatedSubject'] = "Campaign deactivated";
+$GLOBALS['strMailBannerActivated'] = "Your campaign shown below has been activated because
+the campaign activation date has been reached.";
+$GLOBALS['strMailBannerDeactivated'] = "Your campaign shown below has been deactivated because";
+$GLOBALS['strMailFooter'] = "בתודה,
+   {adminfullname}";
 $GLOBALS['strClientDeactivated'] = "קמפיין זה אינו פעילה כעת משוא ש";
 $GLOBALS['strBeforeActivate'] = "תאריך ההתחלה עדיין לא הגיעt";
 $GLOBALS['strAfterExpire'] = "תאריך התפוגה הגיע.";
@@ -1041,23 +1094,107 @@ $GLOBALS['strBinaryData'] = "Binary data";
 $GLOBALS['strAuditTrailDisabled'] = "Audit Trail has been disabled by the system administrator. No further events are logged and shown in Audit Trail list.";
 
 // Widget - Audit
+$GLOBALS['strAuditNoData'] = "No user activity has been recorded during the timeframe you have selected.";
+$GLOBALS['strAuditTrail'] = "Audit Trail";
+$GLOBALS['strAuditTrailSetup'] = "Setup the Audit Trail today";
+$GLOBALS['strAuditTrailGoTo'] = "Go to Audit Trail page";
+$GLOBALS['strAuditTrailNotEnabled'] = "<li>Audit Trail allows you to see who did what and when. Or to put it another way, it keeps track of system changes within {$PRODUCT_NAME}</li>
+        <li>You are seeing this message, because you have not activated the Audit Trail</li>
+        <li>Interested in learning more? Read the <a href='{$PRODUCT_DOCSURL}/admin/settings/auditTrail' class='site-link' target='help' >Audit Trail documentation</a></li>";
 
 // Widget - Campaign
+$GLOBALS['strCampaignGoTo'] = "Go to Campaigns page";
+$GLOBALS['strCampaignSetUp'] = "Set up a Campaign today";
+$GLOBALS['strCampaignNoRecords'] = "<li>Campaigns let you group together any number of banner ads, of any size, that share common advertising requirements</li>
+        <li>Save time by grouping banners within a campaign and no longer define delivery settings for each ad separately</li>
+        <li>Check out the <a class='site-link' target='help' href='{$PRODUCT_DOCSURL}/user/inventory/advertisersAndCampaigns/campaigns'>Campaign documentation</a>!</li>";
+$GLOBALS['strCampaignNoRecordsAdmin'] = "<li>There is no campaign activity to display.</li>";
 
+$GLOBALS['strCampaignNoDataTimeSpan'] = "No campaigns have started or finished during the timeframe you have selected";
+$GLOBALS['strCampaignAuditNotActivated'] = "<li>In order to view campaigns which have started or finished during the timeframe you have selected, the Audit Trail must be activated</li>
+        <li>You are seeing this message because you didn't activate the Audit Trail</li>";
+$GLOBALS['strCampaignAuditTrailSetup'] = "Activate Audit Trail to start viewing Campaigns";
 
+$GLOBALS['strUnsavedChanges'] = "You have unsaved changes on this page, make sure you press &quot;Save Changes&quot; when finished";
+$GLOBALS['strDeliveryLimitationsDisagree'] = "WARNING: The delivery engine limitations <strong>DO NOT AGREE</strong> with the limitations shown below<br />Please hit save changes to update the delivery engine's rules";
+$GLOBALS['strDeliveryLimitationsInputErrors'] = "Some of delivery limitations reports incorrect values:";
 
 //confirmation messages
+$GLOBALS['strYouAreNowWorkingAsX'] = "You are now working as <b>%s</b>";
+$GLOBALS['strYouDontHaveAccess'] = "You don't have access to that page. You have been re-directed.";
 
+$GLOBALS['strAdvertiserHasBeenAdded'] = "Advertiser <a href='%s'>%s</a> has been added, <a href='%s'>add a campaign</a>";
+$GLOBALS['strAdvertiserHasBeenUpdated'] = "Advertiser <a href='%s'>%s</a> has been updated";
+$GLOBALS['strAdvertiserHasBeenDeleted'] = "Advertiser <b>%s</b> has been deleted";
+$GLOBALS['strAdvertisersHaveBeenDeleted'] = "All selected advertisers have been deleted";
 
+$GLOBALS['strTrackerHasBeenAdded'] = "Tracker <a href='%s'>%s</a> has been added";
+$GLOBALS['strTrackerHasBeenUpdated'] = "Tracker <a href='%s'>%s</a> has been updated";
+$GLOBALS['strTrackerVarsHaveBeenUpdated'] = "Variables of tracker <a href='%s'>%s</a> have been updated";
+$GLOBALS['strTrackerCampaignsHaveBeenUpdated'] = "Linked campaigns of tracker <a href='%s'>%s</a> have been updated";
+$GLOBALS['strTrackerAppendHasBeenUpdated'] = "Append tracker code of tracker <a href='%s'>%s</a> has been updated";
+$GLOBALS['strTrackerHasBeenDeleted'] = "Tracker <b>%s</b> has been deleted";
+$GLOBALS['strTrackersHaveBeenDeleted'] = "All selected trackers have been deleted";
+$GLOBALS['strTrackerHasBeenDuplicated'] = "Tracker <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
+$GLOBALS['strTrackerHasBeenMoved'] = "Tracker <b>%s</b> has been moved to advertiser <b>%s</b>";
 
+$GLOBALS['strCampaignHasBeenAdded'] = "Campaign <a href='%s'>%s</a> has been added, <a href='%s'>add a banner</a>";
+$GLOBALS['strCampaignHasBeenUpdated'] = "Campaign <a href='%s'>%s</a> has been updated";
+$GLOBALS['strCampaignTrackersHaveBeenUpdated'] = "Linked trackers of campaign <a href='%s'>%s</a> have been updated";
+$GLOBALS['strCampaignHasBeenDeleted'] = "Campaign <b>%s</b> has been deleted";
+$GLOBALS['strCampaignsHaveBeenDeleted'] = "All selected campaigns have been deleted";
+$GLOBALS['strCampaignHasBeenDuplicated'] = "Campaign <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
+$GLOBALS['strCampaignHasBeenMoved'] = "Campaign <b>%s</b> has been moved to advertiser <b>%s</b>";
 
+$GLOBALS['strBannerHasBeenAdded'] = "Banner <a href='%s'>%s</a> has been added";
+$GLOBALS['strBannerHasBeenUpdated'] = "Banner <a href='%s'>%s</a> has been updated";
+$GLOBALS['strBannerAdvancedHasBeenUpdated'] = "Advanced settings for banner <a href='%s'>%s</a> have been updated";
+$GLOBALS['strBannerAclHasBeenUpdated'] = "Delivery options for banner <a href='%s'>%s</a> have been updated";
+$GLOBALS['strBannerAclHasBeenAppliedTo'] = "Delivery options for banner <a href='%s'>%s</a> have been applied to %d banners";
+$GLOBALS['strBannerHasBeenDeleted'] = "Banner <b>%s</b> has been deleted";
+$GLOBALS['strBannersHaveBeenDeleted'] = "All selected banners have been deleted";
+$GLOBALS['strBannerHasBeenDuplicated'] = "Banner <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
+$GLOBALS['strBannerHasBeenMoved'] = "Banner <b>%s</b> has been moved to campaign <b>%s</b>";
+$GLOBALS['strBannerHasBeenActivated'] = "Banner <a href='%s'>%s</a> has been activated";
+$GLOBALS['strBannerHasBeenDeactivated'] = "Banner <a href='%s'>%s</a> has been deactivated";
 
+$GLOBALS['strXZonesLinked'] = "<b>%s</b> zone(s) linked";
+$GLOBALS['strXZonesUnlinked'] = "<b>%s</b> zone(s) unlinked";
 
+$GLOBALS['strWebsiteHasBeenAdded'] = "Website <a href='%s'>%s</a> has been added, <a href='%s'>add a zone</a>";
+$GLOBALS['strWebsiteHasBeenUpdated'] = "Website <a href='%s'>%s</a> has been updated";
+$GLOBALS['strWebsiteHasBeenDeleted'] = "Website <b>%s</b> has been deleted";
+$GLOBALS['strWebsitesHaveBeenDeleted'] = "All selected website have been deleted";
 
+$GLOBALS['strZoneHasBeenAdded'] = "Zone <a href='%s'>%s</a> has been added";
+$GLOBALS['strZoneHasBeenUpdated'] = "Zone <a href='%s'>%s</a> has been updated";
+$GLOBALS['strZoneAdvancedHasBeenUpdated'] = "Advanced settings for zone <a href='%s'>%s</a> have been updated";
+$GLOBALS['strZoneHasBeenDeleted'] = "Zone <b>%s</b> has been deleted";
+$GLOBALS['strZonesHaveBeenDeleted'] = "All selected zone have been deleted";
+$GLOBALS['strZoneHasBeenDuplicated'] = "Zone <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
+$GLOBALS['strZoneHasBeenMoved'] = "Zone <b>%s</b> has been moved to website <b>%s</b>";
+$GLOBALS['strZoneLinkedBanner'] = "Banner has been linked to zone <a href='%s'>%s</a>";
+$GLOBALS['strZoneLinkedCampaign'] = "Campaign has been linked to zone <a href='%s'>%s</a>";
+$GLOBALS['strZoneRemovedBanner'] = "Banner has been unlinked from zone <a href='%s'>%s</a>";
+$GLOBALS['strZoneRemovedCampaign'] = "Campaign has been unlinked from zone <a href='%s'>%s</a>";
 
+$GLOBALS['strChannelHasBeenAdded'] = "Targeting channel <a href='%s'>%s</a> has been added, <a href='%s'>change the delivery options</a>";
+$GLOBALS['strChannelHasBeenUpdated'] = "Targeting channel <a href='%s'>%s</a> has been updated";
+$GLOBALS['strChannelAclHasBeenUpdated'] = "Delivery options for targeting channel <a href='%s'>%s</a> have been updated";
+$GLOBALS['strChannelHasBeenDeleted'] = "Targeting channel <b>%s</b> has been deleted";
+$GLOBALS['strChannelsHaveBeenDeleted'] = "All selected Targeting Channels have been deleted";
+$GLOBALS['strChannelHasBeenDuplicated'] = "Targeting channel <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
 
+$GLOBALS['strUserPreferencesUpdated'] = "Your <b>%s</b> preferences has been updated";
+$GLOBALS['strEmailChanged'] = "Your E-mail has been changed";
+$GLOBALS['strPasswordChanged'] = "Your password has been changed";
+$GLOBALS['strXPreferencesHaveBeenUpdated'] = "<b>%s</b> have been updated";
+$GLOBALS['strXSettingsHaveBeenUpdated'] = "<b>%s</b> have been updated";
+$GLOBALS['strTZPreferencesWarning'] = "However, campaign activation and expiry were not updated, nor time-based banner limitations.<br />You will need to update them manually if you wish them to use the new timezone";
 
 // Report error messages
+$GLOBALS['strReportErrorMissingSheets'] = "No worksheet was selected for report";
+$GLOBALS['strReportErrorUnknownCode'] = "Unknown error code #";
 
 /* ------------------------------------------------------- */
 /* Keyboard shortcut assignments                           */
