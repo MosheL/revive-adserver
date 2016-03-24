@@ -164,9 +164,13 @@ $GLOBALS['strMonths'] = "Bulan";
 $GLOBALS['strDayOfWeek'] = "Hari dalam minggu";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "Jam";
 $GLOBALS['strSeconds'] = "Detik";
@@ -345,13 +349,19 @@ $GLOBALS['strDeliveryCappingReset'] = "Reset hitungan AdViews setelah:";
 $GLOBALS['strDeliveryCappingTotal'] = "jumlahnya";
 $GLOBALS['strDeliveryCappingSession'] = "per sesi";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "Batasi penampilan banner pada:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "Batasi penampilan kampanye pada:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "Batasi penampilan zona pada:";
 
 // Website
@@ -624,7 +634,6 @@ $GLOBALS['strVariableCode'] = "Kode pelacak berbasis Javascript";
 // Password recovery
 $GLOBALS['strForgotPassword'] = "Lupa kata sandi Anda?";
 $GLOBALS['strEmailRequired'] = "Pengisian alamat E-mail diwajibkan!";
-$GLOBALS['strPwdRecEmailNotFound'] = "Alamat E-mail tidak ditemukan";
 $GLOBALS['strPwdRecWrongId'] = "ID tidak dikenal";
 $GLOBALS['strPwdRecEnterEmail'] = "Silakan masukkan alamat E-Mail Anda dibawah ini";
 $GLOBALS['strPwdRecEnterPassword'] = "Silakan masukkan alamat E-Mail baru yang terhubung dengan kata sandi Anda dibawah ini";

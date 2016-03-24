@@ -247,6 +247,7 @@ $GLOBALS['strMonths'] = "חודשים";
 $GLOBALS['strDayOfWeek'] = "יו םבשבוע";
 
 
+if (!isset($GLOBALS['strDayFullNames'])) {
 $GLOBALS['strDayFullNames'] = array();
 $GLOBALS['strDayFullNames'][0] = 'ראשון';
 $GLOBALS['strDayFullNames'][1] = 'שני';
@@ -339,8 +340,8 @@ $GLOBALS['strCalculatedForAllCampaigns'] = "מחושב עבור כל הקמפי�
 $GLOBALS['strCalculatedForThisCampaign'] = "מחושב עבור קמפיין זה ";
 $GLOBALS['strLinkingZonesProblem'] = "Problem occurred when linking zones";
 $GLOBALS['strUnlinkingZonesProblem'] = "Problem occurred when unlinking zones";
-$GLOBALS['strZonesLinked'] = "zone(s) linked";
-$GLOBALS['strZonesUnlinked'] = "zone(s) unlinked";
+$GLOBALS['strZonesLinked'] = "האזור(ים) קושרו";
+$GLOBALS['strZonesUnlinked'] = "האזור(ים) נותקו";
 $GLOBALS['strZonesSearch'] = "חיפוש";
 $GLOBALS['strZonesSearchTitle'] = "Search zones and websites by name";
 $GLOBALS['strNoWebsitesAndZones'] = "No websites and zones";
@@ -627,7 +628,7 @@ $GLOBALS['strZone'] = "איזור";
 $GLOBALS['strZones'] = "איזורים";
 $GLOBALS['strAddNewZone'] = "הוסף איזור";
 $GLOBALS['strAddNewZone_Key'] = "הוסף איזור <u>ח</u>דש";
-$GLOBALS['strZoneToWebsite'] = "to website";
+$GLOBALS['strZoneToWebsite'] = "לאתר";
 $GLOBALS['strLinkedZones'] = "איזורי הפעלה";
 $GLOBALS['strAvailableZones'] = "איזורים זמינים";
 $GLOBALS['strLinkingNotSuccess'] = "קישור לא הצליח, נסה שוב לקשר";
@@ -645,7 +646,7 @@ $GLOBALS['strBannerButtonRectangle'] = "באנר, כפתור או ריבוע";
 $GLOBALS['strInterstitial'] = "על-שכבתי או צף";
 $GLOBALS['strPopup'] = "קופץ";
 $GLOBALS['strTextAdZone'] = "פרסוא טקסטואלי";
-$GLOBALS['strEmailAdZone'] = "Email/Newsletter zone";
+$GLOBALS['strEmailAdZone'] = "אזור עבור דוא\"ל/ניוזלטרים";
 $GLOBALS['strZoneVideoInstream'] = "Inline Video ad";
 $GLOBALS['strZoneVideoOverlay'] = "Overlay Video ad";
 $GLOBALS['strShowMatchingBanners'] = "הצג באנרים תואמים";
@@ -691,10 +692,10 @@ $GLOBALS['strZoneStopDelivery'] = "חדל מחשיפה ואל תציג באנר"
 $GLOBALS['strZoneOtherZone'] = "הצג מאזור המסומן כאן במקומו";
 $GLOBALS['strZoneAppend'] = "תמיד צרף לקוד הבאנר מהסוג הקופץ או הצף הבא, עבור באנרים המוצגים מאזור זה.";
 $GLOBALS['strAppendSettings'] = "צרף ומזג קביעות";
-$GLOBALS['strZonePrependHTML'] = "הקדא תמיד  קוד HTML לפרסוא טקסטואלי המוצג באזור זה";
-$GLOBALS['strZoneAppendNoBanner'] = "Prepend/Append even if no banner delivered";
+$GLOBALS['strZonePrependHTML'] = "הקדא תמיד  קוד HTML לפרסום טקסטואלי המוצג באזור זה";
+$GLOBALS['strZoneAppendNoBanner'] = "Prepend/Append גם אם אין באנר באזור";
 $GLOBALS['strZoneAppendHTMLCode'] = "קוד HTML";
-$GLOBALS['strZoneAppendZoneSelection'] = "קופץ or צף";
+$GLOBALS['strZoneAppendZoneSelection'] = "קופץ או צף";
 
 // Zone probability
 $GLOBALS['strZoneProbListChain'] = "כל הבאנרים המקושרים לאיזור הנבחר אינא פעילים כעת.<br>זו שרשרת האיזור שתעקוב:";

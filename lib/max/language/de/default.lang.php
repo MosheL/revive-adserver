@@ -156,7 +156,7 @@ $GLOBALS['strUserUnlinkedFromAccount'] = "Benutzer wurde von diesem Benutzerkont
 $GLOBALS['strUserWasDeleted'] = "Benutzer wurde gelöscht";
 $GLOBALS['strUserNotLinkedWithAccount'] = "Dieser Benutzer ist nicht mit diesem Benutzerkonto verknüpft";
 $GLOBALS['strCantDeleteOneAdminUser'] = "Dieser Benutzer kann nicht gelöscht werden. Mindestens ein Benutzer muß mit dem Administratorkonto verknüpft sein.";
-$GLOBALS['strLinkUserHelp'] = "Um einen <b>existierenden Benutzer</b> hinzuzufügen, schreiben Sie %1\\$s und klicken auf %2\\$s <br />Um einen <b>neuen Benutzer</b>, schreiben Sie den gewünschten %1\\$s und klicken Sie %2\\$s";
+$GLOBALS['strLinkUserHelp'] = "Um einen <b>existierenden Benutzer</b> hinzuzufügen, schreiben Sie %1\$s und klicken auf %2\$s <br />Um einen <b>neuen Benutzer</b>, schreiben Sie den gewünschten %1\$s und klicken Sie %2\$s";
 $GLOBALS['strLinkUserHelpUser'] = "Benutzername";
 $GLOBALS['strLinkUserHelpEmail'] = "E-Mail Adresse";
 $GLOBALS['strLastLoggedIn'] = "Zuletzt eingeloggt";
@@ -235,7 +235,9 @@ $GLOBALS['strMonths'] = "Monate";
 $GLOBALS['strDayOfWeek'] = "Wochentag";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 $GLOBALS['strDayFullNames'][0] = 'Sonntag';
 $GLOBALS['strDayFullNames'][1] = 'Montag';
 $GLOBALS['strDayFullNames'][2] = 'Dienstag';
@@ -244,7 +246,9 @@ $GLOBALS['strDayFullNames'][4] = 'Donnerstag';
 $GLOBALS['strDayFullNames'][5] = 'Freitag';
 $GLOBALS['strDayFullNames'][6] = 'Samstag';
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 $GLOBALS['strDayShortCuts'][0] = 'So';
 $GLOBALS['strDayShortCuts'][1] = 'Mo';
 $GLOBALS['strDayShortCuts'][2] = 'Di';
@@ -508,15 +512,21 @@ $GLOBALS['strDeliveryCappingReset'] = "Rücksetzen AdView-Zählers nach";
 $GLOBALS['strDeliveryCappingTotal'] = "insgesamt";
 $GLOBALS['strDeliveryCappingSession'] = "pro Session";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['title'] = "Kappung der Auslieferung pro Besucher";
 $GLOBALS['strCappingBanner']['limit'] = "Banner Ausliferungen kappen auf:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['title'] = "Kappung der Auslieferung pro Besucher";
 $GLOBALS['strCappingCampaign']['limit'] = "Kampagnen kappen auf:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['title'] = "Kappung der Auslieferung pro Besucher";
 $GLOBALS['strCappingZone']['limit'] = "Zone kappen auf:";
 
@@ -910,7 +920,6 @@ $GLOBALS['strTrackerTypeCustom'] = "Eigener JS code";
 $GLOBALS['strForgotPassword'] = "Passwort vergessen?";
 $GLOBALS['strPasswordRecovery'] = "Password wiederherstellen";
 $GLOBALS['strEmailRequired'] = "Das Eingabefeld e-Mail muss ausgefüllt sein";
-$GLOBALS['strPwdRecEmailNotFound'] = "Die e-Mail Adresse konnte nicht gefunden werden";
 $GLOBALS['strPwdRecWrongId'] = "Falsche ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Geben Sie nachfolgend Ihre eMail Adresse ein";
 $GLOBALS['strPwdRecEnterPassword'] = "Geben Sie nachfolgend Ihr neues Passwort ein";

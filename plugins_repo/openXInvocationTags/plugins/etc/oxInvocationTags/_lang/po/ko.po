@@ -37,7 +37,7 @@ msgstr ""
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/adjs.class.php:53
 msgid "Javascript Tag"
-msgstr ""
+msgstr "자바 스크립트 태그"
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/adjs.class.php:116
 #, php-format
@@ -99,7 +99,7 @@ msgstr "배너 형식"
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/adview.class.php:53
 msgid "Image Tag"
-msgstr ""
+msgstr "이미지 태그"
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/adview.class.php:111
 msgid "\n"
@@ -155,7 +155,7 @@ msgstr ""
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/spc.class.php:237
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/spc.class.php:411
 msgid "Option - noscript"
-msgstr ""
+msgstr "옵션 - 스크립트 허용안함"
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/spc.class.php:241
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/spc.class.php:426
@@ -264,7 +264,7 @@ msgstr "배경색"
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/layerstyles/geocities/invocation.inc.php:56
 msgid "[Close]"
-msgstr ""
+msgstr "[닫기]"
 
 #: plugins_repo/openXInvocationTags/extensions/invocationTags/oxInvocationTags/layerstyles/geocities/invocation.inc.php:65
 msgid "Alignment"

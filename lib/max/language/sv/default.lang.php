@@ -165,9 +165,13 @@ $GLOBALS['strMonths'] = "Månader";
 $GLOBALS['strDayOfWeek'] = "Dag av vecka";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "Timme";
 $GLOBALS['strSeconds'] = "sekunder";
@@ -345,13 +349,19 @@ $GLOBALS['strDeliveryLimitations'] = "Leveransbegränsningar";
 $GLOBALS['strDeliveryCappingReset'] = "Återställ visningsräknare efter:";
 $GLOBALS['strDeliveryCappingTotal'] = "totalt";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "Begränsa annonsvisningar till:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "Begränsa kampanjvisningar till:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "Begränsa zonvisningar till:";
 
 // Website
@@ -634,7 +644,6 @@ $GLOBALS['strTrackerTypeJS'] = "Spåra variabler för JavaScript";
 $GLOBALS['strForgotPassword'] = "Glömt ditt lösenord?";
 $GLOBALS['strPasswordRecovery'] = "Hämta lösenord";
 $GLOBALS['strEmailRequired'] = "Email måste fyllas i";
-$GLOBALS['strPwdRecEmailNotFound'] = "Kan inte hitta emailadress";
 $GLOBALS['strPwdRecWrongId'] = "Fel ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Skriv in din mailadress nedan";
 $GLOBALS['strPwdRecEnterPassword'] = "Skriv ditt nya lösenord nedan";

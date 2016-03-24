@@ -24,8 +24,11 @@ $GLOBALS['strCampaign'] = "الحملة الإعلانية";
 $GLOBALS['strZone'] = "المنطقة";
 $GLOBALS['strType'] = "النوع";
 $GLOBALS['strAction'] = "الفعل";
+$GLOBALS['strValue'] = "القيمة";
 
-$GLOBALS['strUserlog'] = array();
+if (!isset($GLOBALS['strUserlog'])) {
+    $GLOBALS['strUserlog'] = array();
+}
 $GLOBALS['strUserlog'][phpAds_actionAdvertiserReportMailed] = "تعطيل التنبيهات للحملة رقم {id} المرسلة عبر البريد الإلكتروني";
 $GLOBALS['strUserlog'][phpAds_actionActiveCampaign] = "تعطيل التنبيهات للحملة رقم {id} المرسلة عبر البريد الإلكتروني";
 $GLOBALS['strUserlog'][phpAds_actionAutoClean] = "تعطيل التنبيهات للحملة رقم {id} المرسلة عبر البريد الإلكتروني";

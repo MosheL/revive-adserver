@@ -10,6 +10,8 @@
 +---------------------------------------------------------------------------+
 */
 
+require_once RV_PATH . '/lib/RV.php';
+
 require_once MAX_PATH . '/lib/OA.php';
 require_once MAX_PATH . '/lib/OA/DB.php';
 require_once MAX_PATH . '/lib/OA/Dal/ApplicationVariables.php';
@@ -79,7 +81,7 @@ class RV_Sync
             'stable'  => 0.4
         );
 
-        $version = OA::stripVersion(strtolower($version), array('dev', 'stable'));
+        $version = RV::stripVersion(strtolower($version), array('dev', 'stable'));
 
         if (preg_match('/^v/', $version)) {
             $v = preg_split('/[.-]/', substr($version, 1));

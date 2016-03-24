@@ -198,9 +198,13 @@ $GLOBALS['strMonths'] = "Luni";
 $GLOBALS['strDayOfWeek'] = "Ziua din săptămână";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "Ora";
 $GLOBALS['strSeconds'] = "secunde";
@@ -396,13 +400,19 @@ $GLOBALS['strDeliveryCappingReset'] = "Resetează contoare vizualizări după:";
 $GLOBALS['strDeliveryCappingTotal'] = "în total";
 $GLOBALS['strDeliveryCappingSession'] = "pe sesiune";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "Limitează vizualizări banner la:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "Limitează vizualizări campanie la:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "Limitează vizualizări zonă la:";
 
 // Website
@@ -756,7 +766,6 @@ $GLOBALS['strVariableCode'] = "Cod Javascript de contorizare";
 $GLOBALS['strForgotPassword'] = "Ţi-ai uitat parola?";
 $GLOBALS['strPasswordRecovery'] = "Recuperare parolă";
 $GLOBALS['strEmailRequired'] = "Email este un câmp obligatoriu";
-$GLOBALS['strPwdRecEmailNotFound'] = "Adresa de email nu a fost găsită";
 $GLOBALS['strPwdRecWrongId'] = "ID greşit";
 $GLOBALS['strPwdRecEnterEmail'] = "Scrie adresa de email mai jos";
 $GLOBALS['strPwdRecEnterPassword'] = "Scrie noua parolă mai jos";

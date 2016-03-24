@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 3.2.2
+Release Notes: Revive Adserver 3.3.0
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,7 +14,7 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 3.2.2
+What's New in Revive Adserver 3.3.0
 -----------------------------------
 
  * Release date: n/a
@@ -27,29 +27,17 @@ What's New in Revive Adserver 3.2.2
  New Features
  ------------
 
- * The campaign banner overview page now displays shortened URLs (when they are
-   very long) and displays a tool tip for the complete URL, to improve the
-   legibility of the page.
+ * Improved .htaccess compatibility with Apache 2.4+
 
  Bug Fixes
  ---------
 
- * Pop-up and pop-under windows with only the X or Y axis opening position set
-   will now open correctly with that axis position (it is no longer necessary
-   to set a value for both axes).
- * Asynchronous javascript invocation no longer triggers JS errors on
-   unsupported browsers (e.g. IE8).
- * Asynchronous javascript invocation now works even when fl.js has been
-   renamed.
- * Asynchronous javascript invocation was triggering an error when displaying a
-   banner with <script> tag(s) nested in other elements (e.g. inside a <div>).
- * Fixed an issue with email validation for new users not accepting the
-   user+ext@example.com format.
+ * None
 
  Non-Backwards Compatible Changes
  --------------------------------
 
- * None
+ * Revive Adserver now requires a minimum PHP version of 5.5.9.
 
 System Requirements
 -------------------
@@ -153,24 +141,17 @@ this before reporting any new bugs.
 FAQ
 ---
 
- 1. What happened to OpenX Source?
-
-    OpenX Source has re-branded as Revive Adserver. It is still a completely
-    free, open source ad serving solution, and remains licensed under the
-    GPL v2 or greater license. Apart from the code moving home and a change of
-    name, Revive Adserver is just the same as the old OpenX Source application.
-
- 2. Can I upgrade from OpenX Source?
+ 1. Can I upgrade from OpenX Source?
 
     Yes. OpenX Source has rebranded as Revive Adserver. You will be able to
     upgrade from any version of OpenX Source.
 
- 3. Where can I get help?
+ 2. Where can I get help?
 
     You can ask for help at the Revive Adserver community forums:
     http://forum.revive-adserver.com/
 
- 4. What can I do to help?
+ 3. What can I do to help?
 
     We need help from both developers and users to provide as much feedback
     as possible to make Revive Adserver even better. You can contribute

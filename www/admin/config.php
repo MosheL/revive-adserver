@@ -91,9 +91,12 @@ function OA_Start($checkRedirectFunc = null)
     $conf = $GLOBALS['_MAX']['CONF'];
     global $session;
 
-    // XXX: Why not try loading session data when OpenX is not installed?
-    //if ($conf['openads']['installed'])
-    if (OA_INSTALLATION_STATUS == OA_INSTALLATION_STATUS_INSTALLED)
+    // Send no cache headers
+    MAX_header('Pragma: no-cache');
+    MAX_header('Cache-Control: no-cache, no-store, must-revalidate');
+    MAX_header('Expires: 0');
+
+    if (RV_INSTALLATION_STATUS == RV_INSTALLATION_STATUS_INSTALLED)
     {
         phpAds_SessionDataFetch();
     }

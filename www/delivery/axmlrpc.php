@@ -2055,19 +2055,19 @@ $buffer .= "
 }
 }
 if (!empty($variableQuerystring)) {
-$conversionInfoParams = array();
 foreach ($conversionInfo as $plugin => $pluginData) {
+$conversionInfoParams = array();
 if (is_array($pluginData)) {
 foreach ($pluginData as $key => $value) {
 $conversionInfoParams[] = $key . '=' . urlencode($value);
 }
 }
-}
 $conversionInfoParams = '&' . implode('&', $conversionInfoParams);
 $buffer .= "
     document.write (\"<\" + \"script language='JavaScript' type='text/javascript' src='\");
-    document.write (\"$url?trackerid=$trackerid{$conversionInfoParams}{$variableQuerystring}'\");";
+    document.write (\"$url?trackerid=$trackerid&plugin={$plugin}{$conversionInfoParams}{$variableQuerystring}'\");";
 $buffer .= "\n\tdocument.write (\"><\\/scr\"+\"ipt>\");";
+}
 }
 }
 if(!empty($tracker['appendcode'])) {
@@ -2168,7 +2168,7 @@ return $aConversionInfo;
 }
 return false;
 }
-function MAX_Delivery_log_logVariableValues($aVariables, $trackerId, $serverConvId, $serverRawIp)
+function MAX_Delivery_log_logVariableValues($aVariables, $trackerId, $serverConvId, $serverRawIp, $pluginId = null)
 {
 $aConf = $GLOBALS['_MAX']['CONF'];
 foreach ($aVariables as $aVariable) {
@@ -2199,7 +2199,11 @@ continue;
 $aVariables[$aVariable['variable_id']]['value'] = $value;
 }
 if (count($aVariables)) {
-OX_Delivery_Common_hook('logConversionVariable', array($aVariables, $trackerId, $serverConvId, $serverRawIp, _viewersHostOkayToLog(null, null, $trackerId)));
+OX_Delivery_Common_hook(
+'logConversionVariable',
+array($aVariables, $trackerId, $serverConvId, $serverRawIp, _viewersHostOkayToLog(null, null, $trackerId)),
+empty($pluginId) ? null : $pluginId.'Variable'
+);
 }
 }
 function _viewersHostOkayToLog($adId=0, $zoneId=0, $trackerId=0)
@@ -2449,8 +2453,8 @@ MAX_header($header);
 function MAX_commonSetNoCacheHeaders()
 {
 MAX_header('Pragma: no-cache');
-MAX_header('Cache-Control: private, max-age=0, no-cache');
-MAX_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+MAX_header('Cache-Control: no-cache, no-store, must-revalidate');
+MAX_header('Expires: 0');
 MAX_header('Access-Control-Allow-Origin: *');
 }
 function MAX_commonAddslashesRecursive($a)
@@ -2778,6 +2782,14 @@ return $return;
 }
 function OX_Delivery_Common_getFunctionFromComponentIdentifier($identifier, $hook = null)
 {
+if (preg_match('/[^a-zA-Z0-9:]/', $identifier)) {
+if (PHP_SAPI === 'cli') {
+exit(1);
+} else {
+MAX_sendStatusCode(400);
+exit;
+}
+}
 $aInfo = explode(':', $identifier);
 $functionName = 'Plugin_' . implode('_', $aInfo) . '_Delivery' . (!empty($hook) ? '_' . $hook : '');
 if (!function_exists($functionName)) {
@@ -3085,6 +3097,9 @@ OX_Delivery_Common_hook('postInit');
 
 setupIncludePath();
 
+require_once RV_PATH . '/lib/RV.php';
+
+
 
 
 
@@ -3348,7 +3363,7 @@ preg_match_all('#{(.*?)(_enc)?}#', $code, $macros);
 for ($i=0;$i<count($macros[1]);$i++) {
 if (!in_array($macros[0][$i], $search) && isset($_REQUEST[$macros[1][$i]])) {
 $search[] = $macros[0][$i];
-$replace[] = (!empty($macros[2][$i])) ? urlencode(stripslashes($_REQUEST[$macros[1][$i]])) : stripslashes($_REQUEST[$macros[1][$i]]);
+$replace[] = (!empty($macros[2][$i])) ? urlencode(stripslashes($_REQUEST[$macros[1][$i]])) : htmlspecialchars(stripslashes($_REQUEST[$macros[1][$i]]), ENT_QUOTES);
 }
 }
 $componentParams = OX_Delivery_Common_hook('addUrlParams', array($aBanner));
@@ -3392,7 +3407,7 @@ $div = "<div id='{$beaconId}' style='position: absolute; left: 0px; top: 0px; vi
 $style = " style='width: 0px; height: 0px;'";
 $divEnd = '</div>';
 }
-$beacon = "$div<img src='".htmlspecialchars($logUrl)."' width='0' height='0' alt=''{$style} />{$divEnd}";
+$beacon = "$div<img src='".htmlspecialchars($logUrl, ENT_QUOTES)."' width='0' height='0' alt=''{$style} />{$divEnd}";
 return $beacon;
 }
 function _adRenderImage(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $richMedia=true, $loc='', $referer='', $context=array(), $useAppend=true)
@@ -3406,7 +3421,7 @@ $prepend = (!empty($aBanner['prepend']) && $useAppend) ? $aBanner['prepend'] : '
 $append = (!empty($aBanner['append']) && $useAppend) ? $aBanner['append'] : '';
 $clickUrl = _adRenderBuildClickUrl($aBanner, $zoneId, $source, $ct0, $logClick);
 if (!empty($clickUrl)) {  $status = _adRenderBuildStatusCode($aBanner);
-$clickTag = "<a href='$clickUrl' target='{target}'$status>";
+$clickTag = "<a href='".htmlspecialchars($clickUrl, ENT_QUOTES)."' target='{target}'$status>";
 $clickTagEnd = '</a>';
 } else {
 $clickTag = '';
@@ -3417,7 +3432,7 @@ $imgStatus = empty($clickTag) && !empty($status) ? $status : '';
 $width = !empty($aBanner['width']) ? $aBanner['width'] : 0;
 $height = !empty($aBanner['height']) ? $aBanner['height'] : 0;
 $alt = !empty($aBanner['alt']) ? htmlspecialchars($aBanner['alt'], ENT_QUOTES) : '';
-$imageTag = "$clickTag<img src='$imageUrl' width='$width' height='$height' alt='$alt' title='$alt' border='0'$imgStatus />$clickTagEnd";
+$imageTag = "$clickTag<img src='".htmlspecialchars($imageUrl, ENT_QUOTES)."' width='$width' height='$height' alt='$alt' title='$alt' border='0'$imgStatus />$clickTagEnd";
 } else {
 $imageTag = '';
 }
@@ -3435,7 +3450,7 @@ $height = !empty($aBanner['height']) ? $aBanner['height'] : 0;
 $pluginVersion = !empty($aBanner['pluginversion']) ? _adRenderGetRealPluginVersion($aBanner['pluginversion']) : '4';
 $logURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&');
 if (!empty($aBanner['alt_filename']) || !empty($aBanner['alt_imageurl'])) {
-$altImageAdCode = _adRenderImage($aBanner, $zoneId, $source, $ct0, false, $logClick, false, true, true, $loc, $referer, false);
+$altImageAdCode = _adRenderImage($aBanner, $zoneId, $source, $ct0, false, $logClick, false, true, true, $loc, $referer, $context, false);
 $fallBackLogURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&', true);
 } else {
 $alt = !empty($aBanner['alt']) ? htmlspecialchars($aBanner['alt'], ENT_QUOTES) : '';
@@ -3453,7 +3468,7 @@ $clickUrl = _adRenderBuildClickUrl($aBanner, $zoneId, $source, $ct0, $logClick);
 if (!empty($clickUrl)) {  $status = _adRenderBuildStatusCode($aBanner);
 $target = !empty($aBanner['target']) ? $aBanner['target'] : '_blank';
 $swfParams = array('clickTARGET' => $target, 'clickTAG' => $clickUrl);
-$clickTag = "<a href='$clickUrl' target='$target'$status>";
+$clickTag = "<a href='".htmlspecialchars($clickUrl, ENT_QUOTES)."' target='$target'$status>";
 $clickTagEnd = '</a>';
 } else {
 $swfParams = array();
@@ -4462,18 +4477,6 @@ $absolutes[] = $part;
 }
 return implode(DIRECTORY_SEPARATOR, $absolutes);
 }
-function disableErrorHandling()
-{
-PEAR::pushErrorHandling(null);
-}
-function enableErrorHandling()
-{
-$stack = &$GLOBALS['_PEAR_error_handler_stack'];
-list($mode, $options) = $stack[sizeof($stack) - 1];
-if (is_null($mode) && is_null($options)) {
-PEAR::popErrorHandling();
-}
-}
 }
 
 require_once 'XML/RPC/Server.php';
@@ -4637,7 +4640,7 @@ for ($i = 0; $i < $numParams; $i++)
 {
 $p = $params->getParam($i);
 if ($i) {
-$$vars[$i] = XML_RPC_decode($p);
+${$vars[$i]} = XML_RPC_decode($p);
 } else {
 $p = XML_RPC_decode($p);
 if (!isset($p['remote_addr'])) {
