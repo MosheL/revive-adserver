@@ -22,18 +22,20 @@
 function setupConstants()
 {
     // Define this version of Revive Adserver's constants
-    define('VERSION', '3.3.0-dev');
+    define('VERSION', '4.0.1-dev');
     define('PRODUCT_NAME', 'Revive Adserver');
     define('PRODUCT_URL', 'www.revive-adserver.com');
     define('PRODUCT_DOCSURL', 'http://documentation.revive-adserver.com');
 
     // Deprecated constants for backwards compatibility. Please use the ones above
     define('OA_VERSION', VERSION);
+    define('MAX_PRODUCT_NAME', PRODUCT_NAME);
+    define('MAX_PRODUCT_URL', PRODUCT_URL);
     define('OX_PRODUCT_DOCSURL', PRODUCT_DOCSURL);
 
-    define('RV_INSTALLATION_STATUS_NOTINSTALLED' ,   -1);
-    define('RV_INSTALLATION_STATUS_UPGRADING'    ,    0);
-    define('RV_INSTALLATION_STATUS_INSTALLED'    ,    1);
+    define('OA_INSTALLATION_STATUS_NOTINSTALLED' ,   -1);
+    define('OA_INSTALLATION_STATUS_UPGRADING'    ,    0);
+    define('OA_INSTALLATION_STATUS_INSTALLED'    ,    1);
 
     define('OA_AD_DIRECT_ENABLED', false);
 
@@ -226,7 +228,7 @@ function setupConstants()
         }
         // Set the dbms type
         if (isset($GLOBALS['_MAX']['CONF']['database'])
-            && $GLOBALS['_MAX']['CONF']['database']['type'] == 'mysql')
+            && ($GLOBALS['_MAX']['CONF']['database']['type'] == 'mysql' || $GLOBALS['_MAX']['CONF']['database']['type'] == 'mysqli'))
         {
             define('phpAds_dbmsname', 'MySQL');
         }

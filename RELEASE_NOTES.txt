@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 3.3.0
+Release Notes: Revive Adserver 4.0.1
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,7 +14,7 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 3.3.0
+What's New in Revive Adserver 4.0.1
 -----------------------------------
 
  * Release date: n/a
@@ -27,7 +27,7 @@ What's New in Revive Adserver 3.3.0
  New Features
  ------------
 
- * Improved .htaccess compatibility with Apache 2.4+
+ * None
 
  Bug Fixes
  ---------
@@ -37,7 +37,8 @@ What's New in Revive Adserver 3.3.0
  Non-Backwards Compatible Changes
  --------------------------------
 
- * Revive Adserver now requires a minimum PHP version of 5.5.9.
+ * None
+
 
 System Requirements
 -------------------

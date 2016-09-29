@@ -1594,7 +1594,7 @@ class OA_DB_Upgrade
                             {
                                 if (array_key_exists('rename', $aField_tasks))
                                 {
-                                    $method -= $aField_tasks['rename'];
+                                    $method = $aField_tasks['rename'];
                                     $this->_logOnly('task found: '.$method);
                                     $was = $this->_getPreviousFieldname($table, $field);
                                     if ($was)
@@ -2173,6 +2173,7 @@ class OA_DB_Upgrade
         switch ($this->oSchema->db->dbsyntax)
         {
             case 'mysql':
+            case 'mysqli':
                 $engine = $this->oSchema->db->getOption('default_table_type');
                 $this->aSQLStatements['table_copy']     = "CREATE TABLE %s ENGINE={$engine} (SELECT * FROM %s)";
                 $this->aSQLStatements['table_move']     = "";

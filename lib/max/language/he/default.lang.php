@@ -553,7 +553,6 @@ $GLOBALS['strOverwriteSource'] = "רמוס פרמטרים של המקור";
 $GLOBALS['strModifyBannerAcl'] = "אופציות תפוצה";
 $GLOBALS['strACL'] = "תפוצה";
 $GLOBALS['strACLAdd'] = "הוסף הגבלה חדשה";
-$GLOBALS['strNoLimitations'] = "ללא הגבלות";
 $GLOBALS['strApplyLimitationsTo'] = "הענק הגבלה ל";
 $GLOBALS['strAllBannersInCampaign'] = "כל באנרים בקמפיין זה ";
 $GLOBALS['strRemoveAllLimitations'] = "הסר את כל המגבלות";

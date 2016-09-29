@@ -20,19 +20,16 @@ error_reporting(E_ALL & ~(E_NOTICE | E_WARNING | E_DEPRECATED | E_STRICT));
 
 echo "=> STARTING TO REFRESH THE MDB2 SCHEMA XML FILE CACHE\n";
 
-// Set the RV_PATH constant (this assumes that the script is located in
-// RV_PATH . '/scripts/upgrade'
-define('RV_PATH', dirname(dirname(dirname(__FILE__))));
-
 define('MAX_PATH', dirname(__FILE__) . '/../..');
 define('OX_PATH', dirname(__FILE__) . '/../..');
+define('RV_PATH', MAX_PATH);
 error_reporting(E_ALL);
 
 // setup environment - do not require config file
-require_once RV_PATH . '/init-parse.php';
-require_once RV_PATH . '/constants.php';
-require_once RV_PATH . '/memory.php';
-require_once RV_PATH . '/variables.php';
+require_once MAX_PATH . '/init-parse.php';
+require_once MAX_PATH . '/constants.php';
+require_once MAX_PATH . '/memory.php';
+require_once MAX_PATH . '/variables.php';
 setupServerVariables();
 
 // set conf array to prevent loading config file
@@ -43,12 +40,18 @@ $GLOBALS['_MAX']['CONF']['openads']['sslPort'] = null;
 $GLOBALS['_MAX']['HTTP'] = null;
 
 // set pear path
-$newPearPath = RV_PATH . DIRECTORY_SEPARATOR.'lib' . DIRECTORY_SEPARATOR . 'pear';
+$newPearPath = MAX_PATH . DIRECTORY_SEPARATOR.'lib' . DIRECTORY_SEPARATOR . 'pear';
 if (!empty($existingPearPath)) {
     $newPearPath .= PATH_SEPARATOR . $existingPearPath;
 }
 ini_set('include_path', $newPearPath);
-$GLOBALS['_MAX']['CONF']['database']['type'] = 'mysql';
+
+// set database type to mysql or mysqli if available
+$availableMysqlExtension = 'mysql';
+if (extension_loaded('mysqli')) {
+    $availableMysqlExtension = 'mysqli';
+}
+$GLOBALS['_MAX']['CONF']['database']['type'] = $availableMysqlExtension;
 
 setupConstants();
 setupConfigVariables();
@@ -57,16 +60,16 @@ OX_increaseMemoryLimit(OX_getMinimumRequiredMemory('cache'));
 
 error_reporting(E_ALL & ~(E_NOTICE | E_WARNING | E_DEPRECATED | E_STRICT));
 
-if (!is_writable(RV_PATH.'/etc/xmlcache')) {
-    die("=> The directory ".RV_PATH.'/etc/xmlcache'." is not writable\n");
+if (!is_writable(MAX_PATH.'/etc/xmlcache')) {
+    die("=> The directory ".MAX_PATH.'/etc/xmlcache'." is not writable\n");
 }
 
-require RV_PATH . '/lib/OA/DB/Table.php';
+require MAX_PATH . '/lib/OA/DB/Table.php';
 
 // Create a database mock so we will not have to connect to database itself
-require_once RV_PATH . '/lib/simpletest/mock_objects.php';
-require_once 'MDB2/Driver/mysql.php';
-Mock::generatePartial('MDB2_Driver_mysql', 'MDB2_Mock', array());
+require_once MAX_PATH . '/lib/simpletest/mock_objects.php';
+require_once 'MDB2/Driver/' . $availableMysqlExtension . '.php';
+Mock::generatePartial('MDB2_Driver_' . $availableMysqlExtension, 'MDB2_Mock', array());
 $oDbh = new MDB2_Mock;
 $oDbh->__construct();
 
@@ -83,9 +86,9 @@ $aSkipFiles = array(
 clean_up();
 
 // Generate XML caches
-generateXmlCache(glob(RV_PATH.'/etc/tables_*.xml'));
-generateXmlCache(glob(RV_PATH.'/etc/changes/schema_tables_*.xml'));
-generateXmlCache(glob(RV_PATH.'/etc/changes/changes_tables_*.xml'), 'parseChangesetDefinitionFile');
+generateXmlCache(glob(MAX_PATH.'/etc/tables_*.xml'));
+generateXmlCache(glob(MAX_PATH.'/etc/changes/schema_tables_*.xml'));
+generateXmlCache(glob(MAX_PATH.'/etc/changes/changes_tables_*.xml'), 'parseChangesetDefinitionFile');
 
 echo "=> FINISHED REFRESHING THE MDB2 SCHEMA XML FILE CACHE\n\n";
 
@@ -118,7 +121,7 @@ function eol_flush()
 
 function clean_up()
 {
-    foreach (glob(RV_PATH.'/etc/xmlcache/cache_*') as $fileName) {
+    foreach (glob(MAX_PATH.'/etc/xmlcache/cache_*') as $fileName) {
         unlink($fileName);
     }
 }
