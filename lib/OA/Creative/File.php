@@ -38,12 +38,13 @@ class OA_Creative_File extends OA_Creative
      * @param string $filePath
      * @return mixed True on success, PEAR_Error otherwise
      */
-    function loadFile($filePath,$fileName)
+    function loadFile($filePath)
     {
         if (($this->content = @file_get_contents($filePath)) === false) {
             return new PEAR_Error("Cannot load image file");
         }
-        return $this->readCreativeDetails($filePath,null,$fileName);
+
+        return $this->readCreativeDetails($filePath);
     }
 
     /**
@@ -53,13 +54,13 @@ class OA_Creative_File extends OA_Creative
      * @param array  $aTypes Optional parameters of allowed types (@see getimagesize)
      * @return mixed True on success, PEAR_Error otherwise
      */
-    function readCreativeDetails($filePath, $aTypes = null,$fileName)
+    function readCreativeDetails($filePath, $aTypes = null)
     {
         if (!isset($aTypes)) {
             $aTypes = array(
                 IMAGETYPE_GIF  => 'gif',
                 IMAGETYPE_PNG  => 'png',
-                IMAGETYPE_JPEG => 'jpeg'
+                IMAGETYPE_JPEG => 'jpeg',
             );
         }
 
@@ -108,8 +109,6 @@ class OA_Creative_File extends OA_Creative
         $ext = substr($fileName, strrpos($fileName, '.') + 1);
         switch (strtolower($ext)) {
             case 'jpeg': $contentType = 'jpeg'; break;
-			case 'htm': $contentType = 'html'; break;
-			case 'html': $contentType = 'html'; break;
             case 'jpg':  $contentType = 'jpeg'; break;
             case 'png':  $contentType = 'png';  break;
             case 'gif':  $contentType = 'gif';  break;
@@ -137,10 +136,11 @@ class OA_Creative_File extends OA_Creative
         if (empty($fileName)) {
             $fileName = basename($filePath);
         }
+
         $validImageExtensions = 'png|svg|gif|jpg|jpeg|jpe|tif|tiff|ppm|bmp|rle|dib|tga|pcz|wbmp|wbm';
         if (preg_match('/\.swf$/i', $fileName)) {
             $type = 'Swf';
-        } elseif (preg_match('/\.(?:dcr|rpm|mov|html|htm)$/i', $fileName)) {
+        } elseif (preg_match('/\.(?:dcr|rpm|mov)$/i', $fileName)) {
             $type = 'RichMedia';
         } elseif (preg_match('/\.('.$validImageExtensions.')$/i', $fileName)) {
             $type = 'Image';
@@ -154,7 +154,7 @@ class OA_Creative_File extends OA_Creative
 
         $oCreative = new $className($fileName);
 
-        $result = $oCreative->loadFile($filePath, $fileName);
+        $result = $oCreative->loadFile($filePath);
         if (PEAR::isError($result)) {
             return $result;
         }

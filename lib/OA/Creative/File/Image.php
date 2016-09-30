@@ -18,14 +18,13 @@ require_once MAX_PATH . '/lib/OA/Creative/File.php';
  */
 class OA_Creative_File_Image extends OA_Creative_File
 {
-    function readCreativeDetails($fileName, $aTypes = null,$filename)
+    function readCreativeDetails($fileName, $aTypes = null)
     {
         return parent::readCreativeDetails($fileName, array(
             IMAGETYPE_GIF  => 'gif',
             IMAGETYPE_PNG  => 'png',
             IMAGETYPE_JPEG => 'jpeg',
-			IMAGETYPE_HTML => 'html',
-        ),$filename);
+        ));
     }
 }
 

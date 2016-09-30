@@ -35,8 +35,6 @@ class Language_Loader {
      * @param string $lang  language symbol
      */
     function load($section = 'default', $lang = null) {
-	$lang = is_null($lang)?"he":$lang;
-	
         if(!defined('phpAds_dbmsname')) {
             define('phpAds_dbmsname','');
         }

@@ -166,10 +166,7 @@
                             {/if}
                         {/if}
                     {/if}
-                    {ox_entity_id type="Campaign" id=$campaignId} 
-					<div style='padding:5px 0px '>
-					{$campaign.comments|escape:html}
-					</div>
+                    {ox_entity_id type="Campaign" id=$campaignId}
                 </td>
                 <td>
                     {ox_campaign_status clientid=$clientId campaignid=$campaignId status=$campaign.status}
@@ -198,29 +195,24 @@
                                 <th>{t str=ImpressionsBooked}</th>
                                 <td>{if $campaign.impressions >= 0}{$campaign.impressions}{else}{t str=Unlimited}{/if}</td>
                             </tr>
-							{if $campaign.clicks >= 0}
                             <tr>
                                 <th>{t str=ClicksBooked}</th>
                                 <td>{if $campaign.clicks >= 0}{$campaign.clicks}{else}{t str=Unlimited}{/if}</td>
                             </tr>
-							 {/if}
-                            {if $showconversions && $campaign.conversions >0}
+                            {if $showconversions}
                             <tr>
                                 <th>{t str=ConversionsBooked}</th>
                                 <td>{if $campaign.conversions >= 0}{$campaign.conversions}{else}{t str=Unlimited}{/if}</td>
                             </tr>
                             {/if}
-							{if $campaign.activate <> '-'}
                             <tr>
                                 <th>{t str=ActivationDate}</th>
                                 <td>{$campaign.activate}</td>
                             </tr>
-							{/if}
-							{if $campaign.expire <> '-'}
                             <tr>
                                 <th>{t str=ExpirationDate}</th>
                                 <td>{$campaign.expire}</td>
-                            </tr>{/if}
+                            </tr>
                             <tr>
                                 <th>{t str=Priority}</th>
                                 <td>{$campaign.priority}</td>
