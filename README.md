@@ -1,7 +1,5 @@
 # Revive Adserver
-#### The open source ad server formerly known as OpenX Source
-
-[![Gitter](https://badges.gitter.im/Join%20The%20Developers%20Chat.svg)](https://gitter.im/revive-adserver/revive-adserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+#### The world's most popular free, open source ad serving system
 
 **Revive Adserver is an open source ad serving tool** that enables publishers to:
 
@@ -13,7 +11,6 @@
 
 * Set rules to target the delivery of campaigns, or even ads, to specific users, to help maximise the effectiveness of campaigns.
 
-_Revive Adserver was was formerly known as OpenX Source, Openads and phpAdsNew._
 
 
 # Download
@@ -56,3 +53,8 @@ the GNU General Public License in all respects for all of the code used
 other than LIB-FTP.  If you modify this file, you may extend this exception
 to your version of the file, but you are not obligated to do so.  If
 you do not wish to do so, delete this exception statement from your version.
+
+------------------------------------------------------------------------
+
+This product includes GeoLite data created by MaxMind, available from the 
+http://www.maxmind.com/ website.

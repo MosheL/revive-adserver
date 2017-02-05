@@ -10,6 +10,8 @@
 +---------------------------------------------------------------------------+
 */
 
+require_once RV_PATH . '/lib/RV.php';
+
 require_once MAX_PATH . '/lib/OA.php';
 require_once LIB_PATH . '/Extension/bannerTypeHtml/bannerTypeHtml.php';
 require_once MAX_PATH . '/lib/max/Plugin/Common.php';
@@ -43,7 +45,7 @@ class Plugins_BannerTypeHTML_demoBannerTypeHtml_demoHtml extends Plugins_BannerT
     {
         parent::buildForm($form, $row);
         $form->addElement('text', 'demofield', 'Demo Field');
-        $form->addRule("demofield", $this->translate('Please enter http://www.openx.org'), 'regex', '/^http:\/\/www\.openx\.org$/');
+        $form->addRule("demofield", $this->translate('Please enter http://www.revive-adserver.com'), 'regex', '/^http:\/\/www\.openx\.org$/');
 
     }
 
@@ -129,6 +131,7 @@ class Plugins_BannerTypeHTML_demoBannerTypeHtml_demoHtml extends Plugins_BannerT
         switch ($oDbh->dbsyntax)
         {
             case 'mysql':
+            case 'mysqli':
                 $engine = $oDbh->getOption('default_table_type');
                 $sql = "CREATE TABLE %s ENGINE={$engine} (SELECT * FROM %s %s)";
                 break;

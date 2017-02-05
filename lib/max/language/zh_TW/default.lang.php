@@ -173,9 +173,13 @@ $GLOBALS['strMonths'] = "月";
 $GLOBALS['strDayOfWeek'] = "周一至周七";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "小時";
 $GLOBALS['strSeconds'] = "秒";
@@ -338,7 +342,6 @@ $GLOBALS['strOverwriteSource'] = "覆蓋原參數";
 // Display limitations
 $GLOBALS['strModifyBannerAcl'] = "發送選項";
 $GLOBALS['strACL'] = "發送設置";
-$GLOBALS['strNoLimitations'] = "没有限制";
 $GLOBALS['strApplyLimitationsTo'] = "應用限制";
 $GLOBALS['strRemoveAllLimitations'] = "移除所有限制";
 $GLOBALS['strEqualTo'] = "等於";
@@ -356,13 +359,19 @@ $GLOBALS['strDeliveryCappingReset'] = "於此時之後重新開始統計";
 $GLOBALS['strDeliveryCappingTotal'] = "合計";
 $GLOBALS['strDeliveryCappingSession'] = "平均每個線程";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "限定廣告瀏覽數為:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "限定項目瀏覽數為:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "限定版位瀏覽數為:";
 
 // Website
@@ -645,7 +654,6 @@ $GLOBALS['strVariableCode'] = "JavaScript跟蹤代碼";
 $GLOBALS['strForgotPassword'] = "忘記密碼？";
 $GLOBALS['strPasswordRecovery'] = "密碼恢復";
 $GLOBALS['strEmailRequired'] = "電子郵件為必填項";
-$GLOBALS['strPwdRecEmailNotFound'] = "沒有該電子郵件地址";
 $GLOBALS['strPwdRecWrongId'] = "錯誤ID";
 $GLOBALS['strPwdRecEnterEmail'] = "請填入你的郵件地址";
 $GLOBALS['strPwdRecEnterPassword'] = "請填入新密碼";

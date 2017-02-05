@@ -10,6 +10,8 @@
 +---------------------------------------------------------------------------+
 */
 
+require_once RV_PATH . '/lib/RV.php';
+
 require_once MAX_PATH . '/lib/OA.php';
 require_once MAX_PATH . '/lib/OA/Maintenance/Priority/AdServer/Task.php';
 require_once MAX_PATH . '/lib/OA/DB/Table/Priority.php';
@@ -141,7 +143,17 @@ class OA_Maintenance_Priority_AdServer_Task_AllocateZoneImpressions extends OA_M
      */
     function _getAllCampaigns()
     {
-        return $this->oDal->getCampaigns();
+        $conf = $GLOBALS['_MAX']['CONF'];
+
+        $oDbh = $this->oDal->_getDbConnection();
+        $table = $oDbh->quoteIdentifier($conf['table']['prefix'] . $conf['table']['campaigns'],true);
+
+        $aWheres = array(
+            array("$table.priority >= 1", 'AND'),
+            array("$table.status = ".OA_ENTITY_STATUS_RUNNING, 'AND'),
+        );
+
+        return $this->oDal->getCampaigns($aWheres);
     }
 
     /**

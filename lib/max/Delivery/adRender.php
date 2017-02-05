@@ -140,11 +140,11 @@ function MAX_adRender(&$aBanner, $zoneId=0, $source='', $target='', $ct0='', $wi
     $websiteid = (!empty($aBanner['affiliate_id'])) ? $aBanner['affiliate_id'] : '0';
     $replace = array($time, $random, $target, $urlPrefix, $aBanner['ad_id'], $zoneId, $source, urlencode($locReplace), $aBanner['width'], $aBanner['height'], $websiteid, $aBanner['campaign_id'], $aBanner['client_id'], $referer);
 
-    preg_match_all('#{(.*?)(_enc)?}#', $code, $macros);
+    preg_match_all('#{([a-zA-Z0-9_]*?)(_enc)?}#', $code, $macros);
     for ($i=0;$i<count($macros[1]);$i++) {
         if (!in_array($macros[0][$i], $search) && isset($_REQUEST[$macros[1][$i]])) {
             $search[] = $macros[0][$i];
-            $replace[] = (!empty($macros[2][$i])) ? urlencode(stripslashes($_REQUEST[$macros[1][$i]])) : stripslashes($_REQUEST[$macros[1][$i]]);
+            $replace[] = (!empty($macros[2][$i])) ? urlencode(stripslashes($_REQUEST[$macros[1][$i]])) : htmlspecialchars(stripslashes($_REQUEST[$macros[1][$i]]), ENT_QUOTES);
         }
     }
     // addUrlParams hook for plugins to add key=value pairs to the log/click URLs
@@ -210,8 +210,28 @@ function MAX_adRenderImageBeacon($logUrl, $beaconId = 'beacon', $userAgent = nul
         $style = " style='width: 0px; height: 0px;'";
         $divEnd = '</div>';
     }
-        $beacon = "$div<img src='".htmlspecialchars($logUrl)."' width='0' height='0' alt=''{$style} />{$divEnd}";
+        $beacon = "$div<img src='".htmlspecialchars($logUrl, ENT_QUOTES)."' width='0' height='0' alt=''{$style} />{$divEnd}";
         return $beacon;
+}
+
+/**
+ * This function builds the HTML to display a 1x1 logging beacon for a blank impression
+ *
+ * @param int     $zoneId       The zone ID of the zone used to select this ad (if zone-selected)
+ * @param string  $source       The "source" parameter passed into the adcall
+ * @param string  $loc          The "current page" URL
+ * @param string  $referer      The "referring page" URL
+ *
+ * @return string The HTML to show the 1x1 logging beacon
+ */
+function MAX_adRenderBlankBeacon($zoneId, $source, $loc, $referer)
+{
+    $logUrl = _adRenderBuildLogURL(array(
+        'ad_id' => 0,
+        'placement_id' => 0,
+    ), $zoneId, $source, $loc, $referer, '&');
+
+    return str_replace('{random}', MAX_getRandomNumber(), MAX_adRenderImageBeacon($logUrl));
 }
 
 /**
@@ -249,7 +269,7 @@ function _adRenderImage(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
     if (!empty($clickUrl)) {  // There is a link
         $status = _adRenderBuildStatusCode($aBanner);
         //$target = !empty($aBanner['target']) ? $aBanner['target'] : '_blank';
-        $clickTag = "<a href='$clickUrl' target='{target}'$status>";
+        $clickTag = "<a href='".htmlspecialchars($clickUrl, ENT_QUOTES)."' target='{target}'$status>";
         $clickTagEnd = '</a>';
     } else {
         $clickTag = '';
@@ -261,7 +281,7 @@ function _adRenderImage(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
         $width = !empty($aBanner['width']) ? $aBanner['width'] : 0;
         $height = !empty($aBanner['height']) ? $aBanner['height'] : 0;
         $alt = !empty($aBanner['alt']) ? htmlspecialchars($aBanner['alt'], ENT_QUOTES) : '';
-        $imageTag = "$clickTag<img src='$imageUrl' width='$width' height='$height' alt='$alt' title='$alt' border='0'$imgStatus />$clickTagEnd";
+        $imageTag = "$clickTag<img src='".htmlspecialchars($imageUrl, ENT_QUOTES)."' width='$width' height='$height' alt='$alt' title='$alt' border='0'$imgStatus />$clickTagEnd";
     } else {
         $imageTag = '';
     }
@@ -300,7 +320,7 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
     $logURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&');
 
     if (!empty($aBanner['alt_filename']) || !empty($aBanner['alt_imageurl'])) {
-        $altImageAdCode = _adRenderImage($aBanner, $zoneId, $source, $ct0, false, $logClick, false, true, true, $loc, $referer, false);
+        $altImageAdCode = _adRenderImage($aBanner, $zoneId, $source, $ct0, false, $logClick, false, true, true, $loc, $referer, $context, false);
         $fallBackLogURL = _adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&', true);
     } else {
         $alt = !empty($aBanner['alt']) ? htmlspecialchars($aBanner['alt'], ENT_QUOTES) : '';
@@ -324,7 +344,7 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
         $status = _adRenderBuildStatusCode($aBanner);
         $target = !empty($aBanner['target']) ? $aBanner['target'] : '_blank';
         $swfParams = array('clickTARGET' => $target, 'clickTAG' => $clickUrl);
-        $clickTag = "<a href='$clickUrl' target='$target'$status>";
+        $clickTag = "<a href='".htmlspecialchars($clickUrl, ENT_QUOTES)."' target='$target'$status>";
         $clickTagEnd = '</a>';
     } else {
         $swfParams = array();

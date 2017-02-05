@@ -37,14 +37,7 @@ $GLOBALS['strAuditResultsNotFound'] = "Nenhum evento encontrado com os critério
 $GLOBALS['strCollectedAllEvents'] = "Todos eventos";
 $GLOBALS['strClear'] = "Limpar";
 
-$GLOBALS['strUserlog'] = array();
-$GLOBALS['strUserlog'][phpAds_actionAdvertiserReportMailed] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionActiveCampaign] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionAutoClean] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionBatchStatistics] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionDeactivationMailed] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionDeactiveCampaign] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionPriorityCalculation] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionPublisherReportMailed] = "Estatísticas compiladas";
-$GLOBALS['strUserlog'][phpAds_actionWarningMailed] = "Estatísticas compiladas";
+if (!isset($GLOBALS['strUserlog'])) {
+    $GLOBALS['strUserlog'] = array();
+}
 $GLOBALS['strUserlog'][phpAds_actionActivationMailed] = "Estatísticas compiladas";

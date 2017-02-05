@@ -18,4 +18,6 @@ $GLOBALS['strDeleted'] = "Slett";
 $GLOBALS['strDelete'] = "Slett";
 $GLOBALS['strZone'] = "Ingen";
 
-$GLOBALS['strUserlog'] = array();
+if (!isset($GLOBALS['strUserlog'])) {
+    $GLOBALS['strUserlog'] = array();
+}

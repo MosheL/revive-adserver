@@ -244,7 +244,9 @@ $GLOBALS['strMonths'] = "Months";
 $GLOBALS['strDayOfWeek'] = "Day of week";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 $GLOBALS['strDayFullNames'][0] = 'Sunday';
 $GLOBALS['strDayFullNames'][1] = 'Monday';
 $GLOBALS['strDayFullNames'][2] = 'Tuesday';
@@ -253,7 +255,9 @@ $GLOBALS['strDayFullNames'][4] = 'Thursday';
 $GLOBALS['strDayFullNames'][5] = 'Friday';
 $GLOBALS['strDayFullNames'][6] = 'Saturday';
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 $GLOBALS['strDayShortCuts'][0] = 'Su';
 $GLOBALS['strDayShortCuts'][1] = 'Mo';
 $GLOBALS['strDayShortCuts'][2] = 'Tu';
@@ -547,7 +551,6 @@ $GLOBALS['strOverwriteSource'] = "Overwrite source parameter";
 $GLOBALS['strModifyBannerAcl'] = "Delivery Options";
 $GLOBALS['strACL'] = "Delivery";
 $GLOBALS['strACLAdd'] = "Add delivery limitation";
-$GLOBALS['strNoLimitations'] = "No limitations";
 $GLOBALS['strApplyLimitationsTo'] = "Apply limitations to";
 $GLOBALS['strAllBannersInCampaign'] = "All banners in this campaign";
 $GLOBALS['strRemoveAllLimitations'] = "Remove all limitations";
@@ -561,6 +564,8 @@ $GLOBALS['strContains'] = "contains";
 $GLOBALS['strNotContains'] = "doesn't contain";
 $GLOBALS['strGreaterThan'] = "is greater than";
 $GLOBALS['strLessThan'] = "is less than";
+$GLOBALS['strGreaterOrEqualTo'] = "is greater or equal to";
+$GLOBALS['strLessOrEqualTo'] = "is less or equal to";
 $GLOBALS['strAND'] = "AND";                          // logical operator
 $GLOBALS['strOR'] = "OR";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "Only display this banner when:";
@@ -576,15 +581,21 @@ $GLOBALS['strDeliveryCappingReset'] = "Reset view counters after:";
 $GLOBALS['strDeliveryCappingTotal'] = "in total";
 $GLOBALS['strDeliveryCappingSession'] = "per session";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['title'] = "Delivery capping per visitor";
 $GLOBALS['strCappingBanner']['limit'] = "Limit banner views to:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['title'] = "Delivery capping per visitor";
 $GLOBALS['strCappingCampaign']['limit'] = "Limit campaign views to:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['title'] = "Delivery capping per visitor";
 $GLOBALS['strCappingZone']['limit'] = "Limit zone views to:";
 
@@ -1057,7 +1068,6 @@ $GLOBALS['strVariableCode'] = "Javascript tracking code";
 $GLOBALS['strForgotPassword'] = "Forgot your password?";
 $GLOBALS['strPasswordRecovery'] = "Password recovery";
 $GLOBALS['strEmailRequired'] = "Email is a required field";
-$GLOBALS['strPwdRecEmailNotFound'] = "Email address not found";
 $GLOBALS['strPwdRecWrongId'] = "Wrong ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Enter your email address below";
 $GLOBALS['strPwdRecEnterPassword'] = "Enter your new password below";

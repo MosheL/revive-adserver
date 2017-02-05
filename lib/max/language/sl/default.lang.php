@@ -206,9 +206,13 @@ $GLOBALS['strMonths'] = "Mesecev";
 $GLOBALS['strDayOfWeek'] = "Dan v tednu";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "Ura";
 $GLOBALS['strSeconds'] = "sekund";
@@ -435,7 +439,6 @@ $GLOBALS['strOverwriteSource'] = "Prepiši izvirni parameter";
 $GLOBALS['strModifyBannerAcl'] = "Možnosti dostave";
 $GLOBALS['strACL'] = "Dostava";
 $GLOBALS['strACLAdd'] = "Dodaj dostavno omejitev";
-$GLOBALS['strNoLimitations'] = "Brez omejitev";
 $GLOBALS['strApplyLimitationsTo'] = "Uporabi omejitve";
 $GLOBALS['strRemoveAllLimitations'] = "Odstrani vse omejitve";
 $GLOBALS['strEqualTo'] = "je enak";
@@ -453,13 +456,19 @@ $GLOBALS['strDeliveryCappingReset'] = "Ponastavi števce po:";
 $GLOBALS['strDeliveryCappingTotal'] = "celotnih";
 $GLOBALS['strDeliveryCappingSession'] = "na sejo";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "Omeji prikazov pasice na:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "Omeji prikazov kampanje na:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "Omeji prikazov področja na:";
 
 // Website
@@ -847,7 +856,6 @@ $GLOBALS['strVariableCode'] = "JavaScript sledilna koda";
 $GLOBALS['strForgotPassword'] = "Ste pozabili svoje geslo?";
 $GLOBALS['strPasswordRecovery'] = "Povrnitev gesla";
 $GLOBALS['strEmailRequired'] = "Polje za vnos e-pošte je potrebno obvezno izpolniti";
-$GLOBALS['strPwdRecEmailNotFound'] = "Naslova elektronske pošte ni bilo mogoče najti";
 $GLOBALS['strPwdRecWrongId'] = "Napačen ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Spodaj vpišite naslov svoje elektronske pošte";
 $GLOBALS['strPwdRecEnterPassword'] = "Spodaj vpišite vaše novo geslo";

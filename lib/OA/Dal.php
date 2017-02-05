@@ -281,7 +281,7 @@ class OA_Dal
             $sql = "
                 CREATE TEMPORARY TABLE
                     $table
-                TYPE={$aConf['table']['type']}";
+                ENGINE={$aConf['table']['type']}";
         }
         return $sql;
     }
@@ -362,7 +362,7 @@ class OA_Dal
         $fieldList = '('.join(',', array_map(array($oDbh, 'quoteIdentifier'), $aFields)).')';
 
         // Database custom stuff
-        if ($oDbh->dbsyntax == 'mysql') {
+        if ($oDbh->dbsyntax == 'mysql' || $oDbh->dbsyntax == 'mysqli') {
             $result = self::_batchInsertMySQL($qTableName, $fieldList, $aValues, $replace);
         } else {
             $result = self::_batchInsertPgSQL($qTableName, $fieldList, $aValues, $replace, $primaryKey);
@@ -403,7 +403,7 @@ class OA_Dal
         $null  = 'NULL';
 
         // Disable error handler
-        OX::disableErrorHandling();
+        RV::disableErrorHandling();
 
         $fp = fopen($filePath, 'wb');
         if (!$fp) {
@@ -456,7 +456,7 @@ class OA_Dal
         @unlink($filePath);
 
         // Enable error handler again
-        OX::enableErrorHandling();
+        RV::enableErrorHandling();
 
         return $result;
     }
@@ -481,7 +481,7 @@ class OA_Dal
         $null  = '\\N';
 
         // Disable error handler
-        OX::disableErrorHandling();
+        RV::disableErrorHandling();
 
         // we start by manually deleting conflicting unique rows
         foreach ($aValues as $aRow) {
@@ -528,7 +528,7 @@ class OA_Dal
         $result = $result ? count($aValues) : new PEAR_Error('Error at the end of the COPY: '.pg_errormessage($pg));
 
         // Enable error handler again
-        OX::enableErrorHandling();
+        RV::enableErrorHandling();
 
         return $result;
     }

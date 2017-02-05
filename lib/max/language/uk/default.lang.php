@@ -153,7 +153,7 @@ $GLOBALS['strUserUnlinkedFromAccount'] = "Пользователь был уда
 $GLOBALS['strUserWasDeleted'] = "Пользователь был удален";
 $GLOBALS['strUserNotLinkedWithAccount'] = "К учетной записи не привязан ни один пользователь";
 $GLOBALS['strCantDeleteOneAdminUser'] = "Вы не можете удалить этого пользователя. Хотя бы один пользователь должен быть связан с учетной записью администратора.";
-$GLOBALS['strLinkUserHelp'] = "Для привязки <b>существующего пользователя</b>, напишите %1\\$s и нажмите %2\\$s <br />Для привязки <b>нового пользователя</b> напишите желаемое %1\\$s и нажмите %2\\$s";
+$GLOBALS['strLinkUserHelp'] = "Для привязки <b>существующего пользователя</b>, напишите %1\$s и нажмите %2\$s <br />Для привязки <b>нового пользователя</b> напишите желаемое %1\$s и нажмите %2\$s";
 $GLOBALS['strLinkUserHelpUser'] = "Ім'я користувача";
 $GLOBALS['strLinkUserHelpEmail'] = "Адрес e-mail";
 $GLOBALS['strLastLoggedIn'] = "Последний вход в систему";
@@ -232,7 +232,9 @@ $GLOBALS['strMonths'] = "Місяців";
 $GLOBALS['strDayOfWeek'] = "День тижня";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 $GLOBALS['strDayFullNames'][0] = 'Воскресение';
 $GLOBALS['strDayFullNames'][1] = 'Понедельник';
 $GLOBALS['strDayFullNames'][2] = 'Вторник';
@@ -241,7 +243,9 @@ $GLOBALS['strDayFullNames'][4] = 'Четверг';
 $GLOBALS['strDayFullNames'][5] = 'Пятница';
 $GLOBALS['strDayFullNames'][6] = 'Суббота';
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 $GLOBALS['strDayShortCuts'][0] = 'Вс';
 $GLOBALS['strDayShortCuts'][1] = 'Пн';
 $GLOBALS['strDayShortCuts'][2] = 'Вт';
@@ -451,7 +455,6 @@ $GLOBALS['strOverwriteSource'] = "Перезаписать параметр ис
 $GLOBALS['strModifyBannerAcl'] = "Ограничения показа";
 $GLOBALS['strACL'] = "Лимит";
 $GLOBALS['strACLAdd'] = "Добавить новое ограничение";
-$GLOBALS['strNoLimitations'] = "Немає обмежень";
 $GLOBALS['strApplyLimitationsTo'] = "Применить ограничения к";
 $GLOBALS['strAllBannersInCampaign'] = "Все баннеры в этой компании";
 $GLOBALS['strRemoveAllLimitations'] = "Удалить все ограничения";
@@ -472,15 +475,21 @@ $GLOBALS['strDeliveryCappingReset'] = "Сбросить счетчик пока�
 $GLOBALS['strDeliveryCappingTotal'] = "всего";
 $GLOBALS['strDeliveryCappingSession'] = "за сессию";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['title'] = "Ограничения показа на посетителя";
 $GLOBALS['strCappingBanner']['limit'] = "Лимит показов баннера:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['title'] = "Ограничения показа на посетителя";
 $GLOBALS['strCappingCampaign']['limit'] = "Лимит показов кампании:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['title'] = "Ограничения показа на посетителя";
 $GLOBALS['strCappingZone']['limit'] = "Лимит показов зоны:";
 
@@ -853,7 +862,6 @@ $GLOBALS['strVariableCode'] = "Код отслеживания JS";
 $GLOBALS['strForgotPassword'] = "Забыли пароль?";
 $GLOBALS['strPasswordRecovery'] = "Восстановление пароля";
 $GLOBALS['strEmailRequired'] = "Поле \"E-mail\" обязательно для заполнения";
-$GLOBALS['strPwdRecEmailNotFound'] = "Указанный адрес электронной почты не найден";
 $GLOBALS['strPwdRecWrongId'] = "Неправильный ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Введите ваш адрес электронной почты";
 $GLOBALS['strPwdRecEnterPassword'] = "Введите ваш новый пароль";

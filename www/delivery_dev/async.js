@@ -84,8 +84,8 @@
                 apply: function (data) {
                     if (data.zones.length) {
                         var url = doc.location.protocol == 'http:' ?
-                              "<?php echo MAX_commonConstructDeliveryUrl('asyncspc.php'); ?>" :
-                              "<?php echo MAX_commonConstructSecureDeliveryUrl('asyncspc.php'); ?>";
+                              "<?php echo MAX_commonConstructDeliveryUrl($GLOBALS['_MAX']['CONF']['file']['asyncspc']); ?>" :
+                              "<?php echo MAX_commonConstructSecureDeliveryUrl($GLOBALS['_MAX']['CONF']['file']['asyncspc']); ?>";
 
                         data.zones = data.zones.join("|");
                         data.loc = doc.location.href;
@@ -186,6 +186,7 @@
                                     ins.parentNode.replaceChild(newIns, ins);
                                     rv.loadFrame(i, d.html);
                                 } else {
+                                    newIns.style.textDecoration = 'none';
                                     newIns.innerHTML = d.html;
                                     var scripts = newIns.getElementsByTagName('SCRIPT');
 
@@ -199,7 +200,7 @@
                                             s.text = scripts[i].innerHTML;
                                         }
 
-                                        scripts[i].parentNote.replaceChild(s, scripts[i]);
+                                        scripts[i].parentNode.replaceChild(s, scripts[i]);
                                     }
 
                                     ins.parentNode.replaceChild(newIns, ins);

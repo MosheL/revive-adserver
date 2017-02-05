@@ -37,14 +37,7 @@ $GLOBALS['strAuditResultsNotFound'] = "沒有滿足約束條件的事件";
 $GLOBALS['strCollectedAllEvents'] = "所有事件";
 $GLOBALS['strClear'] = "清除";
 
-$GLOBALS['strUserlog'] = array();
-$GLOBALS['strUserlog'][phpAds_actionAdvertiserReportMailed] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionActiveCampaign] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionAutoClean] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionBatchStatistics] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionDeactivationMailed] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionDeactiveCampaign] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionPriorityCalculation] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionPublisherReportMailed] = "已發送發布商{id}報告郵件";
-$GLOBALS['strUserlog'][phpAds_actionWarningMailed] = "已發送發布商{id}報告郵件";
+if (!isset($GLOBALS['strUserlog'])) {
+    $GLOBALS['strUserlog'] = array();
+}
 $GLOBALS['strUserlog'][phpAds_actionActivationMailed] = "已發送發布商{id}報告郵件";

@@ -54,9 +54,10 @@ class Test_OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressionsLifetim
     function &_getCurrentTask()
     {
         $oServiceLocator =& OA_ServiceLocator::instance();
-        $oDal   = new MockMAX_Dal_Entities($this);
+        $oDal = new MockMAX_Dal_Entities($this);
         $oServiceLocator->register('MAX_Dal_Entities', $oDal);
-        $oDal   = new MockOA_Dal_Maintenance_Priority($this);
+        $oDal = new MockOA_Dal_Maintenance_Priority($this);
+        $oDal->setReturnReference('_getDbConnection', OA_DB::singleton());
         $oServiceLocator->register('OA_Dal_Maintenance_Priority', $oDal);
         $oTable = new MockOA_DB_Table_Priority($this);
         $oServiceLocator->register('OA_DB_Table_Priority',  $oTable);

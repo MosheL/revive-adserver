@@ -25,14 +25,7 @@ $GLOBALS['strType'] = "Jenis";
 $GLOBALS['strAction'] = "Aksi";
 $GLOBALS['strValue'] = "Nilai";
 
-$GLOBALS['strUserlog'] = array();
-$GLOBALS['strUserlog'][phpAds_actionAdvertiserReportMailed] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionActiveCampaign] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionAutoClean] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionBatchStatistics] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionDeactivationMailed] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionDeactiveCampaign] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionPriorityCalculation] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionPublisherReportMailed] = "Pembersihan database secara otomatis.";
-$GLOBALS['strUserlog'][phpAds_actionWarningMailed] = "Pembersihan database secara otomatis.";
+if (!isset($GLOBALS['strUserlog'])) {
+    $GLOBALS['strUserlog'] = array();
+}
 $GLOBALS['strUserlog'][phpAds_actionActivationMailed] = "Pembersihan database secara otomatis.";

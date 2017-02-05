@@ -10,6 +10,8 @@
 +---------------------------------------------------------------------------+
 */
 
+require_once RV_PATH . '/lib/RV.php';
+
 require_once MAX_PATH . '/lib/OA.php';
 require_once MAX_PATH . '/lib/OA/Dal.php';
 require_once MAX_PATH . '/lib/OA/Maintenance/Priority/AdServer/Task.php';
@@ -328,7 +330,7 @@ class OA_Maintenance_Priority_AdServer_Task_GetRequiredAdImpressions extends OA_
                 // of the existance of any activation or expiration dates that
                 // may (or may not) be set for the campaign
                 $oCampaignExpiryDate = new Date($this->_getDate());
-                $oCampaignExpiryDate->setTZ($this->currentTz);
+                $oCampaignExpiryDate->convertTZ($this->currentTz);
                 $oCampaignExpiryDate->setHour(23);
                 $oCampaignExpiryDate->setMinute(59);
                 $oCampaignExpiryDate->setSecond(59);

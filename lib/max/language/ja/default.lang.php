@@ -208,9 +208,13 @@ $GLOBALS['strMonths'] = "月";
 $GLOBALS['strDayOfWeek'] = "曜日";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "時";
 $GLOBALS['strSeconds'] = "秒間";
@@ -400,7 +404,6 @@ $GLOBALS['strOverwriteSource'] = "ソースパラメータを上書きする";
 $GLOBALS['strModifyBannerAcl'] = "配信オプション";
 $GLOBALS['strACL'] = "広告配信";
 $GLOBALS['strACLAdd'] = "配信制限の追加";
-$GLOBALS['strNoLimitations'] = "配信制限が定義されていません";
 $GLOBALS['strApplyLimitationsTo'] = "配信制限を適用する";
 $GLOBALS['strRemoveAllLimitations'] = "すべての配信制限を削除";
 $GLOBALS['strEqualTo'] = "一致する";
@@ -418,13 +421,19 @@ $GLOBALS['strDeliveryCappingReset'] = "カウンタリセット条件：";
 $GLOBALS['strDeliveryCappingTotal'] = "総配信数";
 $GLOBALS['strDeliveryCappingSession'] = "／セッション";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "バナービュー上限数";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "キャンペーンビュー上限数";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "ゾーンビュー上限数";
 
 // Website
@@ -774,7 +783,6 @@ $GLOBALS['strVariableCode'] = "トラッカー用Javascriptコード";
 $GLOBALS['strForgotPassword'] = "パスワードを忘れた？";
 $GLOBALS['strPasswordRecovery'] = "パスワードのリカバリ";
 $GLOBALS['strEmailRequired'] = "メールアドレスは必須です。";
-$GLOBALS['strPwdRecEmailNotFound'] = "指定したメールアドレスは見つかりませんでした。";
 $GLOBALS['strPwdRecWrongId'] = "メールアドレスが間違っています。";
 $GLOBALS['strPwdRecEnterEmail'] = "メールアドレスを入力してください";
 $GLOBALS['strPwdRecEnterPassword'] = "新しいパスワードを入力してください";

@@ -83,7 +83,7 @@ $GLOBALS['strConfigureUpgradeIntro'] = "Provide the path to your previous {$PROD
 $GLOBALS['strConfigSeeMoreFields'] = "See more configuration fields...";
 $GLOBALS['strPreviousInstallTitle'] = "Previous installation";
 $GLOBALS['strPathToPrevious'] = "Path to previous {$PRODUCT_NAME} installation";
-$GLOBALS['strPathToPreviousError'] = "One or more plugin files couln't be located, check the install.log file for more information";
+$GLOBALS['strPathToPreviousError'] = "One or more plugin files couldn't be located, check the install.log file for more information";
 $GLOBALS['strConfigureProgressMessage'] = "Configuring {$PRODUCT_NAME}...";
 
 /** jobs step * */
@@ -114,3 +114,7 @@ $GLOBALS['strUnableToCreateAdmin'] = "We are unable to create a system administr
 $GLOBALS['strTimezoneLocal'] = "{$PRODUCT_NAME} has detected that your PHP installation is returning \"System/Localtime\" as the timezone
 of your server. This is because of a patch to PHP applied by some Linux distributions.
 Unfortunately, this is not a valid PHP timezone. Please edit your php.ini file and set the \"date.timezone\"property to the correct value for your server.";
+
+$GLOBALS['strInstallNonBlockingErrors'] = "An error occurred when performing installation tasks. Please check the 
+<a class=\"show-errors\" href=\"#\">error list</a> and install log at \'%s\' for details.
+You will still be able to login to your {$PRODUCT_NAME} instance.";

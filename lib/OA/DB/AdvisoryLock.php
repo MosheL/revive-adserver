@@ -10,6 +10,8 @@
 +---------------------------------------------------------------------------+
 */
 
+require_once RV_PATH . '/lib/RV.php';
+
 require_once MAX_PATH . '/lib/OA.php';
 require_once MAX_PATH . '/lib/OA/DB.php';
 require_once 'MDB2.php';
@@ -70,7 +72,7 @@ class OA_DB_AdvisoryLock
      *
      * @return OA_DB_AdvisoryLock Reference to an OA_DB_AdvisoryLock object.
      */
-    function &factory($sType = null)
+    static function &factory($sType = null)
     {
         if (is_null($sType)) {
 

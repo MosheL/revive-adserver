@@ -20,4 +20,7 @@
 /var/templates_compiled/*.serial
 /www/admin/plugins/*
 /www/images/
-/plugins_repo/release/*.ziplib/max/language/he/default.lang (2).php
+/plugins_repo/build-ap.xml
+/plugins_repo/release/*.zip
+/lib/vendor/
+/lib/max/language/he/default.lang (2).php

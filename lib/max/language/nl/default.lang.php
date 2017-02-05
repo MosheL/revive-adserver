@@ -163,7 +163,7 @@ $GLOBALS['strUserUnlinkedFromAccount'] = "Gebruiker is verwijderd uit het accoun
 $GLOBALS['strUserWasDeleted'] = "Gebruiker is verwijderd";
 $GLOBALS['strUserNotLinkedWithAccount'] = "Deze gebruiker is niet verbonden met dit account";
 $GLOBALS['strCantDeleteOneAdminUser'] = "U kunt deze gebruiker niet verwijderen. Ten minste één gebruiker moet verbonden zijn met het system administrator account.";
-$GLOBALS['strLinkUserHelp'] = "Om een <b>bestaande gebruiker</b> toe te voegen, type de %1\\$s en klik %2\\$s <br />Om een <b>nieuwe gebruiker</b> toe te voegen, type de gewenste %1\\$s en klik %2\\$s";
+$GLOBALS['strLinkUserHelp'] = "Om een <b>bestaande gebruiker</b> toe te voegen, type de %1\$s en klik %2\$s <br />Om een <b>nieuwe gebruiker</b> toe te voegen, type de gewenste %1\$s en klik %2\$s";
 $GLOBALS['strLinkUserHelpUser'] = "gebruikersnaam";
 $GLOBALS['strLinkUserHelpEmail'] = "E-mail adres";
 $GLOBALS['strLastLoggedIn'] = "Laatst ingelogd";
@@ -242,7 +242,9 @@ $GLOBALS['strMonths'] = "Maanden";
 $GLOBALS['strDayOfWeek'] = "Dag van de week";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 $GLOBALS['strDayFullNames'][0] = 'zondag';
 $GLOBALS['strDayFullNames'][1] = 'maandag';
 $GLOBALS['strDayFullNames'][2] = 'dinsdag';
@@ -251,7 +253,9 @@ $GLOBALS['strDayFullNames'][4] = 'donderdag';
 $GLOBALS['strDayFullNames'][5] = 'vrijdag';
 $GLOBALS['strDayFullNames'][6] = 'zaterdag';
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 $GLOBALS['strDayShortCuts'][0] = 'zo';
 $GLOBALS['strDayShortCuts'][1] = 'ma';
 $GLOBALS['strDayShortCuts'][2] = 'di';
@@ -472,7 +476,7 @@ $GLOBALS['strBannerHistory'] = "Banner geschiedenis";
 $GLOBALS['strNoBanners'] = "Er zijn momenteel geen banners gedefinieerd voor deze campagne.";
 $GLOBALS['strNoBannersAddCampaign'] = "Er zijn momenteel geen websites beschikbaar. Om een zone aan te maken, <a href='affiliate-edit.php'>voeg eerst een nieuwe website toe</a> .";
 $GLOBALS['strNoBannersAddAdvertiser'] = "Er zijn momenteel geen banners beschikbaar. Om een banner aan te maken, <a href='affiliate-edit.php'>voeg eerst een nieuwe adverteerder toe</a> .";
-$GLOBALS['strConfirmDeleteBanner'] = "Verwijderen van deze banner zal ook bijbehorende statistieken verwijderen. \\nWeet u zeker dat u deze banner wilt verwijderen?";
+$GLOBALS['strConfirmDeleteBanner'] = "Verwijderen van deze banner zal ook bijbehorende statistieken verwijderen. \nWeet u zeker dat u deze banner wilt verwijderen?";
 $GLOBALS['strConfirmDeleteBanners'] = "Weet u zeker dat u deze banner wilt verwijderen?";
 $GLOBALS['strShowParentCampaigns'] = "Toon bovenliggende campagnes";
 $GLOBALS['strHideParentCampaigns'] = "Verberg bovenliggende campagnes";
@@ -539,7 +543,6 @@ $GLOBALS['strOverwriteSource'] = "Overschrijft de Source parameter";
 $GLOBALS['strModifyBannerAcl'] = "Uitleveringsbeperkingen";
 $GLOBALS['strACL'] = "Uitlevering";
 $GLOBALS['strACLAdd'] = "Voeg nieuwe beperking toe";
-$GLOBALS['strNoLimitations'] = "Geen beperkingen";
 $GLOBALS['strApplyLimitationsTo'] = "Pas beperking toe op";
 $GLOBALS['strAllBannersInCampaign'] = "Alle banners in deze campagne";
 $GLOBALS['strRemoveAllLimitations'] = "Verwijder alle beperkingen";
@@ -553,6 +556,8 @@ $GLOBALS['strContains'] = "bevat";
 $GLOBALS['strNotContains'] = "bevat niet";
 $GLOBALS['strGreaterThan'] = "is groter dan";
 $GLOBALS['strLessThan'] = "is minder dan";
+$GLOBALS['strGreaterOrEqualTo'] = "is groter dan of gelijk aan";
+$GLOBALS['strLessOrEqualTo'] = "is kleiner dan of gelijk aan";
 $GLOBALS['strAND'] = "EN";                          // logical operator
 $GLOBALS['strOR'] = "OF";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "Toon deze banner alleen indien:";
@@ -568,15 +573,21 @@ $GLOBALS['strDeliveryCappingReset'] = "Reset vertoningentellers na:";
 $GLOBALS['strDeliveryCappingTotal'] = "in totaal";
 $GLOBALS['strDeliveryCappingSession'] = "per sessie";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['title'] = "Delivery capping per bezoeker";
 $GLOBALS['strCappingBanner']['limit'] = "Limiteer banner vertoningen tot";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['title'] = "Delivery capping per bezoeker";
 $GLOBALS['strCappingCampaign']['limit'] = "Limiteer campagne vertoningen tot:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['title'] = "Delivery capping per bezoeker";
 $GLOBALS['strCappingZone']['limit'] = "Limiteer zone vertoningen tot:";
 
@@ -1047,7 +1058,6 @@ $GLOBALS['strVariableCode'] = "JavaScript tracking-code";
 $GLOBALS['strForgotPassword'] = "Wachtwoord vergeten?";
 $GLOBALS['strPasswordRecovery'] = "Wachtwoord herstellen";
 $GLOBALS['strEmailRequired'] = "E-mail is een verplicht veld";
-$GLOBALS['strPwdRecEmailNotFound'] = "E-mail adres is niet gevonden";
 $GLOBALS['strPwdRecWrongId'] = "Verkeerde ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Voer hieronder uw e-mail adres in";
 $GLOBALS['strPwdRecEnterPassword'] = "Voer uw nieuwe wachtwoord hieronder in";

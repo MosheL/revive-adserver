@@ -255,6 +255,7 @@ define('E_DEPRECATED', 0);
 setupServerVariables();
 setupDeliveryConfigVariables();
 $conf = $GLOBALS['_MAX']['CONF'];
+include MAX_PATH.'/lib/vendor/autoload.php';
 $GLOBALS['_OA']['invocationType'] = array_search(basename($_SERVER['SCRIPT_FILENAME']), $conf['file']);
 if (!empty($conf['debug']['production'])) {
 error_reporting(E_ALL & ~(E_NOTICE | E_WARNING | E_DEPRECATED | E_STRICT));
@@ -634,6 +635,9 @@ $GLOBALS['_MAX']['FILES'][$file] = true;
 
 $file = '/lib/OA/Dal/Delivery.php';
 $GLOBALS['_MAX']['FILES'][$file] = true;
+function OA_Dal_Delivery_isValidResult($result) {
+return is_resource($result) || $result instanceof mysqli_result;
+}
 function OA_Dal_Delivery_getAccountTZs()
 {
 $aConf = $GLOBALS['_MAX']['CONF'];
@@ -646,7 +650,7 @@ $query = "
             name = 'admin_account_id'
     ";
 $res = OA_Dal_Delivery_query($query);
-if (is_resource($res) && OA_Dal_Delivery_numRows($res)) {
+if (OA_Dal_Delivery_isValidResult($res) && OA_Dal_Delivery_numRows($res)) {
 $adminAccountId = (int)OA_Dal_Delivery_result($res, 0, 0);
 } else {
 $adminAccountId = false;
@@ -668,7 +672,7 @@ $aResult = array(
 'adminAccountId' => $adminAccountId,
 'aAccounts' => array()
 );
-if (is_resource($res)) {
+if (OA_Dal_Delivery_isValidResult($res)) {
 while ($row = OA_Dal_Delivery_fetchAssoc($res)) {
 $accountId = (int)$row['account_id'];
 if ($accountId === $adminAccountId) {
@@ -720,7 +724,7 @@ $query = "
           AND
             a.agencyid = m.agencyid";
 $rZoneInfo = OA_Dal_Delivery_query($query);
-if (!is_resource($rZoneInfo)) {
+if (!OA_Dal_Delivery_isValidResult($rZoneInfo)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : false;
 }
 $aZoneInfo = OA_Dal_Delivery_fetchAssoc($rZoneInfo);
@@ -738,7 +742,7 @@ $query = "
             OR
             p.preference_name = 'default_banner_destination_url'";
 $rPreferenceInfo = OA_Dal_Delivery_query($query);
-if (!is_resource($rPreferenceInfo)) {
+if (!OA_Dal_Delivery_isValidResult($rPreferenceInfo)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : false;
 }
 if (OA_Dal_Delivery_numRows($rPreferenceInfo) != 2) {
@@ -817,7 +821,7 @@ $query = "
             AND
             apa.preference_id = $default_banner_destination_url_id";
 $rDefaultBannerInfo = OA_Dal_Delivery_query($query);
-if (!is_resource($rDefaultBannerInfo)) {
+if (!OA_Dal_Delivery_isValidResult($rDefaultBannerInfo)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : false;
 }
 if (OA_Dal_Delivery_numRows($rDefaultBannerInfo) == 0) {
@@ -864,7 +868,7 @@ $rZones = OA_Dal_Delivery_query("
     WHERE
         z.affiliateid={$publisherid}
     ");
-if (!is_resource($rZones)) {
+if (!OA_Dal_Delivery_isValidResult($rZones)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : false;
 }
 while ($aZone = OA_Dal_Delivery_fetchAssoc($rZones)) {
@@ -963,7 +967,7 @@ $query = "
             c.status <= 0
     ";
 $rAds = OA_Dal_Delivery_query($query);
-if (!is_resource($rAds)) {
+if (!OA_Dal_Delivery_isValidResult($rAds)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 }
 $aConversionLinkedCreatives = MAX_cacheGetTrackerLinkedCreatives();
@@ -1035,7 +1039,7 @@ $query =
 ."AND "
 ."c.status <= 0 ";
 $rAds = OA_Dal_Delivery_query($query);
-if (!is_resource($rAds)) {
+if (!OA_Dal_Delivery_isValidResult($rAds)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 }
 while ($aAd = OA_Dal_Delivery_fetchAssoc($rAds)) {
@@ -1078,7 +1082,7 @@ $totals = array(
 );
 $query = OA_Dal_Delivery_buildAdInfoQuery($search, $lastpart, $precondition);
 $rAds = OA_Dal_Delivery_query($query);
-if (!is_resource($rAds)) {
+if (!OA_Dal_Delivery_isValidResult($rAds)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 }
 while ($aAd = OA_Dal_Delivery_fetchAssoc($rAds)) {
@@ -1123,7 +1127,7 @@ $totals = array(
 );
 $query = OA_Dal_Delivery_buildQuery($search, $lastpart, $precondition);
 $rAds = OA_Dal_Delivery_query($query);
-if (!is_resource($rAds)) {
+if (!OA_Dal_Delivery_isValidResult($rAds)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 }
 $aConversionLinkedCreatives = MAX_cacheGetTrackerLinkedCreatives();
@@ -1229,7 +1233,7 @@ $query = "
         m.clientid = c.clientid
     ";
 $rAd = OA_Dal_Delivery_query($query);
-if (!is_resource($rAd)) {
+if (!OA_Dal_Delivery_isValidResult($rAd)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 } else {
 return (OA_Dal_Delivery_fetchAssoc($rAd));
@@ -1245,7 +1249,7 @@ $rLimitation = OA_Dal_Delivery_query("
             ".OX_escapeIdentifier($conf['table']['prefix'].$conf['table']['channel'])."
     WHERE
             channelid={$channelid}");
-if (!is_resource($rLimitation)) {
+if (!OA_Dal_Delivery_isValidResult($rLimitation)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 }
 $limitations = OA_Dal_Delivery_fetchAssoc($rLimitation);
@@ -1263,7 +1267,7 @@ $rCreative = OA_Dal_Delivery_query("
         WHERE
             filename = '".OX_escapeString($filename)."'
     ");
-if (!is_resource($rCreative)) {
+if (!OA_Dal_Delivery_isValidResult($rCreative)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 } else {
 $aResult = OA_Dal_Delivery_fetchAssoc($rCreative);
@@ -1292,7 +1296,7 @@ $rTracker = OA_Dal_Delivery_query("
         WHERE
             t.trackerid={$trackerid}
     ");
-if (!is_resource($rTracker)) {
+if (!OA_Dal_Delivery_isValidResult($rTracker)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 } else {
 return (OA_Dal_Delivery_fetchAssoc($rTracker));
@@ -1321,7 +1325,7 @@ $rCreatives = OA_Dal_Delivery_query("
           AND b.campaignid = ct.campaignid
           " . ((!empty($trackerid)) ? ' AND t.trackerid='.$trackerid : '') . "
     ");
-if (!is_resource($rCreatives)) {
+if (!OA_Dal_Delivery_isValidResult($rCreatives)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 } else {
 $output = array();
@@ -1351,7 +1355,7 @@ $rVariables = OA_Dal_Delivery_query("
         WHERE
             v.trackerid={$trackerid}
     ");
-if (!is_resource($rVariables)) {
+if (!OA_Dal_Delivery_isValidResult($rVariables)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 } else {
 $output = array();
@@ -1371,7 +1375,7 @@ $result = OA_Dal_Delivery_query("
             ".OX_escapeIdentifier($conf['table']['prefix'].$conf['table']['application_variable'])."
         WHERE name = 'maintenance_timestamp'
     ");
-if (!is_resource($result)) {
+if (!OA_Dal_Delivery_isValidResult($result)) {
 return (defined('OA_DELIVERY_CACHE_FUNCTION_ERROR')) ? OA_DELIVERY_CACHE_FUNCTION_ERROR : null;
 } else {
 $result = OA_Dal_Delivery_fetchAssoc($result);
@@ -2055,19 +2059,19 @@ $buffer .= "
 }
 }
 if (!empty($variableQuerystring)) {
-$conversionInfoParams = array();
 foreach ($conversionInfo as $plugin => $pluginData) {
+$conversionInfoParams = array();
 if (is_array($pluginData)) {
 foreach ($pluginData as $key => $value) {
 $conversionInfoParams[] = $key . '=' . urlencode($value);
 }
 }
-}
 $conversionInfoParams = '&' . implode('&', $conversionInfoParams);
 $buffer .= "
     document.write (\"<\" + \"script language='JavaScript' type='text/javascript' src='\");
-    document.write (\"$url?trackerid=$trackerid{$conversionInfoParams}{$variableQuerystring}'\");";
+    document.write (\"$url?trackerid=$trackerid&plugin={$plugin}{$conversionInfoParams}{$variableQuerystring}'\");";
 $buffer .= "\n\tdocument.write (\"><\\/scr\"+\"ipt>\");";
+}
 }
 }
 if(!empty($tracker['appendcode'])) {
@@ -2168,7 +2172,7 @@ return $aConversionInfo;
 }
 return false;
 }
-function MAX_Delivery_log_logVariableValues($aVariables, $trackerId, $serverConvId, $serverRawIp)
+function MAX_Delivery_log_logVariableValues($aVariables, $trackerId, $serverConvId, $serverRawIp, $pluginId = null)
 {
 $aConf = $GLOBALS['_MAX']['CONF'];
 foreach ($aVariables as $aVariable) {
@@ -2199,7 +2203,11 @@ continue;
 $aVariables[$aVariable['variable_id']]['value'] = $value;
 }
 if (count($aVariables)) {
-OX_Delivery_Common_hook('logConversionVariable', array($aVariables, $trackerId, $serverConvId, $serverRawIp, _viewersHostOkayToLog(null, null, $trackerId)));
+OX_Delivery_Common_hook(
+'logConversionVariable',
+array($aVariables, $trackerId, $serverConvId, $serverRawIp, _viewersHostOkayToLog(null, null, $trackerId)),
+empty($pluginId) ? null : $pluginId.'Variable'
+);
 }
 }
 function _viewersHostOkayToLog($adId=0, $zoneId=0, $trackerId=0)
@@ -2449,8 +2457,8 @@ MAX_header($header);
 function MAX_commonSetNoCacheHeaders()
 {
 MAX_header('Pragma: no-cache');
-MAX_header('Cache-Control: private, max-age=0, no-cache');
-MAX_header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+MAX_header('Cache-Control: no-cache, no-store, must-revalidate');
+MAX_header('Expires: 0');
 MAX_header('Access-Control-Allow-Origin: *');
 }
 function MAX_commonAddslashesRecursive($a)
@@ -2778,6 +2786,14 @@ return $return;
 }
 function OX_Delivery_Common_getFunctionFromComponentIdentifier($identifier, $hook = null)
 {
+if (preg_match('/[^a-zA-Z0-9:]/', $identifier)) {
+if (PHP_SAPI === 'cli') {
+exit(1);
+} else {
+MAX_sendStatusCode(400);
+exit;
+}
+}
 $aInfo = explode(':', $identifier);
 $functionName = 'Plugin_' . implode('_', $aInfo) . '_Delivery' . (!empty($hook) ? '_' . $hook : '');
 if (!function_exists($functionName)) {
@@ -3088,6 +3104,7 @@ if (!empty($_GET['trackerid'])) {
 $trackerId = $_GET['trackerid'];
 $serverConvId = (isset($_GET['server_conv_id'])) ? $_GET['server_conv_id'] : null;
 $serverRawIp = (isset($_GET['server_raw_ip'])) ? $_GET['server_raw_ip'] : null;
+$plugin = isset($_GET['plugin']) ? $_GET['plugin'] : null;
 $aVariables = MAX_cacheGetTrackerVariables($trackerId);
-MAX_Delivery_log_logVariableValues($aVariables, $trackerId, $serverConvId, $serverRawIp);
+MAX_Delivery_log_logVariableValues($aVariables, $trackerId, $serverConvId, $serverRawIp, $plugin);
 }

@@ -205,9 +205,13 @@ $GLOBALS['strMonths'] = "Miesiący";
 $GLOBALS['strDayOfWeek'] = "Dzień tygodnia";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "godzina";
 $GLOBALS['strSeconds'] = "sekund";
@@ -386,7 +390,6 @@ $GLOBALS['strOverwriteSource'] = "Wstaw nowy parametr źródła";
 $GLOBALS['strModifyBannerAcl'] = "Opcje dostarczania";
 $GLOBALS['strACL'] = "Dostarczanie";
 $GLOBALS['strACLAdd'] = "Dodaj nowe ograniczenie";
-$GLOBALS['strNoLimitations'] = "Bez limitów";
 $GLOBALS['strApplyLimitationsTo'] = "Zastosuj limity do";
 $GLOBALS['strRemoveAllLimitations'] = "Usuń wszystkie limity";
 $GLOBALS['strEqualTo'] = "jest równy";
@@ -404,13 +407,19 @@ $GLOBALS['strDeliveryCappingReset'] = "Zresetuj liczniki po:";
 $GLOBALS['strDeliveryCappingTotal'] = "ogółem";
 $GLOBALS['strDeliveryCappingSession'] = "na sesję";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "Ogranicz wyświetlenia banera do:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "Ogranicz wyświetlenia kampanii do:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "Ogranicz wyświetlenia stref do:";
 
 // Website
@@ -770,7 +779,6 @@ $GLOBALS['strVariableCode'] = "Kod śledzenia JavaScript";
 $GLOBALS['strForgotPassword'] = "Nie pamiętasz hasła?";
 $GLOBALS['strPasswordRecovery'] = "Odzyskiwanie hasła";
 $GLOBALS['strEmailRequired'] = "Adres e-mail jest obligatoryjny";
-$GLOBALS['strPwdRecEmailNotFound'] = "Nie znaleziono adresu e-mail";
 $GLOBALS['strPwdRecWrongId'] = "ID niepoprawne";
 $GLOBALS['strPwdRecEnterEmail'] = "Wprowadź adres e-mail poniżej";
 $GLOBALS['strPwdRecEnterPassword'] = "Wprowadź nowe hasło poniżej";

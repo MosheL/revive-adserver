@@ -10,6 +10,8 @@
 +---------------------------------------------------------------------------+
 */
 
+require_once RV_PATH . '/lib/RV.php';
+
 require_once MAX_PATH . '/lib/OA.php';
 
 require_once 'XML/RPC.php';
@@ -38,8 +40,8 @@ class OA_XML_RPC_Client extends XML_RPC_Client
             $this->hasOpenssl = in_array('openssl', $aExtensions);
         }
 
-        $this->verifyPeer = false;
-        $this->caFile     = MAX_PATH . '/etc/curl-ca-bundle.crt';
+        $this->verifyPeer = true;
+        $this->caFile     = RV_PATH . '/etc/curl-ca-bundle.crt';
         parent::__construct($path, $server, $port);
     }
 

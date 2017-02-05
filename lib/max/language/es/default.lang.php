@@ -154,7 +154,7 @@ $GLOBALS['strUserUnlinkedFromAccount'] = "Usuario eliminado de la cuenta";
 $GLOBALS['strUserWasDeleted'] = "Usuario ha sido borrado";
 $GLOBALS['strUserNotLinkedWithAccount'] = "El usuario no está asignado a la cuenta";
 $GLOBALS['strCantDeleteOneAdminUser'] = "No puede borrar el usuario. Almenos un usuario necesita estar asignado a la cuenta de admin.";
-$GLOBALS['strLinkUserHelp'] = "Para añadir un <b>usuario existente</b>, escriba el %1\\$s y haga click %2\\$s <br />Para añadir un <b>nuevo usuario</b>, escriba el %1\\$s deseado y haga click %2\\$s";
+$GLOBALS['strLinkUserHelp'] = "Para añadir un <b>usuario existente</b>, escriba el %1\$s y haga click %2\$s <br />Para añadir un <b>nuevo usuario</b>, escriba el %1\$s deseado y haga click %2\$s";
 $GLOBALS['strLinkUserHelpUser'] = "Nombre de usuario";
 $GLOBALS['strLinkUserHelpEmail'] = "Dirección e-mail";
 $GLOBALS['strLastLoggedIn'] = "Último registro de ingreso";
@@ -233,7 +233,9 @@ $GLOBALS['strMonths'] = "Meses";
 $GLOBALS['strDayOfWeek'] = "Día de la semana";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 $GLOBALS['strDayFullNames'][0] = 'Domingo';
 $GLOBALS['strDayFullNames'][1] = 'Lunes';
 $GLOBALS['strDayFullNames'][2] = 'Martes';
@@ -242,7 +244,9 @@ $GLOBALS['strDayFullNames'][4] = 'Jueves';
 $GLOBALS['strDayFullNames'][5] = 'Viernes';
 $GLOBALS['strDayFullNames'][6] = 'Sábado';
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 $GLOBALS['strDayShortCuts'][0] = 'Do';
 $GLOBALS['strDayShortCuts'][1] = 'Lu';
 $GLOBALS['strDayShortCuts'][2] = 'Ma';
@@ -488,7 +492,6 @@ $GLOBALS['strOverwriteSource'] = "Sobreescribir parámetro de origen";
 $GLOBALS['strModifyBannerAcl'] = "Opciones de entrega";
 $GLOBALS['strACL'] = "Entrega";
 $GLOBALS['strACLAdd'] = "Agregar nuevas limitaciones";
-$GLOBALS['strNoLimitations'] = "Sin limitaciones";
 $GLOBALS['strApplyLimitationsTo'] = "Aplicar limitaciones a";
 $GLOBALS['strAllBannersInCampaign'] = "Todos los banners en esta campaña";
 $GLOBALS['strRemoveAllLimitations'] = "Quitar todas las limitaciones";
@@ -512,15 +515,21 @@ $GLOBALS['strDeliveryCappingReset'] = "Resetear contadores de vistas después de
 $GLOBALS['strDeliveryCappingTotal'] = "en total";
 $GLOBALS['strDeliveryCappingSession'] = "por sesión";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['title'] = "Límite de entrega por visitante";
 $GLOBALS['strCappingBanner']['limit'] = "Limitar vistas de banners a:";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['title'] = "Límite de entrega por visitante";
 $GLOBALS['strCappingCampaign']['limit'] = "Limitar vistas de campa&ntilde;a a:";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['title'] = "Límite de entrega por visitante";
 $GLOBALS['strCappingZone']['limit'] = "Limitar vistas de zonas a:";
 
@@ -953,7 +962,6 @@ $GLOBALS['strVariableCode'] = "Código Javascript de tracking";
 $GLOBALS['strForgotPassword'] = "¿Ha olvidado su contraseña?";
 $GLOBALS['strPasswordRecovery'] = "Recuperar contraseña";
 $GLOBALS['strEmailRequired'] = "E-mail es un campo requerido";
-$GLOBALS['strPwdRecEmailNotFound'] = "Dirección e-mail no encontrada";
 $GLOBALS['strPwdRecWrongId'] = "ID erróneo";
 $GLOBALS['strPwdRecEnterEmail'] = "Introduzca su dirección e-mail a continuación";
 $GLOBALS['strPwdRecEnterPassword'] = "Introduzca su nueva contraseña a continuación";

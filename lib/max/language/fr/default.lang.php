@@ -224,9 +224,13 @@ $GLOBALS['strMonths'] = "Mois";
 $GLOBALS['strDayOfWeek'] = "Jour de la semaine";
 
 
-$GLOBALS['strDayFullNames'] = array();
+if (!isset($GLOBALS['strDayFullNames'])) {
+    $GLOBALS['strDayFullNames'] = array();
+}
 
-$GLOBALS['strDayShortCuts'] = array();
+if (!isset($GLOBALS['strDayShortCuts'])) {
+    $GLOBALS['strDayShortCuts'] = array();
+}
 
 $GLOBALS['strHour'] = "Heure";
 $GLOBALS['strSeconds'] = "secondes";
@@ -457,7 +461,6 @@ $GLOBALS['strOverwriteSource'] = "Écraser le paramètre source";
 $GLOBALS['strModifyBannerAcl'] = "Options de distribution";
 $GLOBALS['strACL'] = "Distribution";
 $GLOBALS['strACLAdd'] = "Ajouter une limitation de distribution";
-$GLOBALS['strNoLimitations'] = "Aucune limitation";
 $GLOBALS['strApplyLimitationsTo'] = "Appliquer les limitations à";
 $GLOBALS['strAllBannersInCampaign'] = "Toutes les bannières dans cette campagne";
 $GLOBALS['strRemoveAllLimitations'] = "Supprimer toutes les limitations";
@@ -475,13 +478,19 @@ $GLOBALS['strDeliveryCappingReset'] = "Réinitialiser les compteurs d'affichages
 $GLOBALS['strDeliveryCappingTotal'] = "au total";
 $GLOBALS['strDeliveryCappingSession'] = "par session";
 
-$GLOBALS['strCappingBanner'] = array();
+if (!isset($GLOBALS['strCappingBanner'])) {
+    $GLOBALS['strCappingBanner'] = array();
+}
 $GLOBALS['strCappingBanner']['limit'] = "Limiter les affichages de la bannière à :";
 
-$GLOBALS['strCappingCampaign'] = array();
+if (!isset($GLOBALS['strCappingCampaign'])) {
+    $GLOBALS['strCappingCampaign'] = array();
+}
 $GLOBALS['strCappingCampaign']['limit'] = "Limiter les affichages de la campagne à :";
 
-$GLOBALS['strCappingZone'] = array();
+if (!isset($GLOBALS['strCappingZone'])) {
+    $GLOBALS['strCappingZone'] = array();
+}
 $GLOBALS['strCappingZone']['limit'] = "Limiter les affichages de la zone à :";
 
 // Website
@@ -870,7 +879,6 @@ $GLOBALS['strVariableCode'] = "Code de suivi Javascript";
 $GLOBALS['strForgotPassword'] = "Mot de passe oublié ?";
 $GLOBALS['strPasswordRecovery'] = "Récupération du mot de passe";
 $GLOBALS['strEmailRequired'] = "Le champ e-mail est requis";
-$GLOBALS['strPwdRecEmailNotFound'] = "Adresse e-mail non trouvée";
 $GLOBALS['strPwdRecWrongId'] = "ID erroné";
 $GLOBALS['strPwdRecEnterEmail'] = "Entrez votre adresse e-mail ci-dessous";
 $GLOBALS['strPwdRecEnterPassword'] = "Entrez votre nouveau mot de passe ci-dessous";

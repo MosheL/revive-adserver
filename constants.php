@@ -22,7 +22,7 @@
 function setupConstants()
 {
     // Define this version of Revive Adserver's constants
-    define('VERSION', '3.2.2-dev');
+    define('VERSION', '4.0.2-dev');
     define('PRODUCT_NAME', 'Revive Adserver');
     define('PRODUCT_URL', 'www.revive-adserver.com');
     define('PRODUCT_DOCSURL', 'http://documentation.revive-adserver.com');
@@ -39,7 +39,7 @@ function setupConstants()
 
     define('OA_AD_DIRECT_ENABLED', false);
 
-    //campaign types
+    // Campaign types
     define('OX_CAMPAIGN_TYPE_REMNANT', 1);
     define('OX_CAMPAIGN_TYPE_CONTRACT_NORMAL', 2);
     define('OX_CAMPAIGN_TYPE_OVERRIDE', 3);
@@ -171,11 +171,6 @@ function setupConstants()
     // data, before pruning, where a fixed retention value is appriopriate
     define('OA_MAINTENANCE_FIXED_PRUNING', 30);
 
-    // LegalAgreement Plugin Types
-    define('LEGALAGREEMENT_PLUGIN_PRE',         0);
-    define('LEGALAGREEMENT_PLUGIN_POST_DENY',   1);
-    define('LEGALAGREEMENT_PLUGIN_POST_ACCEPT', 2);
-
     define('MAX_LIMITATION_EQUAL', 0);
     define('MAX_LIMITATION_NOT_EQUAL', 1);
     define('MAX_LIMITATION_BITWISE', 2);
@@ -233,7 +228,7 @@ function setupConstants()
         }
         // Set the dbms type
         if (isset($GLOBALS['_MAX']['CONF']['database'])
-            && $GLOBALS['_MAX']['CONF']['database']['type'] == 'mysql')
+            && ($GLOBALS['_MAX']['CONF']['database']['type'] == 'mysql' || $GLOBALS['_MAX']['CONF']['database']['type'] == 'mysqli'))
         {
             define('phpAds_dbmsname', 'MySQL');
         }
