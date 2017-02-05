@@ -22,11 +22,14 @@ class OX_Admin_UI_SessionStorage implements OX_Admin_UI_Storage
 
     function __construct($id = null, $path = null)
     {
-        if ('cli' !== PHP_SAPI) {
+        if ('cli' !== PHP_SAPI && 'files' === ini_get('session.save_handler')) {
             $path = session_save_path();
             if (!empty($path) && !is_writable($path)) {
-                echo htmlspecialchars("The session save path '{$path}' is not writable.");
-                exit;
+                // We can only trust this if open basedir is not enabled
+                if (empty(ini_get('open_basedir'))) {
+                    echo htmlspecialchars("The session save path '{$path}' is not writable.");
+                    exit;
+                }
             }
         }
 

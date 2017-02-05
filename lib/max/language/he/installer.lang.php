@@ -17,8 +17,7 @@
 /** check step * */
 
 
-$GLOBALS['strWarning'] = "Попередження";
-$GLOBALS['strSyscheckStatus'] = "Статус";
+$GLOBALS['strWarning'] = "אזהרה";
 
 /** admin login step * */
 

@@ -3226,7 +3226,7 @@ $search = array('{timestamp}','{random}','{target}','{url_prefix}','{bannerid}',
 $locReplace = isset($GLOBALS['loc']) ? $GLOBALS['loc'] : '';
 $websiteid = (!empty($aBanner['affiliate_id'])) ? $aBanner['affiliate_id'] : '0';
 $replace = array($time, $random, $target, $urlPrefix, $aBanner['ad_id'], $zoneId, $source, urlencode($locReplace), $aBanner['width'], $aBanner['height'], $websiteid, $aBanner['campaign_id'], $aBanner['client_id'], $referer);
-preg_match_all('#{(.*?)(_enc)?}#', $code, $macros);
+preg_match_all('#{([a-zA-Z0-9_]*?)(_enc)?}#', $code, $macros);
 for ($i=0;$i<count($macros[1]);$i++) {
 if (!in_array($macros[0][$i], $search) && isset($_REQUEST[$macros[1][$i]])) {
 $search[] = $macros[0][$i];
@@ -4317,7 +4317,8 @@ if (!isset($rewrite)) $rewrite = 1;
 if (!isset($refresh)) $refresh = 0;
 if (!isset($resize)) $resize = 0;
 $banner = MAX_adSelect($what, $campaignid, $target, $source, $withtext, $charset, $context, true, $ct0, $loc, $referer);
-if (!empty($banner['html']) && !empty($n)) {
+if (!empty($n)) {
+if (!empty($banner['html'])) {
 $cookie = array();
 $cookie[$conf['var']['adId']] = $banner['bannerid'];
 if ($zoneid != 0) {
@@ -4326,7 +4327,10 @@ $cookie[$conf['var']['zoneId']] = $zoneid;
 if (!empty($source)) {
 $cookie[$conf['var']['channel']] = $source;
 }
-MAX_cookieAdd($conf['var']['vars'] . "[$n]", serialize($cookie));
+MAX_cookieAdd($conf['var']['vars'] . "[$n]", json_encode($cookie, JSON_UNESCAPED_SLASHES));
+} else {
+MAX_cookieUnset($conf['var']['vars'] . "[$n]");
+}
 }
 MAX_cookieFlush();
 MAX_commonSendContentTypeHeader('text/html', $charset);

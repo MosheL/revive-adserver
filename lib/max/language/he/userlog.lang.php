@@ -18,7 +18,11 @@ $GLOBALS['strAdministrator'] = "אחראי";
 // Audit
 $GLOBALS['strDelete'] = "מחק";
 $GLOBALS['strAdvertiser'] = "מפרסם";
-$GLOBALS['strCampaign'] = "מערכה";
+$GLOBALS['strPublisher'] = "אתר אינטרנט";
+$GLOBALS['strCampaign'] = "קמפיין";
+$GLOBALS['strType'] = "סוג";
+$GLOBALS['strAction'] = "פעולה";
+$GLOBALS['strValue'] = "ערך";
 
 if (!isset($GLOBALS['strUserlog'])) {
     $GLOBALS['strUserlog'] = array();
