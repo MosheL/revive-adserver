@@ -38,9 +38,9 @@ if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
 	$phpAds_context_campaign = array();
 
 	$z = explode (",", $_GET["z"]);
-	if (!ereg('^[[:digit:]]+(,[[:digit:]]+)*$', $_GET["z"])) {
-		die ("z must be a comma separated list of numbers");
-	}
+	//if (!ereg('^[[:digit:]]+(,[[:digit:]]+)*$', $_GET["z"])) {
+	//	die ("z must be a comma separated list of numbers");
+	//}
 	
 	for ($i = 0; $i <  count ($z); $i++)
 	{
@@ -72,7 +72,7 @@ function ourview2($id,$divid,$zone,$phpAds_raw){
 	$phpAds_raw["aRow"]["pluginversion"],
 	$phpAds_raw["height"],
 	$phpAds_raw["width"],
-	$phpAds_raw["aRow"]["htmltemplate"],
+	$phpAds_raw["aRow"]["htmlcache"],
 	$phpAds_raw["aRow"]["append"],$phpAds_raw["aRow"]["alt"],"",
 	$phpAds_raw["aRow"]["imageurl"],
 	$phpAds_raw["aRow"]["block_ad"],$phpAds_raw["aRow"]["cap_ad"],$phpAds_raw["aRow"]["session_cap_ad"],
@@ -109,7 +109,7 @@ if($zone=="")return;
 	$append=str_replace("\"","\\\'",$append);
 	
 if (($type=="html"||$type=="")&&$html!="") {
-		$html = str_replace("\"", "'", $html);
+		$html = str_replace("\"", "\\\"", $html);
 		$html = str_replace("\n", " ", $html);
 		$html = str_replace("\r", "", $html);
 				
@@ -136,7 +136,7 @@ if (($type=="html"||$type=="")&&$html!="") {
 		echo "Info.Flash($bid,$cid,$zone,'$url','$keyword',$ver,'$imageurl',$height,$width,$block_ad, $cap_ad,$session_cap_ad,$block_campaign, $cap_campaign,$session_cap_campaign,$block_zone, $cap_zone,$session_cap_zone,$last_view);\n";
 	}
 	else
-		echo ($inc_id>0?",":"") ."Info.Object($bid,$cid,$zone,\"$type\",\"$url\",[\"$file\",\"$file2\"],$ver,$height,$width,\"$append\",\"$alt\",$block_ad, $cap_ad,$session_cap_ad,$block_campaign, $cap_campaign,$session_cap_campaign,$block_zone, $cap_zone,$session_cap_zone,$last_view)\n";
+		echo ($inc_id>0?",":"") ."Info.Object($bid,$cid,$zone,\"$type\",\"$url\",[\"$file\",\"$file2\"],$ver,$height,$width,\"$append\",\"$alt\",$block_ad, $cap_ad,$session_cap_ad,$block_campaign, $cap_campaign,$session_cap_campaign,$block_zone, $cap_zone,$session_cap_zone,$last_view,0,'$imageurl')\n";
 
 	$used .=",$bid";
 	$ourint++;

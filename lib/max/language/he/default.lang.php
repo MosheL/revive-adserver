@@ -184,11 +184,8 @@ $GLOBALS['strUserAccountUpdated'] = "חשבון משתמש עודכן.";
 $GLOBALS['strUserUnlinkedFromAccount'] = "המשתמש נותק מחשבון בזה.";
 $GLOBALS['strUserWasDeleted'] = "המשתמש נמחק.";
 $GLOBALS['strUserNotLinkedWithAccount'] = "משתמש זה לא מקושר לחשבון בזה.";
-,
 $GLOBALS['strCantDeleteOneAdminUser'] = "לא ניתן למחוק את המשתמש היחיד שנשאר מקושר לחשבון הניהול הראשי.";
 $GLOBALS['strLinkUserHelp'] = "To add an <b>existing user</b>, type the %1\$s and click %2\$s <br />To add a <b>new user</b>, type the desired %1\$s and click %2\$s";
-,
-,
 $GLOBALS['strLinkUserHelpUser'] = "שם משתמש";
 $GLOBALS['strLinkUserHelpEmail'] = "דוא''ל";
 $GLOBALS['strLastLoggedIn'] = "התחברות אחרונה:";
@@ -203,10 +200,7 @@ $GLOBALS['strAuthentification'] = "אימות";
 $GLOBALS['strWelcomeTo'] = "ברוכים הבאים ל";
 $GLOBALS['strEnterUsername'] = "נא להכניס שם וסיסמא כדי להיכנס";
 $GLOBALS['strEnterBoth'] = "אנא הזן את שם המשתמש והסיסמא";
-,
 $GLOBALS['strEnableCookies'] = "עליך לאפשר עוגיות {$PRODUCT_NAME}";
-,
-,
 $GLOBALS['strSessionIDNotMatch'] = "אירעה שגיאת עוגיה. עליך להתחבר מחדש.";
 $GLOBALS['strLogin'] = "התחבר";
 $GLOBALS['strLogout'] = "התנתק";
@@ -222,12 +216,9 @@ $GLOBALS['strInvalidPassword'] = "סיסמא פסולה";
 $GLOBALS['strInvalidEmail'] = "כתובת דוא''ל לא חוקית.";
 $GLOBALS['strNotSamePasswords'] = "סיסמאות אינן תואמות";
 $GLOBALS['strRepeatPassword'] = "חזור על הסיסמא";
-,
 $GLOBALS['strDeadLink'] = "הקישור שהשתמשת בו פג תוקף.";
 $GLOBALS['strNoPlacement'] = "הקמפיין שבחרת אינו פעיל. נסה את <a href='{link}'>זה</a> במקום";
 $GLOBALS['strNoAdvertiser'] = "המפרסם שבחרת אינו פעיל. נסה את  <a href='{link}'>זה</a>  במקומו";
-,
-,
 
 // General advertising
 $GLOBALS['strImpressions'] = "חשיפות";
@@ -625,10 +616,7 @@ $GLOBALS['strTime'] = "זמן";
 $GLOBALS['strDomain'] = "דומיין";
 $GLOBALS['strSource'] = "מקור";
 $GLOBALS['strBrowser'] = "בראוזר";
-,
 $GLOBALS['strOS'] = "OS";
-,
-,
 $GLOBALS['strDeliveryLimitations'] = "הגבלות תפוצה";
 
 $GLOBALS['strDeliveryCappingReset'] = "אפס את המונים לאחר:";
@@ -700,7 +688,6 @@ $GLOBALS['strInterstitial'] = "על-שכבתי או צף";
 $GLOBALS['strPopup'] = "קופץ";
 $GLOBALS['strTextAdZone'] = "פרסוא טקסטואלי";
 $GLOBALS['strEmailAdZone'] = "אזור עבור דוא\"ל/ניוזלטרים";
-,
 $GLOBALS['strZoneVideoInstream'] = "Inline Video ad";
 $GLOBALS['strZoneVideoOverlay'] = "Overlay Video ad";
 $GLOBALS['strShowMatchingBanners'] = "הצג באנרים תואמים";
@@ -737,14 +724,12 @@ $GLOBALS['strIab']['IAB_VerticalRectangle(240x400)'] = "IAB Vertical Rectangle (
 $GLOBALS['strIab']['IAB_WideSkyscraper(160x600)*'] = "IAB Wide Skyscraper (160 x 600)";
 $GLOBALS['strIab']['IAB_Pop-Under(720x300)'] = "IAB Pop-Under (720 x 300)";
 $GLOBALS['strIab']['IAB_3:1Rectangle(300x100)'] = "IAB 3:1 Rectangle (300 x 100)";
-,
 $GLOBALS['strShowMatchingBanners'] = "הצג באנרים תואמים";
 $GLOBALS['strHideMatchingBanners'] = "הסתר באנרים תואמים";
 $GLOBALS['strBannerLinkedAds'] = "באנרים מקושרים לאיזור";
 $GLOBALS['strCampaignLinkedAds'] = "קמפיינים מקושרים לאיזור";
 $GLOBALS['strInactiveZonesHidden'] = "איזורים לא פעילים מוסתרים";
 
-,
 
 // Advanced zone settings
 $GLOBALS['strAdvanced'] = "מתקדם";
@@ -769,18 +754,12 @@ $GLOBALS['strSelectZoneType'] = "אנא בחר את סוג הבאנרים המק
 $GLOBALS['strLinkedBanners'] = "קשר באנרים ספציפיים";
 $GLOBALS['strCampaignDefaults'] = "קשר באנרים לפי קמפיין אב";
 $GLOBALS['strLinkedCategories'] = "קשר באנרים לפי קטגוריה";
-,
 $GLOBALS['strWithXBanners'] = "%d banner(s)";
-,
-,
 $GLOBALS['strRawQueryString'] = "בחירה לפי מילת מפתח";
 $GLOBALS['strIncludedBanners'] = "באנרים מקושרים";
 $GLOBALS['strMatchingBanners'] = "{count} באנרים תואמים";
 $GLOBALS['strNoCampaignsToLink'] = "אין כעת מערכות פרסוא הניתנות לקישור לאזור זה.";
-,
 $GLOBALS['strNoTrackersToLink'] = "There are currently no trackers available which can be linked to this campaign";
-,
-,
 $GLOBALS['strNoZonesToLinkToCampaign'] = "אין כעת אזורים הניתנים לקישור לקמפיין זה.";
 $GLOBALS['strSelectBannerToLink'] = "בחר את הבאנר שאתה רוצה לקשר לאזור זה:";
 $GLOBALS['strSelectCampaignToLink'] = "בחר את המערכת הפרסוא שאתה רוצה לקשר לאזור זה:";
@@ -799,12 +778,9 @@ $GLOBALS['strStatusIgnore'] = "התעלם";
 $GLOBALS['strConnectionType'] = "סוג";
 $GLOBALS['strConnTypeSale'] = "מכירה";
 $GLOBALS['strConnTypeLead'] = "ליד";
-,
 $GLOBALS['strConnTypeSignUp'] = "Signup";
 $GLOBALS['strShortcutEditStatuses'] = "ערוך סטטוס";
 $GLOBALS['strShortcutShowStatuses'] = "הצג סטטוס";
-,
-,
 
 // Statistics
 $GLOBALS['strStats'] = "סטטיסטיקה";
@@ -847,7 +823,6 @@ $GLOBALS['strStartDate'] = "התחלה";
 $GLOBALS['strEndDate'] = "סוף";
 $GLOBALS['strPeriod'] = "נקודה";
 $GLOBALS['strLimitations'] = "מגבלות";
-,
 $GLOBALS['strWorksheets'] = "Worksheets";
 
 // Admin_UI_Fields
@@ -855,12 +830,10 @@ $GLOBALS['strAllAdvertisers'] = "כל המפרסמים";
 $GLOBALS['strAnonAdvertisers'] = "אזורים אנונימיים";
 $GLOBALS['strAllPublishers'] = "כל האתרים";
 $GLOBALS['strAnonPublishers'] = "אתרים אנונימיים";
-,
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "כל המפרסמים";
 $GLOBALS['strAllPublishers'] = "כל האתרים";
-,
 $GLOBALS['strAllAvailZones'] = "כל האזורים הזמינים";
 
 // Userlog
@@ -906,14 +879,11 @@ $GLOBALS['strSirMadam'] = "א.נ.";
 $GLOBALS['strMailSubject'] = "דוח מפרסם";
 $GLOBALS['strMailHeader'] = "שלום {contact},";
 $GLOBALS['strMailBannerStats'] = "בהמשך תמצא את הסטטיסטיקה עבור הבאנרים של {clientname}:";
-,
 $GLOBALS['strMailBannerActivatedSubject'] = "Campaign activated";
 $GLOBALS['strMailBannerDeactivatedSubject'] = "Campaign deactivated";
 $GLOBALS['strMailBannerActivated'] = "Your campaign shown below has been activated because
 the campaign activation date has been reached.";
 $GLOBALS['strMailBannerDeactivated'] = "Your campaign shown below has been deactivated because";
-,
-,
 $GLOBALS['strMailFooter'] = "בתודה,
    {adminfullname}";
 $GLOBALS['strClientDeactivated'] = "קמפיין זה אינו פעילה כעת משוא ש";
@@ -928,7 +898,6 @@ $GLOBALS['strNoClickLoggedInInterval'] = "לא נרשמו הקלקות לאור�
 $GLOBALS['strMailReportPeriod'] = "דוח זה כולל סטטיסטיקה מ{startdate} עד ל{enddate}.";
 $GLOBALS['strMailReportPeriodAll'] = "דוח זה כולל את כל הסטטיסטיקה עד ל{enddate}.";
 $GLOBALS['strNoStatsForCampaign'] = "אין בנמצא סטטיסטיקה לקמפיין זה.";
-,
 $GLOBALS['strBeforeActivate'] = "תאריך ההתחלה טרם הגיע";
 $GLOBALS['strAfterExpire'] = "תאריך התפוגה הגיע ";
 $GLOBALS['strNoMoreImpressions'] = "לא נותרו חשיפות ";
@@ -950,10 +919,8 @@ $GLOBALS['strImpendingCampaignExpiryDateBody'] = "{clientname} shown below is du
 $GLOBALS['strImpendingCampaignExpiryImpsBody'] = "{clientname} shown below has less than {limit} impressions remaining.";
 $GLOBALS['strImpendingCampaignExpiryBody'] = "As a result, the campaign will soon be automatically disabled, and the
 following banners in the campaign will also be disabled:";
-,
 $GLOBALS['strYourCampaign'] = "הקמפיין שלך";
 $GLOBALS['strTheCampiaignBelongingTo'] = "הקמפיין המשתייך אל";
-,
 
 // Priority
 $GLOBALS['strPriority'] = "קדימויות";
@@ -963,43 +930,33 @@ $GLOBALS['strSourceEdit'] = "ערוך מקורות";
 $GLOBALS['strPreferences'] = "העדפות";
 $GLOBALS['strUserPreferences'] = "העדפות משתמש";
 $GLOBALS['strChangePassword'] = "שינוי סיסמא";
-,
 $GLOBALS['strChangeEmail'] = "החלף E-mail";
-,
-,
 $GLOBALS['strCurrentPassword'] = "סיסמא נוכחית";
 $GLOBALS['strChooseNewPassword'] = "בחר סיסמא חדשה";
 $GLOBALS['strReenterNewPassword'] = "הקש שוב סיסמא חדשה";
 $GLOBALS['strNameLanguage'] = "שם ושפה";
 $GLOBALS['strAccountPreferences'] = "העדפות חשבון";
-,
 $GLOBALS['strCampaignEmailReportsPreferences'] = "העדפות דוחות בדוא\"ל";
 $GLOBALS['strTimezonePreferences'] = "אזור זמן";
 $GLOBALS['strAdminEmailWarnings'] = "System administrator email Warnings";
 $GLOBALS['strAgencyEmailWarnings'] = "Account email Warnings";
 $GLOBALS['strAdveEmailWarnings'] = "Advertiser email Warnings";
-,
 $GLOBALS['strTimezonePreferences'] = "אזור זמן";
-,
 $GLOBALS['strFullName'] = "שם מלא";
 $GLOBALS['strEmailAddress'] = "דוא''ל";
 $GLOBALS['strUserDetails'] = "פרטי משתמש";
 $GLOBALS['strUserInterfacePreferences'] = "העדפות ממשק משתמש";
 $GLOBALS['strPluginPreferences'] = "העדפות תוספים";
-,
 $GLOBALS['strColumnName'] = "שם השדה";
 $GLOBALS['strShowColumn'] = "הצג שדה";
 $GLOBALS['strCustomColumnName'] = "Custom Column Name";
 $GLOBALS['strColumnRank'] = "Column Rank";
-,
-,
 
 // Long names
 
 // Short names
 $GLOBALS['strImpressions_short'] = "חשיפות";
 $GLOBALS['strClicks_short'] = "הקלקות";
-,
 $GLOBALS['strBasketValue_short'] = "BV";
 $GLOBALS['strNumberOfItems_short'] = "Num. Items";
 $GLOBALS['strRevenueCPC_short'] = "Rev. CPC";
@@ -1021,9 +978,7 @@ $GLOBALS['strConversions_short'] = "המרות";
 $GLOBALS['strPendingConversions_short'] = "Pend conv.";
 $GLOBALS['strImpressionSR_short'] = "Impr. SR";
 $GLOBALS['strClickSR_short'] = "Click SR";
-,
 $GLOBALS['strConversions_short'] = "המרות";
-,
 
 // Global Settings
 $GLOBALS['strConfiguration'] = "הגדרות";
@@ -1083,7 +1038,6 @@ $GLOBALS['strChannelsOfWebsite'] = 'ב'; //this is added between page name and w
 // Tracker Variables
 $GLOBALS['strVariableDescription'] = "תיאור";
 $GLOBALS['strVariableDataType'] = "סוג נתונים";
-,
 $GLOBALS['strVariablePurpose'] = "Purpose";
 $GLOBALS['strGeneric'] = "Generic";
 $GLOBALS['strBasketValue'] = "Basket value";
@@ -1102,14 +1056,11 @@ $GLOBALS['strTrackerTypeDefault'] = "Track JavaScript variables (backwards compa
 $GLOBALS['strTrackerTypeDOM'] = "Track HTML elements using DOM";
 $GLOBALS['strTrackerTypeCustom'] = "Custom JS code";
 $GLOBALS['strVariableCode'] = "Javascript tracking code";
-,
-,
 
 // Password recovery
 $GLOBALS['strForgotPassword'] = "שכחת סיסמא?";
 $GLOBALS['strPasswordRecovery'] = "שחזור סיסמא";
 $GLOBALS['strEmailRequired'] = "דוא''ל הוא שדה חובה";
-,
 $GLOBALS['strPwdRecEmailNotFound'] = "כתובת דוא''ל לא נמצאה";
 $GLOBALS['strPwdRecWrongId'] = "Wrong ID";
 $GLOBALS['strPwdRecEnterEmail'] = "Enter your email address below";
@@ -1121,10 +1072,8 @@ $GLOBALS['strNotifyPageMessage'] = "An e-mail has been sent to you, which includ
                                          to re-set your password and log in.<br />Please allow a few minutes for the e-mail to arrive.<br />
                                          If you do not receive the e-mail, please check your spam folder.<br />
                                          <a href=\"index.php\">Return the the main login page.</a>";
-,
 $GLOBALS['strPwdRecResetLink'] = "קישור לאיפוס סיסמא";
 $GLOBALS['strPwdRecEmailPwdRecovery'] = "%s איפוס סיסמא";
-,
 
 // Audit
 

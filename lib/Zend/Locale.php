@@ -99,7 +99,7 @@ class Zend_Locale {
     private static $_browser;
     private static $_environment;
 
-    private static $_Default = "en";
+    private static $_Default = "he";
 
     /**
      * Generates a locale object
