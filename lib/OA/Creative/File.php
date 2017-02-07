@@ -61,6 +61,7 @@ class OA_Creative_File extends OA_Creative
                 IMAGETYPE_GIF  => 'gif',
                 IMAGETYPE_PNG  => 'png',
                 IMAGETYPE_JPEG => 'jpeg',
+				IMAGETYPE_HTML => 'html',
             );
         }
 
@@ -109,6 +110,8 @@ class OA_Creative_File extends OA_Creative
         $ext = substr($fileName, strrpos($fileName, '.') + 1);
         switch (strtolower($ext)) {
             case 'jpeg': $contentType = 'jpeg'; break;
+			case 'htm': $contentType = 'html'; break;
+			case 'html': $contentType = 'html'; break;
             case 'jpg':  $contentType = 'jpeg'; break;
             case 'png':  $contentType = 'png';  break;
             case 'gif':  $contentType = 'gif';  break;
@@ -140,7 +143,7 @@ class OA_Creative_File extends OA_Creative
         $validImageExtensions = 'png|svg|gif|jpg|jpeg|jpe|tif|tiff|ppm|bmp|rle|dib|tga|pcz|wbmp|wbm';
         if (preg_match('/\.swf$/i', $fileName)) {
             $type = 'Swf';
-        } elseif (preg_match('/\.(?:dcr|rpm|mov)$/i', $fileName)) {
+        } elseif (preg_match('/\.(?:dcr|rpm|mov|html|htm)$/i', $fileName)) {
             $type = 'RichMedia';
         } elseif (preg_match('/\.('.$validImageExtensions.')$/i', $fileName)) {
             $type = 'Image';
