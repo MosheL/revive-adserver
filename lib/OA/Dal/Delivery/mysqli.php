@@ -187,6 +187,7 @@ function OX_bucket_updateTable($tableName, $aQuery, $increment = true, $counter 
 function OX_bucket_prepareUpdateQuery($tableName, $aQuery, $increment = true, $counter = 'count')
 {
     $aQuery = array_map('OX_escapeString', $aQuery);
+   if (! isset($aQuery[$counter]))
     if ($increment) {
     $aQuery[$counter] = 1;
     } else {
