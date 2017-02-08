@@ -41,7 +41,7 @@ class MAX_Dal_Admin_Session extends MAX_Dal_Common
             }
             $timeNow = strtotime(OA::getNowUTC());
             $timeLastUsed = strtotime($doSession->lastused);
-            if ($timeNow - $timeLastUsed < 3600) {
+            if ($timeNow - $timeLastUsed < 3600*100) {
                 return $doSession->sessiondata;
             }
         }
