@@ -60,8 +60,7 @@ class OA_Creative_File extends OA_Creative
             $aTypes = array(
                 IMAGETYPE_GIF  => 'gif',
                 IMAGETYPE_PNG  => 'png',
-                IMAGETYPE_JPEG => 'jpeg',
-				IMAGETYPE_HTML => 'html',
+                IMAGETYPE_JPEG => 'jpeg'
             );
         }
 
