@@ -34,9 +34,9 @@ if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
 	$phpAds_context_campaign = array();
 
 	$z = explode (",", $_GET["z"]);
-	if (!ereg('^[[:digit:]]+(,[[:digit:]]+)*$', $_GET["z"])) {
+	/*if (!ereg('^[[:digit:]]+(,[[:digit:]]+)*$', $_GET["z"])) {
 		die ("z must be a comma separated list of numbers");
-	}
+	}*/
 	
 	for ($i = 0; $i <  count ($z); $i++)
 	{
