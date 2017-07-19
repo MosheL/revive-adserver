@@ -68,7 +68,7 @@ class Plugins_DeliveryLog_OxLogConversion_LogConversion extends Plugins_Delivery
             'zone_id'                 => self::INTEGER ,
             'ip_address'              => self::CHAR  ,
             'action'                  => self::INTEGER,
-            'window'                  => self::INTEGER,
+            'window1'                  => self::INTEGER,
             'status'                  => self::INTEGER
         );
         return $aColumns;
@@ -113,7 +113,7 @@ class Plugins_DeliveryLog_OxLogConversion_LogConversion extends Plugins_Delivery
                 6  => 'zone_id',
                 7  => 'ip_address',
                 8  => 'action',
-                9  => 'window',
+                9  => '`window`',
                 10 => 'status'
             ),
             'destination'       => array(
