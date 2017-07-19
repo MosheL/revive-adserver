@@ -148,8 +148,6 @@ $GLOBALS['strDashboardSystemMessage'] = "הודעת מערכת";
 // Priority
 $GLOBALS['strPriority'] = "קדימויות";
 $GLOBALS['strPriorityLevel'] = "רמת קידמות";
-$GLOBALS['strLimitations'] = "מגבלות";
-$GLOBALS['strNoLimitations'] = "ללא הגבלות";
 $GLOBALS['strCapping'] = "Capping";
 
 // Properties
@@ -292,7 +290,6 @@ $GLOBALS['strClients'] = "מפרסמים";
 $GLOBALS['strClientsAndCampaigns'] = "מפרסמים ומערכות";
 $GLOBALS['strAddClient'] = "הוסף מפרסם חדש";
 $GLOBALS['strClientProperties'] = "נתוני מפרסם";
-$GLOBALS['strClientHistory'] = "היסטורית מפרסם";
 $GLOBALS['strNoClients'] = "There are currently no advertisers defined. To create a campaign, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
 $GLOBALS['strConfirmDeleteClient'] = "האם באמת למחוק מפרסם זה";
 $GLOBALS['strConfirmDeleteClients'] = "האם אתה באמת רוצה למחוק את המפרסמים הנבחרים?";
@@ -324,7 +321,6 @@ $GLOBALS['strCampaignForAdvertiser'] = "עבור המפרסם";
 $GLOBALS['strLinkedCampaigns'] = "קמפיינים מקושרים";
 $GLOBALS['strCampaignProperties'] = "מאפייני קמפיין";
 $GLOBALS['strCampaignOverview'] = "קמפיין מבט כולל";
-$GLOBALS['strCampaignHistory'] = "היסטוריית קמפיין";
 $GLOBALS['strNoCampaigns'] = "There are currently no campaigns defined for this advertiser.";
 $GLOBALS['strNoCampaignsAddAdvertiser'] = "There are currently no campaigns defined, because there are no advertisers. To create a campaign, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
 $GLOBALS['strConfirmDeleteCampaign'] = "האם אתה באמת רוצה למחוק קמפיין זה?";
@@ -516,7 +512,6 @@ $GLOBALS['strBannerProperties'] = "תכונות הבאנר";
 $GLOBALS['strBannerHistory'] = "הסטוריית הבאנר";
 $GLOBALS['strNoBanners'] = "עדיין לא הוגדרו באנרים";
 $GLOBALS['strBannerProperties'] = "מאפייני באנר";
-$GLOBALS['strBannerHistory'] = "הסטוריית הבאנר";
 $GLOBALS['strNoBanners'] = "אין באנרים בקמפיין זה.";
 $GLOBALS['strNoBannersAddCampaign'] = "כרגע אין באנרים מוגדרים, כי אין קמפיינים. כדי ליצור באנר, <a href='campaign-edit.php?clientid=%s'> להוסיף קמפיין חדש </a> תחילה.";
 $GLOBALS['strNoBannersAddAdvertiser'] = "כרגע אין באנרים המוגדרים, כי אין מפרסמים. כדי ליצור באנר, <a href='advertiser-edit.php'> להוסיף מפרסם חדש </a> תחילה.";
@@ -591,13 +586,10 @@ $GLOBALS['strCompressSWF'] = "<DIV DIR = \"RTL\" align = \"LEFT\">סמן לדח�
 $GLOBALS['strCompressSWF'] = "סמן לדחיסת קובץ SWF לטעינת עמוד מהירה יותר (דרושה גירסת נגן Flash 6)";
 $GLOBALS['strOverwriteSource'] = "רמוס פרמטרים של המקור";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "אופציות תפוצה";
-$GLOBALS['strACL'] = "תפוצה";
-$GLOBALS['strACLAdd'] = "הוסף הגבלה חדשה";
-$GLOBALS['strApplyLimitationsTo'] = "הענק הגבלה ל";
+$GLOBALS['strACL'] = "אופציות תפוצה";
 $GLOBALS['strAllBannersInCampaign'] = "כל באנרים בקמפיין זה ";
-$GLOBALS['strRemoveAllLimitations'] = "הסר את כל המגבלות";
 $GLOBALS['strEqualTo'] = "שווה ל";
 $GLOBALS['strDifferentFrom'] = "שונה מ";
 $GLOBALS['strLaterThan'] = "אחרי ";
@@ -641,7 +633,6 @@ $GLOBALS['strAffiliates'] = "מפיצים";
 $GLOBALS['strAffiliatesAndZones'] = "מפיצים ואיזורים";
 $GLOBALS['strAddNewAffiliate'] = "הוסף אתר  חדש";
 $GLOBALS['strAffiliateProperties'] = "תכונות האתר";
-$GLOBALS['strAffiliateHistory'] = "היסטורית אתר";
 $GLOBALS['strNoAffiliates'] = "לא מוגדרים כעת שום אתרים.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "האם באמת למחוק אתר זה";
 $GLOBALS['strConfirmDeleteAffiliates'] = "האם אתה באמת מעוניין למחוק את האתרים שנבחרו?";
@@ -768,7 +759,6 @@ $GLOBALS['strSelectPlacement'] = "בחר קמפיין";
 $GLOBALS['strSelectAd'] = "בחר באנר";
 $GLOBALS['strSelectPublisher'] = "בחר אתר אינטרנט";
 $GLOBALS['strSelectZone'] = "בחר איזור";
-$GLOBALS['strConnectionType'] = "סוג";
 $GLOBALS['strStatusPending'] = "ממתין";
 $GLOBALS['strStatusApproved'] = "אישור";
 $GLOBALS['strStatusDisapproved'] = "לא אושר";
@@ -786,11 +776,6 @@ $GLOBALS['strShortcutShowStatuses'] = "הצג סטטוס";
 $GLOBALS['strStats'] = "סטטיסטיקה";
 $GLOBALS['strNoStats'] = "לא קיימת סטטיסטיקה עדיין.";
 $GLOBALS['strNoStatsForPeriod'] = "כרגע אין סטטיסטיקות זמינות לתקופה של% ל% s";
-$GLOBALS['strGlobalHistory'] = "היסטוריה כללית";
-$GLOBALS['strDailyHistory'] = "היסטוריה יומית";
-$GLOBALS['strDailyStats'] = "סטטיסטיקה יומית";
-$GLOBALS['strWeeklyHistory'] = "היסטוריה שבועית";
-$GLOBALS['strMonthlyHistory'] = "היסטוריה חודשית";
 $GLOBALS['strTotalThisPeriod'] = "סך הכל לתקופה זו";
 $GLOBALS['strPublisherDistribution'] = "היתפלגות אתר ";
 $GLOBALS['strCampaignDistribution'] = "היתפלגות קמפיין";
@@ -801,10 +786,6 @@ $GLOBALS['strBreakdownByMonth'] = "חודש";
 $GLOBALS['strBreakdownByDow'] = "יום בשבוע";
 $GLOBALS['strBreakdownByHour'] = "שעה";
 $GLOBALS['strItemsPerPage'] = "פריטים לעמוד";
-$GLOBALS['strDistributionHistoryCampaign'] = "התפלגות היסטוריה (קמפיין)";
-$GLOBALS['strDistributionHistoryBanner'] = "התפלגות היסטוריה (באנר)";
-$GLOBALS['strDistributionHistoryWebsite'] = "התפלגות היסטוריה (אתר אינטרנט)";
-$GLOBALS['strDistributionHistoryZone'] = "התפלגות היסטוריה (איזור)";
 $GLOBALS['strShowGraphOfStatistics'] = "הצג <u>ג</u>רף של סטטיסטיקה";
 $GLOBALS['strExportStatisticsToExcel'] = "<u>י</u>צא סטטיסטיקה ל-Excel";
 $GLOBALS['strGDnotEnabled'] = "You must have GD enabled in PHP to display graphs. <br />Please see <a href='http://www.php.net/gd' target='_blank'>http://www.php.net/gd</a> for more information, including how to install GD on your server.";
@@ -822,7 +803,6 @@ $GLOBALS['strAdvancedReports'] = "דו''חות מתקדמים";
 $GLOBALS['strStartDate'] = "התחלה";
 $GLOBALS['strEndDate'] = "סוף";
 $GLOBALS['strPeriod'] = "נקודה";
-$GLOBALS['strLimitations'] = "מגבלות";
 $GLOBALS['strWorksheets'] = "Worksheets";
 
 // Admin_UI_Fields
@@ -1020,20 +1000,9 @@ $GLOBALS['strInactiveAgenciesHidden'] = "inactive account(s) hidden";
 $GLOBALS['strSwitchAccount'] = "Switch to this account";
 
 // Channels
-$GLOBALS['strChannel'] = "ערוץ פילוח";
-$GLOBALS['strChannels'] = "ערוצי פילוח";
-$GLOBALS['strChannelManagement'] = "ניהול ערוצי פילוח";
-$GLOBALS['strAddNewChannel'] = "הוספת ערוץ פילוח";
-$GLOBALS['strAddNewChannel_Key'] = "הוספת ערוץ פילוח";
 $GLOBALS['strChannelToWebsite'] = "לאתר";
-$GLOBALS['strNoChannels'] = "לא מוגדרים ערוצים.";
-$GLOBALS['strNoChannelsAddWebsite'] = "אין ערוצי פילוח בגלל שאין אתרים, <a href='affiliate-edit.php'>עליך להוסיף אתר </a> קודם.";
-$GLOBALS['strEditChannelLimitations'] = "עריכת ערוץ פילוח";
-$GLOBALS['strChannelProperties'] = "מאפייני ערוץ פילוח";
 $GLOBALS['strChannelLimitations'] = "אופציות תפוצה";
-$GLOBALS['strConfirmDeleteChannel'] = "האם למחוק ערוץ פילוח?";
-$GLOBALS['strConfirmDeleteChannels'] = "האם למחוק ערוצי פילוח ??";
-$GLOBALS['strChannelsOfWebsite'] = 'ב'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strChannelsOfWebsite'] = 'ב'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableDescription'] = "תיאור";

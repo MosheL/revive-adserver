@@ -33,5 +33,5 @@ msgstr "Informes de administrador"
 
 #: plugins_repo/openXReports/extensions/reports/oxReportsAdmin//breakdown.class.php:146
 msgid "Manager"
-msgstr ""
+msgstr "Administrador"
 

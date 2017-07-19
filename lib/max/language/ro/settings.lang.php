@@ -158,8 +158,6 @@ $GLOBALS['strDeliveryFilenamesFrontController'] = "Controler Faţă";
 $GLOBALS['strDeliveryFilenamesFlash'] = "Include Flash (Poate fi un URL complet)";
 $GLOBALS['strDeliveryCaching'] = "Setări Cache Distribuţie Banner";
 $GLOBALS['strDeliveryCacheLimit'] = "Perioada între actualizările Cache-ului de Bannere (secunde)";
-$GLOBALS['strDeliveryAcls'] = "Evaluează limitările de distribuţie ale banner-ului în timpul livrării";
-$GLOBALS['strDeliveryObfuscate'] = "Ascunde canalul în timpul livrării reclamelor";
 $GLOBALS['strDeliveryExecPhp'] = "Permite execuţia codului PHP în reclame<br />(Atenţie: Risc de Securitate)";
 $GLOBALS['strDeliveryCtDelimiter'] = "Separator Urmărire Click-uri pentru Terţe Părţi";
 $GLOBALS['strGlobalDefaultBannerUrl'] = "URL Global către bannerul imagine implicit";
@@ -175,7 +173,6 @@ $GLOBALS['uiEnabled'] = "Interfaţa Utilizatorului Activată";
 $GLOBALS['strGeotargetingSettings'] = "Setări de Localizare";
 $GLOBALS['strGeotargeting'] = "Setări de Localizare";
 $GLOBALS['strGeotargetingType'] = "Tip Modul de Localizare";
-$GLOBALS['strGeoShowUnavailable'] = "Afişează limitările de livrare în funcţie de localizare chiar dacă GeoIP nu este valabil";
 
 // Interface Settings
 $GLOBALS['strInventory'] = "Inventar";
@@ -227,8 +224,6 @@ $GLOBALS['strBlockAdClicks'] = "Nu contoriza Click-urile pe Reclame dacă vizita
 $GLOBALS['strMaintenanceOI'] = "Intervalul Operaţiunii de Întreţinere (minute)";
 $GLOBALS['strPrioritySettings'] = "Setări de Prioritate";
 $GLOBALS['strPriorityInstantUpdate'] = "Actualizează priorităţile reclamelor imediat ce sunt făcute schimbări în Interfaţa Utilizatorului";
-$GLOBALS['strDefaultImpConWindow'] = "Fereastra Implicită de Conectare a Vizualizării Reclamei (secunde)";
-$GLOBALS['strDefaultCliConWindow'] = "Fereastra Implicită de Conectare a Click-ului pe Reclamă";
 $GLOBALS['strWarnLimit'] = "Trimite o atenţionare când numărul de vizualizări rămase este mai mic decât cel specificat aici";
 $GLOBALS['strWarnLimitDays'] = "Trimite o atenţionare când numărul de zile rămas este mai mic decât cel specificat aici";
 $GLOBALS['strWarnAdmin'] = "Trimite o atenţionare administratorului de fiecare dată când o campanie se apropie de expirare";

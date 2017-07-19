@@ -120,8 +120,6 @@ $GLOBALS['strOverrideAds'] = "Přepsat reklamní kampaň";
 $GLOBALS['strHighAds'] = "Smlouva reklamní kampaně";
 $GLOBALS['strECPMAds'] = "eCPM reklamní kampaň";
 $GLOBALS['strLowAds'] = "Reklamy s nízkou prioritou";
-$GLOBALS['strLimitations'] = "Omezení";
-$GLOBALS['strNoLimitations'] = "Bez omezení";
 $GLOBALS['strCapping'] = "Omezení";
 
 // Properties
@@ -171,7 +169,6 @@ $GLOBALS['strAuthentification'] = "Autentifikace";
 $GLOBALS['strWelcomeTo'] = "Vítejte do";
 $GLOBALS['strEnterUsername'] = "Pro přihlásení zadejte vaše uživatelské jméno a heslo";
 $GLOBALS['strEnterBoth'] = "Prosím zadejte vaše jméno i heslo";
-$GLOBALS['strEnableCookies'] = "Je třeba povolit soubory cookie, než budete moci použít {$PRODUCT_NAME}";
 $GLOBALS['strSessionIDNotMatch'] = "Chyba relace cookie, přihlaste se znovu";
 $GLOBALS['strLogin'] = "Přihlásit";
 $GLOBALS['strLogout'] = "Odhlásit";
@@ -268,7 +265,6 @@ $GLOBALS['strClients'] = "Inzerenti";
 $GLOBALS['strClientsAndCampaigns'] = "Inzerenti & Kampaně";
 $GLOBALS['strAddClient'] = "Přidat inzerenta";
 $GLOBALS['strClientProperties'] = "Nastavení inzerenta";
-$GLOBALS['strClientHistory'] = "Historie inzerenta";
 $GLOBALS['strNoClients'] = "Zatím nejsou definováni žádní inzerenti. Pro vytvoření kampaně, nejprve <a href='advertiser-edit.php'>přidejte nového inzerenta</a>.";
 $GLOBALS['strConfirmDeleteClient'] = "Opravdu chcete smazat tohoto inzerenta?";
 $GLOBALS['strConfirmDeleteClients'] = "Opravdu chcete smazat tohoto inzerenta?";
@@ -300,7 +296,6 @@ $GLOBALS['strCampaignForAdvertiser'] = "pro inzerenta";
 $GLOBALS['strLinkedCampaigns'] = "Připojené kampaně";
 $GLOBALS['strCampaignProperties'] = "Nastavení kampaně";
 $GLOBALS['strCampaignOverview'] = "Přehled kampaně";
-$GLOBALS['strCampaignHistory'] = "Historie kampaně";
 $GLOBALS['strNoCampaigns'] = "V tuto chvíli nejsou definované žádné kampaně";
 $GLOBALS['strNoCampaignsAddAdvertiser'] = "Momentálně zde nejsou žádné kampaně definované, protože zde nejsou žádní inzerenti. Chcete-li vytvořit kampaň, musíte nejdříve <a href='advertiser-edit.php'>přidat nového inzerenta </a>.";
 $GLOBALS['strConfirmDeleteCampaign'] = "Opravdu chcete smazat tuto kampaň?";
@@ -399,7 +394,6 @@ $GLOBALS['strAddBanner_Key'] = "Přidat <u>b</u>anner";
 $GLOBALS['strBannerToCampaign'] = "na kampaň";
 $GLOBALS['strShowBanner'] = "Zobrazit banner";
 $GLOBALS['strBannerProperties'] = "Nastavení banneru";
-$GLOBALS['strBannerHistory'] = "Historie banneru";
 $GLOBALS['strNoBanners'] = "Zatím nejsou definovány žádné bannery";
 $GLOBALS['strConfirmDeleteBanner'] = "Opravdu chcete smazat tento banner?";
 $GLOBALS['strConfirmDeleteBanners'] = "Opravdu chcete smazat tento banner?";
@@ -458,13 +452,10 @@ $GLOBALS['strHardcodedLinks'] = "Pevné odkazy";
 $GLOBALS['strCompressSWF'] = "Komprimovat SWF soubor pro rychlejší stahování (vyžaduje přehrávač Flash 6)";
 $GLOBALS['strOverwriteSource'] = "Přepsat zdrojový parametr";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Nastavení doručování";
-$GLOBALS['strACL'] = "Doručování";
-$GLOBALS['strACLAdd'] = "Přidat omezení";
-$GLOBALS['strApplyLimitationsTo'] = "Aplikovat omezení na";
+$GLOBALS['strACL'] = "Nastavení doručování";
 $GLOBALS['strAllBannersInCampaign'] = "Všechny bannery v této kampani";
-$GLOBALS['strRemoveAllLimitations'] = "Odstranit všechna omezení";
 $GLOBALS['strEqualTo'] = "je rovno";
 $GLOBALS['strDifferentFrom'] = "liší se od";
 $GLOBALS['strLaterThan'] = "je později než";
@@ -484,7 +475,6 @@ $GLOBALS['strDomain'] = "Doména";
 $GLOBALS['strSource'] = "Zdroj";
 $GLOBALS['strBrowser'] = "Prohlížeč";
 $GLOBALS['strOS'] = "OS";
-$GLOBALS['strDeliveryLimitations'] = "Omezení doručování";
 
 $GLOBALS['strDeliveryCappingReset'] = "Obnovit počítadlo zobrazení po:";
 $GLOBALS['strDeliveryCappingTotal'] = "celkem";
@@ -510,7 +500,6 @@ $GLOBALS['strAffiliates'] = "Vydavatelé";
 $GLOBALS['strAffiliatesAndZones'] = "Vydavatelé & Zóny";
 $GLOBALS['strAddNewAffiliate'] = "Přidat vydavatele";
 $GLOBALS['strAffiliateProperties'] = "Nastavení vydavatele";
-$GLOBALS['strAffiliateHistory'] = "Historie vydavatele";
 $GLOBALS['strNoAffiliates'] = "V tuto chvíli nejsou zadáni žádní vydavatelé";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Opravdu si přejete smazat tohoto vydavatele?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Opravdu si přejete smazat tohoto vydavatele?";
@@ -616,7 +605,6 @@ $GLOBALS['strSelectPlacement'] = "Zvolte kampaň";
 $GLOBALS['strSelectAd'] = "Zvolte banner";
 $GLOBALS['strSelectPublisher'] = "Zvolte webovou stránku";
 $GLOBALS['strSelectZone'] = "Vyberte zónu";
-$GLOBALS['strConnectionType'] = "Typ";
 $GLOBALS['strStatusPending'] = "Čekající";
 $GLOBALS['strStatusApproved'] = "Schváleno";
 $GLOBALS['strStatusDisapproved'] = "Zamítnout";
@@ -633,11 +621,6 @@ $GLOBALS['strShortcutShowStatuses'] = "Zobrazit statusy";
 $GLOBALS['strStats'] = "Statistiky";
 $GLOBALS['strNoStats'] = "V tuto chvíli nejsou k dispozici žádné statistiky";
 $GLOBALS['strNoStatsForPeriod'] = "Neexistují v současné době žádné statistiky dostupné pro období %s na %s";
-$GLOBALS['strGlobalHistory'] = "Globální historie";
-$GLOBALS['strDailyHistory'] = "Denní historie";
-$GLOBALS['strDailyStats'] = "Denní statistiky";
-$GLOBALS['strWeeklyHistory'] = "Týdenní historie";
-$GLOBALS['strMonthlyHistory'] = "Měsíční historie";
 $GLOBALS['strTotalThisPeriod'] = "Celkem v tomto období";
 $GLOBALS['strPublisherDistribution'] = "Rozdělení vydavatelů";
 $GLOBALS['strViewBreakdown'] = "Zobrazit podle";
@@ -647,10 +630,6 @@ $GLOBALS['strBreakdownByMonth'] = "Měsíců";
 $GLOBALS['strBreakdownByDow'] = "Den v týdnu";
 $GLOBALS['strBreakdownByHour'] = "Hodina";
 $GLOBALS['strItemsPerPage'] = "Položek na stránku";
-$GLOBALS['strDistributionHistoryCampaign'] = "Historie distribuce (kampaň)";
-$GLOBALS['strDistributionHistoryBanner'] = "Historie distribuce (banner)";
-$GLOBALS['strDistributionHistoryWebsite'] = "Historie distribuce (webové stránky)";
-$GLOBALS['strDistributionHistoryZone'] = "Historie distribuce (zóna)";
 $GLOBALS['strShowGraphOfStatistics'] = "Zobrazit <u>G</u>raf statistiky";
 $GLOBALS['strStatsArea'] = "Oblast";
 
@@ -665,7 +644,6 @@ $GLOBALS['strAdvancedReports'] = "Rozšířené reporty";
 $GLOBALS['strStartDate'] = "Počáteční datum";
 $GLOBALS['strEndDate'] = "Datum ukončení";
 $GLOBALS['strPeriod'] = "Období";
-$GLOBALS['strLimitations'] = "Omezení";
 $GLOBALS['strWorksheets'] = "Pracovní výkaz";
 
 // Admin_UI_Fields
@@ -781,11 +759,8 @@ $GLOBALS['strInactiveAgenciesHidden'] = "neaktivních bannerů skryto";
 
 // Channels
 $GLOBALS['strChannelToWebsite'] = "na webové stránky";
-$GLOBALS['strNoChannels'] = "Zatím nejsou definovány žádné bannery";
 $GLOBALS['strChannelLimitations'] = "Nastavení doručování";
-$GLOBALS['strConfirmDeleteChannel'] = "Opravdu chcete smazat tento banner?";
-$GLOBALS['strConfirmDeleteChannels'] = "Opravdu chcete smazat tento banner?";
-$GLOBALS['strChannelsOfWebsite'] = 'v'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strChannelsOfWebsite'] = 'v'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "Název proměnné";

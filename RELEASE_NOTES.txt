@@ -6,7 +6,7 @@
 | License: GPLv2 or later, see the LICENSE.txt file.                        |
 +---------------------------------------------------------------------------+
 
-Release Notes: Revive Adserver 4.0.2
+Release Notes: Revive Adserver 4.1.0
 ====================================
 
 These release notes cover what's new, system requirements, download and
@@ -14,10 +14,10 @@ installation instructions, known issues and frequently asked questions for
 Revive Adserver. Please read these notes before reporting any bugs.
 
 
-What's New in Revive Adserver 4.0.2
+What's New in Revive Adserver 4.1.0
 -----------------------------------
 
- * Release date: t.b.d.
+ * Release date: TBA
 
  Security Updates
  ----------------
@@ -27,12 +27,42 @@ What's New in Revive Adserver 4.0.2
  New Features
  ------------
 
- * None
+ * Added new optional feature to block the logging of clicks & re-direction
+   of the browser to the target page when the click URL of an inactive banner
+   is accessed. This feature is enabled by default for new installations, but
+   users upgrading will need to enable the feature as an administrator user
+   under the Configuration > Global Settings > Banner Logging Settings section.
+
+ * Updated the pages under the Statistics tab to all be called "Statistics" 
+   pages in the UI, instead of (in some places), "History" pages.
+
+ * Invocation tags are now generated with a much shorter comment, and, by
+   default, no longer include the large block of comments in the tag. (The
+   comments can be switched on for a given tag, if required, during tag
+   generation.)
+
+ * In the user interface, a number of terms have been renamed, to bring the
+   language used into line with modern terms:
+
+     * ACLs are now Delivery Options;
+
+     * Delivery Limitations are now Delivery Rules;
+
+     * Targeting Channels are now Delivery Rule Sets.
 
  Bug Fixes
  ---------
 
- * None
+ * Fixed display of shortcuts to advertisers, campaigns, banners, websites,
+   zones, etc. on the statistics pages.
+
+ * Added missing check for access to the required PHP scandir() function in the
+   pre-initialisation system.
+
+ * Fixed invalid PHP comment in the local mode invocation tags.
+
+ * Fixed incompatibility with "N;M;/path" syntax in session.save_path detection
+   during installation.
 
  Non-Backwards Compatible Changes
  --------------------------------

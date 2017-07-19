@@ -90,8 +90,6 @@ $GLOBALS['strNotice'] = "Hysbysiad";
 // Priority
 $GLOBALS['strPriority'] = "Blaenoriaeth";
 $GLOBALS['strPriorityLevel'] = "Lefel blaenoriaeth";
-$GLOBALS['strLimitations'] = "Cyfyngiadau";
-$GLOBALS['strNoLimitations'] = "Dim cyfyngiadau";
 $GLOBALS['strCapping'] = "Terfyn Uchaf";
 
 // Properties
@@ -180,7 +178,6 @@ $GLOBALS['strClients'] = "Hysbysebwyr";
 $GLOBALS['strClientsAndCampaigns'] = "Hysbysebwyr a Ymgyrchoedd";
 $GLOBALS['strAddClient'] = "Ychwanegu hysbysebwr newydd";
 $GLOBALS['strClientProperties'] = "Priodweddau Hysbysebwr";
-$GLOBALS['strClientHistory'] = "Hanes Hysbysebwr";
 $GLOBALS['strNoClients'] = "Nid oes unrhyw hysbysebwr wedi ei ddiffinio hyd yma. Er mwyn creu ymgyrch, <a href='advertiser-edit.php'>ychwanegwch hysbysebwrnewydd</a>.";
 $GLOBALS['strConfirmDeleteClient'] = "Ydych chi wir am ddileu'r hysbysebwr yma?";
 $GLOBALS['strConfirmDeleteClients'] = "Ydych chi wir am ddileu'r hysbysebwr yma?";
@@ -208,7 +205,6 @@ $GLOBALS['strAddCampaign_Key'] = "Ychwanegu ymgyrch <u>n</u>ewydd";
 $GLOBALS['strLinkedCampaigns'] = "Ymgyrchoedd Cysylltiedig";
 $GLOBALS['strCampaignProperties'] = "Priodoleddau Ymgyrch";
 $GLOBALS['strCampaignOverview'] = "Trosolwg ymgyrch";
-$GLOBALS['strCampaignHistory'] = "Hanes Ymgyrch";
 $GLOBALS['strConfirmDeleteCampaign'] = "Ydych chi wir am ddileu yr ymgyrch yma?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "Ydych chi wir am ddileu yr ymgyrch yma?";
 $GLOBALS['strShowParentAdvertisers'] = "Dangos hysbysebwyr rhiant";
@@ -278,7 +274,6 @@ $GLOBALS['strAddBanner_Key'] = "Ychwanegu baner <u>n</u>ewydd";
 $GLOBALS['strBannerToCampaign'] = "Eich ymgyrch";
 $GLOBALS['strShowBanner'] = "Dangos baner";
 $GLOBALS['strBannerProperties'] = "Priodweddau Baner";
-$GLOBALS['strBannerHistory'] = "Hanes Baner";
 $GLOBALS['strNoBannersAddAdvertiser'] = "Nid oes unrhyw wefan wedi cael ei ddiffinio hyd yma. I greu ardal, <a href='affiliate-edit.php'>ychwanegwch wefan newydd</a> yn gyntaf.";
 $GLOBALS['strConfirmDeleteBanner'] = "Ydych chi wir am ddileu'r faner yma?";
 $GLOBALS['strConfirmDeleteBanners'] = "Ydych chi wir am ddileu'r faner yma?";
@@ -324,11 +319,9 @@ $GLOBALS['strHardcodedLinks'] = "Dolenni cod-caled";
 $GLOBALS['strCompressSWF'] = "Cywasgu ffeil SWF ar gyfer lawrlwytho cynt (Chwaraewr Flash 6 yn ofynnol)";
 $GLOBALS['strOverwriteSource'] = "Trosysgrifo paramedr ffynhonnell";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Dewisiadau Trosglwyddiad";
-$GLOBALS['strACL'] = "Trosglwyddo";
-$GLOBALS['strApplyLimitationsTo'] = "Cymhwyso cyfyngiadau at";
-$GLOBALS['strRemoveAllLimitations'] = "Diddymu pob cyfyngiad";
+$GLOBALS['strACL'] = "Dewisiadau Trosglwyddiad";
 $GLOBALS['strEqualTo'] = "yn hafal i";
 $GLOBALS['strDifferentFrom'] = "yn wahanol i";
 $GLOBALS['strGreaterThan'] = "yn fwy na";
@@ -338,7 +331,6 @@ $GLOBALS['strOR'] = "NEU";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "Dangos y faner yma yn unig pan:";
 $GLOBALS['strWeekDays'] = "Dyddiau o'r wythnos";
 $GLOBALS['strSource'] = "Ffynhonnell";
-$GLOBALS['strDeliveryLimitations'] = "Cyfyngiadau Trosglwyddo";
 
 $GLOBALS['strDeliveryCappingReset'] = "Ailosod rhifydd golwg ar ôl:";
 $GLOBALS['strDeliveryCappingTotal'] = "mewn cyfanswm";
@@ -365,7 +357,6 @@ $GLOBALS['strAffiliates'] = "Gwefannau";
 $GLOBALS['strAffiliatesAndZones'] = "Gwefannau ac Ardaloedd";
 $GLOBALS['strAddNewAffiliate'] = "Ychwanegu gwefan newydd";
 $GLOBALS['strAffiliateProperties'] = "Priodweddau Gwefan";
-$GLOBALS['strAffiliateHistory'] = "Hanes Gwefan";
 $GLOBALS['strNoAffiliates'] = "Nid oes unrhyw wefan wedi cael ei ddiffinio hyd yma. I greu ardal, <a href='affiliate-edit.php'>ychwanegwch wefan newydd</a> yn gyntaf.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Ydych chi wir am ddileu'r wefan yma?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Ydych chi wir am ddileu'r wefan yma?";
@@ -453,7 +444,6 @@ $GLOBALS['strSelectCampaignToLink'] = "Dewiswch yr ymgyrch yr hoffech chi gysyll
 $GLOBALS['strSelectAdvertiser'] = "Dewiswch Hysbysebwr";
 $GLOBALS['strSelectPlacement'] = "Dewiswch Ymgyrch";
 $GLOBALS['strSelectAd'] = "Dewiswch Faner";
-$GLOBALS['strConnectionType'] = "Math";
 $GLOBALS['strStatusPending'] = "Dan Ystyriaeth";
 $GLOBALS['strStatusDuplicate'] = "Dyblygu";
 $GLOBALS['strConnectionType'] = "Math";
@@ -464,11 +454,6 @@ $GLOBALS['strShortcutShowStatuses'] = "Dangos statysau";
 $GLOBALS['strStats'] = "Ystadegau";
 $GLOBALS['strNoStats'] = "Nid oes unrhyw ystadegau ar gael ar hyn o bryd";
 $GLOBALS['strNoStatsForPeriod'] = "Nid oes unrhyw ystadegau ar gael ar gyfer cyfnod %s i %s ar hyn o bryd";
-$GLOBALS['strGlobalHistory'] = "Hanes Eang";
-$GLOBALS['strDailyHistory'] = "Hanes dyddiol";
-$GLOBALS['strDailyStats'] = "Ystadegau dyddiol";
-$GLOBALS['strWeeklyHistory'] = "Hanes wythnosol";
-$GLOBALS['strMonthlyHistory'] = "Hanes misol";
 $GLOBALS['strTotalThisPeriod'] = "Cyfanswm ar gyfer cyfnod";
 $GLOBALS['strPublisherDistribution'] = "Dosbarthiad gwefan";
 $GLOBALS['strCampaignDistribution'] = "Dosbarthiad Ymgyrch";
@@ -488,7 +473,6 @@ $GLOBALS['strEstimated'] = "Dyddiad dod i ben amcangyfrifol";
 $GLOBALS['strCampaignStop'] = "Hanes ymgyrch";
 
 // Reports
-$GLOBALS['strLimitations'] = "Cyfyngiadau";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "Pob hysbysebwr";
@@ -599,10 +583,7 @@ $GLOBALS['strInactiveAgenciesHidden'] = "cyfrif(on) anweithredol wedi cuddio";
 
 // Channels
 $GLOBALS['strChannelToWebsite'] = "Pob gwefan";
-$GLOBALS['strNoChannelsAddWebsite'] = "Nid oes unrhyw wefan wedi cael ei ddiffinio hyd yma. I greu ardal, <a href='affiliate-edit.php'>ychwanegwch wefan newydd</a> yn gyntaf.";
 $GLOBALS['strChannelLimitations'] = "Dewisiadau Trosglwyddiad";
-$GLOBALS['strConfirmDeleteChannel'] = "Ydych chi wir am ddileu yr ymgyrch yma?";
-$GLOBALS['strConfirmDeleteChannels'] = "Ydych chi wir am ddileu yr ymgyrch yma?";
 
 // Tracker Variables
 $GLOBALS['strVariableDescription'] = "Disgrifiad";

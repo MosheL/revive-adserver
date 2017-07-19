@@ -128,8 +128,8 @@ $GLOBALS['strOverrideAds'] = "Override Campaign Advertisements";
 $GLOBALS['strHighAds'] = "Contract Campaign Advertisements";
 $GLOBALS['strECPMAds'] = "eCPM Campaign Advertisements";
 $GLOBALS['strLowAds'] = "Remnant Campaign Advertisements";
-$GLOBALS['strLimitations'] = "Limitations";
-$GLOBALS['strNoLimitations'] = "No Limitations";
+$GLOBALS['strLimitations'] = "Delivery rules";
+$GLOBALS['strNoLimitations'] = "No delivery rules";
 $GLOBALS['strCapping'] = "Capping";
 
 // Properties
@@ -277,7 +277,7 @@ $GLOBALS['strClients'] = "Advertisers";
 $GLOBALS['strClientsAndCampaigns'] = "Advertisers & Campaigns";
 $GLOBALS['strAddClient'] = "Add new advertiser";
 $GLOBALS['strClientProperties'] = "Advertiser Properties";
-$GLOBALS['strClientHistory'] = "Advertiser History";
+$GLOBALS['strClientHistory'] = "Advertiser Statistics";
 $GLOBALS['strNoClients'] = "There are currently no advertisers defined. To create a campaign, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
 $GLOBALS['strConfirmDeleteClient'] = "Do you really want to delete this advertiser?";
 $GLOBALS['strConfirmDeleteClients'] = "Do you really want to delete the selected advertisers?";
@@ -309,7 +309,7 @@ $GLOBALS['strCampaignForAdvertiser'] = "for advertiser";
 $GLOBALS['strLinkedCampaigns'] = "Linked Campaigns";
 $GLOBALS['strCampaignProperties'] = "Campaign Properties";
 $GLOBALS['strCampaignOverview'] = "Campaign Overview";
-$GLOBALS['strCampaignHistory'] = "Campaign History";
+$GLOBALS['strCampaignHistory'] = "Campaign Statistics";
 $GLOBALS['strNoCampaigns'] = "There are currently no campaigns defined for this advertiser.";
 $GLOBALS['strNoCampaignsAddAdvertiser'] = "There are currently no campaigns defined, because there are no advertisers. To create a campaign, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
 $GLOBALS['strConfirmDeleteCampaign'] = "Do you really want to delete this campaign?";
@@ -480,7 +480,7 @@ $GLOBALS['strAddBanner_Key'] = "Add <u>n</u>ew banner";
 $GLOBALS['strBannerToCampaign'] = "to campaign";
 $GLOBALS['strShowBanner'] = "Show banner";
 $GLOBALS['strBannerProperties'] = "Banner Properties";
-$GLOBALS['strBannerHistory'] = "Banner History";
+$GLOBALS['strBannerHistory'] = "Banner Statistics";
 $GLOBALS['strNoBanners'] = "There are currently no banners defined for this campaign.";
 $GLOBALS['strNoBannersAddCampaign'] = "There are currently no banners defined, because there are no campaigns. To create a banner, <a href='campaign-edit.php?clientid=%s'>add a new campaign</a> first.";
 $GLOBALS['strNoBannersAddAdvertiser'] = "There are currently no banners defined, because there are no advertisers. To create a banner, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
@@ -547,13 +547,13 @@ $GLOBALS['strConvertSWF'] = "<br />The Flash file you just uploaded contains har
 $GLOBALS['strCompressSWF'] = "Compress SWF file for faster downloading (Flash 6 player required)";
 $GLOBALS['strOverwriteSource'] = "Overwrite source parameter";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Delivery Options";
-$GLOBALS['strACL'] = "Delivery";
-$GLOBALS['strACLAdd'] = "Add delivery limitation";
-$GLOBALS['strApplyLimitationsTo'] = "Apply limitations to";
+$GLOBALS['strACL'] = "Delivery Options";
+$GLOBALS['strACLAdd'] = "Add delivery rule";
+$GLOBALS['strApplyLimitationsTo'] = "Apply delivery rules to";
 $GLOBALS['strAllBannersInCampaign'] = "All banners in this campaign";
-$GLOBALS['strRemoveAllLimitations'] = "Remove all limitations";
+$GLOBALS['strRemoveAllLimitations'] = "Remove all delivery rules";
 $GLOBALS['strEqualTo'] = "is equal to";
 $GLOBALS['strDifferentFrom'] = "is different from";
 $GLOBALS['strLaterThan'] = "is later than";
@@ -575,7 +575,7 @@ $GLOBALS['strDomain'] = "Domain";
 $GLOBALS['strSource'] = "Source";
 $GLOBALS['strBrowser'] = "Browser";
 $GLOBALS['strOS'] = "OS";
-$GLOBALS['strDeliveryLimitations'] = "Delivery Limitations";
+$GLOBALS['strDeliveryLimitations'] = "Delivery Rules";
 
 $GLOBALS['strDeliveryCappingReset'] = "Reset view counters after:";
 $GLOBALS['strDeliveryCappingTotal'] = "in total";
@@ -605,7 +605,7 @@ $GLOBALS['strAffiliates'] = "Websites";
 $GLOBALS['strAffiliatesAndZones'] = "Websites & Zones";
 $GLOBALS['strAddNewAffiliate'] = "Add new website";
 $GLOBALS['strAffiliateProperties'] = "Website Properties";
-$GLOBALS['strAffiliateHistory'] = "Website History";
+$GLOBALS['strAffiliateHistory'] = "Website Statistics";
 $GLOBALS['strNoAffiliates'] = "There are currently no websites defined. To create a zone, <a href='affiliate-edit.php'>add a new website</a> first.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Do you really want to delete this website?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Do you really want to delete the selected websites?";
@@ -724,7 +724,6 @@ $GLOBALS['strSelectPlacement'] = "Select Campaign";
 $GLOBALS['strSelectAd'] = "Select Banner";
 $GLOBALS['strSelectPublisher'] = "Select Website";
 $GLOBALS['strSelectZone'] = "Select Zone";
-$GLOBALS['strConnectionType'] = "Type";
 $GLOBALS['strStatusPending'] = "Pending";
 $GLOBALS['strStatusApproved'] = "Approved";
 $GLOBALS['strStatusDisapproved'] = "Disapproved";
@@ -742,11 +741,11 @@ $GLOBALS['strShortcutShowStatuses'] = "Show statuses";
 $GLOBALS['strStats'] = "Statistics";
 $GLOBALS['strNoStats'] = "There are currently no statistics available";
 $GLOBALS['strNoStatsForPeriod'] = "There are currently no statistics available for the period %s to %s";
-$GLOBALS['strGlobalHistory'] = "Global History";
-$GLOBALS['strDailyHistory'] = "Daily history";
-$GLOBALS['strDailyStats'] = "Daily statistics";
-$GLOBALS['strWeeklyHistory'] = "Weekly history";
-$GLOBALS['strMonthlyHistory'] = "Monthly history";
+$GLOBALS['strGlobalHistory'] = "Global Statistics";
+$GLOBALS['strDailyHistory'] = "Daily Statistics";
+$GLOBALS['strDailyStats'] = "Daily Statistics";
+$GLOBALS['strWeeklyHistory'] = "Weekly Statistics";
+$GLOBALS['strMonthlyHistory'] = "Monthly Statistics";
 $GLOBALS['strTotalThisPeriod'] = "Total this period";
 $GLOBALS['strPublisherDistribution'] = "Website Distribution";
 $GLOBALS['strCampaignDistribution'] = "Campaign Distribution";
@@ -757,10 +756,10 @@ $GLOBALS['strBreakdownByMonth'] = "Month";
 $GLOBALS['strBreakdownByDow'] = "Day of week";
 $GLOBALS['strBreakdownByHour'] = "Hour";
 $GLOBALS['strItemsPerPage'] = "Items per page";
-$GLOBALS['strDistributionHistoryCampaign'] = "Distribution history (Campaign)";
-$GLOBALS['strDistributionHistoryBanner'] = "Distribution history (Banner)";
-$GLOBALS['strDistributionHistoryWebsite'] = "Distribution history (Website)";
-$GLOBALS['strDistributionHistoryZone'] = "Distribution history (Zone)";
+$GLOBALS['strDistributionHistoryCampaign'] = "Distribution Statistics (Campaign)";
+$GLOBALS['strDistributionHistoryBanner'] = "Distribution Statistics (Banner)";
+$GLOBALS['strDistributionHistoryWebsite'] = "Distribution Statistics (Website)";
+$GLOBALS['strDistributionHistoryZone'] = "Distribution Statistics (Zone)";
 $GLOBALS['strShowGraphOfStatistics'] = "Show <u>G</u>raph of Statistics";
 $GLOBALS['strExportStatisticsToExcel'] = "<u>E</u>xport Statistics to Excel";
 $GLOBALS['strGDnotEnabled'] = "You must have GD enabled in PHP to display graphs. <br />Please see <a href='http://www.php.net/gd' target='_blank'>http://www.php.net/gd</a> for more information, including how to install GD on your server.";
@@ -778,7 +777,7 @@ $GLOBALS['strAdvancedReports'] = "Advanced Reports";
 $GLOBALS['strStartDate'] = "Start Date";
 $GLOBALS['strEndDate'] = "End Date";
 $GLOBALS['strPeriod'] = "Period";
-$GLOBALS['strLimitations'] = "Limitations";
+$GLOBALS['strLimitations'] = "Delivery Rules";
 $GLOBALS['strWorksheets'] = "Worksheets";
 
 // Admin_UI_Fields
@@ -1026,20 +1025,20 @@ $GLOBALS['strInactiveAgenciesHidden'] = "inactive account(s) hidden";
 $GLOBALS['strSwitchAccount'] = "Switch to this account";
 
 // Channels
-$GLOBALS['strChannel'] = "Targeting Channel";
-$GLOBALS['strChannels'] = "Targeting Channels";
-$GLOBALS['strChannelManagement'] = "Targeting Channel Management";
-$GLOBALS['strAddNewChannel'] = "Add new Targeting Channel";
-$GLOBALS['strAddNewChannel_Key'] = "Add <u>n</u>ew Targeting Channel";
+$GLOBALS['strChannel'] = "Delivery Rule Set";
+$GLOBALS['strChannels'] = "Delivery Rule Sets";
+$GLOBALS['strChannelManagement'] = "Delivery Rule Set Management";
+$GLOBALS['strAddNewChannel'] = "Add new Delivery Rule Set";
+$GLOBALS['strAddNewChannel_Key'] = "Add <u>n</u>ew Delivery Rule Set";
 $GLOBALS['strChannelToWebsite'] = "to website";
-$GLOBALS['strNoChannels'] = "There are currently no targeting channels defined";
-$GLOBALS['strNoChannelsAddWebsite'] = "There are currently no targeting channels defined, because there are no websites. To create a targeting channel, <a href='affiliate-edit.php'>add a new website</a> first.";
-$GLOBALS['strEditChannelLimitations'] = "Edit targeting channel limitations";
-$GLOBALS['strChannelProperties'] = "Targeting Channel properties";
+$GLOBALS['strNoChannels'] = "There are currently no delivery rule sets defined";
+$GLOBALS['strNoChannelsAddWebsite'] = "There are currently no delivery rule sets defined, because there are no websites. To create a delivery rule set, <a href='affiliate-edit.php'>add a new website</a> first.";
+$GLOBALS['strEditChannelLimitations'] = "Edit delivery options for the delivery rule set";
+$GLOBALS['strChannelProperties'] = "Delivery Rule Set Properties";
 $GLOBALS['strChannelLimitations'] = "Delivery Options";
-$GLOBALS['strConfirmDeleteChannel'] = "Do you really want to delete this targeting channel?";
-$GLOBALS['strConfirmDeleteChannels'] = "Do you really want to delete the selected targeting channels?";
-$GLOBALS['strChannelsOfWebsite'] = 'in'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strConfirmDeleteChannel'] = "Do you really want to delete this delivery rule set?";
+$GLOBALS['strConfirmDeleteChannels'] = "Do you really want to delete the selected delivery rule sets?";
+$GLOBALS['strChannelsOfWebsite'] = 'in'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "Variable Name";
@@ -1109,8 +1108,8 @@ $GLOBALS['strCampaignAuditNotActivated'] = "<li>In order to view campaigns which
 $GLOBALS['strCampaignAuditTrailSetup'] = "Activate Audit Trail to start viewing Campaigns";
 
 $GLOBALS['strUnsavedChanges'] = "You have unsaved changes on this page, make sure you press &quot;Save Changes&quot; when finished";
-$GLOBALS['strDeliveryLimitationsDisagree'] = "WARNING: The delivery engine limitations <strong>DO NOT AGREE</strong> with the limitations shown below<br />Please hit save changes to update the delivery engine's rules";
-$GLOBALS['strDeliveryLimitationsInputErrors'] = "Some of delivery limitations reports incorrect values:";
+$GLOBALS['strDeliveryLimitationsDisagree'] = "WARNING: The cached delivery rules <strong>DO NOT AGREE</strong> with the delivery rules shown below<br />Please hit save changes to update the cached delivery rules";
+$GLOBALS['strDeliveryLimitationsInputErrors'] = "Some delivery rules report incorrect values:";
 
 //confirmation messages
 $GLOBALS['strYouAreNowWorkingAsX'] = "You are now working as <b>%s</b>";
@@ -1171,19 +1170,19 @@ $GLOBALS['strZoneLinkedCampaign'] = "Campaign has been linked to zone <a href='%
 $GLOBALS['strZoneRemovedBanner'] = "Banner has been unlinked from zone <a href='%s'>%s</a>";
 $GLOBALS['strZoneRemovedCampaign'] = "Campaign has been unlinked from zone <a href='%s'>%s</a>";
 
-$GLOBALS['strChannelHasBeenAdded'] = "Targeting channel <a href='%s'>%s</a> has been added, <a href='%s'>change the delivery options</a>";
-$GLOBALS['strChannelHasBeenUpdated'] = "Targeting channel <a href='%s'>%s</a> has been updated";
-$GLOBALS['strChannelAclHasBeenUpdated'] = "Delivery options for targeting channel <a href='%s'>%s</a> have been updated";
-$GLOBALS['strChannelHasBeenDeleted'] = "Targeting channel <b>%s</b> has been deleted";
-$GLOBALS['strChannelsHaveBeenDeleted'] = "All selected Targeting Channels have been deleted";
-$GLOBALS['strChannelHasBeenDuplicated'] = "Targeting channel <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
+$GLOBALS['strChannelHasBeenAdded'] = "Delivery rule set <a href='%s'>%s</a> has been added. <a href='%s'>Set the delivery options.</a>";
+$GLOBALS['strChannelHasBeenUpdated'] = "Delivery rule set <a href='%s'>%s</a> has been updated";
+$GLOBALS['strChannelAclHasBeenUpdated'] = "Delivery options for the delivery rule set<a href='%s'>%s</a> have been updated";
+$GLOBALS['strChannelHasBeenDeleted'] = "Delivery rule set <b>%s</b> has been deleted";
+$GLOBALS['strChannelsHaveBeenDeleted'] = "All selected delivery rule sets have been deleted";
+$GLOBALS['strChannelHasBeenDuplicated'] = "Delivery rule set <a href='%s'>%s</a> has been copied to <a href='%s'>%s</a>";
 
 $GLOBALS['strUserPreferencesUpdated'] = "Your <b>%s</b> preferences has been updated";
 $GLOBALS['strEmailChanged'] = "Your E-mail has been changed";
 $GLOBALS['strPasswordChanged'] = "Your password has been changed";
 $GLOBALS['strXPreferencesHaveBeenUpdated'] = "<b>%s</b> have been updated";
 $GLOBALS['strXSettingsHaveBeenUpdated'] = "<b>%s</b> have been updated";
-$GLOBALS['strTZPreferencesWarning'] = "However, campaign activation and expiry were not updated, nor time-based banner limitations.<br />You will need to update them manually if you wish them to use the new timezone";
+$GLOBALS['strTZPreferencesWarning'] = "However, campaign activation and expiry were not updated, nor time-based banner delivery rules.<br />You will need to update them manually if you wish them to use the new timezone";
 
 // Report error messages
 $GLOBALS['strReportErrorMissingSheets'] = "No worksheet was selected for report";

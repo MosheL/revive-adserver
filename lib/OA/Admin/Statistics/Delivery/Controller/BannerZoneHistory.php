@@ -15,7 +15,7 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Delivery/CommonCrossHistory.ph
 /**
  * The class to display the delivery statistcs for the page:
  *
- * Statistics -> Advertisers & Campaigns -> Campaigns -> Banners -> Publisher Distribution -> Distribution History
+ * Statistics -> Advertisers & Campaigns -> Campaigns -> Banners -> Publisher Distribution -> Distribution Statistics
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
@@ -121,23 +121,23 @@ class OA_Admin_Statistics_Delivery_Controller_BannerZoneHistory extends OA_Admin
             $this->_addShortcut(
                 $GLOBALS['strClientProperties'],
                 'advertiser-edit.php?clientid='.$advertiserId,
-                'images/icon-advertiser.gif'
+                'iconAdvertiser'
             );
         }
         $this->_addShortcut(
             $GLOBALS['strCampaignProperties'],
             'campaign-edit.php?clientid='.$advertiserId.'&campaignid='.$placementId,
-            'images/icon-campaign.gif'
+            'iconCampaign'
         );
         $this->_addShortcut(
             $GLOBALS['strBannerProperties'],
             'banner-edit.php?clientid='.$advertiserId.'&campaignid='.$placementId.'&bannerid='.$adId,
-            'images/icon-banner-stored.gif'
+            'iconBanner'
         );
         $this->_addShortcut(
             $GLOBALS['strModifyBannerAcl'],
             'banner-acl.php?clientid='.$advertiserId.'&campaignid='.$placementId.'&bannerid='.$adId,
-            'images/icon-acl.gif'
+            'iconTargetingChannelAcl'
         );
 
         // Prepare the data for display by output() method

@@ -90,8 +90,6 @@ $GLOBALS['strNotice'] = "Бележка";
 // Priority
 $GLOBALS['strPriority'] = "Приоритет";
 $GLOBALS['strPriorityLevel'] = "Ниво на приоритет";
-$GLOBALS['strLimitations'] = "Ограничения";
-$GLOBALS['strNoLimitations'] = "Без ограничения";
 $GLOBALS['strCapping'] = "Ограничи броя реклами показвани на потребител";
 
 // Properties
@@ -179,7 +177,6 @@ $GLOBALS['strClients'] = "Рекламодатели";
 $GLOBALS['strClientsAndCampaigns'] = "Рекламодатели & Кампании";
 $GLOBALS['strAddClient'] = "Добави нов рекламодател";
 $GLOBALS['strClientProperties'] = "Данни за рекламодател";
-$GLOBALS['strClientHistory'] = "История на рекламодател";
 $GLOBALS['strNoClients'] = "Няма посочени рекламодатели. За да създадете кампания първо <a href='advertiser-edit.php'>добавете нов рекламодател</a>.";
 $GLOBALS['strConfirmDeleteClient'] = "Наистина ли искате да изтриете този рекламодател";
 $GLOBALS['strConfirmDeleteClients'] = "Наистина ли искате да изтриете този рекламодател";
@@ -205,7 +202,6 @@ $GLOBALS['strAddCampaign_Key'] = "Добави <u>н</u>ова кампания"
 $GLOBALS['strLinkedCampaigns'] = "Свържи кампаниите";
 $GLOBALS['strCampaignProperties'] = "Детайли за кампаниите";
 $GLOBALS['strCampaignOverview'] = "Преглед на кампаниите";
-$GLOBALS['strCampaignHistory'] = "История на кампаниите";
 $GLOBALS['strConfirmDeleteCampaign'] = "Наистина ли искате да изтриете тази кампания?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "Наистина ли искате да изтриете тази кампания?";
 $GLOBALS['strShowParentAdvertisers'] = "Покажи по-горните рекламодатели";
@@ -274,7 +270,7 @@ $GLOBALS['strWeight'] = "Височина";
 
 // Banner (swf)
 
-// Display limitations
+// Display Delviery Rules
 
 
 if (!isset($GLOBALS['strCappingBanner'])) {
@@ -326,7 +322,6 @@ $GLOBALS['strWithXBanners'] = "%d банер(и)";
 $GLOBALS['strStatusDuplicate'] = "Дублиране";
 
 // Statistics
-$GLOBALS['strDailyStats'] = "Всички статистики";
 $GLOBALS['strBreakdownByDay'] = "Ден";
 $GLOBALS['strBreakdownByWeek'] = "Седмица";
 $GLOBALS['strBreakdownByMonth'] = "Месец";
@@ -338,7 +333,6 @@ $GLOBALS['strCampaignStop'] = "История на кампаниите";
 
 // Reports
 $GLOBALS['strPeriod'] = "Период";
-$GLOBALS['strLimitations'] = "Ограничения";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "Общо рекламодатели";
@@ -396,9 +390,6 @@ $GLOBALS['strConfirmDeleteAgency'] = "Наистина ли искате да и
 $GLOBALS['strInactiveAgenciesHidden'] = "неактивния рекламодател(и) са скрити";
 
 // Channels
-$GLOBALS['strNoChannelsAddWebsite'] = "Няма посочени рекламодатели. За да създадете кампания първо <a href='advertiser-edit.php'>добавете нов рекламодател</a>.";
-$GLOBALS['strConfirmDeleteChannel'] = "Наистина ли искате да изтриете този тракер?";
-$GLOBALS['strConfirmDeleteChannels'] = "Наистина ли искате да изтриете този тракер?";
 
 // Tracker Variables
 $GLOBALS['strVariableDescription'] = "Описание";

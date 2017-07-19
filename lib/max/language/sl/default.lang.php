@@ -105,8 +105,6 @@ $GLOBALS['strPriority'] = "Prioriteta";
 $GLOBALS['strPriorityLevel'] = "Prednostna raven";
 $GLOBALS['strHighAds'] = "Pogodbeni oglasi";
 $GLOBALS['strLowAds'] = "Preostali oglasi";
-$GLOBALS['strLimitations'] = "Omejitve";
-$GLOBALS['strNoLimitations'] = "Brez omejitev";
 $GLOBALS['strCapping'] = "Prilagoditev";
 
 // Properties
@@ -225,7 +223,6 @@ $GLOBALS['strClients'] = "Oglaševalci";
 $GLOBALS['strClientsAndCampaigns'] = "Oglaševalci & Kampanje";
 $GLOBALS['strAddClient'] = "Dodaj novega oglaševalca";
 $GLOBALS['strClientProperties'] = "Lastnosti oglaševalca";
-$GLOBALS['strClientHistory'] = "Zgodovina oglaševalca";
 $GLOBALS['strNoClients'] = "Trenutno ni definiranih nobenih oglaševalcev. Če želite ustvariti novo kampanjo, <a href='advertiser-edit.php'>morate najprej dodati novega</a> oglaševalca.";
 $GLOBALS['strConfirmDeleteClient'] = "Ste prepričani, da želite izbrisati tega oglaševalca?";
 $GLOBALS['strConfirmDeleteClients'] = "Ste prepričani, da želite izbrisati izbrane oglaševalce?";
@@ -257,7 +254,6 @@ $GLOBALS['strCampaignForAdvertiser'] = "za oglaševalca";
 $GLOBALS['strLinkedCampaigns'] = "Kampanje z povezavami";
 $GLOBALS['strCampaignProperties'] = "Lastnosti kampanje";
 $GLOBALS['strCampaignOverview'] = "Pregled kampanje";
-$GLOBALS['strCampaignHistory'] = "Zgodovina kampanje";
 $GLOBALS['strNoCampaigns'] = "Trenutni ni definiranih kampanj za tega oglaševalca";
 $GLOBALS['strConfirmDeleteCampaign'] = "Ste prepričani, da želite izbrisati to kampanjo?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "Ste prepričani, da želite izbrisati izbrane kampanje?";
@@ -375,7 +371,6 @@ $GLOBALS['strAddBanner_Key'] = "Dodaj <u>n</u>ovo pasico";
 $GLOBALS['strBannerToCampaign'] = "v kampanjo";
 $GLOBALS['strShowBanner'] = "Prikaži pasico";
 $GLOBALS['strBannerProperties'] = "Lastnosti pasice";
-$GLOBALS['strBannerHistory'] = "Zgodovina pasice";
 $GLOBALS['strNoBanners'] = "Trenutno ni nobene definirane pasice za to kampanjo";
 $GLOBALS['strNoBannersAddCampaign'] = "Trenutno ni definiranih nobenih pasic, ker ni kampanj. Za ustvaritev pasice, <a href='campaign-edit.php?clientid=%s'>dodajte novo kampanjo</a> najprej.";
 $GLOBALS['strNoBannersAddAdvertiser'] = "Treutno ni definiranih nobenih pasic, ker ni oglaševalcev. Za ustvaritev pasice, <a href='advertiser-edit.php'>dodajte novega oglaševalca</a> najprej.";
@@ -435,12 +430,9 @@ $GLOBALS['strHardcodedLinks'] = "Implementirane povezave (hard-coded links)";
 $GLOBALS['strCompressSWF'] = "Stisni SWF datoteko za hitrejši prenos (zahtevan Flash player 6)";
 $GLOBALS['strOverwriteSource'] = "Prepiši izvirni parameter";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Možnosti dostave";
-$GLOBALS['strACL'] = "Dostava";
-$GLOBALS['strACLAdd'] = "Dodaj dostavno omejitev";
-$GLOBALS['strApplyLimitationsTo'] = "Uporabi omejitve";
-$GLOBALS['strRemoveAllLimitations'] = "Odstrani vse omejitve";
+$GLOBALS['strACL'] = "Možnosti dostave";
 $GLOBALS['strEqualTo'] = "je enak";
 $GLOBALS['strDifferentFrom'] = "je različen od";
 $GLOBALS['strGreaterThan'] = "je večji kot";
@@ -450,7 +442,6 @@ $GLOBALS['strOR'] = "ALI";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "To pasico prikaži samo ko:";
 $GLOBALS['strWeekDays'] = "Delavniki";
 $GLOBALS['strSource'] = "Vir";
-$GLOBALS['strDeliveryLimitations'] = "Omejitve dostave";
 
 $GLOBALS['strDeliveryCappingReset'] = "Ponastavi števce po:";
 $GLOBALS['strDeliveryCappingTotal'] = "celotnih";
@@ -477,7 +468,6 @@ $GLOBALS['strAffiliates'] = "Spletne strani";
 $GLOBALS['strAffiliatesAndZones'] = "Spletne strani & Področja";
 $GLOBALS['strAddNewAffiliate'] = "Dodaj novo spletno stran";
 $GLOBALS['strAffiliateProperties'] = "Lastnosti spletne strani";
-$GLOBALS['strAffiliateHistory'] = "Zgodovina spletne strani";
 $GLOBALS['strNoAffiliates'] = "Trenutno ni definiranih nobenih spletnih strani. Če želite ustvariti novo področje, morate najprej dodati novo <a href='affiliate-edit.php'>spletno stran</a>.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Ste prepričani, da želite izbrisati to spletno stran?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Ste prepričani, da želite izbrisati izbrane spletne strani?";
@@ -591,7 +581,6 @@ $GLOBALS['strSelectPlacement'] = "Izberite kampanjo";
 $GLOBALS['strSelectAd'] = "Izberite pasico";
 $GLOBALS['strSelectPublisher'] = "Izberite spletno stran";
 $GLOBALS['strSelectZone'] = "Izberite področje";
-$GLOBALS['strConnectionType'] = "Tip";
 $GLOBALS['strStatusPending'] = "V teku";
 $GLOBALS['strStatusDuplicate'] = "Podvoji";
 $GLOBALS['strConnectionType'] = "Tip";
@@ -602,11 +591,6 @@ $GLOBALS['strShortcutShowStatuses'] = "Prikaži statuse";
 $GLOBALS['strStats'] = "Statistika";
 $GLOBALS['strNoStats'] = "Trenutno ni na voljo nobenih statističnih podatkov";
 $GLOBALS['strNoStatsForPeriod'] = "Trenutno ni na voljo nobenih statističnih podatkov za obdobje od %s do %s";
-$GLOBALS['strGlobalHistory'] = "Celotna zgodovina";
-$GLOBALS['strDailyHistory'] = "Dnevna zgodovina";
-$GLOBALS['strDailyStats'] = "Dnevna statistika";
-$GLOBALS['strWeeklyHistory'] = "Tedenska zgodovina";
-$GLOBALS['strMonthlyHistory'] = "Mesečna zgodovina";
 $GLOBALS['strTotalThisPeriod'] = "Vseh za to obdobje";
 $GLOBALS['strPublisherDistribution'] = "Razporeditev spletne strani";
 $GLOBALS['strCampaignDistribution'] = "Razporeditev kampanje";
@@ -617,10 +601,6 @@ $GLOBALS['strBreakdownByMonth'] = "Mesec";
 $GLOBALS['strBreakdownByDow'] = "Dan v tednu";
 $GLOBALS['strBreakdownByHour'] = "Ura";
 $GLOBALS['strItemsPerPage'] = "Postavk po strani";
-$GLOBALS['strDistributionHistoryCampaign'] = "Zgodovina distribucije (Kampanja)";
-$GLOBALS['strDistributionHistoryBanner'] = "Zgodovina distribucije (Pasica)";
-$GLOBALS['strDistributionHistoryWebsite'] = "Zgodovina distribucije (Spletna stran)";
-$GLOBALS['strDistributionHistoryZone'] = "Zgodovina distribucije (Področje)";
 $GLOBALS['strShowGraphOfStatistics'] = "Prikaži <u>G</u>raf statistike";
 $GLOBALS['strExportStatisticsToExcel'] = "<u>I</u>zvozi statistiko v Excel-ovo datoteko";
 $GLOBALS['strGDnotEnabled'] = "V PHP-ju morate imeti omogočen GD za prikaz grafov. <br />Obiščite <a href='http://www.php.net/gd' target='_blank'>http://www.php.net/gd</a> za več informacij.";
@@ -636,7 +616,6 @@ $GLOBALS['strCampaignStop'] = "Ustavitev kampanje";
 // Reports
 $GLOBALS['strAdvancedReports'] = "Naprednejša poročila";
 $GLOBALS['strPeriod'] = "Obdobje";
-$GLOBALS['strLimitations'] = "Omejitve";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "Vsi oglaševalci";
@@ -814,20 +793,9 @@ $GLOBALS['strInactiveAgenciesHidden'] = "skriti neaktivni računi";
 $GLOBALS['strSwitchAccount'] = "Preklopi na ta račun";
 
 // Channels
-$GLOBALS['strChannel'] = "Ciljni kanal";
-$GLOBALS['strChannels'] = "Ciljni kanali";
-$GLOBALS['strChannelManagement'] = "Upravljanje z ciljnim kanalom";
-$GLOBALS['strAddNewChannel'] = "Dodaj nov ciljni kanal";
-$GLOBALS['strAddNewChannel_Key'] = "Dodaj <u>n</u>ov ciljni kanal";
 $GLOBALS['strChannelToWebsite'] = "k spletni strani";
-$GLOBALS['strNoChannels'] = "Trenutno ni definiran noben ciljni kanal";
-$GLOBALS['strNoChannelsAddWebsite'] = "Trenutno ni definiranih ciljnih kanalov, ker ni spletnih strani. Za ustvaritev ciljnega kanala, <a href='affiliate-edit.php'>dodajte novo spletno stran</a> najprej.";
-$GLOBALS['strEditChannelLimitations'] = "Uredi omejitve ciljnega kanala";
-$GLOBALS['strChannelProperties'] = "Lastnosti ciljnega kanala";
 $GLOBALS['strChannelLimitations'] = "Možnosti dostave";
-$GLOBALS['strConfirmDeleteChannel'] = "Ste prepričani, da želite izbrisati ta ciljni kanal?";
-$GLOBALS['strConfirmDeleteChannels'] = "Ste prepričani, da želite izbrisati izbrane ciljne kanale?";
-$GLOBALS['strChannelsOfWebsite'] = 'v'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strChannelsOfWebsite'] = 'v'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "Ime spremenljivke";
@@ -886,8 +854,6 @@ $GLOBALS['strCampaignNoDataTimeSpan'] = "Nobena kampanja se ni začela ali konč
 $GLOBALS['strCampaignAuditTrailSetup'] = "Aktiviraj Pregledno pot za ogled Kampanj";
 
 $GLOBALS['strUnsavedChanges'] = "Na tej strani imate neshranjene spremembe. Ko boste končali, kliknite na \"Shrani spremebe\"";
-$GLOBALS['strDeliveryLimitationsDisagree'] = "OPOZORILO: Omejitve dostavnega orodja <strong>NE STRINJAM SE</strong> z omejitvami prikazanih spodaj<br />Prosimo, kliknite Shrani spremebe za posodobitev pravil dostavnega orodja";
-$GLOBALS['strDeliveryLimitationsInputErrors'] = "Omejitve dostave poročajo o napačnih vrednostih:";
 
 //confirmation messages
 $GLOBALS['strYouAreNowWorkingAsX'] = "Zdaj delujte kot <b>%s</b>";
@@ -947,12 +913,6 @@ $GLOBALS['strZoneLinkedCampaign'] = "Kampanja je bila povezana v področje <a hr
 $GLOBALS['strZoneRemovedBanner'] = "Pasica več ni povezana v področje <a href='%s'>%s</a>";
 $GLOBALS['strZoneRemovedCampaign'] = "Kampanja več ni povezana v področje <a href='%s'>%s</a>";
 
-$GLOBALS['strChannelHasBeenAdded'] = "Ciljni kanal <a href='%s'>%s</a> je bil dodan, <a href='%s'>spremeni dostavne možnosti</a>";
-$GLOBALS['strChannelHasBeenUpdated'] = "Ciljni kanal <a href='%s'>%s</a> je bil posodobljen";
-$GLOBALS['strChannelAclHasBeenUpdated'] = "Dostavne možnosti ciljnega kanala <a href='%s'>%s</a> so bile posodobljene";
-$GLOBALS['strChannelHasBeenDeleted'] = "Ciljni kanal <b>%s</b> je bil izbrisan";
-$GLOBALS['strChannelsHaveBeenDeleted'] = "Vsi izbrani ciljni kanali so bili izbrisani";
-$GLOBALS['strChannelHasBeenDuplicated'] = "Ciljni kanal <a href='%s'>%s</a> je bil kopiran v <a href='%s'>%s</a>";
 
 $GLOBALS['strUserPreferencesUpdated'] = "Vaše <b>%s</b> preference so bile posodobljene";
 $GLOBALS['strEmailChanged'] = "Vaš e-poštni naslov je bil spremenjen";

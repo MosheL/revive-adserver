@@ -133,8 +133,6 @@ $GLOBALS['strHighAds'] = "
 قرارداد کمپین تبلیغات";
 $GLOBALS['strECPMAds'] = "eCPM کمپین تبلیغات";
 $GLOBALS['strLowAds'] = "تبلیغات کمپین باقی ماندهs";
-$GLOBALS['strLimitations'] = "محدودیات";
-$GLOBALS['strNoLimitations'] = "هیج محدوذیتی وجود ندارد";
 $GLOBALS['strCapping'] = "
 سر پوش";
 
@@ -192,7 +190,6 @@ $GLOBALS['strAuthentification'] = "احراز هویت";
 $GLOBALS['strWelcomeTo'] = "خوش آمدید به ";
 $GLOBALS['strEnterUsername'] = "نام کاربری و رمز خود را برای ورود وارد کنید";
 $GLOBALS['strEnterBoth'] = "لطفا هم نام کاربری و هم رمز را وارد کنید";
-$GLOBALS['strEnableCookies'] = "شما نیاز به فعال کردن کوکی ها دارید قبل از استفاده از {$PRODUCT_NAME}";
 $GLOBALS['strSessionIDNotMatch'] = "خطا در کوکی ، لطفا دوباره وارد شوید";
 $GLOBALS['strLogin'] = "ورود";
 $GLOBALS['strLogout'] = "خروج";
@@ -278,7 +275,6 @@ $GLOBALS['strClients'] = "تبلیغات کننده ها";
 $GLOBALS['strClientsAndCampaigns'] = "تبلیغات کننده ها و کمپین ها";
 $GLOBALS['strAddClient'] = "تبلیغ ککننده جدید اضافه کنید";
 $GLOBALS['strClientProperties'] = "ویژگی های تبلیغ کننده ";
-$GLOBALS['strClientHistory'] = "سابقع کار تبلیغ کننده";
 $GLOBALS['strNoClients'] = "در حال حاضر هیچ تبلیغ تعریف شده وجود ندارد.برای ایجاد یک کمپین, ابتدا <a href='advertiser-edit.php'>اضافه کنید تبلیغ کننده جدید</a>.";
 $GLOBALS['strConfirmDeleteClient'] = "آیا واقعا میخواهید این تبلیغ کننده را حذف کنید؟";
 $GLOBALS['strConfirmDeleteClients'] = "
@@ -315,8 +311,6 @@ $GLOBALS['strCampaignProperties'] = "
 خواص کمپین";
 $GLOBALS['strCampaignOverview'] = "
 نمای کلی کمپین";
-$GLOBALS['strCampaignHistory'] = "
-تاریخچه کمپین";
 $GLOBALS['strNoCampaigns'] = "در حال حاضر هیچ کمپین تعریف شده برای این تبلیغ کنندگان وجود دارد.";
 $GLOBALS['strNoCampaignsAddAdvertiser'] = "در حال حاضر هیچ کمپین تعریف شده وجود ندارد, زیرا هیچ تبلیغ کننده وجود دارد. 
 برای ایجاد یک کمپین, <a href='advertiser-edit.php'>aاضافه کردن تبلیغ کنندگان جدید</a> ابتدا.";
@@ -543,8 +537,6 @@ $GLOBALS['strAddBanner_Key'] = "<u>جدید</u> اضافه کردن تبلیغا
 $GLOBALS['strBannerToCampaign'] = "به کمپین";
 $GLOBALS['strShowBanner'] = "تبلیغ را نشان بده";
 $GLOBALS['strBannerProperties'] = "خواص تبلیغات";
-$GLOBALS['strBannerHistory'] = "
-تاریخچه بنر";
 $GLOBALS['strNoBanners'] = "
 در حال حاضر هیچ تبلیغات تعریف شده برای این کمپین وجود ندارد.";
 $GLOBALS['strNoBannersAddCampaign'] = "در حال حاضر هیچ تبلیغات تعریف شده است، زیرا هیچ کمپین وجود دارد. برای ایجاد یک بنر، <a href='campaign-edit.php?clientid=%s'>کمپینی را اضافه کنید</a> ابتدا";
@@ -624,17 +616,13 @@ $GLOBALS['strCheckSWF'] = "لینک هایی که  سخت رمز هستند در
 $GLOBALS['strConvertSWFLinks'] = "تبدیل لینک فلش";
 $GLOBALS['strHardcodedLinks'] = "
 لینک سخت رمزی";
-$GLOBALS['strConvertSWF'] = "<br />فایل فلش شما فقط آپلود شامل URL های سخت رمزی. {$PRODUCT_NAME} قادر نخواهد بود برای پیگیری تعداد کلیک برای این بنر مگر اینکه شما تبدیل این آدرس ها سخت رمزی. در زیر شما یک لیست از تمام آدرس ها در داخل فایل فلش را پیدا اگر شما می خواهید برای تبدیل آدرس ها، به سادگی با کلیک <b>تبدیل</b>, در غیر این صورت با کلیک بر روی <b>لغو کردن</b>.<br /><br />لطفا توجه داشته باشید: اگر شما با کلیک <b>تبدیل</b> فایل فلش شما فقط آپلود به صورت فیزیکی تغییر خواهد کرد. <br />لطفا یک نسخه پشتیبان از فایل اصلی را نگه دارید. صرف نظر از که در آن نسخه این بنر ایجاد شد، فایل منجر خواهد فلش 4 بازیکن (یا بالاتر) به درستی نمایش نیاز دارند.<br /><br />";
 $GLOBALS['strCompressSWF'] = "فشرده سازی فایل SWF برای دانلود سریع تر (فلش 6 بازیکن مورد نیاز)";
 $GLOBALS['strOverwriteSource'] = "پارامتر منبع جاینوشت";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "گزینه های تحویل";
-$GLOBALS['strACL'] = "تحویل";
-$GLOBALS['strACLAdd'] = "اضافه کردن محدودیت تحویل";
-$GLOBALS['strApplyLimitationsTo'] = "درخواست محدودیت ";
+$GLOBALS['strACL'] = "گزینه های تحویل";
 $GLOBALS['strAllBannersInCampaign'] = "همه تبلیغات در این کمپین";
-$GLOBALS['strRemoveAllLimitations'] = "حذف تمام محدودیت";
 $GLOBALS['strEqualTo'] = "برابر است با";
 $GLOBALS['strDifferentFrom'] = "متفاوت است";
 $GLOBALS['strLaterThan'] = "است بعد از";
@@ -655,7 +643,6 @@ $GLOBALS['strDomain'] = "دامنه";
 $GLOBALS['strSource'] = "منبع";
 $GLOBALS['strBrowser'] = "مرورگر";
 $GLOBALS['strOS'] = "سیستم عامل";
-$GLOBALS['strDeliveryLimitations'] = "محدودیت های تحویل";
 
 $GLOBALS['strDeliveryCappingReset'] = "تنظیم مجدد نمایش شمارنده پس از:";
 $GLOBALS['strDeliveryCappingTotal'] = "در مجموع";
@@ -685,7 +672,6 @@ $GLOBALS['strAffiliates'] = "وب سایت ها";
 $GLOBALS['strAffiliatesAndZones'] = "وب سایت ها و مناطق";
 $GLOBALS['strAddNewAffiliate'] = "اضافه کردن وب سایت جدید";
 $GLOBALS['strAffiliateProperties'] = "خواص وب سایت";
-$GLOBALS['strAffiliateHistory'] = "تاریخچه وب سایت";
 $GLOBALS['strNoAffiliates'] = "در حال حاضر هیچ وب سایت های تعریف شده وجود دارد. برای ایجاد یک منطقه, <a href='affiliate-edit.php'>یک وب سایت جدید ایجاد کنید</a> در ابتدا.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "آیا واقعا میخواهید این وب سایت را حذف کنید؟";
 $GLOBALS['strConfirmDeleteAffiliates'] = "آیا شما واقعا می خواهید وب سایت های انتخاب شده را حذف کنید؟";
@@ -800,7 +786,6 @@ $GLOBALS['strSelectPlacement'] = "انتخاب کمپین";
 $GLOBALS['strSelectAd'] = "انتخاب بنر";
 $GLOBALS['strSelectPublisher'] = "انتخاب سایت";
 $GLOBALS['strSelectZone'] = "انتخاب منطقه";
-$GLOBALS['strConnectionType'] = "نوع";
 $GLOBALS['strStatusPending'] = "در حال پردازش";
 $GLOBALS['strStatusApproved'] = "تایید شده";
 $GLOBALS['strStatusDisapproved'] = "تایید نشده";
@@ -818,11 +803,6 @@ $GLOBALS['strShortcutShowStatuses'] = "نمایش وضعیت ها";
 $GLOBALS['strStats'] = "آمار";
 $GLOBALS['strNoStats'] = "در حال حاضر هیچ آماری وحود ندارد";
 $GLOBALS['strNoStatsForPeriod'] = "هیچ آماری برای دوره ی  %s تا %s وجود ندارد";
-$GLOBALS['strGlobalHistory'] = "تاریخ جهانی";
-$GLOBALS['strDailyHistory'] = "تاریخ روزانه";
-$GLOBALS['strDailyStats'] = "آمار زوانه";
-$GLOBALS['strWeeklyHistory'] = "تاریخ هفتگی";
-$GLOBALS['strMonthlyHistory'] = "تاریخ ماهانه";
 $GLOBALS['strTotalThisPeriod'] = "کل این دوره";
 $GLOBALS['strPublisherDistribution'] = "توزیع وب سایت";
 $GLOBALS['strCampaignDistribution'] = "توضیع کمپین";
@@ -833,10 +813,6 @@ $GLOBALS['strBreakdownByMonth'] = "ماه";
 $GLOBALS['strBreakdownByDow'] = "روز از هفته";
 $GLOBALS['strBreakdownByHour'] = "ساعت";
 $GLOBALS['strItemsPerPage'] = "آیتم ها در هر صفحه";
-$GLOBALS['strDistributionHistoryCampaign'] = "توزیع تاریخ (کمپین";
-$GLOBALS['strDistributionHistoryBanner'] = "توزیع تاریخ (بنر)";
-$GLOBALS['strDistributionHistoryWebsite'] = "توزیع تاریخ (وبسایت)";
-$GLOBALS['strDistributionHistoryZone'] = "توزیع تاریخ (منطقه)";
 $GLOBALS['strShowGraphOfStatistics'] = "نمایش گراف آمار";
 $GLOBALS['strExportStatisticsToExcel'] = "خروجی آمار به صورت اکسل";
 $GLOBALS['strStatsArea'] = "ناحیه";
@@ -852,7 +828,6 @@ $GLOBALS['strAdvancedReports'] = "گزارش های پیشرفته";
 $GLOBALS['strStartDate'] = "آغاز تاریخ";
 $GLOBALS['strEndDate'] = "پایان تاریخ";
 $GLOBALS['strPeriod'] = "دوره";
-$GLOBALS['strLimitations'] = "محدودیات";
 $GLOBALS['strWorksheets'] = "آموزشی";
 
 // Admin_UI_Fields
@@ -888,8 +863,6 @@ $GLOBALS['strNoMatchesFound'] = "هیچ چیز مطابی پیدا نشد";
 $GLOBALS['strErrorOccurred'] = "یخ خطا اتفاق افتاد";
 $GLOBALS['strErrorDBPlain'] = "یک خطا هنگام اتصال به دیتابیس اتفاق افتاد";
 $GLOBALS['strErrorDBSerious'] = "یک مشکل جدی با دیتابیس تشخیص داده شد";
-$GLOBALS['strErrorDBNoDataPlain'] = "با توجه به مشکل با دیتابیس {$PRODUCT_NAME} نیمتوان دیتا را ذخیره یا فراخوانی کرد. ";
-$GLOBALS['strErrorDBNoDataSerious'] = "با توجه به مشکل جدی با دیتابیس, {$PRODUCT_NAME} نمیتوان دیتا را بازخوانی کرد";
 $GLOBALS['strErrorDBCorrupt'] = "جدول دیتبایس خراب است و نیاز به تعمیر دارد .";
 $GLOBALS['strErrorDBContact'] = "لطقا با مدیر سورور ارتباط برقرار کنید و مشکل را با او در میان بگذارید";
 $GLOBALS['strErrorLinkingBanner'] = "امکان لینک شدن این به بنر به ناحیه میسر نبود زیرا ::";
@@ -1017,20 +990,9 @@ $GLOBALS['strInactiveAgenciesHidden'] = "اکانت های غیر فعال مخ�
 $GLOBALS['strSwitchAccount'] = "انتقال به این حساب کاربری";
 
 // Channels
-$GLOBALS['strChannel'] = "کانال هدف";
-$GLOBALS['strChannels'] = "کانال های هدف";
-$GLOBALS['strChannelManagement'] = "مدیریت کانال هدف";
-$GLOBALS['strAddNewChannel'] = "اضافه کردن کانال هدف جدید";
-$GLOBALS['strAddNewChannel_Key'] = "اضافه کردن کانال هدف جدید";
 $GLOBALS['strChannelToWebsite'] = "به سایت";
-$GLOBALS['strNoChannels'] = "در حال حاضر هیچ کانال هدفی تعریف نشده است.";
-$GLOBALS['strNoChannelsAddWebsite'] = "هیچ کانال هدفی تعریف نشده است . برای ساخت کانال هدف, <a href='affiliate-edit.php'>یک سایت جدید اضافه کنید</a> first.";
-$GLOBALS['strEditChannelLimitations'] = "ویرایش محدودیت های کانال هدف";
-$GLOBALS['strChannelProperties'] = "مشخصات کانال هدف";
 $GLOBALS['strChannelLimitations'] = "تنظیمات تحویل";
-$GLOBALS['strConfirmDeleteChannel'] = "آیا واقعا میخواهید این کانال هدف را حذف کنید؟";
-$GLOBALS['strConfirmDeleteChannels'] = "آیا واقعا میخواهید این کانال های هدف را پاک کنید؟";
-$GLOBALS['strChannelsOfWebsite'] = 'در'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strChannelsOfWebsite'] = 'در'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "نام متغیر";
@@ -1071,16 +1033,10 @@ $GLOBALS['strAuditNoData'] = "هیچ فعالیت کاربری در دوره ا�
 $GLOBALS['strAuditTrail'] = "حسابرسی نویسن";
 $GLOBALS['strAuditTrailSetup'] = "امروز حسابرسی نویسن را راهن اندازی کنید";
 $GLOBALS['strAuditTrailGoTo'] = "برو به صفحه ی حسابرسی نوین";
-$GLOBALS['strAuditTrailNotEnabled'] = "<li>حسابرسی نوین به شما کمک میکند تا بفهمید چه شخصی در چه زمانی چه کاری انجام داده است {$PRODUCT_NAME}</li>
-        <li>این پیام را به این دلیل میبینید چون هنوز حسابرسی نویسن را فعال نکرده اید.</li>
-        <li>علاقه دارید بیشتر بدانید؟ <a href='{$PRODUCT_DOCSURL}/admin/settings/auditTrail' class='site-link' target='help' >راهنما حسابرسی نوین</a></li>";
 
 // Widget - Campaign
 $GLOBALS['strCampaignGoTo'] = "رفتن به صفحه ی کمپین ها";
 $GLOBALS['strCampaignSetUp'] = "تنظیم یک کمپین امروز";
-$GLOBALS['strCampaignNoRecords'] = "<li>کمپین ها به شما کمک میکنند تا بنرها و تبلیغ و .. را که یک هدف تبلیغاتی را دنال میکنند ، هماهنگ کنید.</li>
-        <li>با همگروه کردن بنرها با هم در زمان صرفه جویی کنید و برای هر کدام جداگانه تنظیمات تحویل را انجام ندهید.</li>
-        <li>پک کنید <a class='site-link' target='help' href='{$PRODUCT_DOCSURL}/user/inventory/advertisersAndCampaigns/campaigns'>Campaign documentation</a>!</li>";
 $GLOBALS['strCampaignNoRecordsAdmin'] = "<li>هیچ فعالیت کمپینی برای نمایش وجود ندارد.</li>";
 
 $GLOBALS['strCampaignNoDataTimeSpan'] = "هیچ کمپینی در دوره ای که انتخاب کرده اید ، نه شروع شده و نه پایان یافته است.";
@@ -1148,12 +1104,6 @@ $GLOBALS['strZoneLinkedCampaign'] = "کمپین به منطقه متصل شد <a
 $GLOBALS['strZoneRemovedBanner'] = "بنر از منطقه جدا شد <a href='%s'>%s</a>";
 $GLOBALS['strZoneRemovedCampaign'] = "کمپین از منطقه غیر لینک شد <a href='%s'>%s</a>";
 
-$GLOBALS['strChannelHasBeenAdded'] = "کانال هدف <a href='%s'>%s</a> افزوده شد, <a href='%s'>تغییر تنظیمات تحویل</a>";
-$GLOBALS['strChannelHasBeenUpdated'] = "کانال هدف <a href='%s'>%s</a> بروزرسانی شد";
-$GLOBALS['strChannelAclHasBeenUpdated'] = "تنظیمات تحویل برای کانال هدف <a href='%s'>%s</a> بروزرسانی شد";
-$GLOBALS['strChannelHasBeenDeleted'] = "کانال هدف <b>%s</b> حذف شد";
-$GLOBALS['strChannelsHaveBeenDeleted'] = "همه ی کانال های هدف انتخاب شده حذف گردیدند.";
-$GLOBALS['strChannelHasBeenDuplicated'] = "کانال هدف <a href='%s'>%s</a> کپی شد به <a href='%s'>%s</a>";
 
 $GLOBALS['strUserPreferencesUpdated'] = "شما <b>%s</b> تنظیمات بروزرسانی شد";
 $GLOBALS['strEmailChanged'] = "ایمیل شما تغییر کرد";

@@ -165,8 +165,6 @@ $GLOBALS['strDeliveryFilenamesFrontController'] = "フロントコントロー�
 $GLOBALS['strDeliveryFilenamesFlash'] = "FlashのURL（フルURL）";
 $GLOBALS['strDeliveryCaching'] = "バナーキャッシュの設定";
 $GLOBALS['strDeliveryCacheLimit'] = "バナーキャッシュの更新間隔";
-$GLOBALS['strDeliveryAcls'] = "バナー配送毎に配信制限を確認する";
-$GLOBALS['strDeliveryObfuscate'] = "バナー配信時にチャンネルを隠す";
 $GLOBALS['strDeliveryExecPhp'] = "バナーの内容にPHPコードを許可する<br />(Warning: セキュリティリスクとなり得る)";
 $GLOBALS['strDeliveryCtDelimiter'] = "サードパーティー製の、クリック追跡時用区切り文字";
 $GLOBALS['strP3PSettings'] = "P3Pプライベートポリシー";
@@ -183,7 +181,6 @@ $GLOBALS['defaultLanguage'] = "デフォルト言語設定";
 $GLOBALS['strGeotargetingSettings'] = "ジオターゲティング設定";
 $GLOBALS['strGeotargeting'] = "ジオターゲティング設定";
 $GLOBALS['strGeotargetingType'] = "ジオターゲティングモジュールタイプ";
-$GLOBALS['strGeoShowUnavailable'] = "GeoIPにデータがない場合でも、ジオターゲティングの配信制限を表示する";
 
 // Interface Settings
 $GLOBALS['strInventory'] = "インベントリ";
@@ -235,8 +232,6 @@ $GLOBALS['strBlockAdClicks'] = "特定の時間内に同じゾーンもしくは
 $GLOBALS['strMaintenanceOI'] = "メンテナンス時間間隔(分）";
 $GLOBALS['strPrioritySettings'] = "優先度設定";
 $GLOBALS['strPriorityInstantUpdate'] = "優先度の変更を即反映する";
-$GLOBALS['strDefaultImpConWindow'] = "デフォルトの広告インプレッション接続ウィンドウ（秒）";
-$GLOBALS['strDefaultCliConWindow'] = "デフォルトの広告クリックウィンドウ（秒）";
 $GLOBALS['strAdminEmailHeaders'] = "{$PRODUCT_NAME} が送るメールのヘッダに以下の情報を付与する";
 $GLOBALS['strWarnLimit'] = "インプレッションの残数がここで指定する数値を下回った場合、警告Eメールを送信する";
 $GLOBALS['strWarnLimitDays'] = "表示日数の残数がここで指定する数値を下回った場合、警告Eメールを送信する";

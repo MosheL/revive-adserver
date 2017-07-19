@@ -121,8 +121,6 @@ $GLOBALS['strDeliveryFilenamesFrontController'] = "Kontrol depan";
 $GLOBALS['strDeliveryFilenamesFlash'] = "Pencakupan Flash (Alamat URL lengkap diizinkan)";
 $GLOBALS['strDeliveryCaching'] = "Penyetelan global untuk caching penyampaian";
 $GLOBALS['strDeliveryCacheLimit'] = "Time Between Cache Updates (seconds)";
-$GLOBALS['strDeliveryAcls'] = "Evaluasikan limitasi dari penyampaian banner pada saat penyampaian";
-$GLOBALS['strDeliveryObfuscate'] = "Mengkaburkan saluran pada saat penyampaian iklan";
 $GLOBALS['strDeliveryExecPhp'] = "Izinkan eksekusi kode PHP dalam iklan<br />(Perhatian: Resiko Keamanan)";
 $GLOBALS['strP3PSettings'] = "Kebijaksanaan keleluasaan pribadi global P3P";
 $GLOBALS['strUseP3P'] = "Gunakan kebijaksanaan P3P";
@@ -136,7 +134,6 @@ $GLOBALS['defaultLanguage'] = "Anggapan Bahasa yang digunakan<br />(Setiap pengg
 // Geotargeting Settings
 $GLOBALS['strGeotargeting'] = "Penyetelan Global Geotargeting";
 $GLOBALS['strGeotargetingType'] = "Jenis modul Geotargeting";
-$GLOBALS['strGeoShowUnavailable'] = "Tampilkan limitasi penyampaian dari geotargeting meskipun data GeoIP tidak tersedia";
 
 // Interface Settings
 $GLOBALS['strInventory'] = "Inventori";
@@ -167,7 +164,6 @@ $GLOBALS['strIgnoreHosts'] = "Don't store statistics for viewers using one of th
 // Campaign ECPM settings
 
 // Statistics & Maintenance Settings
-$GLOBALS['strBlockAdClicks'] = "Don't log an Ad Click if the viewer has clicked on the same ad within the specified time (seconds)";
 $GLOBALS['strPrioritySettings'] = "Penyetelan prioritas secara global";
 $GLOBALS['strAdminEmailHeaders'] = "Tambahkan header berikut pada semua E-Mail yang dikirimkan oleh {$PRODUCT_NAME}";
 $GLOBALS['strWarnLimit'] = "Kirimkan pemberitahuan bilamana jumlah impresi yang tersisa kurang dari jumlah impresi yang ditentukan disini";

@@ -15,7 +15,7 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Delivery/CommonCrossHistory.ph
 /**
  * The class to display the delivery statistcs for the page:
  *
- * Statistics -> Publishers & Zones -> Campaign Distribution -> Distribution History
+ * Statistics -> Publishers & Zones -> Campaign Distribution -> Distribution Statistics
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
@@ -111,7 +111,7 @@ class OA_Admin_Statistics_Delivery_Controller_AffiliateCampaignHistory extends O
             $this->_addShortcut(
                 $GLOBALS['strAffiliateProperties'],
                 'affiliate-edit.php?affiliateid='.$publisherId,
-                'images/icon-affiliate.gif'
+                'iconAffiliate'
             );
         }
 

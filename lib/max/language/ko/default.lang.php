@@ -115,7 +115,6 @@ $GLOBALS['strPriorityLevel'] = "우선 순위";
 $GLOBALS['strOverrideAds'] = "캠페인 광고 재정비";
 $GLOBALS['strHighAds'] = "캠페인 광고 규정";
 $GLOBALS['strLowAds'] = "남은 캠페인 광고";
-$GLOBALS['strNoLimitations'] = "제한 없음";
 $GLOBALS['strCapping'] = "상한";
 
 // Properties
@@ -152,7 +151,6 @@ $GLOBALS['strAuthentification'] = "인증";
 $GLOBALS['strWelcomeTo'] = "환영합니다!";
 $GLOBALS['strEnterUsername'] = "사용자ID와 비밀번호를 입력해 주세요.";
 $GLOBALS['strEnterBoth'] = "사용자ID와 비밀번호를 모두 입력하세요!";
-$GLOBALS['strEnableCookies'] = "{$PRODUCT_NAME}를 사용하려면 쿠키를 사용하도록 설정해야 한다.";
 $GLOBALS['strSessionIDNotMatch'] = "세션 쿠키 오류, 다시 로그인 하시기 바랍니다";
 $GLOBALS['strLogin'] = "로그인";
 $GLOBALS['strLogout'] = "로그아웃";
@@ -228,7 +226,6 @@ $GLOBALS['strClients'] = "광고주";
 $GLOBALS['strClientsAndCampaigns'] = "광고주 & 캠페인";
 $GLOBALS['strAddClient'] = "새 광고주 추가";
 $GLOBALS['strClientProperties'] = "광고주 속성";
-$GLOBALS['strClientHistory'] = "광고주 내역";
 $GLOBALS['strNoClients'] = "현재 등록된 광고주가 없습니다. 캠페인을 만들려면 <a href='advertiser-edit.php'> 새 광고주 추가</a>를 하십시오.";
 $GLOBALS['strConfirmDeleteClient'] = "해당 광고주를 삭제합니까?";
 $GLOBALS['strConfirmDeleteClients'] = "해당 광고주를 삭제합니까?";
@@ -253,7 +250,6 @@ $GLOBALS['strAddCampaign'] = "새 캠페인 추가";
 $GLOBALS['strAddCampaign_Key'] = "새 캠페인 추가 (<u>n</u>)";
 $GLOBALS['strCampaignProperties'] = "캠페인 정보";
 $GLOBALS['strCampaignOverview'] = "캠페인 요약";
-$GLOBALS['strCampaignHistory'] = "캠페인 내역";
 $GLOBALS['strNoCampaigns'] = "해당 광고주에 대한 캠페인이 존재하지 않습니다.";
 $GLOBALS['strConfirmDeleteCampaign'] = "정말로 캠페인을 삭제 하시겠습니까?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "정말로 선택된 캠페인을 삭제 하시겠습니까?";
@@ -296,7 +292,6 @@ $GLOBALS['strAddBanner'] = "새 배너 추가";
 $GLOBALS['strAddBanner_Key'] = "새 배너 추가(<u>n</u>)";
 $GLOBALS['strShowBanner'] = "배너 보기";
 $GLOBALS['strBannerProperties'] = "배너 속성";
-$GLOBALS['strBannerHistory'] = "배너 내역";
 $GLOBALS['strNoBanners'] = "이 캠페인에 등록된 배너가 없습니다.";
 $GLOBALS['strConfirmDeleteBanner'] = "해당 배너를 삭제하시면 통계내역도 함께 삭제됩니다.\n정말 이 배너를 삭제 하시겠습니까?";
 $GLOBALS['strConfirmDeleteBanners'] = "해당 배너를 삭제하시면 통계내역도 함께 삭제됩니다.\n정말 선택된 배너를 삭제 하시겠습니까?";
@@ -334,12 +329,9 @@ $GLOBALS['strHardcodedLinks'] = "내장�?� �?�?�";
 $GLOBALS['strCompressSWF'] = "보다 빠른전송을 위해 SWF 파일을 압축합니다. (플래시 6 버젼이상 필요)";
 $GLOBALS['strOverwriteSource'] = "원본소스 파라미터 덮어쓰기";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "전송 옵션";
-$GLOBALS['strACL'] = "전송";
-$GLOBALS['strACLAdd'] = "새 전송 제한 추가";
-$GLOBALS['strApplyLimitationsTo'] = "제한 적용하기";
-$GLOBALS['strRemoveAllLimitations'] = "모든 제한 제거";
+$GLOBALS['strACL'] = "전송 옵션";
 $GLOBALS['strEqualTo'] = "같을 경우";
 $GLOBALS['strDifferentFrom'] = "다른 경우";
 $GLOBALS['strAND'] = "그리고";                          // logical operator
@@ -349,7 +341,6 @@ $GLOBALS['strWeekDays'] = "주간";
 $GLOBALS['strDomain'] = "도메인";
 $GLOBALS['strSource'] = "소스";
 $GLOBALS['strBrowser'] = "브라우저";
-$GLOBALS['strDeliveryLimitations'] = "전송 제한사항";
 
 
 if (!isset($GLOBALS['strCappingBanner'])) {
@@ -370,7 +361,6 @@ $GLOBALS['strAffiliates'] = "웹사이트";
 $GLOBALS['strAffiliatesAndZones'] = "웹사이트 & 광고영역";
 $GLOBALS['strAddNewAffiliate'] = "새 웹사이트 추가";
 $GLOBALS['strAffiliateProperties'] = "웹사이트 속성";
-$GLOBALS['strAffiliateHistory'] = "웹사이트 내역";
 $GLOBALS['strNoAffiliates'] = "현재 웹사이트가 존재하지 않습니다. 웹사이트 추가 후 광고영역을 생성해 주세요.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "해당 웹사이트를 정말로 삭제 하시겠습니까?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "선택된 해당 웹사이트를 정말로 삭제 하시겠습니까?";
@@ -443,11 +433,6 @@ $GLOBALS['strStatusDuplicate'] = "복제";
 // Statistics
 $GLOBALS['strStats'] = "통계";
 $GLOBALS['strNoStats'] = "현재 통계내역이 없습니다.";
-$GLOBALS['strGlobalHistory'] = "전체 내역";
-$GLOBALS['strDailyHistory'] = "일별 내역";
-$GLOBALS['strDailyStats'] = "일별 통계";
-$GLOBALS['strWeeklyHistory'] = "주간 내역";
-$GLOBALS['strMonthlyHistory'] = "월별 내역";
 $GLOBALS['strTotalThisPeriod'] = "기간 합계";
 $GLOBALS['strBreakdownByDay'] = "일";
 $GLOBALS['strBreakdownByWeek'] = "주";
@@ -542,10 +527,7 @@ $GLOBALS['strConfirmDeleteAgency'] = "�?� �?역�?� 삭제합니까?";
 $GLOBALS['strInactiveAgenciesHidden'] = "배너가 숨겨져 있습니다.";
 
 // Channels
-$GLOBALS['strNoChannels'] = "현재 등�?�?� 배너가 없습니다.";
 $GLOBALS['strChannelLimitations'] = "전달유지 옵션";
-$GLOBALS['strConfirmDeleteChannel'] = "해당 배너를 삭제합니까??";
-$GLOBALS['strConfirmDeleteChannels'] = "해당 배너를 삭제합니까??";
 
 // Tracker Variables
 $GLOBALS['strVariableDescription'] = "설명";

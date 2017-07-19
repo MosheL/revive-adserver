@@ -108,8 +108,6 @@ $GLOBALS['strPriority'] = "Öncelik";
 $GLOBALS['strPriorityLevel'] = "Öncelik düzeyi";
 $GLOBALS['strECPMAds'] = "eBGBM Kampanya Reklamı";
 $GLOBALS['strLowAds'] = "Boşta Kalan Gösterim Kampanyası";
-$GLOBALS['strLimitations'] = "Kısıtlamalar";
-$GLOBALS['strNoLimitations'] = "Kısıtlama yok";
 $GLOBALS['strCapping'] = "Başlıklamak";
 
 // Properties
@@ -202,7 +200,6 @@ $GLOBALS['strClients'] = "Reklamverenler";
 $GLOBALS['strClientsAndCampaigns'] = "Reklamverenler ve Kampanyalar";
 $GLOBALS['strAddClient'] = "Yeni reklamveren ekle";
 $GLOBALS['strClientProperties'] = "Reklamveren Bilgileri";
-$GLOBALS['strClientHistory'] = "Reklamveren Geçmişi";
 $GLOBALS['strNoClients'] = "Henüz hiç reklamveren tanımlanmamış. Bir kampanya yaratabilmek için öncelikle <a href='advertiser-edit.php'>yeni bir reklamveren yarat</a>malısınız.";
 $GLOBALS['strConfirmDeleteClient'] = "Bu reklamvereni silmek istediğinize emin misiniz?";
 $GLOBALS['strConfirmDeleteClients'] = "Bu reklamvereni silmek istediğinize emin misiniz?";
@@ -227,7 +224,6 @@ $GLOBALS['strAddCampaign_Key'] = "Ye<u>n</u>i kampanya ekle";
 $GLOBALS['strLinkedCampaigns'] = "Bağlı kampanyalar";
 $GLOBALS['strCampaignProperties'] = "Kampanya Bilgileri";
 $GLOBALS['strCampaignOverview'] = "Kampanya Özeti";
-$GLOBALS['strCampaignHistory'] = "Kampanya Geçmişi";
 $GLOBALS['strNoCampaigns'] = "Henüz tanımlanmış Kampanya yok";
 $GLOBALS['strConfirmDeleteCampaign'] = "Bu kampanyayı silmek istediğinize emin misiniz?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "Bu kampanyayı silmek istediğinize emin misiniz?";
@@ -300,7 +296,6 @@ $GLOBALS['strAddBanner_Key'] = "Ye<u>n</u>i banner ekle";
 $GLOBALS['strBannerToCampaign'] = "Kampanyanız";
 $GLOBALS['strShowBanner'] = "Banneri göster";
 $GLOBALS['strBannerProperties'] = "Banner Özellikleri";
-$GLOBALS['strBannerHistory'] = "Banner Geçmişi";
 $GLOBALS['strNoBanners'] = "Tanımlanmış Banner Yok";
 $GLOBALS['strNoBannersAddAdvertiser'] = "Henüz tanımlı bir web sitesi yok. Bir alan yaratmak için öncelikle <a href='affiliate-edit.php'>yeni bir web sitesi yarat</a>malısınız.";
 $GLOBALS['strConfirmDeleteBanner'] = "Bu bannerı silmek istediğinize emin misiniz?";
@@ -347,12 +342,9 @@ $GLOBALS['strHardcodedLinks'] = "Elle girilmiş, sabit bağlantılar";
 $GLOBALS['strCompressSWF'] = "Daha hızlı yüklenmesi için SWF dosyasını sıkıştır (Flash 6 player gerekli)";
 $GLOBALS['strOverwriteSource'] = "Kaynak parametresinin üzerine yaz";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Teslimat Seçenekleri";
-$GLOBALS['strACL'] = "Teslimat";
-$GLOBALS['strACLAdd'] = "Yeni Sınırlama Ekle";
-$GLOBALS['strApplyLimitationsTo'] = "Kısıtlamaları şunun için uygula:";
-$GLOBALS['strRemoveAllLimitations'] = "Tüm kısıtlamaları kaldır";
+$GLOBALS['strACL'] = "Teslimat Seçenekleri";
 $GLOBALS['strEqualTo'] = "eşittir";
 $GLOBALS['strDifferentFrom'] = "farklıdır";
 $GLOBALS['strGreaterThan'] = "daha fazladır";
@@ -362,7 +354,6 @@ $GLOBALS['strOR'] = "VEYA";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "Bu bannerı yalnızca şu durumda göster:";
 $GLOBALS['strWeekDays'] = "Haftaiçi";
 $GLOBALS['strSource'] = "Kaynak";
-$GLOBALS['strDeliveryLimitations'] = "Teslimat Kısıtlamaları";
 
 $GLOBALS['strDeliveryCappingReset'] = "Görüntüleme sayaçlarını şundan sonra sıfırla:";
 $GLOBALS['strDeliveryCappingTotal'] = "toplam";
@@ -389,7 +380,6 @@ $GLOBALS['strAffiliates'] = "Web Siteleri ";
 $GLOBALS['strAffiliatesAndZones'] = "Web Siteleri ve Alanlar";
 $GLOBALS['strAddNewAffiliate'] = "Yeni web sitesi ekle";
 $GLOBALS['strAffiliateProperties'] = "Web Sitesi Özellikleri";
-$GLOBALS['strAffiliateHistory'] = "Web Sitesi Geçmişi";
 $GLOBALS['strNoAffiliates'] = "Henüz tanımlı bir web sitesi yok. Bir alan yaratmak için öncelikle <a href='affiliate-edit.php'>yeni bir web sitesi yarat</a>malısınız.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Bu web sitesini silmek istediğinize emin misiniz?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Bu web sitesini silmek istediğinize emin misiniz?";
@@ -478,7 +468,6 @@ $GLOBALS['strSelectCampaignToLink'] = "Bu alana bağlamak istediğiniz kampanyay
 $GLOBALS['strSelectAdvertiser'] = "Reklamveren Seçin";
 $GLOBALS['strSelectPlacement'] = "Kampanya Seçin";
 $GLOBALS['strSelectAd'] = "Banner Seçin";
-$GLOBALS['strConnectionType'] = "Tip";
 $GLOBALS['strStatusPending'] = "Beklemede";
 $GLOBALS['strStatusDuplicate'] = "Çoğalt";
 $GLOBALS['strConnectionType'] = "Tip";
@@ -489,11 +478,6 @@ $GLOBALS['strShortcutShowStatuses'] = "Durumları göster";
 $GLOBALS['strStats'] = "İstatistikler";
 $GLOBALS['strNoStats'] = "Henüz istatistik bulunmamakta";
 $GLOBALS['strNoStatsForPeriod'] = "Henüz %s - %s periyoduna ait istatistik bulunmamakta";
-$GLOBALS['strGlobalHistory'] = "Genel Geçmiş";
-$GLOBALS['strDailyHistory'] = "Günlük Geçmiş";
-$GLOBALS['strDailyStats'] = "Günlük istatistikler";
-$GLOBALS['strWeeklyHistory'] = "Haftalık geçmiş";
-$GLOBALS['strMonthlyHistory'] = "Aylık geçmiş";
 $GLOBALS['strTotalThisPeriod'] = "Bu periyoda ait toplam";
 $GLOBALS['strPublisherDistribution'] = "Web Sitesi Dağılımı";
 $GLOBALS['strCampaignDistribution'] = "Kampanya Dağılımı";
@@ -514,7 +498,6 @@ $GLOBALS['strEstimated'] = "Tahmini bitiş tarihi";
 $GLOBALS['strCampaignStop'] = "Kampanya Geçmişi";
 
 // Reports
-$GLOBALS['strLimitations'] = "Kısıtlamalar";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "Tüm reklamverenler";
@@ -636,19 +619,8 @@ $GLOBALS['strHideInactiveAgencies'] = "Etkin olmayan hesapları gizle";
 $GLOBALS['strInactiveAgenciesHidden'] = "etkin olmayan hesap(lar) gizlendi";
 
 // Channels
-$GLOBALS['strChannel'] = "Hedefleme Kanalı";
-$GLOBALS['strChannels'] = "Hedefleme Kanalları";
-$GLOBALS['strChannelManagement'] = "Hedefleme Kanalı Yönetimi";
-$GLOBALS['strAddNewChannel'] = "Yeni hedefleme kanalı ekle";
-$GLOBALS['strAddNewChannel_Key'] = "Ye<u>n</u>i hedefleme kanalı ekle";
 $GLOBALS['strChannelToWebsite'] = "Web sitesi yok";
-$GLOBALS['strNoChannels'] = "Tanımlanmış hedefleme kanalı yok";
-$GLOBALS['strNoChannelsAddWebsite'] = "Henüz tanımlı bir web sitesi yok. Bir alan yaratmak için öncelikle <a href='affiliate-edit.php'>yeni bir web sitesi yarat</a>malısınız.";
-$GLOBALS['strEditChannelLimitations'] = "Hedefleme kanalı kısıtlamalarını düzenle";
-$GLOBALS['strChannelProperties'] = "Hedefleme Kanalı özellikleri";
 $GLOBALS['strChannelLimitations'] = "Teslimat Seçenekleri";
-$GLOBALS['strConfirmDeleteChannel'] = "Bu hedefleme kanalını silmek istediğinize emin misiniz?";
-$GLOBALS['strConfirmDeleteChannels'] = "Bu hedefleme kanalını silmek istediğinize emin misiniz?";
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "Değişken Adı";

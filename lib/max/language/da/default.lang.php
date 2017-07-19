@@ -93,8 +93,6 @@ $GLOBALS['strNotice'] = "Besked";
 // Priority
 $GLOBALS['strPriority'] = "Prioritet";
 $GLOBALS['strPriorityLevel'] = "Prioritets niveau";
-$GLOBALS['strLimitations'] = "Begrænsninger";
-$GLOBALS['strNoLimitations'] = "Uden begrænsninger";
 $GLOBALS['strCapping'] = "Rammer";
 
 // Properties
@@ -195,7 +193,6 @@ $GLOBALS['strClients'] = "Annoncører";
 $GLOBALS['strClientsAndCampaigns'] = "Annoncører & Kampagne";
 $GLOBALS['strAddClient'] = "Tilføj ny annoncør";
 $GLOBALS['strClientProperties'] = "Annoncør egenskaber";
-$GLOBALS['strClientHistory'] = "Annoncør historik";
 $GLOBALS['strNoClients'] = "Der er ikke valgt nogen annoncør. For at oprette en kampagne <a href='advertiser-edit.php'>kan du oprette en annoncør</a> først.";
 $GLOBALS['strConfirmDeleteClient'] = "Vil du virkelig slette denne annoncør?";
 $GLOBALS['strConfirmDeleteClients'] = "Vil du virkelig slette denne annoncør?";
@@ -223,7 +220,6 @@ $GLOBALS['strAddCampaign_Key'] = "Tilføj <u>n/u>ew kampagne";
 $GLOBALS['strLinkedCampaigns'] = "Relaterede kampagner";
 $GLOBALS['strCampaignProperties'] = "Kampagne egenskaber";
 $GLOBALS['strCampaignOverview'] = "Kampagne oversigt";
-$GLOBALS['strCampaignHistory'] = "Kampagne historik";
 $GLOBALS['strConfirmDeleteCampaign'] = "Vil du virkelig slette denne aktive kampagne?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "Vil du virkelig slette denne aktive kampagne?";
 $GLOBALS['strShowParentAdvertisers'] = "Vis oprindelig annoncør";
@@ -290,7 +286,6 @@ $GLOBALS['strAddBanner_Key'] = "Tilføj <u>n</u>y banner";
 $GLOBALS['strBannerToCampaign'] = "Din kampagne";
 $GLOBALS['strShowBanner'] = "Vis banner";
 $GLOBALS['strBannerProperties'] = "Banner egenskaber";
-$GLOBALS['strBannerHistory'] = "Banner historik";
 $GLOBALS['strNoBannersAddCampaign'] = "Der er ikke valgt noget website. For at oprette en zone, skal du <a href='affiliate-edit.php'>tilføje et nyt website</a> først.";
 $GLOBALS['strNoBannersAddAdvertiser'] = "Der er ikke valgt noget website. For at oprette en zone, skal du <a href='affiliate-edit.php'>tilføje et nyt website</a> først.";
 $GLOBALS['strConfirmDeleteBanner'] = "Vil du virkelig slette denne banner?";
@@ -339,11 +334,9 @@ $GLOBALS['strConvertSWFLinks'] = "Konverter Flash links";
 $GLOBALS['strCompressSWF'] = "KOmprimer SWF filen for hurtigere downloading (Dette kræver en Flash 6 afspiller)";
 $GLOBALS['strOverwriteSource'] = "Overskriv kilde parameter";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Leverings optioner";
-$GLOBALS['strACL'] = "Levering";
-$GLOBALS['strApplyLimitationsTo'] = "Tilføj begrænsninger til";
-$GLOBALS['strRemoveAllLimitations'] = "Fjern alle begrænsninger";
+$GLOBALS['strACL'] = "Leverings optioner";
 $GLOBALS['strEqualTo'] = "er lig med";
 $GLOBALS['strDifferentFrom'] = "er forskellig fra";
 $GLOBALS['strGreaterThan'] = "er større end";
@@ -353,7 +346,6 @@ $GLOBALS['strOR'] = "ELLER";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "Vis kun denne banner når:";
 $GLOBALS['strWeekDays'] = "Ugedage";
 $GLOBALS['strSource'] = "Kilde";
-$GLOBALS['strDeliveryLimitations'] = "Leverings begræsninger";
 
 $GLOBALS['strDeliveryCappingReset'] = "Nulstil visnings tæller efter:";
 $GLOBALS['strDeliveryCappingTotal'] = "total";
@@ -379,7 +371,6 @@ $GLOBALS['strAffiliates'] = "Websider";
 $GLOBALS['strAffiliatesAndZones'] = "Websider og zoner";
 $GLOBALS['strAddNewAffiliate'] = "Tilføj nye websider";
 $GLOBALS['strAffiliateProperties'] = "Webside egenskab";
-$GLOBALS['strAffiliateHistory'] = "Webside historik";
 $GLOBALS['strNoAffiliates'] = "Der er ikke valgt noget website. For at oprette en zone, skal du <a href='affiliate-edit.php'>tilføje et nyt website</a> først.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Vil du virkelig slette denne webside?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Vil du virkelig slette denne webside?";
@@ -477,11 +468,6 @@ $GLOBALS['strShortcutShowStatuses'] = "Vis status";
 $GLOBALS['strStats'] = "Statistikker";
 $GLOBALS['strNoStats'] = "Der er for øjeblikket ingen statistik tilgængelig";
 $GLOBALS['strNoStatsForPeriod'] = "Der er for øjeblikket ingen statistik tilgængelig for perioden %s til %s";
-$GLOBALS['strGlobalHistory'] = "Global historik";
-$GLOBALS['strDailyHistory'] = "Daglig historik";
-$GLOBALS['strDailyStats'] = "Daglig statistik";
-$GLOBALS['strWeeklyHistory'] = "Ugentlig statistik";
-$GLOBALS['strMonthlyHistory'] = "Månedlig statistik";
 $GLOBALS['strTotalThisPeriod'] = "Total for denne periode";
 $GLOBALS['strPublisherDistribution'] = "Webside distribution";
 $GLOBALS['strCampaignDistribution'] = "Kampagne distribution";
@@ -502,7 +488,6 @@ $GLOBALS['strEstimated'] = "Estimeret udløbs dato";
 $GLOBALS['strCampaignStop'] = "Kampagne historik";
 
 // Reports
-$GLOBALS['strLimitations'] = "Begrænsninger";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "All annoncører";
@@ -638,18 +623,9 @@ $GLOBALS['strConfirmDeleteAgency'] = "Vil du virkelig slette denne zone?";
 $GLOBALS['strInactiveAgenciesHidden'] = "inaktive zone(r) er skjult";
 
 // Channels
-$GLOBALS['strChannelManagement'] = "Administration af Targeting Channels";
-$GLOBALS['strAddNewChannel'] = "Tilføj ny targeting channel";
-$GLOBALS['strAddNewChannel_Key'] = "Tilføj <u>n</u>y targeting channel";
 $GLOBALS['strChannelToWebsite'] = "til website";
-$GLOBALS['strNoChannels'] = "Der er ikke valgt nogen targeting channels";
-$GLOBALS['strNoChannelsAddWebsite'] = "Der er ikke valgt noget website. For at oprette en zone, skal du <a href='affiliate-edit.php'>tilføje et nyt website</a> først.";
-$GLOBALS['strEditChannelLimitations'] = "Rediger targeting channel begrænsninger";
-$GLOBALS['strChannelProperties'] = "Targeting Channel indstillinger";
 $GLOBALS['strChannelLimitations'] = "Leverings optioner";
-$GLOBALS['strConfirmDeleteChannel'] = "Vil du virkelig slette denne targeting channel?";
-$GLOBALS['strConfirmDeleteChannels'] = "Vil du virkelig slette denne targeting channel?";
-$GLOBALS['strChannelsOfWebsite'] = 'i'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strChannelsOfWebsite'] = 'i'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "Variable Navn";

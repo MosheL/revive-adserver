@@ -19,7 +19,7 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Delivery/CommonCrossHistory.ph
  *
  * and:
  *
- * Statistics -> Publishers & Zones -> Zones -> Campaign Distribution -> Distribution History -> Daily Statistics
+ * Statistics -> Publishers & Zones -> Zones -> Campaign Distribution -> Distribution Statistics -> Daily Statistics
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
@@ -128,13 +128,13 @@ class OA_Admin_Statistics_Delivery_Controller_ZoneDaily extends OA_Admin_Statist
             $this->_addShortcut(
                 $GLOBALS['strAffiliateProperties'],
                 'affiliate-edit.php?affiliateid='.$publisherId,
-                'images/icon-affiliate.gif'
+                'iconAffiliate'
             );
         }
         $this->_addShortcut(
             $GLOBALS['strZoneProperties'],
             'zone-edit.php?affiliateid='.$publisherId.'&zoneid='.$zoneId,
-            'images/icon-zone.gif'
+            'iconZone'
         );
 
         // Prepare the data for display by output() method

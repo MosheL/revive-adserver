@@ -47,7 +47,7 @@ $GLOBALS['strImagesUrlPrefixSSL'] = "A Kép Tár URL-je (SSL)";
 /* ------------------------------------------------------- */
 
 // Global
-$GLOBALS['strChooseSection'] = "Válasszon szekciót";
+$GLOBALS['strChooseSection'] = "Válasszon egyet";
 $GLOBALS['strUnableToWriteConfig'] = "A konfigurációs fájl írása sikertelen";
 $GLOBALS['strUnableToWritePrefs'] = "A beállítás adatbázisba írása sikertelen";
 $GLOBALS['strImageDirLockedDetected'] = "A kiszolgáló nem tudja írnia a megadott <b>Képek Könyvtárt</b>. <br>Addig nem tud továbblépni, amíg vagy meg nem változtatja a beállításokat vagy létre nem hozza a könyvtárat.";
@@ -60,7 +60,7 @@ $GLOBALS['strAdminUsername'] = "Adminisztrátor  felhasználóneve";
 $GLOBALS['strAdminPassword'] = "Adminisztrátor  jelszava";
 $GLOBALS['strInvalidUsername'] = "Érvénytelen felhasználóinév";
 $GLOBALS['strBasicInformation'] = "Alapinformációk";
-$GLOBALS['strAdministratorEmail'] = "Adminisztrátor e-mail címe";
+$GLOBALS['strAdministratorEmail'] = "Adminisztrátori e-mailek";
 $GLOBALS['strAdminCheckUpdates'] = "Frissítés keresése";
 $GLOBALS['strNovice'] = "A törlésekhez megerősítés szükséges biztonsági okokból";
 $GLOBALS['strUserlogEmail'] = "Kimenő e-mail üzenetek naplózása";
@@ -143,8 +143,6 @@ $GLOBALS['strDeliveryFilenamesLocal'] = "Helyi kérés";
 $GLOBALS['strDeliveryFilenamesFlash'] = "Flash beágyazás (teljes URL cím is lehet)";
 $GLOBALS['strDeliveryCaching'] = "Banner kézbesítési gyorsítótár beállításai";
 $GLOBALS['strDeliveryCacheLimit'] = "A banner gyorsítótár frissítései közti idő (másodpercekben)";
-$GLOBALS['strDeliveryAcls'] = "Banner kézbesítési korlátozások megbecslése kézbesítés közben.";
-$GLOBALS['strDeliveryObfuscate'] = "Csatornazavarás a hirdetések kézbesítése közben";
 $GLOBALS['strDeliveryExecPhp'] = "PHP kódok futtatásának engedélyezése a hirdetésekben<br />(Figyelem: Biztonsági kockázat)";
 $GLOBALS['strDeliveryCtDelimiter'] = "Harmadik féltől származó kattintás követési határolójel";
 $GLOBALS['strP3PSettings'] = "P3P adatvédelmi irányelvek";
@@ -158,7 +156,6 @@ $GLOBALS['strP3PPolicyLocation'] = "P3P irányelvek helye";
 $GLOBALS['strGeotargetingSettings'] = "Geotargeting beállítások";
 $GLOBALS['strGeotargeting'] = "Geotargeting beállítások";
 $GLOBALS['strGeotargetingType'] = "Geotargeting modul típus";
-$GLOBALS['strGeoShowUnavailable'] = "Geotargeting kézbesítési korlátok mutatása a GeoIP adatok elérhetetlensége esetén";
 
 // Interface Settings
 $GLOBALS['strInventory'] = "Leltár";
@@ -173,9 +170,9 @@ $GLOBALS['strGUIShowParentCampaigns'] = "Szülő kampányok megjelenítése a <i
 $GLOBALS['strStatisticsDefaults'] = "Statisztikák";
 $GLOBALS['strBeginOfWeek'] = "Hét kezdete";
 $GLOBALS['strPercentageDecimals'] = "Százalékok tört része";
-$GLOBALS['strWeightDefaults'] = "Alapértelmezett súly";
-$GLOBALS['strDefaultBannerWeight'] = "Alapértelmezett banner súly";
-$GLOBALS['strDefaultCampaignWeight'] = "Alapértelmezett kampány súly";
+$GLOBALS['strWeightDefaults'] = "Alapértelmezett súlyozás";
+$GLOBALS['strDefaultBannerWeight'] = "Alapértelmezett  reklám súly";
+$GLOBALS['strDefaultCampaignWeight'] = "Alapértelmezett  kampány súly";
 
 // Invocation Settings
 $GLOBALS['strInvocationDefaults'] = "Követelések alapértelmezett beállításai";
@@ -203,8 +200,8 @@ $GLOBALS['strBlockAdClicks'] = "Hírdetés kattintás számlálásának kihagyá
 $GLOBALS['strMaintenanceOI'] = "Karbantartás művelet időköze (percben)";
 $GLOBALS['strPrioritySettings'] = "Prioritás beállítások";
 $GLOBALS['strPriorityInstantUpdate'] = "Hirdetés prioritások frissítése rögtön a változtatások mentése után";
-$GLOBALS['strDefaultImpConWindow'] = "A hirdetés megtekintés alapértelmezett kapcsolati ideje (másodpercben)";
-$GLOBALS['strDefaultCliConWindow'] = "A hirdetés kattintás alapértelmezett kapcsolati ideje (másodpercben)";
+$GLOBALS['strDefaultImpConvWindow'] = "Alapértelmezett megtekintési konverziós ablak (másodpercben)";
+$GLOBALS['strDefaultCliConvWindow'] = "Alapértelmezett kattintási konverziós ablak (másodpercben)";
 $GLOBALS['strAdminEmailHeaders'] = "A következő fejlécek hozzáadása a {$PRODUCT_NAME} által küldött elektronikus üzenethez";
 $GLOBALS['strWarnLimit'] = "Figyelmeztetés küldése ha a hátrelévő megtekintések száma kevesebb mint";
 $GLOBALS['strWarnLimitDays'] = "Figyelmeztetés küldése ha a hátralévő napok száma kevesebb mint ";

@@ -15,11 +15,11 @@ require_once MAX_PATH . '/lib/OA/Admin/Statistics/Delivery/CommonCrossHistory.ph
 /**
  * The class to display the delivery statistcs for the page:
  *
- * Statistics -> Advertisers & Campaigns -> Campaigns -> Campaign History -> Daily Statistics
+ * Statistics -> Advertisers & Campaigns -> Campaigns -> Campaign Statistics -> Daily Statistics
  *
  * and:
  *
- * Statistics -> Advertisers & Campaigns -> Campaigns -> Publisher Distribution -> Distribution History -> Daily Statistics
+ * Statistics -> Advertisers & Campaigns -> Campaigns -> Publisher Distribution -> Distribution Statistics -> Daily Statistics
  *
  * @package    OpenXAdmin
  * @subpackage StatisticsDelivery
@@ -128,13 +128,13 @@ class OA_Admin_Statistics_Delivery_Controller_CampaignDaily extends OA_Admin_Sta
             $this->_addShortcut(
                 $GLOBALS['strClientProperties'],
                 'advertiser-edit.php?clientid='.$advertiserId,
-                'images/icon-advertiser.gif'
+                'iconAdvertiser'
             );
         }
         $this->_addShortcut(
             $GLOBALS['strCampaignProperties'],
             'campaign-edit.php?clientid='.$advertiserId.'&campaignid='.$placementId,
-            'images/icon-campaign.gif'
+            'iconCampaign'
         );
 
         // Prepare the data for display by output() method

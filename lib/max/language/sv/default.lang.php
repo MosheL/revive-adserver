@@ -91,8 +91,6 @@ $GLOBALS['strNotice'] = "Viktigt information";
 // Priority
 $GLOBALS['strPriority'] = "Prioritering";
 $GLOBALS['strPriorityLevel'] = "Prioriteringsnivå";
-$GLOBALS['strLimitations'] = "Begränsningar";
-$GLOBALS['strNoLimitations'] = "Inga begränsningar";
 $GLOBALS['strCapping'] = "Taksättning";
 
 // Properties
@@ -184,7 +182,6 @@ $GLOBALS['strClients'] = "Annonsörer";
 $GLOBALS['strClientsAndCampaigns'] = "Annonsörer & kampanjer";
 $GLOBALS['strAddClient'] = "Lägg till ny annonsör";
 $GLOBALS['strClientProperties'] = "Annonsöregenskaper";
-$GLOBALS['strClientHistory'] = "Annonsörhistorik";
 $GLOBALS['strNoClients'] = "Det finns inga annonsörer inlagda. För att skapa en kampanj, <a href='advertiser-edit.php'>lägg till en annonsör</a> först.";
 $GLOBALS['strConfirmDeleteClient'] = "Vill du verkligen radera den här annonsören?";
 $GLOBALS['strConfirmDeleteClients'] = "Vill du verkligen radera den här annonsören?";
@@ -210,7 +207,6 @@ $GLOBALS['strAddCampaign_Key'] = "Lägg till <u>n</u>y kampanj";
 $GLOBALS['strLinkedCampaigns'] = "Länkade kampanjer";
 $GLOBALS['strCampaignProperties'] = "Kampanjegenskaper";
 $GLOBALS['strCampaignOverview'] = "Kampanjöversikt";
-$GLOBALS['strCampaignHistory'] = "Kampanjhistorik";
 $GLOBALS['strNoCampaigns'] = "Det finns för närvarande inga kampanjer definierade för denna annonsör.";
 $GLOBALS['strConfirmDeleteCampaign'] = "Vill du verkligen radera den här kampanjen?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "Vill du verkligen radera den här kampanjen?";
@@ -281,7 +277,6 @@ $GLOBALS['strAddBanner_Key'] = "Lägg till<u>n</u>y annons";
 $GLOBALS['strBannerToCampaign'] = "Din kampanj";
 $GLOBALS['strShowBanner'] = "Visa annonser";
 $GLOBALS['strBannerProperties'] = "Annonsegenskaper";
-$GLOBALS['strBannerHistory'] = "Annonshistorik";
 $GLOBALS['strNoBanners'] = "Det finns för närvarande inga annonser definierade till den här kampanjen.";
 $GLOBALS['strNoBannersAddAdvertiser'] = "Det finns inga sajter inlagda. För att skapa en zon, <a href='affiliate-edit.php'>lägg till ny sajt</a> först.";
 $GLOBALS['strConfirmDeleteBanner'] = "Vill du verkligen radera den här annonsen?";
@@ -328,12 +323,9 @@ $GLOBALS['strHardcodedLinks'] = "Hård-kodade länkar";
 $GLOBALS['strCompressSWF'] = "Komprimera SWF filen för snabbare nedladdning (Flash 6 spelare krävs)";
 $GLOBALS['strOverwriteSource'] = "Skriv över källparameter";
 
-// Display limitations
+// Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "Leveransinställningar";
-$GLOBALS['strACL'] = "Leverans";
-$GLOBALS['strACLAdd'] = "Lägg till leveransbegränsningar";
-$GLOBALS['strApplyLimitationsTo'] = "Applicera begränsningar på";
-$GLOBALS['strRemoveAllLimitations'] = "Ta bort alla begränsningar";
+$GLOBALS['strACL'] = "Leveransinställningar";
 $GLOBALS['strEqualTo'] = "är lika med";
 $GLOBALS['strDifferentFrom'] = "skiljer sig från";
 $GLOBALS['strGreaterThan'] = "är större än";
@@ -343,7 +335,6 @@ $GLOBALS['strOR'] = "ELLER";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "Visa endast den här annonsen när:";
 $GLOBALS['strWeekDays'] = "Veckodagar";
 $GLOBALS['strSource'] = "Källa";
-$GLOBALS['strDeliveryLimitations'] = "Leveransbegränsningar";
 
 $GLOBALS['strDeliveryCappingReset'] = "Återställ visningsräknare efter:";
 $GLOBALS['strDeliveryCappingTotal'] = "totalt";
@@ -369,7 +360,6 @@ $GLOBALS['strAffiliates'] = "Webbsidor";
 $GLOBALS['strAffiliatesAndZones'] = "Webbsidor & Zoner";
 $GLOBALS['strAddNewAffiliate'] = "Lägg till ny webbsida";
 $GLOBALS['strAffiliateProperties'] = "Egenskaper för webbsida";
-$GLOBALS['strAffiliateHistory'] = "Webbsideshistorik";
 $GLOBALS['strNoAffiliates'] = "Det finns inga webbsidor inlagda. För att skapa en zon, <a href='affiliate-edit.php'>lägg till ny webbsida</a> först.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "Vill du verkligen radera den här webbsidan?";
 $GLOBALS['strConfirmDeleteAffiliates'] = "Vill du verkligen radera den här sajten?";
@@ -458,7 +448,6 @@ $GLOBALS['strSelectCampaignToLink'] = "Välj den kampanj du vill länka till den
 $GLOBALS['strSelectAdvertiser'] = "Välj annonsör";
 $GLOBALS['strSelectPlacement'] = "Välj kampanj";
 $GLOBALS['strSelectAd'] = "Välj banner";
-$GLOBALS['strConnectionType'] = "Typ";
 $GLOBALS['strStatusPending'] = "Pågående";
 $GLOBALS['strStatusDuplicate'] = "Duplicera";
 $GLOBALS['strConnectionType'] = "Typ";
@@ -469,11 +458,6 @@ $GLOBALS['strShortcutShowStatuses'] = "Visa statusar";
 $GLOBALS['strStats'] = "Statistik";
 $GLOBALS['strNoStats'] = "Det finns ingen statistik tillgänglig";
 $GLOBALS['strNoStatsForPeriod'] = "Det finns ingen statistik tillgänglig för perioden %s till %s";
-$GLOBALS['strGlobalHistory'] = "Global historik";
-$GLOBALS['strDailyHistory'] = "Daglig historik";
-$GLOBALS['strDailyStats'] = "Daglig statistik";
-$GLOBALS['strWeeklyHistory'] = "Veckohistorik";
-$GLOBALS['strMonthlyHistory'] = "Månadshistorik";
 $GLOBALS['strTotalThisPeriod'] = "Totalt den här perioden";
 $GLOBALS['strPublisherDistribution'] = "Webbsajtdistribution";
 $GLOBALS['strCampaignDistribution'] = "Kampanjdistribution";
@@ -494,7 +478,6 @@ $GLOBALS['strEstimated'] = "Estimerad utgångsdatum";
 $GLOBALS['strCampaignStop'] = "Kampanjhistorik";
 
 // Reports
-$GLOBALS['strLimitations'] = "Begränsningar";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "Alla annonsörer";
@@ -612,14 +595,8 @@ $GLOBALS['strInactiveAgenciesHidden'] = "inaktiva konton gömda";
 
 // Channels
 $GLOBALS['strChannelToWebsite'] = "INga webbsajter";
-$GLOBALS['strNoChannels'] = "Det finns för tillfället inga målkanaler angivna";
-$GLOBALS['strNoChannelsAddWebsite'] = "Det finns inga sajter inlagda. För att skapa en zon, <a href='affiliate-edit.php'>lägg till ny sajt</a> först.";
-$GLOBALS['strEditChannelLimitations'] = "Editera begränsningar för målkanaler";
-$GLOBALS['strChannelProperties'] = "Egenskaper för målkanaler";
 $GLOBALS['strChannelLimitations'] = "Leveransinställningar";
-$GLOBALS['strConfirmDeleteChannel'] = "Vill du verkligen radera denna målkanal?";
-$GLOBALS['strConfirmDeleteChannels'] = "Vill du verkligen radera denna målkanal?";
-$GLOBALS['strChannelsOfWebsite'] = 'i'; //this is added between page name and website name eg. 'Targeting channels in www.example.com'
+$GLOBALS['strChannelsOfWebsite'] = 'i'; //this is added between page name and website name eg. 'delivery rule sets in www.example.com'
 
 // Tracker Variables
 $GLOBALS['strVariableName'] = "Namn på variabel";

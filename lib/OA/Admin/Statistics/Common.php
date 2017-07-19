@@ -477,9 +477,11 @@ class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
      */
     function output($graphMode = false)
     {
-        // Check if stats are accourate (when upgraded from a non-TZ enabled version
+        // Check if stats are accourate (when upgraded from a non-TZ enabled version)
         $this->_checkStatsAccuracy();
-
+        
+        $this->_showShortcuts();
+        
         if ($this->outputType == 'deliveryEntity') {
 
             // Display the entity delivery stats
@@ -890,15 +892,15 @@ class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
 
     /**
      * A private method that can be inherited and used by children classes to
-     * add a shortcut to the left navigation bar.
+     * add a navigation shortcut.
      *
      * @param string $name Shortuct text
      * @param string $link Shortcut link
-     * @param string $icon Shortcut icon
+     * @param string $iconClass Shortcut icon class
      */
-    function _addShortcut($name, $link, $icon)
+    function _addShortcut($name, $link, $iconClass)
     {
-        $this->pageShortcuts[] = array('name' => $name, 'link' => $link, 'icon' => $icon);
+        $this->aPageShortcuts[] = array('name' => $name, 'link' => $link, 'iconClass' => $iconClass);
     }
 
     /**
@@ -1477,7 +1479,7 @@ class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
     }
 
     /**
-     * A private method to output the shortcuts in the left navigation bar.
+     * A private method to output the shortcuts.
      *
      * @access private
      * {@uses addPageShortcut()}
@@ -1486,23 +1488,6 @@ class OA_Admin_Statistics_Common extends OA_Admin_Statistics_Flexy
     {
         foreach ($this->aPageShortcuts as $shortcut) {
             addPageShortcut($shortcut['name'], $shortcut['link'], $shortcut['iconClass']);
-        }
-    }
-
-    /**
-     * A private method to output the breadcrumb trail, highlighing
-     * the last item.
-     */
-    function _showBreadcrumbs()
-    {
-        if (!empty($this->aPageBreadcrumbs) && is_array($this->aPageBreadcrumbs)) {
-
-        	$breadcrumbPath = array();
-            foreach ($this->aPageBreadcrumbs as $bc) {
-            	array_push($breadcrumbPath, $bc['type']);
-            }
-
-            MAX_displayInventoryBreadcrumbsInternal($this->aPageBreadcrumbs, $breadcrumbPath);
         }
     }
 
