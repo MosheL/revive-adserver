@@ -15,6 +15,8 @@ $GLOBALS['strMaintenance'] = "Bảo trì";
 
 // Audit
 $GLOBALS['strDelete'] = "Xoá";
+$GLOBALS['strAdvertiser'] = "Nhà quảng cáo";
+$GLOBALS['strValue'] = "Giá trị";
 
 if (!isset($GLOBALS['strUserlog'])) {
     $GLOBALS['strUserlog'] = array();

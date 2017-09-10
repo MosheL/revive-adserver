@@ -97,7 +97,7 @@ $GLOBALS['strKiloByte'] = "KB";
 $GLOBALS['strExpandAll'] = "פתח הכל";
 $GLOBALS['strCollapseAll'] = "סגור הכל";
 $GLOBALS['strShowAll'] = "הצג הכל";
-$GLOBALS['strNoAdminInterface'] = "The admin screen has been turned off for maintenance.  This does not affect the delivery of your campaigns.";
+$GLOBALS['strNoAdminInterface'] = "המסך  הניהול כובה לצורכי תחזוקה.  הגדרה זו אינה משפיעה על המשלוח של הקמפיינים שלך.";
 $GLOBALS['strFieldStartDateBeforeEnd'] = "'מ' צריך להיות לפני 'עד'.";
 $GLOBALS['strFieldContainsErrors'] = "הקבצים הבאים מכילים שגיאות:";
 $GLOBALS['strFieldFixBeforeContinue1'] = "לפני שאתה ממשיך אתה צריך ";
@@ -127,13 +127,13 @@ $GLOBALS['strWarning'] = "אזהרה";
 $GLOBALS['strNotice'] = "הערה";
 
 // Dashboard
-$GLOBALS['strDashboardCantBeDisplayed'] = "The dashboard can not be displayed";
-$GLOBALS['strNoCheckForUpdates'] = "The dashboard cannot be displayed unless the<br />check for updates setting is enabled.";
-$GLOBALS['strEnableCheckForUpdates'] = "Please enable the <a href='account-settings-update.php' target='_top'>check for updates</a> setting on the<br/><a href='account-settings-update.php' target='_top'>update settings</a> page.";
+$GLOBALS['strDashboardCantBeDisplayed'] = "לא ניתן להציג את לוח המחוונים";
+$GLOBALS['strNoCheckForUpdates'] = "אין אפשרות להציג את לוח המחוונים על מנת לאפשר אופרות זו <br /> יש לסמן עדכונים בהגדרות.";
+$GLOBALS['strEnableCheckForUpdates'] = "אנא הפעל את ההגדרה <a href='account-settings-update.php' target='_top'> לסמן בדוק אם קיימים עדכונים</a> על <br/> <a href='account-settings-update.php' target='_top'> לעדכן את הגדרות</a> בדף.";
 // Dashboard Errors
 $GLOBALS['strDashboardErrorCode'] = "קוד"; 
 $GLOBALS['strDashboardSystemMessage'] = "הודעת מערכת";
-$GLOBALS['strDashboardErrorHelp'] = "אם הבעיה חוזרת על עצמה, כתוב הודעה מסודרת ופרסם ב- <a href='http://forum.revive-adserver.com/'>forum.revive-adserver.com/</a>.";
+$GLOBALS['strDashboardErrorHelp'] = "אם שגיאה זו חוזררת אנא תאר את הבעיה שלך בפירוט, ניתן לדווח את זה בכתובת <a href='http://forum.revive-adserver.com/'> forum.revive-adserver.com/</a>.";
 
 // Priority
 $GLOBALS['strPriority'] = "קדימויות";
@@ -148,7 +148,13 @@ $GLOBALS['strDashboardSystemMessage'] = "הודעת מערכת";
 // Priority
 $GLOBALS['strPriority'] = "קדימויות";
 $GLOBALS['strPriorityLevel'] = "רמת קידמות";
-$GLOBALS['strCapping'] = "Capping";
+$GLOBALS['strOverrideAds'] = "לעקוף את קמפיין פרסומי";
+$GLOBALS['strHighAds'] = "חוזה לקמפיין פרסומי";
+$GLOBALS['strECPMAds'] = "eCPM קמפיין פרסומי";
+$GLOBALS['strLowAds'] = "שריד קמפיין פרסומי";
+$GLOBALS['strLimitations'] = "כללי משלוח";
+$GLOBALS['strNoLimitations'] = "אין חוקים למשלוח";
+$GLOBALS['strCapping'] = "מיצוי";
 
 // Properties
 $GLOBALS['strName'] = "שם";
@@ -183,7 +189,7 @@ $GLOBALS['strUserUnlinkedFromAccount'] = "המשתמש נותק מחשבון ב�
 $GLOBALS['strUserWasDeleted'] = "המשתמש נמחק.";
 $GLOBALS['strUserNotLinkedWithAccount'] = "משתמש זה לא מקושר לחשבון בזה.";
 $GLOBALS['strCantDeleteOneAdminUser'] = "לא ניתן למחוק את המשתמש היחיד שנשאר מקושר לחשבון הניהול הראשי.";
-$GLOBALS['strLinkUserHelp'] = "To add an <b>existing user</b>, type the %1\$s and click %2\$s <br />To add a <b>new user</b>, type the desired %1\$s and click %2\$s";
+$GLOBALS['strLinkUserHelp'] = "בכדי להוסיף <b>משתמש קיים</b>, הקלד את %1\$s ולחץ על %2\$s <br /> כדי להוסיף <b>משתמש חדש</b>, הקלד את %1\$s הרצוי ולחץ על %2\$s";
 $GLOBALS['strLinkUserHelpUser'] = "שם משתמש";
 $GLOBALS['strLinkUserHelpEmail'] = "דוא''ל";
 $GLOBALS['strLastLoggedIn'] = "התחברות אחרונה:";
@@ -198,7 +204,7 @@ $GLOBALS['strAuthentification'] = "אימות";
 $GLOBALS['strWelcomeTo'] = "ברוכים הבאים ל";
 $GLOBALS['strEnterUsername'] = "נא להכניס שם וסיסמא כדי להיכנס";
 $GLOBALS['strEnterBoth'] = "אנא הזן את שם המשתמש והסיסמא";
-$GLOBALS['strEnableCookies'] = "עליך לאפשר עוגיות {$PRODUCT_NAME}";
+$GLOBALS['strEnableCookies'] = "עליך לאפשר קוקיס (cookies) לפני השימוש ב-{$PRODUCT_NAME}";
 $GLOBALS['strSessionIDNotMatch'] = "אירעה שגיאת עוגיה. עליך להתחבר מחדש.";
 $GLOBALS['strLogin'] = "התחבר";
 $GLOBALS['strLogout'] = "התנתק";
@@ -214,11 +220,12 @@ $GLOBALS['strInvalidPassword'] = "סיסמא פסולה";
 $GLOBALS['strInvalidEmail'] = "כתובת דוא''ל לא חוקית.";
 $GLOBALS['strNotSamePasswords'] = "סיסמאות אינן תואמות";
 $GLOBALS['strRepeatPassword'] = "חזור על הסיסמא";
-$GLOBALS['strDeadLink'] = "הקישור שהשתמשת בו פג תוקף.";
+$GLOBALS['strDeadLink'] = "הקישור שלך אינו חוקי.";
 $GLOBALS['strNoPlacement'] = "הקמפיין שבחרת אינו פעיל. נסה את <a href='{link}'>זה</a> במקום";
 $GLOBALS['strNoAdvertiser'] = "המפרסם שבחרת אינו פעיל. נסה את  <a href='{link}'>זה</a>  במקומו";
 
 // General advertising
+$GLOBALS['strRequests'] = "בקשות";
 $GLOBALS['strImpressions'] = "חשיפות";
 $GLOBALS['strClicks'] = "הקלקות";
 $GLOBALS['strConversions'] = "המרות";
@@ -228,11 +235,11 @@ $GLOBALS['strCTR'] = "יחס חשיפה-הקלקה";
 $GLOBALS['strTotalClicks'] = "סך הכל הקלקות";
 $GLOBALS['strTotalConversions'] = "סך הכל המרות";
 $GLOBALS['strDateTime'] = "תאריך ושעה";
-$GLOBALS['strTrackerID'] = "Tracker ID";
-$GLOBALS['strTrackerName'] = "Tracker Name";
-$GLOBALS['strTrackerImageTag'] = "Image Tag";
-$GLOBALS['strTrackerJsTag'] = "Javascript Tag";
-$GLOBALS['strTrackerAlwaysAppend'] = "Always display appended code, even if no conversion is recorded by the tracker?";
+$GLOBALS['strTrackerID'] = "מזהה רכיב המעקב";
+$GLOBALS['strTrackerName'] = "שם רכיב המעקב";
+$GLOBALS['strTrackerImageTag'] = "תג התמונה";
+$GLOBALS['strTrackerJsTag'] = "תג Javascript";
+$GLOBALS['strTrackerAlwaysAppend'] = "תמיד להציג קוד המצורפות, גם אם ללא המרה נרשם על-ידי המעקב?";
 $GLOBALS['strBanners'] = "באנרים";
 $GLOBALS['strCampaigns'] = "קמפיינים";
 $GLOBALS['strCampaignID'] = "מס' קמפיין";
@@ -290,7 +297,8 @@ $GLOBALS['strClients'] = "מפרסמים";
 $GLOBALS['strClientsAndCampaigns'] = "מפרסמים ומערכות";
 $GLOBALS['strAddClient'] = "הוסף מפרסם חדש";
 $GLOBALS['strClientProperties'] = "נתוני מפרסם";
-$GLOBALS['strNoClients'] = "There are currently no advertisers defined. To create a campaign, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
+$GLOBALS['strClientHistory'] = "נתונים סטטיסטיים של המפרסם";
+$GLOBALS['strNoClients'] = "כיום יש אין המפרסמים מוגדרים. כדי ליצור קמפיין, קודם יש <a href='advertiser-edit.php'> להוסיף מפרסם חדש</a>.";
 $GLOBALS['strConfirmDeleteClient'] = "האם באמת למחוק מפרסם זה";
 $GLOBALS['strConfirmDeleteClients'] = "האם אתה באמת רוצה למחוק את המפרסמים הנבחרים?";
 $GLOBALS['strHideInactive'] = "הסתר לא פעיל";
@@ -321,39 +329,28 @@ $GLOBALS['strCampaignForAdvertiser'] = "עבור המפרסם";
 $GLOBALS['strLinkedCampaigns'] = "קמפיינים מקושרים";
 $GLOBALS['strCampaignProperties'] = "מאפייני קמפיין";
 $GLOBALS['strCampaignOverview'] = "קמפיין מבט כולל";
-$GLOBALS['strNoCampaigns'] = "There are currently no campaigns defined for this advertiser.";
-$GLOBALS['strNoCampaignsAddAdvertiser'] = "There are currently no campaigns defined, because there are no advertisers. To create a campaign, <a href='advertiser-edit.php'>add a new advertiser</a> first.";
-$GLOBALS['strConfirmDeleteCampaign'] = "האם אתה באמת רוצה למחוק קמפיין זה?";
-$GLOBALS['strConfirmDeleteCampaigns'] = "האם אתה באמת מעוניין למחוק את הקמפיינים שנבחרו?";
-$GLOBALS['strShowParentAdvertisers'] = "Show parent advertisers";
-$GLOBALS['strHideParentAdvertisers'] = "Hide parent advertisers";
-$GLOBALS['strHideInactiveCampaigns'] = "הסתר קמפיינים לא פעילים";
-$GLOBALS['strInactiveCampaignsHidden'] = "inactive campaign(s) hidden";
-$GLOBALS['strPriorityInformation'] = "עדיפות ביחס לקמפיינים אחרים";
-$GLOBALS['strECPMInformation'] = "eCPM prioritization";
-$GLOBALS['strRemnantEcpmDescription'] = "eCPM is automatically calculated based on this campaign's performance.<br />It will be used to prioritise Remnant campaigns relative to each other.";
-$GLOBALS['strEcpmMinImpsDescription'] = "Set this to your desired minium basis on which to calculate this campaign's eCPM.";
-$GLOBALS['strHiddenCampaign'] = "קמפיין";
-$GLOBALS['strHiddenAd'] = "פירסומת";
-$GLOBALS['strHiddenAdvertiser'] = "מפרסם";
-$GLOBALS['strHiddenTracker'] = "Tracker";
-$GLOBALS['strHiddenWebsite'] = "אתר אינטרנט";
-$GLOBALS['strHiddenZone'] = "אזור";
-$GLOBALS['strCampaignDelivery'] = "הצגת קמפיין";
-$GLOBALS['strCompanionPositioning'] = "מיקום הקמפיין";
-$GLOBALS['strSelectUnselectAll'] = "בחר/אל תבחר הכך";
-$GLOBALS['strCampaignsOfAdvertiser'] = " של "; //this is added between page name and advertiser name eg. 'Campaigns of Advertiser 1'
-$GLOBALS['strShowCappedNoCookie'] = "הצג פרסומות מוגבלות אם אין עוגיה למשתמש";
+$GLOBALS['strCampaignHistory'] = "סטטיסטיקת קמפיין";
 $GLOBALS['strNoCampaigns'] = "אין כעת אף קמפיין מוגדר";
+$GLOBALS['strNoCampaignsAddAdvertiser'] = "יש כרגע אין קמפיינים מוגדרים, כי אין מפרסמים. כדי ליצור קמפיין, יש <a href='advertiser-edit.php'> להוסיף מפרסם חדש </a> קודם.";
 $GLOBALS['strConfirmDeleteCampaign'] = "האם אתה באמת רוצה למחוק קמפיין זה?";
 $GLOBALS['strConfirmDeleteCampaigns'] = "האם אתה באמת מעוניין למחוק את הקמפיינים שנבחרו?";
+$GLOBALS['strShowParentAdvertisers'] = "הצג את הורי המפרסמים";
+$GLOBALS['strHideParentAdvertisers'] = "להסתיר את הורי המפרסמים";
 $GLOBALS['strHideInactiveCampaigns'] = "הסתר קמפיינים לא פעילים";
 $GLOBALS['strInactiveCampaignsHidden'] = "קמפיין לא פעיל מוסתר";
 $GLOBALS['strPriorityInformation'] = "עדיפות ביחס לקמפיינים אחרים";
+$GLOBALS['strECPMInformation'] = "עדיפויות eCPM";
+$GLOBALS['strRemnantEcpmDescription'] = "eCPM מחושב באופן אוטומטי בהתבסס על ביצועים של הקמפיין הזה. <br /> זה ישמש לקבוע סדרי עדיפויות לשרידי קמפיינים אחד לשני.";
+$GLOBALS['strEcpmMinImpsDescription'] = "הגדר את המיניום הרצוי לבסיס חישוב eCPM של הקמפיין הזה.";
 $GLOBALS['strHiddenCampaign'] = "קמפיין";
 $GLOBALS['strHiddenAd'] = "פירסומת";
 $GLOBALS['strHiddenAdvertiser'] = "מפרסם";
+$GLOBALS['strHiddenTracker'] = "עוקב";
 $GLOBALS['strHiddenWebsite'] = "אתר אינטרנט";
+$GLOBALS['strHiddenZone'] = "איזור";
+$GLOBALS['strCampaignDelivery'] = "משלוח קמפיין";
+$GLOBALS['strCompanionPositioning'] = "מיקום מלווה";
+$GLOBALS['strSelectUnselectAll'] = "בחר / בטל בחירה של הכל";
 
 // Campaign-zone linking page
 $GLOBALS['strCalculatedForAllCampaigns'] = "מחושב עבור כל הקמפיינים";
@@ -475,6 +472,7 @@ $GLOBALS['strCampaignBanners'] = "באנרים של הקמפיין";
 $GLOBALS['strCookies'] = "עוגיות";
 
 // Tracker
+<<<<<<< .mine
 $GLOBALS['strTracker'] = "Tracker";
 $GLOBALS['strTrackers'] = "Trackers";
 $GLOBALS['strTrackerPreferences'] = "Tracker Preferences";
@@ -499,6 +497,32 @@ $GLOBALS['strConversionType'] = "Conversion Type";
 $GLOBALS['strLinkCampaignsByDefault'] = "Link newly created campaigns by default";
 $GLOBALS['strBackToTrackers'] = "Back to trackers";
 $GLOBALS['strIPAddress'] = "כתובת IP";
+=======
+$GLOBALS['strTracker'] = "עוקב";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> .theirs
 $GLOBALS['strTrackerForAdvertiser'] = "עבור המפרסם";
 
 // Banners (General)
@@ -533,6 +557,7 @@ $GLOBALS['strHideInactiveBanners'] = "הסתר באנרים לא פעילים";
 $GLOBALS['strInactiveBannersHidden'] = "באנרים לא פעילים מוסתרים";
 $GLOBALS['strWarningMissing'] = "אזהרה, אולי חסר ";
 $GLOBALS['strSubmitAnyway'] = "שלח בכל אופן";
+$GLOBALS['strBannersOfCampaign'] = "ב"; //this is added between page name and campaign name eg. 'Banners in coca cola campaign'
 
 // Banner Preferences
 $GLOBALS['strBannerPreferences'] = "העדפות באנרים";
@@ -554,11 +579,11 @@ $GLOBALS['strWebBanner'] = "באנר מקומי(על השרת)";
 $GLOBALS['strURLBanner'] = "באנר חיצוני";
 $GLOBALS['strHTMLBanner'] = "באנר קוד HTML";
 $GLOBALS['strTextBanner'] = "Text ad";
-$GLOBALS['strAlterHTML'] = "Alter HTML to enable click tracking for:";
-$GLOBALS['strIframeFriendly'] = "This banner can be safely displayed inside an iframe (e.g. is not expandable)";
+$GLOBALS['strAlterHTML'] = "שנה את ה-HTML כדי להפעיל מעקב לחיצה עבור:";
+$GLOBALS['strIframeFriendly'] = "באנר כזה יכול להיות מוצג בבטחה בתוך iframe (נ.ב. הוא לא ניתן להרחבה)";
 $GLOBALS['strUploadOrKeep'] = "האם אתה רוצה להשאיר<br>את הגרפיקה הקיימת או<br>להעלות חדשה";
 $GLOBALS['strNewBannerFile'] = "בחר את הגרפיקה שברצונך<br>להשתמש בבאנר זה<br><br>";
-$GLOBALS['strNewBannerFileAlt'] = "בחר תמונת גיבוי למקרה שהדפדפנים לא תומכים בבאנר.<br /><br />";
+$GLOBALS['strNewBannerFileAlt'] = "בחר תמונת רקע <br /> שתרצה להציגבמידה והדפדפן <br /> לא תומך המדיה עשירה <br /><br />";
 $GLOBALS['strNewBannerURL'] = "כתובת (URL) הגרפיקה (כולל http://)";
 $GLOBALS['strURL'] = "כתובת (URL) הפניית הקלקה (כולל http://)";
 $GLOBALS['strKeyword'] = "מילות מפתח";
@@ -567,9 +592,9 @@ $GLOBALS['strWeight'] = "משקל";
 $GLOBALS['strAlt'] = "כיתוב חלופי";
 $GLOBALS['strStatusText'] = "כיתוב בשורת הסטטוס";
 $GLOBALS['strBannerWeight'] = "משקל הבאנר";
-$GLOBALS['strAdserverTypeGeneric'] = "Generic HTML Banner";
+$GLOBALS['strAdserverTypeGeneric'] = "באנר HTML כללי";
 $GLOBALS['strDoNotAlterHtml'] = "אל תשכתב HTML";
-$GLOBALS['strGenericOutputAdServer'] = "Generic";
+$GLOBALS['strGenericOutputAdServer'] = "כללי";
 $GLOBALS['strSwfTransparency'] = "אפשר להשתמש ברקע שקוף";
 $GLOBALS['strBackToBanners'] = "חזרה לבאנרים";
 
@@ -589,7 +614,10 @@ $GLOBALS['strOverwriteSource'] = "רמוס פרמטרים של המקור";
 // Display Delviery Rules
 $GLOBALS['strModifyBannerAcl'] = "אופציות תפוצה";
 $GLOBALS['strACL'] = "אופציות תפוצה";
+$GLOBALS['strACLAdd'] = "להוסיף כלל משלוח";
+$GLOBALS['strApplyLimitationsTo'] = "להחיל כללי משלוח ל";
 $GLOBALS['strAllBannersInCampaign'] = "כל באנרים בקמפיין זה ";
+$GLOBALS['strRemoveAllLimitations'] = "להסיר את כל כללי המשלוח";
 $GLOBALS['strEqualTo'] = "שווה ל";
 $GLOBALS['strDifferentFrom'] = "שונה מ";
 $GLOBALS['strLaterThan'] = "אחרי ";
@@ -600,6 +628,8 @@ $GLOBALS['strContains'] = "מכיל";
 $GLOBALS['strNotContains'] = "לא מכיל";
 $GLOBALS['strGreaterThan'] = "גדול מ";
 $GLOBALS['strLessThan'] = "קטן מ";
+$GLOBALS['strGreaterOrEqualTo'] = "גדול או שווה ל";
+$GLOBALS['strLessOrEqualTo'] = "פחות או שווה ל";
 $GLOBALS['strAND'] = "ו";                          // logical operator
 $GLOBALS['strOR'] = "או";                         // logical operator
 $GLOBALS['strOnlyDisplayWhen'] = "הצג באנר זה רק כש:";
@@ -608,7 +638,7 @@ $GLOBALS['strTime'] = "זמן";
 $GLOBALS['strDomain'] = "דומיין";
 $GLOBALS['strSource'] = "מקור";
 $GLOBALS['strBrowser'] = "בראוזר";
-$GLOBALS['strOS'] = "OS";
+$GLOBALS['strOS'] = "מערכת הפעלה";
 $GLOBALS['strDeliveryLimitations'] = "הגבלות תפוצה";
 
 $GLOBALS['strDeliveryCappingReset'] = "אפס את המונים לאחר:";
@@ -618,14 +648,17 @@ $GLOBALS['strDeliveryCappingSession'] = "לפי session";
 $GLOBALS['strCappingBanner'] = array();
 $GLOBALS['strCappingBanner']['title'] = "Delivery capping per visitor";
 $GLOBALS['strCappingBanner']['limit'] = "Limit banner views to:";
+$GLOBALS['strCappingBanner']['limit'] = "להגביל צפיית באנרים ל:";
 
 if (!isset($GLOBALS['strCappingCampaign'])) {
     $GLOBALS['strCappingCampaign'] = array();
 }
+$GLOBALS['strCappingCampaign']['limit'] = "להגביל צפיית קמפיין ל:";
 
 if (!isset($GLOBALS['strCappingZone'])) {
     $GLOBALS['strCappingZone'] = array();
 }
+$GLOBALS['strCappingZone']['limit'] = "להגביל צפיית באיזורים ל:";
 
 // Website
 $GLOBALS['strAffiliate'] = "מפיץ";
@@ -633,6 +666,7 @@ $GLOBALS['strAffiliates'] = "מפיצים";
 $GLOBALS['strAffiliatesAndZones'] = "מפיצים ואיזורים";
 $GLOBALS['strAddNewAffiliate'] = "הוסף אתר  חדש";
 $GLOBALS['strAffiliateProperties'] = "תכונות האתר";
+$GLOBALS['strAffiliateHistory'] = "סטטיסטיקה לאתר";
 $GLOBALS['strNoAffiliates'] = "לא מוגדרים כעת שום אתרים.";
 $GLOBALS['strConfirmDeleteAffiliate'] = "האם באמת למחוק אתר זה";
 $GLOBALS['strConfirmDeleteAffiliates'] = "האם אתה באמת מעוניין למחוק את האתרים שנבחרו?";
@@ -647,6 +681,7 @@ $GLOBALS['strAllowAffiliateModifyZones'] = "אפשר למשתמש זה לשנו�
 $GLOBALS['strAllowAffiliateLinkBanners'] = "אפשר למשתמש זה לקשר באנרים לאזורים שלו";
 $GLOBALS['strAllowAffiliateAddZone'] = "אפשר למשתמש זה להגדיר אזורים חדשים";
 $GLOBALS['strAllowAffiliateDeleteZone'] = "אפשר למשתמש זה למחוק אזורים";
+$GLOBALS['strAllowAffiliateGenerateCode'] = "לאפשר למשתמש זה להפיק קוד להפעלה";
 
 // Website (properties - payment information)
 $GLOBALS['strPostcode'] = "מיקוד";
@@ -679,8 +714,7 @@ $GLOBALS['strInterstitial'] = "על-שכבתי או צף";
 $GLOBALS['strPopup'] = "קופץ";
 $GLOBALS['strTextAdZone'] = "פרסוא טקסטואלי";
 $GLOBALS['strEmailAdZone'] = "אזור עבור דוא\"ל/ניוזלטרים";
-$GLOBALS['strZoneVideoInstream'] = "Inline Video ad";
-$GLOBALS['strZoneVideoOverlay'] = "Overlay Video ad";
+$GLOBALS['strZoneVideoInstream'] = "מודעת וידאו מוטמעת";
 $GLOBALS['strShowMatchingBanners'] = "הצג באנרים תואמים";
 $GLOBALS['strHideMatchingBanners'] = "הסתר באנרים תואמים";
 
@@ -698,28 +732,8 @@ $GLOBALS['strWarnBannerReadonly'] = 'This banner is read-only because an extensi
 $GLOBALS['strZonesOfWebsite'] = 'in'; //this is added between page name and website name eg. 'Zones in www.example.com'
 $GLOBALS['strBackToZones'] = "Back to zones";
 
-$GLOBALS['strIab']['IAB_FullBanner(468x60)'] = "IAB Full Banner (468 x 60)";
-$GLOBALS['strIab']['IAB_Skyscraper(120x600)'] = "IAB Skyscraper (120 x 600)";
-$GLOBALS['strIab']['IAB_Leaderboard(728x90)'] = "IAB Leaderboard (728 x 90)";
-$GLOBALS['strIab']['IAB_Button1(120x90)'] = "IAB Button 1 (120 x 90)";
-$GLOBALS['strIab']['IAB_Button2(120x60)'] = "IAB Button 2 (120 x 60)";
-$GLOBALS['strIab']['IAB_HalfBanner(234x60)'] = "IAB Half Banner (234 x 60)";
-$GLOBALS['strIab']['IAB_MicroBar(88x31)'] = "IAB Micro Bar (88 x 31)";
-$GLOBALS['strIab']['IAB_SquareButton(125x125)'] = "IAB Square Button (125 x 125)";
-$GLOBALS['strIab']['IAB_Rectangle(180x150)*'] = "IAB Rectangle (180 x 150)";
-$GLOBALS['strIab']['IAB_SquarePop-up(250x250)'] = "IAB Square Pop-up (250 x 250)";
-$GLOBALS['strIab']['IAB_VerticalBanner(120x240)'] = "IAB Vertical Banner (120 x 240)";
-$GLOBALS['strIab']['IAB_MediumRectangle(300x250)*'] = "IAB Medium Rectangle (300 x 250)";
-$GLOBALS['strIab']['IAB_LargeRectangle(336x280)'] = "IAB Large Rectangle (336 x 280)";
-$GLOBALS['strIab']['IAB_VerticalRectangle(240x400)'] = "IAB Vertical Rectangle (240 x 400)";
-$GLOBALS['strIab']['IAB_WideSkyscraper(160x600)*'] = "IAB Wide Skyscraper (160 x 600)";
-$GLOBALS['strIab']['IAB_Pop-Under(720x300)'] = "IAB Pop-Under (720 x 300)";
-$GLOBALS['strIab']['IAB_3:1Rectangle(300x100)'] = "IAB 3:1 Rectangle (300 x 100)";
-$GLOBALS['strShowMatchingBanners'] = "הצג באנרים תואמים";
-$GLOBALS['strHideMatchingBanners'] = "הסתר באנרים תואמים";
-$GLOBALS['strBannerLinkedAds'] = "באנרים מקושרים לאיזור";
-$GLOBALS['strCampaignLinkedAds'] = "קמפיינים מקושרים לאיזור";
-$GLOBALS['strInactiveZonesHidden'] = "איזורים לא פעילים מוסתרים";
+$GLOBALS['strIab']['IAB_Skyscraper(120x600)'] = "IAB גורד שחקים (120 x 600)";
+$GLOBALS['strIab']['IAB_HalfBanner(234x60)'] = "IAB חצי באנר (234 x 60)";
 
 
 // Advanced zone settings
@@ -745,12 +759,10 @@ $GLOBALS['strSelectZoneType'] = "אנא בחר את סוג הבאנרים המק
 $GLOBALS['strLinkedBanners'] = "קשר באנרים ספציפיים";
 $GLOBALS['strCampaignDefaults'] = "קשר באנרים לפי קמפיין אב";
 $GLOBALS['strLinkedCategories'] = "קשר באנרים לפי קטגוריה";
-$GLOBALS['strWithXBanners'] = "%d banner(s)";
 $GLOBALS['strRawQueryString'] = "בחירה לפי מילת מפתח";
 $GLOBALS['strIncludedBanners'] = "באנרים מקושרים";
 $GLOBALS['strMatchingBanners'] = "{count} באנרים תואמים";
 $GLOBALS['strNoCampaignsToLink'] = "אין כעת מערכות פרסוא הניתנות לקישור לאזור זה.";
-$GLOBALS['strNoTrackersToLink'] = "There are currently no trackers available which can be linked to this campaign";
 $GLOBALS['strNoZonesToLinkToCampaign'] = "אין כעת אזורים הניתנים לקישור לקמפיין זה.";
 $GLOBALS['strSelectBannerToLink'] = "בחר את הבאנר שאתה רוצה לקשר לאזור זה:";
 $GLOBALS['strSelectCampaignToLink'] = "בחר את המערכת הפרסוא שאתה רוצה לקשר לאזור זה:";
@@ -768,9 +780,6 @@ $GLOBALS['strStatusIgnore'] = "התעלם";
 $GLOBALS['strConnectionType'] = "סוג";
 $GLOBALS['strConnTypeSale'] = "מכירה";
 $GLOBALS['strConnTypeLead'] = "ליד";
-$GLOBALS['strConnTypeSignUp'] = "Signup";
-$GLOBALS['strShortcutEditStatuses'] = "ערוך סטטוס";
-$GLOBALS['strShortcutShowStatuses'] = "הצג סטטוס";
 
 // Statistics
 $GLOBALS['strStats'] = "סטטיסטיקה";
@@ -803,7 +812,9 @@ $GLOBALS['strAdvancedReports'] = "דו''חות מתקדמים";
 $GLOBALS['strStartDate'] = "התחלה";
 $GLOBALS['strEndDate'] = "סוף";
 $GLOBALS['strPeriod'] = "נקודה";
+
 $GLOBALS['strWorksheets'] = "Worksheets";
+$GLOBALS['strLimitations'] = "כללי משלוח";
 
 // Admin_UI_Fields
 $GLOBALS['strAllAdvertisers'] = "כל המפרסמים";
@@ -830,6 +841,8 @@ $GLOBALS['strGenerate'] = "ייצר קוד";
 $GLOBALS['strParameters'] = "פרמטרים";
 $GLOBALS['strFrameSize'] = "גודל מסגרת";
 $GLOBALS['strBannercode'] = "קוד באנר";
+$GLOBALS['strAutoDetect'] = "זיהוי אוטומטי";
+$GLOBALS['strCacheBusterComment'] = "  * להחליף את כל המופעים של {random} עם * מספר אקראי שנוצר (או חותמת זמן).   *";
 
 
 // Errors
@@ -847,8 +860,7 @@ $GLOBALS['strNoMatchesFound'] = "No matches were found";
 $GLOBALS['strErrorOccurred'] = "An error occurred";
 $GLOBALS['strErrorDBPlain'] = "ארעה שגיאה בגישה לבסיס הנתונים";
 $GLOBALS['strErrorDBSerious'] = "ארעה שגיאה חמורה בבסיס הנתונים";
-$GLOBALS['strErrorDBNoDataPlain'] = "Due to a problem with the database {$PRODUCT_NAME} couldn't retrieve or store data. ";
-$GLOBALS['strErrorDBNoDataSerious'] = "Due to a serious problem with the database, {$PRODUCT_NAME} couldn't retrieve data";
+$GLOBALS['strErrorDBNoDataPlain'] = "עקב בעיה עם מסד הנתונים {$PRODUCT_NAME} לא הצלחתי לאחזר או לאחסן נתונים. ";
 $GLOBALS['strErrorDBCorrupt'] = "טבלאות בסיס הנתוניא כנראה קרסו ודורשות תיקון. מידע נוסף בדבר תיקון טבלאות שקרסו ניתן למצוא בפרק <i>Troubleshooting</i> של ה<i>Administrator guide</i>.";
 $GLOBALS['strErrorDBContact'] = "אנא צור קשר עא האחראי של שרת זה והודיע לו לגבי הבעיה.";
 
@@ -935,22 +947,7 @@ $GLOBALS['strColumnRank'] = "Column Rank";
 // Long names
 
 // Short names
-$GLOBALS['strImpressions_short'] = "חשיפות";
-$GLOBALS['strClicks_short'] = "הקלקות";
-$GLOBALS['strBasketValue_short'] = "BV";
-$GLOBALS['strNumberOfItems_short'] = "Num. Items";
-$GLOBALS['strRevenueCPC_short'] = "Rev. CPC";
-$GLOBALS['strERPM_short'] = "ERPM";
-$GLOBALS['strERPC_short'] = "ERPC";
-$GLOBALS['strERPS_short'] = "ERPS";
-$GLOBALS['strEIPM_short'] = "EIPM";
-$GLOBALS['strEIPC_short'] = "EIPC";
-$GLOBALS['strEIPS_short'] = "EIPS";
-$GLOBALS['strECPM_short'] = "ECPM";
-$GLOBALS['strECPC_short'] = "ECPC";
-$GLOBALS['strECPS_short'] = "ECPS";
-$GLOBALS['strID_short'] = "ID";
-$GLOBALS['strRequests_short'] = "Req.";
+$GLOBALS['strID_short'] = "מזהה";
 $GLOBALS['strImpressions_short'] = "חשיפות";
 $GLOBALS['strClicks_short'] = "הקלקות";
 $GLOBALS['strCTR_short'] = "CTR";
