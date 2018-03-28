@@ -35,6 +35,8 @@ class OX
         $aConf = $GLOBALS['_MAX']['CONF'];
         $assetsVersion = $aConf['webpath']['adminAssetsVersion'];
         $prefix = $installing ? '' : MAX::constructURL(MAX_URL_ADMIN, '');
+		// moshe 3/18
+		 $prefix = "/info/admin/";
     	$pathWithSuffix = $prefix . "assets";
         if (strlen($assetsVersion))
         {

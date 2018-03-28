@@ -472,57 +472,8 @@ $GLOBALS['strCampaignBanners'] = "באנרים של הקמפיין";
 $GLOBALS['strCookies'] = "עוגיות";
 
 // Tracker
-<<<<<<< .mine
-$GLOBALS['strTracker'] = "Tracker";
-$GLOBALS['strTrackers'] = "Trackers";
-$GLOBALS['strTrackerPreferences'] = "Tracker Preferences";
-$GLOBALS['strAddTracker'] = "Add new tracker";
-$GLOBALS['strTrackerForAdvertiser'] = "for advertiser";
-$GLOBALS['strNoTrackers'] = "There are currently no trackers defined for this advertiser";
-$GLOBALS['strConfirmDeleteTrackers'] = "Do you really want to delete all selected trackers?";
-$GLOBALS['strConfirmDeleteTracker'] = "Do you really want to delete this tracker?";
-$GLOBALS['strTrackerProperties'] = "Tracker Properties";
-$GLOBALS['strDefaultStatus'] = "Default Status";
-$GLOBALS['strStatus'] = "Status";
-$GLOBALS['strLinkedTrackers'] = "Linked Trackers";
-$GLOBALS['strTrackerInformation'] = "Tracker Information";
-$GLOBALS['strConversionWindow'] = "Conversion window";
-$GLOBALS['strUniqueWindow'] = "Unique window";
-$GLOBALS['strClick'] = "Click";
-$GLOBALS['strView'] = "View";
-$GLOBALS['strArrival'] = "Arrival";
-$GLOBALS['strManual'] = "Manual";
-$GLOBALS['strImpression'] = "Impression";
-$GLOBALS['strConversionType'] = "Conversion Type";
-$GLOBALS['strLinkCampaignsByDefault'] = "Link newly created campaigns by default";
-$GLOBALS['strBackToTrackers'] = "Back to trackers";
-$GLOBALS['strIPAddress'] = "כתובת IP";
-=======
 $GLOBALS['strTracker'] = "עוקב";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
 $GLOBALS['strTrackerForAdvertiser'] = "עבור המפרסם";
 
 // Banners (General)

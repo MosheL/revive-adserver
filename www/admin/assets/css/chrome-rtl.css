@@ -9,6 +9,7 @@ body.hasSidebar {
 #oaSearch {
 	left: 8px;
 	right: auto;
+	z-index: 5;
 }
 #oaSearch div {
 	left: auto;
@@ -161,3 +162,7 @@ body {background: none repeat scroll 0 0 #1B4672 !important; direction:rtl; font
 
 
 form.login {min-height:300px}
+
+
+#oaSearch { top: 44px; z-index: 8}
+#oaSearch input.search { left: auto; right:32px}
