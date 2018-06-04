@@ -48,6 +48,5 @@ class OA_Creative_File_RichMedia extends OA_Creative_File
 		
         return true;
     }
-}
 
 ?>

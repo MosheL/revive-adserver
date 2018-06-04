@@ -178,11 +178,11 @@ function OX_bucket_prepareUpdateQuery($tableName, $aQuery, $increment = true, $c
 
     $aQuery = array_map('OX_escapeString', $aQuery);
    if (! isset($aQuery[$counter]))
-	    if ($increment ) {
-	    $aQuery[$counter] = 1;
-	    } else {
-	        $aQuery[$counter] = -1;
-	    }
+    if ($increment) {
+    $aQuery[$counter] = 1;
+    } else {
+        $aQuery[$counter] = -1;
+    }
     $query = "
         INSERT INTO {$tableName}
             (" . implode(', ', array_keys($aQuery)) . ")

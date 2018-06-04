@@ -6,4 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
+    'Pdp\\' => array($vendorDir . '/jeremykendall/php-domain-parser/src'),
 );

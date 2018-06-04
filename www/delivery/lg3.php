@@ -27,6 +27,14 @@
 
 function parseDeliveryIniFile($configPath = null, $configFile = null, $sections = true)
 {
+$fixMysqli = function($conf) {
+if ('mysql' === $conf['database']['type'] && !extension_loaded('mysql') && extension_loaded('mysqli')) {
+$conf['database']['type'] = 'mysqli';
+} elseif ('mysqli' === $conf['database']['type'] && !extension_loaded('mysqli') && extension_loaded('mysql')) {
+$conf['database']['type'] = 'mysql';
+}
+return $conf;
+};
 if (!$configPath) {
 $configPath = MAX_PATH . '/var';
 }
@@ -41,7 +49,7 @@ $realconf = @parse_ini_file(MAX_PATH . '/var/' . $conf['realConfig'] . '.conf.ph
 $conf = mergeConfigFiles($realconf, $conf);
 }
 if (!empty($conf)) {
-return $conf;
+return $fixMysqli($conf);
 } elseif ($configFile === '.plugin') {
 $pluginType = basename($configPath);
 $defaultConfig = MAX_PATH . '/plugins/' . $pluginType . '/default.plugin.conf.php';
@@ -58,7 +66,7 @@ if (isset($conf['realConfig'])) {
 $conf = @parse_ini_file(MAX_PATH . '/var/' . $conf['realConfig'] . '.conf.php', $sections);
 }
 if (!empty($conf)) {
-return $conf;
+return $fixMysqli($conf);
 }
 if (file_exists(MAX_PATH . '/var/INSTALLED')) {
 echo "Revive Adserver has been installed, but no configuration file was found.\n";
@@ -213,7 +221,7 @@ OA_setTimeZone('UTC');
 }
 function OA_setTimeZoneLocal()
 {
-$tz = !empty($GLOBALS['_MAX']['PREF']['timezone']) ? $GLOBALS['_MAX']['PREF']['timezone'] : 'GMT';
+$tz = !empty($GLOBALS['_MAX']['PREF']['timezone']) ? $GLOBALS['_MAX']['PREF']['timezone'] : 'UTC';
 OA_setTimeZone($tz);
 }
 function OX_getHostName()
@@ -246,6 +254,10 @@ $checkIfAlreadySet = true;
 $oxPearPath = MAX_PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'pear';
 $oxZendPath = MAX_PATH . DIRECTORY_SEPARATOR . 'lib';
 set_include_path($oxPearPath . PATH_SEPARATOR . $oxZendPath . PATH_SEPARATOR . get_include_path());
+}
+function RV_getContainer()
+{
+return $GLOBALS['_MAX']['DI'];
 }
 
 OX_increaseMemoryLimit(OX_getMinimumRequiredMemory());
@@ -288,6 +300,9 @@ $GLOBALS['_MAX']['COOKIE']['CACHE'][$name] = array($value, $expire);
 }
 function MAX_cookieSetViewerIdAndRedirect($viewerId) {
 $aConf = $GLOBALS['_MAX']['CONF'];
+if (!empty($aConf['privacy']['disableViewerId'])) {
+return;
+}
 MAX_cookieAdd($aConf['var']['viewerId'], $viewerId, _getTimeYearFromNow());
 MAX_cookieFlush();
 if ($GLOBALS['_MAX']['SSL_REQUEST']) {
@@ -356,14 +371,18 @@ $GLOBALS['_MAX']['CONF']['var']['blockLoggingClick'],
 function MAX_cookieGetUniqueViewerId($create = true)
 {
 static $uniqueViewerId = null;
-if(!is_null($uniqueViewerId)) {
+ if (null !== $uniqueViewerId) {
 return $uniqueViewerId;
 }
 $conf = $GLOBALS['_MAX']['CONF'];
+$privacyViewerId = empty($conf['privacy']['disableViewerId']) ? null : '01000111010001000101000001010010';
 if (isset($_COOKIE[$conf['var']['viewerId']])) {
-$uniqueViewerId = $_COOKIE[$conf['var']['viewerId']];
+$uniqueViewerId = $privacyViewerId ?: $_COOKIE[$conf['var']['viewerId']];
 } elseif ($create) {
-$uniqueViewerId = md5(uniqid('', true));  $GLOBALS['_MAX']['COOKIE']['newViewerId'] = true;
+$uniqueViewerId = $privacyViewerId ?: md5(uniqid('', true));
+$GLOBALS['_MAX']['COOKIE']['newViewerId'] = true;
+} else {
+$uniqueViewerId = null;
 }
 return $uniqueViewerId;
 }
@@ -444,7 +463,7 @@ if (!empty($GLOBALS['_MAX']['COOKIE']['CACHE'])) {
 reset($GLOBALS['_MAX']['COOKIE']['CACHE']);
 while (list($name,$v) = each ($GLOBALS['_MAX']['COOKIE']['CACHE'])) {
 list($value, $expire) = $v;
-if ($name == $conf['var']['viewerId']) {
+if ($name === $conf['var']['viewerId']) {
 MAX_cookieClientCookieSet($name, $value, $expire, '/', !empty($conf['cookie']['viewerIdDomain']) ? $conf['cookie']['viewerIdDomain'] : $domain);
 } else {
 MAX_cookieSet($name, $value, $expire, '/', $domain);
@@ -515,6 +534,7 @@ function MAX_remotehostSetInfo($run = false)
 {
 if (empty($GLOBALS['_OA']['invocationType']) || $run || ($GLOBALS['_OA']['invocationType'] != 'xmlrpc')) {
 MAX_remotehostProxyLookup();
+MAX_remotehostAnonymise();
 MAX_remotehostReverseLookup();
 MAX_remotehostSetGeoInfo();
 }
@@ -592,6 +612,12 @@ $aComponent = explode(':', $aConf['geotargeting']['type']);
 if (!empty($aComponent[1]) && (!empty($aConf['pluginGroupComponents'][$aComponent[1]]))) {
 $GLOBALS['_MAX']['CLIENT_GEO'] = OX_Delivery_Common_hook('getGeoInfo', array(), $type);
 }
+}
+}
+function MAX_remotehostAnonymise()
+{
+if (!empty($GLOBALS['_MAX']['CONF']['privacy']['anonymiseIp'])) {
+$_SERVER['REMOTE_ADDR'] = preg_replace('/\d+$/', '0', $_SERVER['REMOTE_ADDR']);
 }
 }
 function MAX_remotehostPrivateAddress($ip)
@@ -1220,7 +1246,8 @@ $query = "
         c.clickwindow AS clickwindow,
         c.viewwindow AS viewwindow,
         m.advertiser_limitation AS advertiser_limitation,
-        m.agencyid AS agency_id
+        m.agencyid AS agency_id,
+        c.status AS campaign_status
     FROM
         ".OX_escapeIdentifier($conf['table']['prefix'].$conf['table']['banners'])." AS d,
         ".OX_escapeIdentifier($conf['table']['prefix'].$conf['table']['campaigns'])." AS c,
@@ -2145,6 +2172,9 @@ OX_Delivery_Common_hook('logRequest', array($adId, $zoneId, $aAd, _viewersHostOk
 function MAX_Delivery_log_logAdImpression($adId, $zoneId)
 {
 if (empty($GLOBALS['_MAX']['CONF']['logging']['adImpressions'])) { return true; }
+if (MAX_commonIsAdActionBlockedBecauseInactive($adId)) {
+return true;
+}
 OX_Delivery_Common_hook('logImpression', array($adId, $zoneId, _viewersHostOkayToLog($adId, $zoneId)));
 }
 function MAX_Delivery_log_logAdClick($adId, $zoneId)
@@ -2619,6 +2649,14 @@ $GLOBALS['_MAX']['CONF']['var']['blockLoggingClick'],
 );
 if (strtolower($charset) == 'unicode') { $charset = 'utf-8'; }
 }
+function MAX_commonIsAdActionBlockedBecauseInactive($adId)
+{
+if (!empty($GLOBALS['_MAX']['CONF']['logging']['blockInactiveBanners'])) {
+$aAdInfo = MAX_cacheGetAd($adId);
+return $aAdInfo['status'] || $aAdInfo['campaign_status'];
+}
+return false;
+}
 function MAX_commonDisplay1x1()
 {
 MAX_header('Content-Type: image/gif');
@@ -3062,19 +3100,6 @@ $limitations = OA_Dal_Delivery_getChannelLimitations($channelid);
 $limitations = OA_Delivery_Cache_store_return($sName, $limitations);
 }
 return $limitations;
-}
-function MAX_cacheGetGoogleJavaScript($cached = true)
-{
-$sName = OA_Delivery_Cache_getName(__FUNCTION__);
-if (!$cached || ($output = OA_Delivery_Cache_fetch($sName)) === false) {
-$file = '/lib/max/Delivery/google.php';
-if(!isset($GLOBALS['_MAX']['FILES'][$file])) {
-include MAX_PATH . $file;
-}
-$output = MAX_googleGetJavaScript();
-$output = OA_Delivery_Cache_store_return($sName, $output);
-}
-return $output;
 }
 function OA_cacheGetPublisherZones($affiliateid, $cached = true)
 {

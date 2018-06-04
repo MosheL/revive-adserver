@@ -6,6 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname(dirname($vendorDir));
 
 return array(
+    'asseteer\\' => array($vendorDir . '/figdice/asseteer'),
+    'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
+    'Symfony\\Component\\DependencyInjection\\' => array($vendorDir . '/symfony/dependency-injection'),
+    'Symfony\\Component\\Config\\' => array($vendorDir . '/symfony/config'),
     'Sinergi\\BrowserDetector\\' => array($vendorDir . '/sinergi/browser-detector/src'),
     'RV\\' => array($baseDir . '/lib/RV'),
+    'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'League\\Flysystem\\ZipArchive\\' => array($vendorDir . '/league/flysystem-ziparchive/src'),
+    'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
 );
