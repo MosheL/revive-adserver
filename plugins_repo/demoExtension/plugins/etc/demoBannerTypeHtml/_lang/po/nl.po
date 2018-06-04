@@ -1,7 +1,6 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: revive-adserver\n"
-"POT-Creation-Date: 2008-07-29 18:41+0100\n"
 "Last-Translator: mbeccati <matteo@beccati.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -20,5 +19,5 @@ msgstr "Demonstratie Plugin HTML Banner Type"
 
 #: plugins_repo/demoExtension/plugins/bannerTypeHtml/demoBannerTypeHtml/demoHtml.class.php:48
 msgid "Please enter http://www.revive-adserver.com"
-msgstr ""
+msgstr "Voer http://www.revive-adserver.com in"
 

@@ -797,7 +797,6 @@ $GLOBALS['strCacheBusterComment'] = "  * להחליף את כל המופעים �
 
 
 // Errors
-$GLOBALS['strErrorDatabaseConnetion'] = "אירעה שגיאה בהתחברות לבסיס נתונים.";
 $GLOBALS['strErrorCantConnectToDatabase'] = "A fatal error occurred %s can't connect to the database. Because
                                                    of this it isn't possible to use the administrator interface. The delivery
                                                    of banners might also be affected. Possible reasons for the problem are:
@@ -807,9 +806,8 @@ $GLOBALS['strErrorCantConnectToDatabase'] = "A fatal error occurred %s can't con
                                                      <li>The username or password used to contact the database server are not correct</li>
                                                      <li>PHP has not loaded the MySQL Extension</li>
                                                    </ul>";
-$GLOBALS['strNoMatchesFound'] = "No matches were found";
-$GLOBALS['strErrorOccurred'] = "An error occurred";
-$GLOBALS['strErrorDBPlain'] = "ארעה שגיאה בגישה לבסיס הנתונים";
+$GLOBALS['strNoMatchesFound'] = "לא נמצאו תוצאות";
+$GLOBALS['strNoMatchesFound'] = "No matches were found";$GLOBALS['strErrorDBPlain'] = "ארעה שגיאה בגישה לבסיס הנתונים";
 $GLOBALS['strErrorDBSerious'] = "ארעה שגיאה חמורה בבסיס הנתונים";
 $GLOBALS['strErrorDBNoDataPlain'] = "עקב בעיה עם מסד הנתונים {$PRODUCT_NAME} לא הצלחתי לאחזר או לאחסן נתונים. ";
 $GLOBALS['strErrorDBCorrupt'] = "טבלאות בסיס הנתוניא כנראה קרסו ודורשות תיקון. מידע נוסף בדבר תיקון טבלאות שקרסו ניתן למצוא בפרק <i>Troubleshooting</i> של ה<i>Administrator guide</i>.";

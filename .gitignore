@@ -11,6 +11,7 @@ phpinfo.php
 /var/*.xml
 /var/cache/*.html
 /var/cache/*.php
+/var/cache/*.meta
 /var/cache/cache_*
 /var/cache/minify_*
 /var/plugins/DataObjects/*.bak
@@ -21,6 +22,7 @@ phpinfo.php
 /var/templates_compiled/*.php
 /var/templates_compiled/*.serial
 /www/admin/plugins/*
+/www/admin/assets/tinymce
 /www/images/
 /plugins_repo/release/*.ziplib/max/language/he/default.lang (2).php
 /plugins_repo/build-ap.xml

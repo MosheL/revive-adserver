@@ -118,8 +118,9 @@ function MAX_adRender(&$aBanner, $zoneId=0, $source='', $target='', $ct0='', $wi
     $cookie_random = $random;
     // Get the click URL
     $clickUrl = _adRenderBuildClickUrl($aBanner, $zoneId, $source, $ct0, $logClick, true);
-	// Get URL prefix, stripping the traling slash
-    $urlPrefix = substr(MAX_commonGetDeliveryUrl(), 0, -1);
+	// Get URL and image prefixes, stripping the traling slash
+    $urlPrefix = rtrim(MAX_commonGetDeliveryUrl(), '/');
+    $imgUrlPrefix = rtrim(_adRenderBuildImageUrlPrefix(), '/');
 
     $code = str_replace('{clickurl}', $clickUrl, $code);  // This step needs to be done separately because {clickurl} can contain {random}...
 
@@ -131,14 +132,22 @@ function MAX_adRender(&$aBanner, $zoneId=0, $source='', $target='', $ct0='', $wi
         $logUrl_enc = urlencode(_adRenderBuildLogURL($aBanner, $zoneId, $source, $loc, $referer, '&'));
         $code = str_replace('{logurl_enc}', $logUrl_enc, $code);  // This step needs to be done separately because {logurl} does contain {random}...
     }
+    if (strpos($code, '{imgurl}') !== false) {
+        $imgUrl = _adRenderBuildImageUrlPrefix();
+        $code = str_replace('{imgurl}', $imgUrl, $code);  // This step needs to be done separately because {logurl} does contain {random}...
+    }
+    if (strpos($code, '{imgurl_enc}') !== false) {
+        $imgUrl_enc = urlencode(_adRenderBuildImageUrlPrefix());
+        $code = str_replace('{imgurl_enc}', $logUrl, $code);  // This step needs to be done separately because {logurl} does contain {random}...
+    }
     if (strpos($code, '{clickurlparams}')) {
         $maxparams = _adRenderBuildParams($aBanner, $zoneId, $source, urlencode($ct0), $logClick, true);
         $code = str_replace('{clickurlparams}', $maxparams, $code);  // This step needs to be done separately because {clickurlparams} does contain {random}...
     }
-    $search = array('{timestamp}','{random}','{target}','{url_prefix}','{bannerid}','{zoneid}','{source}', '{pageurl}', '{width}', '{height}', '{websiteid}', '{campaignid}', '{advertiserid}', '{referer}');
+    $search = array('{timestamp}','{random}','{target}','{url_prefix}','{img_url_prefix}','{bannerid}','{zoneid}','{source}', '{pageurl}', '{width}', '{height}', '{websiteid}', '{campaignid}', '{advertiserid}', '{referer}');
     $locReplace = isset($GLOBALS['loc']) ? $GLOBALS['loc'] : '';
     $websiteid = (!empty($aBanner['affiliate_id'])) ? $aBanner['affiliate_id'] : '0';
-    $replace = array($time, $random, $target, $urlPrefix, $aBanner['ad_id'], $zoneId, $source, urlencode($locReplace), $aBanner['width'], $aBanner['height'], $websiteid, $aBanner['campaign_id'], $aBanner['client_id'], $referer);
+    $replace = array($time, $random, $target, $urlPrefix, $imgUrlPrefix, $aBanner['ad_id'], $zoneId, $source, urlencode($locReplace), $aBanner['width'], $aBanner['height'], $websiteid, $aBanner['campaign_id'], $aBanner['client_id'], $referer);
 
     preg_match_all('#{([a-zA-Z0-9_]*?)(_enc)?}#', $code, $macros);
     for ($i=0;$i<count($macros[1]);$i++) {
@@ -426,10 +435,10 @@ function _adRenderFlash(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fal
 function _adRenderHtml(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=false, $logClick=true, $logView=true, $useAlt=false, $richMedia=true, $loc='', $referer='', $context=array())
 {
     // This is a wrapper to the "parent" bannerTypeHtml function
-    $aConf = $GLOBALS['_MAX']['CONF'];
     if (!function_exists('Plugin_BannerTypeHtml_delivery_adRender')) {
-        @include_once LIB_PATH . '/Extension/bannerTypeHtml/bannerTypeHtmlDelivery.php';
+        _includeDeliveryPluginFile('/lib/OX/Extension/bannerTypeHtml/bannerTypeHtmlDelivery.php');
     }
+
     return Plugin_BannerTypeHtml_delivery_adRender($aBanner, $zoneId, $source, $ct0, $withText, $logClick, $logView, $useAlt, $richMedia, $loc, $referer);
 }
 
@@ -441,7 +450,7 @@ function _adRenderHtml(&$aBanner, $zoneId=0, $source='', $ct0='', $withText=fals
  * @param string  $source       The "source" parameter passed into the adcall
  * @param string  $ct0          The 3rd party click tracking URL to redirect to after logging
  * @param int     $withText     Should "text below banner" be appended to the generated code
- * @param bookean $logClick     Should this click be logged (clicks in admin should not be logged)
+ * @param boolean $logClick     Should this click be logged (clicks in admin should not be logged)
  * @param boolean $logView      Should this view be logged (views in admin should not be logged
  *                              also - 3rd party callback logging should not be logged at view time)
  * @param boolean $useAlt       Should the backup file be used for this code

@@ -195,6 +195,9 @@ $GLOBALS['strP3PSettings'] = "P3P Privacy Policies";
 $GLOBALS['strUseP3P'] = "Use P3P Policies";
 $GLOBALS['strP3PCompactPolicy'] = "P3P Compact Policy";
 $GLOBALS['strP3PPolicyLocation'] = "P3P Policy Location";
+$GLOBALS['strPrivacySettings'] = "Privacy Settings";
+$GLOBALS['strDisableViewerId'] = "Disable unique Viewer Id cookie";
+$GLOBALS['strAnonymiseIp'] = "Anonymise viewer IP addresses";
 
 // General Settings
 $GLOBALS['generalSettings'] = "Global General System Settings";
@@ -214,6 +217,7 @@ $GLOBALS['strShowBannerInfo'] = "Show extra banner info on <i>Banners</i> page";
 $GLOBALS['strShowCampaignPreview'] = "Show preview of all banners on <i>Banners</i> page";
 $GLOBALS['strShowBannerHTML'] = "Show actual banner instead of plain HTML code for HTML banner preview";
 $GLOBALS['strShowBannerPreview'] = "Show banner preview at the top of pages which deal with banners";
+$GLOBALS['strUseWyswygHtmlEditorByDefault'] = "Use the WYSIWYG HTML Editor by default when creating or editing HTML banners";
 $GLOBALS['strHideInactive'] = "Hide inactive items from all overview pages";
 $GLOBALS['strGUIShowMatchingBanners'] = "Show matching banners on the <i>Linked banner</i> pages";
 $GLOBALS['strGUIShowParentCampaigns'] = "Show parent campaigns on the <i>Linked banner</i> pages";
@@ -259,7 +263,7 @@ $GLOBALS['strInactivatedCampaigns'] = "List of campaigns which became inactive d
 $GLOBALS['strMaintenanceSettings'] = "Maintenance Settings";
 $GLOBALS['strConversionTracking'] = "Conversion Tracking Settings";
 $GLOBALS['strEnableConversionTracking'] = "Enable Conversion Tracking";
-$GLOBALS['strBlockInactiveBannerClicks'] = "Don't count ad clicks or re-direct the user to the target URL if the viewer clicks on a banner that is inactive";
+$GLOBALS['strBlockInactiveBanners'] = "Don't count ad impressions, clicks or re-direct the user to the target URL if the viewer clicks on a banner that is inactive";
 $GLOBALS['strBlockAdClicks'] = "Don't count ad clicks if the viewer has clicked on the same ad/zone pair within the specified time (seconds)";
 $GLOBALS['strMaintenanceOI'] = "Maintenance Operation Interval (minutes)";
 $GLOBALS['strPrioritySettings'] = "Priority Settings";

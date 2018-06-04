@@ -534,6 +534,8 @@ $GLOBALS['strDoNotAlterHtml'] = "Do not alter HTML";
 $GLOBALS['strGenericOutputAdServer'] = "Generic";
 $GLOBALS['strSwfTransparency'] = "Allow transparent background";
 $GLOBALS['strBackToBanners'] = "Back to banners";
+$GLOBALS['strUseWyswygHtmlEditor'] = "Use WYSIWYG HTML Editor";
+$GLOBALS['strChangeDefault'] = "Change default";
 
 // Banner (advanced)
 $GLOBALS['strBannerPrependHTML'] = "Always prepend the following HTML code to this banner";
@@ -830,15 +832,15 @@ $GLOBALS['strThirdPartyComment'] = "
   *";
 
 // Errors
-$GLOBALS['strErrorDatabaseConnetion'] = "Database connection error.";
-$GLOBALS['strErrorCantConnectToDatabase'] = "A fatal error occurred %s can't connect to the database. Because
+$GLOBALS['strErrorDatabaseConnection'] = "Database connection error.";
+$GLOBALS['strErrorCantConnectToDatabase'] = "A fatal error occurred %1\$s can't connect to the database. Because
                                                    of this it isn't possible to use the administrator interface. The delivery
                                                    of banners might also be affected. Possible reasons for the problem are:
                                                    <ul>
                                                      <li>The database server isn't functioning at the moment</li>
                                                      <li>The location of the database server has changed</li>
                                                      <li>The username or password used to contact the database server are not correct</li>
-                                                     <li>PHP has not loaded the MySQL Extension</li>
+                                                     <li>PHP has not loaded the <i>%2\$s</i> extension</li>
                                                    </ul>";
 $GLOBALS['strNoMatchesFound'] = "No matches were found";
 $GLOBALS['strErrorOccurred'] = "An error occurred";
@@ -1109,6 +1111,8 @@ $GLOBALS['strCampaignAuditTrailSetup'] = "Activate Audit Trail to start viewing 
 
 $GLOBALS['strUnsavedChanges'] = "You have unsaved changes on this page, make sure you press &quot;Save Changes&quot; when finished";
 $GLOBALS['strDeliveryLimitationsDisagree'] = "WARNING: The cached delivery rules <strong>DO NOT AGREE</strong> with the delivery rules shown below<br />Please hit save changes to update the cached delivery rules";
+$GLOBALS['strDeliveryRulesDbError'] = "WARNING: When saving the delivery rules, a database error occured. Please check the delivery rules below carefully, and update, if required.";
+$GLOBALS['strDeliveryRulesTruncation'] = "WARNING: When saving the delivery rules, MySQL truncated the data, so the original values were restored. Please reduce your rule size, and try again.";
 $GLOBALS['strDeliveryLimitationsInputErrors'] = "Some delivery rules report incorrect values:";
 
 //confirmation messages

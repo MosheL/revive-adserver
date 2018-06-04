@@ -10,19 +10,18 @@
 +---------------------------------------------------------------------------+
 */
 
-// Require the initialisation file
-require_once '../../init-delivery.php';
+namespace RV\Parser\Html5;
 
-// Required files
-require_once MAX_PATH . '/lib/max/Delivery/cache.php';
+use RV\Parser\Html5ParserInterface;
 
-// Get JS
-$output = MAX_cacheGetGoogleJavaScript();
+class AdobeEdgeParser implements Html5ParserInterface
+{
+    public function parseSize($html)
+    {
+        if (preg_match('#AdobeEdge.loadComposition\([^{]+\{.*width:\s*"(\d+)px".*height:\s*"(\d+)px"#s', $html, $m)) {
+            return [(int) $m[1], (int) $m[2]];
+        }
 
-// Output JS
-MAX_commonSendContentTypeHeader("application/x-javascript");
-MAX_header("Expires: ".gmdate('r', time() + 86400));
-
-echo $output;
-
-?>
+        return null;
+    }
+}

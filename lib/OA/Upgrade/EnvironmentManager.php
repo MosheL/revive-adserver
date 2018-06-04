@@ -39,47 +39,38 @@ define('OA_MEMORY_UNLIMITED', 'Unlimited');
 
 class OA_Environment_Manager
 {
-
     var $aInfo = array();
 
     function __construct()
     {
         $conf = $GLOBALS['_MAX']['CONF'];
-        global $installing;
-        if (!$installing)
-        {
+
+        if (empty($GLOBALS['installing'])) {
             $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var');
-        }
-        else
-        {
+            $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var/cache', true);
+            $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var/plugins', true);
+            $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var/templates_compiled', true);
+        } else {
             $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var',true);
         }
-        $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var/cache', true);
-        $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var/plugins', true);
-        $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/var/templates_compiled', true);
+
         $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/plugins', true);
         $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/www/admin/plugins', true);
 
         // if CONF file hasn't been created yet, use the default images folder
-        if (!empty($conf['store']['webDir']))
-        {
+        if (!empty($conf['store']['webDir'])) {
             $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem($conf['store']['webDir']);
-        }
-        else
-        {
+        } else {
             $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem(MAX_PATH.'/www/images');
         }
 
-        if (!empty($conf['delivery']['cachePath']))
-        {
+        if (!empty($conf['delivery']['cachePath'])) {
             $this->aInfo['PERMS']['expected'][] = $this->buildFilePermArrayItem($conf['delivery']['cachePath']);
         }
 
         // Fix directory separator
-        if (DIRECTORY_SEPARATOR != '/')
-        {
-            foreach ($this->aInfo['PERMS']['expected'] as $idx => $aValue)
-            {
+        if (DIRECTORY_SEPARATOR != '/') {
+            foreach ($this->aInfo['PERMS']['expected'] as $idx => $aValue) {
                 $this->aInfo['PERMS']['expected'][$idx]['file'] = str_replace('/', DIRECTORY_SEPARATOR, $aValue['file']);
             }
         }
@@ -88,7 +79,7 @@ class OA_Environment_Manager
         $this->aInfo['PERMS']['actual']   = array();
         $this->aInfo['FILES']['actual']   = array();
 
-        $this->aInfo['PHP']['expected']['version']              = '5.5.9';
+        $this->aInfo['PHP']['expected']['version']              = '5.6.0';
         $this->aInfo['PHP']['expected']['magic_quotes_runtime'] = '0';
         $this->aInfo['PHP']['expected']['safe_mode']            = '0';
         $this->aInfo['PHP']['expected']['file_uploads']         = '1';
@@ -98,6 +89,7 @@ class OA_Environment_Manager
         $this->aInfo['PHP']['expected']['zlib']                 = true;
         $this->aInfo['PHP']['expected']['mysql']                = true;
         $this->aInfo['PHP']['expected']['spl']                  = true;
+        $this->aInfo['PHP']['expected']['json']                 = true;
         $this->aInfo['PHP']['expected']['mbstring']             = false;
         $this->aInfo['PHP']['expected']['timeout']              = false;
         $this->aInfo['COOKIES']['expected']['enabled']          = true;
@@ -161,6 +153,8 @@ class OA_Environment_Manager
         $aResult['mysqli']               = extension_loaded('mysqli');
         $aResult['pgsql']                = extension_loaded('pgsql');
         $aResult['spl']                  = extension_loaded('spl');
+        $aResult['json']                 = extension_loaded('json');
+
         // Check mbstring.func_overload
         $aResult['mbstring.func_overload'] = false;
         if (extension_loaded('mbstring')) {
@@ -200,6 +194,7 @@ class OA_Environment_Manager
     function checkFilePermission($file, $recurse)
     {
         if ((!file_exists($file)) || (!$this->isWritable($file))) {
+            OA::debug('Unwritable ' . ((is_dir($file) ? 'folder ' : 'file ')) . $file);
             return false;
         }
         $recurseWritable = true;
@@ -212,7 +207,6 @@ class OA_Environment_Manager
                     }
                     $thisFile = $file . '/' . $f;
                     if (!$this->checkFilePermission($thisFile, $recurse)) {
-                        OA::debug('Unwritable ' . ((is_dir($thisFile) ? 'folder ' : 'file ')) . $thisFile);
                         $recurseWritable = false;
                     }
                 }
@@ -419,10 +413,14 @@ class OA_Environment_Manager
             $this->aInfo['PHP']['error']['zlib'] = 'The zlib extension must be loaded';
         }
         if (!($this->aInfo['PHP']['actual']['mysql'] || $this->aInfo['PHP']['actual']['mysqli'] || $this->aInfo['PHP']['actual']['pgsql'])) {
-            $this->aInfo['PHP']['error']['mysql'] = 'Either the mysql or the pgsql extension must be loaded';
+            $this->aInfo['PHP']['error']['mysql'] = $this->aInfo['PHP']['error']['mysqli'] = $this->aInfo['PHP']['error']['pgsql'] =
+                'At least one of these database extensions must be loaded';
         }
         if (!$this->aInfo['PHP']['actual']['spl']) {
             $this->aInfo['PHP']['error']['spl'] = 'The spl extension must be loaded';
+        }
+        if (!$this->aInfo['PHP']['actual']['json']) {
+            $this->aInfo['PHP']['error']['json'] = 'The json extension must be loaded';
         }
         if ($this->aInfo['PHP']['actual']['mbstring.func_overload']) {
             $this->aInfo['PHP']['error']['mbstring.func_overload'] = 'mbstring function overloading must be disabled';

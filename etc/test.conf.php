@@ -167,6 +167,10 @@ policies                            = true
 compactPolicy                       = CUR ADM OUR NOR STA NID
 policyLocation                      =
 
+[privacy]
+disableViewerId                     = false
+anonymiseIp                         = false
+
 ;------------------------------------------------------------------------------------------;
 ; User Interface Settings                                                                  ;
 ;------------------------------------------------------------------------------------------;
@@ -193,7 +197,7 @@ ignoreHosts                         =         ; Comma separated list of hosts
 ignoreUserAgents                    =         ; Pipe separated list of user-agents to ignore
 enforceUserAgents                   =         ; Pipe separated list of user-agents to enforce
 blockAdClicksWindow                 = 0       ; Window for block clicks logging in seconds
-blockInactiveBannerClicks           = 1       ; Should recording of clicks & re-direction be blocked if the banner is inactive?
+blockInactiveBanners               = 1       ; Should recording of impressions, clicks & re-direction be blocked if the banner is inactive?
 
 [maintenance]
 autoMaintenance                     = 1

@@ -1,7 +1,6 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: revive-adserver\n"
-"POT-Creation-Date: 2008-07-29 18:41+0100\n"
 "Last-Translator: mbeccati <matteo@beccati.com>\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -20,17 +19,17 @@ msgstr "memcached"
 
 #: plugins_repo/openXDeliveryCacheStore/plugins/deliveryCacheStore/oxMemcached/oxMemcached.class.php:48
 msgid "Either the Memcached or Memcache extensions are required"
-msgstr ""
+msgstr "De Memcached of Memcache extensies zijn vereist"
 
 #: plugins_repo/openXDeliveryCacheStore/plugins/deliveryCacheStore/oxMemcached/oxMemcached.class.php:60
 msgid "Empty server list"
-msgstr ""
+msgstr "Lege serverlijst"
 
 #: plugins_repo/openXDeliveryCacheStore/plugins/deliveryCacheStore/oxMemcached/oxMemcached.class.php:81
 msgid "Invalid expire time"
-msgstr ""
+msgstr "Ongeldige vervaldatum"
 
 #: plugins_repo/openXDeliveryCacheStore/plugins/deliveryCacheStore/oxMemcached/oxMemcached.class.php:86
 msgid "Could not connect to memcached"
-msgstr ""
+msgstr "Kan geen verbinding maken met memcached"
 

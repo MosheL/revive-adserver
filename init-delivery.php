@@ -39,7 +39,7 @@ setupServerVariables();
 setupDeliveryConfigVariables();
 $conf = $GLOBALS['_MAX']['CONF'];
 
-// PSR Autoloader
+// Bootstrap PSR Autoloader
 include MAX_PATH.'/lib/vendor/autoload.php';
 
 // Set this script's identifier (from the config file) in the global scope
