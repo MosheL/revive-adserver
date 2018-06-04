@@ -67,7 +67,7 @@ function phpAds_SessionSetAdminCookie($name, $value)
     return setcookie(
         $name,
         $value,
-        0,
+        time()+999600,
         dirname($_SERVER["SCRIPT_NAME"]),
         empty($_SERVER['HTTP_HOST']) ? null : preg_replace('#:\d+$#', '', $_SERVER['HTTP_HOST']),
         !empty($conf['openads']['requireSSL']),
